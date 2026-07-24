@@ -1,42 +1,371 @@
-# vue3-study
+# 全栈学习平台
 
-This template should help get you started developing with Vue 3 in Vite.
+一个基于 Vue 3 + Vite 构建的在线技术教程平台，提供系统化的编程学习资源。
 
-## Recommended IDE Setup
+## 项目特色
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- **多系列教程**：涵盖前端、后端、操作系统、网络、DevOps 等多个领域
+- **结构化学习**：每个系列分为基础篇、进阶篇、实战篇，循序渐进
+- **现代化 UI**：支持主题切换、响应式设计、平滑导航
+- **代码高亮**：支持多种编程语言的语法高亮显示
+- **移动端适配**：完美适配手机、平板、桌面端
 
-## Recommended Browser Setup
+## 项目结构
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+```
+vue3-study/
+├── src/
+│   ├── components/       # 通用组件
+│   ├── composables/      # 组合式函数
+│   ├── content/tutorials/ # 教程内容（Markdown）
+│   ├── data/            # 教程数据配置
+│   ├── layouts/         # 页面布局
+│   ├── router/          # 路由配置
+│   ├── views/           # 页面视图
+│   └── assets/          # 静态资源
+├── public/              # 公共文件
+└── package.json         # 项目配置
+```
 
-## Type Support for `.vue` Imports in TS
+## 教程系列
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+### 前端开发
 
-## Customize configuration
+| 教程名称             | 章节数 | 简介                  |
+| ---------------- | --- | ------------------- |
+| HTML 基础到精通       | 12  | 从零开始学习 HTML，构建语义化网页 |
+| CSS 完全指南         | 12  | 从基础样式到现代布局          |
+| JavaScript 核心教程  | 12  | 掌握 JavaScript 核心概念  |
+| TypeScript 从零到精通 | 12  | TypeScript 基础到实战    |
+| Vue 2 经典教程       | 16  | Vue 2 选项式 API 与生态   |
+| Vue 3 完全指南       | 16  | Vue 3 组合式 API 与核心特性 |
+| Vite 完全指南        | 16  | 下一代前端构建工具           |
+| npm 完全指南         | 16  | Node.js 包管理与项目工作流   |
+| 前端性能优化实战         | 16  | 系统掌握性能优化技术          |
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+### 后端开发
 
-## Project Setup
+| 教程名称        | 章节数 | 简介             |
+| ----------- | --- | -------------- |
+| Java 从入门到精通 | 16  | Java 基础语法到面向对象 |
 
-```sh
+### 操作系统
+
+| 教程名称     | 章节数 | 简介             |
+| -------- | --- | -------------- |
+| 操作系统核心教程 | 16  | 进程、内存、文件系统核心概念 |
+
+### 网络
+
+| 教程名称       | 章节数 | 简介         |
+| ---------- | --- | ---------- |
+| 浏览器与网络基础教程 | 16  | 浏览器原理与网络协议 |
+
+### DevOps
+
+| 教程名称       | 章节数 | 简介            |
+| ---------- | --- | ------------- |
+| Git 版本控制教程 | 16  | 高效管理代码版本与团队协作 |
+
+## 技术栈
+
+- **框架**: Vue 3.5+ (Composition API)
+- **构建工具**: Vite 8.1+
+- **路由**: Vue Router 5.0+
+- **状态管理**: Pinia 3.0+
+- **语言**: TypeScript 6.0+
+- **样式**: CSS3 + CSS Variables
+- **Markdown**: markdown-it + highlight.js
+
+## 快速开始
+
+### 环境要求
+
+- Node.js >= 20.19.0 或 >= 22.12.0
+- pnpm >= 8.0.0
+
+### 安装依赖
+
+```bash
 pnpm install
 ```
 
-### Compile and Hot-Reload for Development
+### 开发模式
 
-```sh
-pnpm dev
+```bash
+pnpm format
 ```
 
-### Type-Check, Compile and Minify for Production
+访问 <http://localhost:5173> 查看应用。
 
-```sh
+### 构建生产版本
+
+```bash
 pnpm build
 ```
+
+### 预览生产版本
+
+```bash
+pnpm preview
+```
+
+### 代码格式化
+
+```bash
+pnpm format
+```
+
+## 开发说明
+
+### 如何添加新教程
+
+添加新教程分为三个步骤，按照以下流程操作即可：
+
+#### 步骤一：创建教程目录
+
+在 `src/content/tutorials/` 目录下创建新系列的文件夹，文件夹名称使用小写英文，单词之间用连字符分隔。
+
+示例：创建 React 教程系列
+
+```bash
+mkdir src/content/tutorials/react
+```
+
+#### 步骤二：注册教程系列
+
+在 `src/data/tutorial-series.ts` 文件中注册新的教程系列。
+
+示例代码：
+
+```typescript
+{
+  id: 'react',
+  title: 'React 完全指南',
+  description: '深入学习 React 核心概念与现代开发模式',
+  category: 'frontend',
+  chapters: [
+    {
+      number: '01',
+      title: 'React 简介与环境搭建',
+      description: '什么是 React，如何创建 React 项目',
+      section: '基础篇',
+      slug: 'introduction',
+    },
+    {
+      number: '02',
+      title: '组件与 Props',
+      description: '组件的定义与属性传递',
+      section: '基础篇',
+      slug: 'components-props',
+    },
+  ],
+}
+```
+
+字段说明：
+
+- `id`：系列唯一标识，小写英文，与目录名一致
+- `title`：系列显示名称
+- `description`：系列简介
+- `category`：分类，可选值：`frontend`、`backend`、`system`、`network`、`devops`
+- `chapters`：章节列表
+  - `number`：章节编号，两位数字（01-99）
+  - `title`：章节标题
+  - `description`：章节简介
+  - `section`：章节所属部分，可选值：`基础篇`、`进阶篇`、`实战篇`
+  - `slug`：章节 URL 标识，小写英文，与文件名一致
+
+#### 步骤三：创建章节内容
+
+在教程目录下创建 Markdown 文件，文件命名格式为 `{number}-{slug}.md`。
+
+示例：创建第一章
+
+```bash
+touch src/content/tutorials/react/01-introduction.md
+```
+
+每个 Markdown 文件必须包含以下结构：
+
+```markdown
+---
+title: "第一章：章节标题"
+description: "一句话说明本章内容"
+---
+
+# 第一章：章节标题
+
+## 本章导读
+
+在学这一章之前，你可能会有这些疑问：
+
+- 问题1？
+- 问题2？
+- 问题3？
+
+这一章就是为了解答这些问题。我们会先搞清楚核心概念，再动手实践。
+
+---
+
+## 1.1 为什么需要这个技术？
+
+### 痛点分析
+
+描述没有这个技术时的问题。
+
+### 解决方案
+
+描述这个技术如何解决痛点。
+
+> **一句话总结**：...
+
+---
+
+## 1.2 核心原理
+
+### 概念解释
+
+用通俗语言解释原理。
+
+打个比方：
+
+> 生活化类比
+
+### 对比分析
+
+| 特性 | 方案A | 方案B |
+| --- | --- | --- |
+| ... | ... | ... |
+
+---
+
+## 1.3 基础用法
+
+### 示例代码
+
+```javascript
+// 逐行注释
+```
+
+> **原理**：...
+
+---
+
+## 1.4 进阶用法
+
+更复杂的用法和场景。
+
+---
+
+## 1.5 核心知识点总结
+
+| 知识点 | 说明 |
+| --- | --- |
+| ... | ... |
+
+---
+
+## 1.6 新手常见误区
+
+### 误区 1："..."
+
+**错！** 解释为什么错。
+
+正确做法：...
+
+---
+
+## 1.7 动手练习
+
+### 练习 1：基础练习
+
+题目描述。
+
+<details>
+<summary>点击查看答案</summary>
+
+```javascript
+// 完整答案代码
+```
+
+</details>
+
+### 练习 2：进阶练习
+
+题目描述。
+
+<details>
+<summary>点击查看答案</summary>
+
+```javascript
+// 完整答案代码
+```
+
+</details>
+
+### 练习 3（挑战）：综合练习
+
+题目描述。
+
+<details>
+<summary>点击查看答案</summary>
+
+```javascript
+// 完整答案代码
+```
+
+</details>
+
+---
+
+## 下一章预告
+
+下一章我们会学习——也就是...。你会学到...。
+```
+
+### 教程编写规范
+
+每章教程必须包含以下八个部分：
+
+1. **本章导读**：列出 3-4 个新手常见疑问，说明本章会解决什么问题
+2. **技术必要性分析**：对比没有这个技术时的痛点，用生活化类比解释技术价值
+3. **核心原理讲解**：解释底层原理，用通俗类比帮助理解，对比不同方案的差异
+4. **基础用法**：代码示例每行都要有中文注释，用对比标记正确和错误写法
+5. **进阶用法**：展示更复杂的用法和实际应用场景
+6. **核心知识点总结**：用表格清晰展示关键知识点
+7. **新手常见误区**：列出 3-5 个新手容易犯的错误，解释为什么错和正确做法
+8. **下一章预告**：简要说明下一章会学什么，引导学习路径
+
+### 代码示例要求
+
+- 代码要完整可运行
+- 每行都要有中文注释，解释这行在做什么和为什么这样写
+- 使用对比标记正确和错误写法
+- 复杂代码要分步骤讲解
+
+### 路由说明
+
+教程页面路由采用自动匹配机制：
+
+- `/tutorials`：教程中心首页
+- `/tutorials/:seriesId`：系列索引页，展示该系列所有章节
+- `/tutorials/:seriesId/:chapterSlug`：章节内容页
+
+无需手动配置路由，系统会根据 `tutorial-series.ts` 自动生成。
+
+### 开发流程建议
+
+1. 先规划教程系列的整体大纲和章节结构
+2. 在 `tutorial-series.ts` 中注册所有章节的元数据
+3. 按顺序编写每个章节的内容，确保章节之间的连贯性
+4. 每完成一个章节后运行 `pnpm dev` 预览效果
+5. 完成后运行 `pnpm build` 确保项目能正常构建
+
+## 许可证
+
+MIT License
+
+## 贡献
+
+欢迎提交 Issue 和 Pull Request！
