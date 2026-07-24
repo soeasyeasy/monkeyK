@@ -10,6 +10,20 @@
 - **代码高亮**：支持多种编程语言的语法高亮显示
 - **移动端适配**：完美适配手机、平板、桌面端
 
+## 界面预览
+
+### 首页
+
+![首页预览](public/screenshots/home-page.png)
+
+### 教程中心
+
+![教程中心预览](public/screenshots/tutorials-page.png)
+
+### 章节内容
+
+![章节内容预览](public/screenshots/chapter-page.png)
+
 ## 项目结构
 
 ```
