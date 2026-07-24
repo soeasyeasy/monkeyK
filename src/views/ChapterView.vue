@@ -1,9 +1,21 @@
 <script setup lang="ts">
-import { ref, computed, watch, onMounted } from 'vue'
+import { ref, computed, watch, onMounted, inject } from 'vue'
 import { useRoute } from 'vue-router'
 import { getSeriesById, getAdjacentChapters } from '../data/tutorial-series'
 import { parseMarkdown } from '../utils/markdown'
 import MarkdownRenderer from '../components/MarkdownRenderer.vue'
+
+interface TocItem {
+  id: string
+  text: string
+  level: number
+}
+
+const tocItems = inject<ReturnType<typeof ref<TocItem[]>>>('tocItems', ref<TocItem[]>([]))
+
+function handleHeadings(headings: TocItem[]) {
+  tocItems.value = headings
+}
 
 const route = useRoute()
 const seriesId = computed(() => route.params.seriesId as string)
@@ -80,13 +92,11 @@ onMounted(() => {
     <div v-else-if="error" class="error">
       <h2>加载失败</h2>
       <p>{{ error }}</p>
-      <RouterLink :to="`/tutorials/${seriesId}`" class="back-link">
-        ← 返回系列目录
-      </RouterLink>
+      <RouterLink :to="`/tutorials/${seriesId}`" class="back-link"> ← 返回系列目录 </RouterLink>
     </div>
 
     <div v-else class="doc-content">
-      <MarkdownRenderer :content="markdownContent" />
+      <MarkdownRenderer :content="markdownContent" @headings="handleHeadings" />
 
       <!-- 上下章导航 -->
       <div class="chapter-footer" v-if="adjacent.prev || adjacent.next">
@@ -141,7 +151,9 @@ onMounted(() => {
 }
 
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .doc-content {

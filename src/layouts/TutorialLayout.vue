@@ -1,10 +1,19 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, provide } from 'vue'
 import TutorialSidebar from '../components/TutorialSidebar.vue'
 import TableOfContents from '../components/TableOfContents.vue'
 import ThemeSwitcher from '../components/ThemeSwitcher.vue'
 
 const sidebarOpen = ref(false)
+
+interface TocItem {
+  id: string
+  text: string
+  level: number
+}
+
+const tocItems = ref<TocItem[]>([])
+provide('tocItems', tocItems)
 
 function toggleSidebar() {
   sidebarOpen.value = !sidebarOpen.value

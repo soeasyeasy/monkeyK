@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { ref, onMounted, onUnmounted, watch, inject } from 'vue'
 
 interface TocItem {
   id: string
@@ -8,31 +7,8 @@ interface TocItem {
   level: number
 }
 
-const route = useRoute()
-const tocItems = ref<TocItem[]>([])
+const tocItems = inject<ReturnType<typeof ref<TocItem[]>>>('tocItems', ref<TocItem[]>([]))
 const activeId = ref('')
-
-function extractHeadings() {
-  const content = document.querySelector('.markdown-body')
-  if (!content) return
-
-  const headings = content.querySelectorAll('h2, h3')
-  const items: TocItem[] = []
-
-  headings.forEach((heading) => {
-    const el = heading as HTMLElement
-    if (!el.id) {
-      el.id = el.textContent?.trim().replace(/\s+/g, '-').toLowerCase() || ''
-    }
-    items.push({
-      id: el.id,
-      text: el.textContent || '',
-      level: el.tagName === 'H2' ? 2 : 3,
-    })
-  })
-
-  tocItems.value = items
-}
 
 function updateActiveHeading() {
   const headings = document.querySelectorAll('.markdown-body h2, .markdown-body h3')
@@ -61,10 +37,7 @@ function scrollToHeading(id: string) {
 }
 
 onMounted(() => {
-  nextTick(() => {
-    extractHeadings()
-    updateActiveHeading()
-  })
+  updateActiveHeading()
   window.addEventListener('scroll', handleScroll, { passive: true })
 })
 
@@ -72,18 +45,9 @@ onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
 })
 
-watch(
-  () => route.path,
-  () => {
-    nextTick(() => {
-      setTimeout(() => {
-        extractHeadings()
-        updateActiveHeading()
-        window.scrollTo(0, 0)
-      }, 100)
-    })
-  },
-)
+watch(tocItems, () => {
+  updateActiveHeading()
+})
 </script>
 
 <template>
