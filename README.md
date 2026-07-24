@@ -232,13 +232,153 @@ mkdir src/content/tutorials/react
 
 ### 开发流程建议
 
- 可使用skill进行自动生成
+可使用 skill 进行自动生成
 
 1. 先规划教程系列的整体大纲和章节结构
 2. 在 `tutorial-series.ts` 中注册所有章节的元数据
 3. 按顺序编写每个章节的内容，确保章节之间的连贯性
 4. 每完成一个章节后运行 `pnpm dev` 预览效果
 5. 完成后运行 `pnpm build` 确保项目能正常构建
+
+## 部署教程
+
+### 方式一：Nginx + Docker Compose 部署
+
+#### 1. 构建项目
+
+```bash
+pnpm install
+pnpm build
+```
+
+构建完成后，`dist` 目录包含所有静态文件。
+
+#### 2. 创建 SSL 证书（可选）
+
+如果需要 HTTPS，创建 `ssl` 目录并放置证书文件：
+
+```bash
+mkdir ssl
+# 将 cert.pem 和 key.pem 放入 ssl 目录
+```
+
+#### 3. 启动服务
+
+使用 Docker Compose 启动 Nginx：
+
+```bash
+docker-compose up -d
+```
+
+服务将在以下端口运行：
+- HTTP：`http://localhost`
+- HTTPS：`https://localhost`（需要 SSL 证书）
+
+#### 4. 配置说明
+
+[Nginx 配置文件](nginx.conf) 包含以下特性：
+
+- SPA 路由支持：所有请求重定向到 `index.html`
+- Gzip 压缩：减少传输体积
+- 静态资源缓存：设置 1 年缓存时间
+- HTTPS 支持：配置 TLS 1.2/1.3
+- 安全设置：禁止访问隐藏文件
+
+[Docker Compose 配置文件](docker-compose.yml) 说明：
+
+- 使用 Nginx stable-alpine 镜像
+- 映射 `dist` 目录到容器
+- 映射 SSL 证书目录
+- 自动重启策略
+
+### 方式二：GitHub Pages 部署
+
+#### 1. 配置 Vite 构建路径
+
+修改 [vite.config.ts](vite.config.ts)，添加 `base` 配置：
+
+```typescript
+export default defineConfig({
+  base: '/vue3-study/',
+  // ...其他配置
+})
+```
+
+将 `/vue3-study/` 替换为你的仓库名称。
+
+#### 2. 构建项目
+
+```bash
+pnpm install
+pnpm build
+```
+
+#### 3. 部署到 GitHub Pages
+
+##### 方法 A：手动部署
+
+将 `dist` 目录内容推送到 `gh-pages` 分支：
+
+```bash
+# 安装 gh-pages 工具
+pnpm add -D gh-pages
+
+# 部署
+pnpm gh-pages -d dist
+```
+
+##### 方法 B：GitHub Actions 自动部署
+
+创建 `.github/workflows/deploy.yml` 文件：
+
+```yaml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build
+        run: pnpm build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+```
+
+#### 4. 配置 GitHub Pages
+
+1. 进入仓库 Settings -> Pages
+2. 设置 Source 为 `gh-pages` 分支，路径为 `/`
+3. 保存配置
+
+部署完成后，访问 `https://{username}.github.io/{repository}` 查看网站。
+
+### 注意事项
+
+1. **路由模式**：项目使用 `history` 模式，部署时需要配置服务器将所有请求重定向到 `index.html`
+2. **base 路径**：部署到子目录时，需要在 `vite.config.ts` 中配置正确的 `base` 路径
+3. **HTTPS**：GitHub Pages 默认提供 HTTPS，自定义域名需要配置 SSL 证书
+4. **缓存策略**：静态资源使用 hash 命名，部署后浏览器会自动加载最新版本
 
 ## 许可证
 
