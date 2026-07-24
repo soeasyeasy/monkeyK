@@ -31,8 +31,8 @@ function toggleSidebar() {
           </span>
         </button>
         <RouterLink to="/tutorials" class="header-logo">
-          <span class="logo-badge">TS</span>
-          <span class="logo-name">TypeScript 教程</span>
+          <span class="logo-badge">MonkeyK</span>
+          <span class="logo-name">知新</span>
         </RouterLink>
       </div>
       <nav class="header-nav">
