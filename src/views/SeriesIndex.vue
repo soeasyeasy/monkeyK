@@ -15,7 +15,6 @@ const sections = computed(() => {
 <template>
   <div class="series-index" v-if="series">
     <div class="series-header">
-      <div class="series-icon">{{ series.icon }}</div>
       <h1>{{ series.title }}</h1>
       <p class="subtitle">{{ series.description }}</p>
       <div class="stats">
@@ -28,7 +27,7 @@ const sections = computed(() => {
       <div class="section-badge">{{ section }}</div>
       <div class="chapter-list">
         <RouterLink
-          v-for="chapter in series.chapters.filter(c => c.section === section)"
+          v-for="chapter in series.chapters.filter((c) => c.section === section)"
           :key="chapter.number"
           :to="`/tutorials/${series.id}/${chapter.slug}`"
           class="chapter-link"
@@ -66,11 +65,6 @@ const sections = computed(() => {
   border: 1px solid var(--border-glass);
   box-shadow: var(--shadow-md);
   text-align: center;
-}
-
-.series-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
 }
 
 .series-header h1 {

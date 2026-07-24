@@ -75,7 +75,6 @@ const stats = computed(() => ({
 <template>
   <div class="todo-page">
     <div class="page-header">
-      <div class="header-icon">✅</div>
       <h1>待办事项</h1>
       <p class="subtitle">管理日常任务，提高效率</p>
     </div>
@@ -149,11 +148,6 @@ const stats = computed(() => ({
 .page-header {
   text-align: center;
   margin-bottom: 3rem;
-}
-
-.header-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
 }
 
 .page-header h1 {

@@ -6,7 +6,6 @@ import ThemeSwitcher from './ThemeSwitcher.vue'
   <header class="app-header">
     <div class="header-content">
       <RouterLink to="/" class="header-logo">
-        <span class="logo-icon">📚</span>
         <span class="logo-text">全栈学习中心</span>
       </RouterLink>
 
@@ -46,15 +45,8 @@ import ThemeSwitcher from './ThemeSwitcher.vue'
 }
 
 .header-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
   text-decoration: none;
   color: inherit;
-}
-
-.logo-icon {
-  font-size: 1.5rem;
 }
 
 .logo-text {

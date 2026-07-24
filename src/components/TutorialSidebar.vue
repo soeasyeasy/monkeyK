@@ -28,14 +28,13 @@ function navigate(slug: string) {
     <div class="sidebar-content">
       <div class="sidebar-header">
         <RouterLink to="/tutorials" class="sidebar-logo">
-          <span class="logo-icon">📚</span>
           <span class="logo-text">教程中心</span>
         </RouterLink>
       </div>
 
       <nav v-if="series" class="sidebar-nav">
         <RouterLink :to="`/tutorials/${series.id}`" class="series-title">
-          {{ series.icon }} {{ series.title }}
+          {{ series.title }}
         </RouterLink>
         <div v-for="section in sections" :key="section" class="nav-group">
           <div class="nav-group-title">{{ section }}</div>
@@ -91,15 +90,8 @@ function navigate(slug: string) {
 }
 
 .sidebar-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
   text-decoration: none;
   color: inherit;
-}
-
-.logo-icon {
-  font-size: 1.25rem;
 }
 
 .logo-text {

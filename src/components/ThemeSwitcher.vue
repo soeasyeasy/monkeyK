@@ -30,17 +30,22 @@ onUnmounted(() => {
 })
 
 const currentThemeData = () => {
-  return themes.find(t => t.name === currentTheme.value)
+  return themes.find((t) => t.name === currentTheme.value)
 }
 </script>
 
 <template>
   <div class="theme-switcher" ref="dropdownRef">
     <button class="theme-trigger" @click="toggleDropdown">
-      <span class="theme-icon">{{ currentThemeData()?.icon }}</span>
       <span class="theme-label">{{ currentThemeData()?.label }}</span>
       <svg class="theme-arrow" :class="{ open: isOpen }" width="12" height="12" viewBox="0 0 12 12">
-        <path d="M3 4.5L6 7.5L9 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path
+          d="M3 4.5L6 7.5L9 4.5"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
       </svg>
     </button>
 
@@ -53,10 +58,21 @@ const currentThemeData = () => {
           :class="{ active: currentTheme === theme.name }"
           @click="selectTheme(theme.name)"
         >
-          <span class="option-icon">{{ theme.icon }}</span>
           <span class="option-label">{{ theme.label }}</span>
-          <svg v-if="currentTheme === theme.name" class="option-check" width="16" height="16" viewBox="0 0 16 16">
-            <path d="M3.5 8.5L6.5 11.5L12.5 4.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <svg
+            v-if="currentTheme === theme.name"
+            class="option-check"
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+          >
+            <path
+              d="M3.5 8.5L6.5 11.5L12.5 4.5"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
           </svg>
         </button>
       </div>
@@ -88,10 +104,6 @@ const currentThemeData = () => {
 .theme-trigger:hover {
   background: var(--bg-glass-hover);
   border-color: var(--border-hover);
-}
-
-.theme-icon {
-  font-size: 1rem;
 }
 
 .theme-label {
@@ -144,10 +156,6 @@ const currentThemeData = () => {
 .theme-option.active {
   background: var(--accent-light);
   color: var(--text-link);
-}
-
-.option-icon {
-  font-size: 1rem;
 }
 
 .option-label {

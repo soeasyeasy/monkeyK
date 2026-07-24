@@ -37,7 +37,6 @@ const seriesByCategory = computed(() => {
           class="tab"
           :class="{ active: activeCategory === cat.id }"
         >
-          <span class="tab-icon">{{ cat.icon }}</span>
           {{ cat.label }}
         </RouterLink>
       </div>
@@ -46,7 +45,6 @@ const seriesByCategory = computed(() => {
     <div v-if="activeCategory" class="series-list">
       <div v-for="series in filteredSeries" :key="series.id" class="series-card">
         <RouterLink :to="`/tutorials/${series.id}`" class="series-link">
-          <div class="series-icon">{{ series.icon }}</div>
           <div class="series-info">
             <h2>{{ series.title }}</h2>
             <p>{{ series.description }}</p>
@@ -64,13 +62,11 @@ const seriesByCategory = computed(() => {
       <div v-for="group in seriesByCategory" :key="group.category.id" class="category-group">
         <div v-if="group.series.length > 0">
           <div class="group-header">
-            <span class="group-icon">{{ group.category.icon }}</span>
             <h2 class="group-title">{{ group.category.label }}</h2>
           </div>
           <div class="series-list">
             <div v-for="series in group.series" :key="series.id" class="series-card">
               <RouterLink :to="`/tutorials/${series.id}`" class="series-link">
-                <div class="series-icon">{{ series.icon }}</div>
                 <div class="series-info">
                   <h3>{{ series.title }}</h3>
                   <p>{{ series.description }}</p>
@@ -147,10 +143,6 @@ const seriesByCategory = computed(() => {
   border-color: var(--accent);
 }
 
-.tab-icon {
-  font-size: 1rem;
-}
-
 .category-group {
   margin-bottom: 2.5rem;
 }
@@ -160,10 +152,6 @@ const seriesByCategory = computed(() => {
   align-items: center;
   gap: 0.5rem;
   margin-bottom: 1rem;
-}
-
-.group-icon {
-  font-size: 1.5rem;
 }
 
 .group-title {
@@ -200,11 +188,6 @@ const seriesByCategory = computed(() => {
   padding: 1.25rem 1.5rem;
   text-decoration: none;
   color: inherit;
-}
-
-.series-icon {
-  font-size: 2rem;
-  flex-shrink: 0;
 }
 
 .series-info {

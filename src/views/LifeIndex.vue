@@ -5,13 +5,11 @@
 <template>
   <div class="life-page">
     <div class="page-header">
-      <div class="header-icon">📝</div>
       <h1>个人生活记录</h1>
       <p class="subtitle">记录生活点滴，分享成长故事</p>
     </div>
 
     <div class="empty-state">
-      <div class="empty-icon">🌱</div>
       <h2>即将上线</h2>
       <p>个人生活记录功能正在开发中，敬请期待</p>
       <RouterLink to="/" class="back-btn">返回首页</RouterLink>
@@ -29,11 +27,6 @@
 .page-header {
   text-align: center;
   margin-bottom: 4rem;
-}
-
-.header-icon {
-  font-size: 3rem;
-  margin-bottom: 1rem;
 }
 
 .page-header h1 {
@@ -59,11 +52,6 @@
   border: 1px solid var(--border-color);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-md);
-}
-
-.empty-icon {
-  font-size: 4rem;
-  margin-bottom: 1rem;
 }
 
 .empty-state h2 {

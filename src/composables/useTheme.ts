@@ -4,14 +4,14 @@ export type ThemeName = 'light' | 'dark' | 'ocean' | 'forest' | 'violet' | 'suns
 
 const STORAGE_KEY = 'ts-tutorial-theme'
 
-const themes: { name: ThemeName; label: string; icon: string }[] = [
-  { name: 'light', label: '浅色', icon: '☀️' },
-  { name: 'dark', label: '深色', icon: '🌙' },
-  { name: 'ocean', label: '海洋蓝', icon: '🌊' },
-  { name: 'forest', label: '森林绿', icon: '🌿' },
-  { name: 'violet', label: '紫罗兰', icon: '💜' },
-  { name: 'sunset', label: '暮光橙', icon: '🌅' },
-  { name: 'rose', label: '玫瑰粉', icon: '🌸' },
+const themes: { name: ThemeName; label: string }[] = [
+  { name: 'light', label: '浅色' },
+  { name: 'dark', label: '深色' },
+  { name: 'ocean', label: '海洋蓝' },
+  { name: 'forest', label: '森林绿' },
+  { name: 'violet', label: '紫罗兰' },
+  { name: 'sunset', label: '暮光橙' },
+  { name: 'rose', label: '玫瑰粉' },
 ]
 
 function getInitialTheme(): ThemeName {

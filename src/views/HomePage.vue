@@ -5,14 +5,12 @@ const otherModules = [
   {
     title: '个人生活记录',
     description: '记录生活点滴，分享成长故事',
-    icon: '�',
     path: '/life',
     color: '#FF9800',
   },
   {
     title: '待办事项',
     description: '管理日常任务，提高效率',
-    icon: '✅',
     path: '/todo',
     color: '#4CAF50',
   },
@@ -67,7 +65,6 @@ const recentSeries = tutorialSeries.slice(0, 3)
           :to="`/tutorials?category=${category.id}`"
           class="category-card"
         >
-          <div class="category-icon">{{ category.icon }}</div>
           <h3 class="category-title">{{ category.label }}</h3>
           <p class="category-desc">{{ category.description }}</p>
           <div class="category-count">
@@ -90,22 +87,10 @@ const recentSeries = tutorialSeries.slice(0, 3)
           :to="`/tutorials/${series.id}`"
           class="recent-card"
         >
-          <div class="recent-icon">{{ series.icon }}</div>
           <div class="recent-content">
             <h3 class="recent-title">{{ series.title }}</h3>
             <p class="recent-desc">{{ series.description }}</p>
             <div class="recent-meta">{{ series.chapters.length }} 章节</div>
-          </div>
-          <div class="recent-arrow">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path
-                d="M7 14L11 10L7 6"
-                stroke="currentColor"
-                stroke-width="1.5"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
           </div>
         </RouterLink>
       </div>
@@ -124,9 +109,6 @@ const recentSeries = tutorialSeries.slice(0, 3)
           :to="module.path"
           class="other-card"
         >
-          <div class="other-icon" :style="{ background: module.color + '20', color: module.color }">
-            {{ module.icon }}
-          </div>
           <div class="other-content">
             <h3 class="other-title">{{ module.title }}</h3>
             <p class="other-desc">{{ module.description }}</p>
@@ -354,11 +336,6 @@ const recentSeries = tutorialSeries.slice(0, 3)
   box-shadow: var(--shadow-lg);
 }
 
-.category-icon {
-  font-size: 2.5rem;
-  margin-bottom: 1rem;
-}
-
 .category-title {
   font-size: 1.25rem;
   font-weight: 600;
@@ -409,11 +386,6 @@ const recentSeries = tutorialSeries.slice(0, 3)
   box-shadow: var(--shadow-lg);
 }
 
-.recent-icon {
-  font-size: 2.5rem;
-  flex-shrink: 0;
-}
-
 .recent-content {
   flex: 1;
 }
@@ -434,16 +406,6 @@ const recentSeries = tutorialSeries.slice(0, 3)
 .recent-meta {
   font-size: 0.85rem;
   color: var(--text-muted);
-}
-
-.recent-arrow {
-  color: var(--text-muted);
-  transition: all 0.3s;
-}
-
-.recent-card:hover .recent-arrow {
-  color: var(--accent);
-  transform: translateX(4px);
 }
 
 /* Other modules */
@@ -477,17 +439,6 @@ const recentSeries = tutorialSeries.slice(0, 3)
   background: var(--bg-card-hover);
   transform: translateY(-2px);
   box-shadow: var(--shadow-lg);
-}
-
-.other-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.75rem;
-  flex-shrink: 0;
 }
 
 .other-content {
