@@ -18,10 +18,19 @@ function extractHeadingsAndIds() {
   if (!renderedEl.value) return
   const headings = renderedEl.value.querySelectorAll('h2, h3')
   const result: { id: string; text: string; level: number }[] = []
+  const idCount: Record<string, number> = {}
   headings.forEach((heading) => {
     const el = heading as HTMLElement
     const text = el.textContent || ''
-    const id = text.trim().replace(/\s+/g, '-').toLowerCase()
+    let id = text.trim().replace(/\s+/g, '-').toLowerCase()
+    const count = idCount[id]
+    if (count !== undefined) {
+      const newCount = count + 1
+      idCount[id] = newCount
+      id = `${id}-${newCount}`
+    } else {
+      idCount[id] = 0
+    }
     el.id = id
     result.push({ id, text, level: el.tagName === 'H2' ? 2 : 3 })
   })

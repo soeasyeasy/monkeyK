@@ -7,7 +7,13 @@ interface TocItem {
   level: number
 }
 
-const tocItems = inject<ReturnType<typeof ref<TocItem[]>>>('tocItems', ref<TocItem[]>([]))
+const injectedTocItems = inject<ReturnType<typeof ref<TocItem[]>>>('tocItems', ref<TocItem[]>([]))
+const tocItems = ref<TocItem[]>([])
+if (injectedTocItems) {
+  watch(injectedTocItems, (newVal) => {
+    tocItems.value = newVal || []
+  }, { immediate: true })
+}
 const activeId = ref('')
 
 function updateActiveHeading() {

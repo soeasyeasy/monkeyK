@@ -84,29 +84,28 @@ export interface ParsedMarkdown {
  * 格式：---\nkey: value\n---
  */
 function parseFrontmatter(raw: string): { data: Record<string, any>; content: string } {
-  const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/)
+  const match = raw.match(/^---\s*\n([\s\S]*?)\n---\s*\n*([\s\S]*)$/)
   if (!match) {
     return { data: {}, content: raw }
   }
 
-  const frontmatterStr = match[1]
-  const content = match[2]
+  const frontmatterStr = match[1] || ''
+  let content = match[2] || ''
   const data: Record<string, any> = {}
 
-  // 简单的 YAML 解析（支持字符串和数字）
   frontmatterStr.split('\n').forEach((line) => {
-    const colonIndex = line.indexOf(':')
+    const trimmedLine = line.trim()
+    if (!trimmedLine || trimmedLine.startsWith('#')) return
+    const colonIndex = trimmedLine.indexOf(':')
     if (colonIndex > 0) {
-      const key = line.slice(0, colonIndex).trim()
-      let value: any = line.slice(colonIndex + 1).trim()
-      // 移除引号
+      const key = trimmedLine.slice(0, colonIndex).trim()
+      let value: any = trimmedLine.slice(colonIndex + 1).trim()
       if (
         (value.startsWith('"') && value.endsWith('"')) ||
         (value.startsWith("'") && value.endsWith("'"))
       ) {
         value = value.slice(1, -1)
       }
-      // 尝试转换为数字
       if (!isNaN(Number(value)) && value !== '') {
         value = Number(value)
       }
