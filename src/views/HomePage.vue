@@ -24,12 +24,12 @@ const recentSeries = tutorialSeries.slice(0, 3)
     <!-- Hero 区域 -->
     <section class="hero">
       <div class="hero-content">
-        <h1 class="hero-title">全栈学习<br />知识中心</h1>
-        <p class="hero-subtitle">
+        <h1 class="hero-title hero-animate">全栈学习<br />知识中心</h1>
+        <p class="hero-subtitle hero-animate delay-1">
           前端、后端、操作系统、网络、运维全栈教程<br />
           配合个人生活记录与待办管理，构建你的专属学习空间。
         </p>
-        <div class="hero-actions">
+        <div class="hero-actions hero-animate delay-2">
           <RouterLink to="/tutorials" class="btn-primary">
             浏览教程
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -60,10 +60,12 @@ const recentSeries = tutorialSeries.slice(0, 3)
       </div>
       <div class="categories-grid">
         <RouterLink
-          v-for="category in tutorialCategories"
+          v-for="(category, index) in tutorialCategories"
           :key="category.id"
           :to="`/tutorials?category=${category.id}`"
           class="category-card"
+          v-animate.slide-up
+          :style="{ transitionDelay: `${index * 80}ms` }"
         >
           <h3 class="category-title">{{ category.label }}</h3>
           <p class="category-desc">{{ category.description }}</p>
@@ -82,10 +84,12 @@ const recentSeries = tutorialSeries.slice(0, 3)
       </div>
       <div class="recent-grid">
         <RouterLink
-          v-for="series in recentSeries"
+          v-for="(series, index) in recentSeries"
           :key="series.id"
           :to="`/tutorials/${series.id}`"
           class="recent-card"
+          v-animate.slide-right
+          :style="{ transitionDelay: `${index * 100}ms` }"
         >
           <div class="recent-content">
             <h3 class="recent-title">{{ series.title }}</h3>
@@ -104,10 +108,12 @@ const recentSeries = tutorialSeries.slice(0, 3)
       </div>
       <div class="other-grid">
         <RouterLink
-          v-for="module in otherModules"
+          v-for="(module, index) in otherModules"
           :key="module.path"
           :to="module.path"
           class="other-card"
+          v-animate.scale
+          :style="{ transitionDelay: `${index * 100}ms` }"
         >
           <div class="other-content">
             <h3 class="other-title">{{ module.title }}</h3>
@@ -161,6 +167,31 @@ const recentSeries = tutorialSeries.slice(0, 3)
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Hero 入场动画 */
+.hero-animate {
+  opacity: 0;
+  animation: heroFadeIn 0.8s ease-out forwards;
+}
+
+.hero-animate.delay-1 {
+  animation-delay: 0.2s;
+}
+
+.hero-animate.delay-2 {
+  animation-delay: 0.4s;
+}
+
+@keyframes heroFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .hero-subtitle {

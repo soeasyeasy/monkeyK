@@ -10,12 +10,20 @@ const isTutorialRoute = computed(() => route.path.startsWith('/tutorials'))
 
 <template>
   <TutorialLayout v-if="isTutorialRoute">
-    <RouterView />
+    <RouterView v-slot="{ Component }">
+      <Transition name="page-fade" mode="out-in">
+        <component :is="Component" :key="route.fullPath" />
+      </Transition>
+    </RouterView>
   </TutorialLayout>
   <div v-else class="app-container">
     <AppHeader />
     <main class="app-main">
-      <RouterView />
+      <RouterView v-slot="{ Component }">
+        <Transition name="page-fade" mode="out-in">
+          <component :is="Component" :key="route.fullPath" />
+        </Transition>
+      </RouterView>
     </main>
   </div>
 </template>
@@ -28,5 +36,21 @@ const isTutorialRoute = computed(() => route.path.startsWith('/tutorials'))
 
 .app-main {
   padding-top: 60px;
+}
+
+/* 页面过渡 */
+.page-fade-enter-active,
+.page-fade-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.page-fade-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.page-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-10px);
 }
 </style>

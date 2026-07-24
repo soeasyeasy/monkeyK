@@ -23,7 +23,7 @@ const seriesByCategory = computed(() => {
 
 <template>
   <div class="tutorial-index">
-    <div class="index-header">
+    <div class="index-header" v-animate.slide-up>
       <h1>教程中心</h1>
       <p class="subtitle">全栈技术教程，持续更新中</p>
       <div class="category-tabs">
@@ -43,7 +43,13 @@ const seriesByCategory = computed(() => {
     </div>
 
     <div v-if="activeCategory" class="series-list">
-      <div v-for="series in filteredSeries" :key="series.id" class="series-card">
+      <div
+        v-for="(series, index) in filteredSeries"
+        :key="series.id"
+        class="series-card"
+        v-animate.slide-right
+        :style="{ transitionDelay: `${index * 80}ms` }"
+      >
         <RouterLink :to="`/tutorials/${series.id}`" class="series-link">
           <div class="series-info">
             <h2>{{ series.title }}</h2>
@@ -61,11 +67,17 @@ const seriesByCategory = computed(() => {
     <div v-else>
       <div v-for="group in seriesByCategory" :key="group.category.id" class="category-group">
         <div v-if="group.series.length > 0">
-          <div class="group-header">
+          <div class="group-header" v-animate.slide-up>
             <h2 class="group-title">{{ group.category.label }}</h2>
           </div>
           <div class="series-list">
-            <div v-for="series in group.series" :key="series.id" class="series-card">
+            <div
+              v-for="(series, index) in group.series"
+              :key="series.id"
+              class="series-card"
+              v-animate.slide-right
+              :style="{ transitionDelay: `${index * 80}ms` }"
+            >
               <RouterLink :to="`/tutorials/${series.id}`" class="series-link">
                 <div class="series-info">
                   <h3>{{ series.title }}</h3>
