@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { tutorialCategories, tutorialSeries } from '../data/tutorial-series'
+import { useHitokoto } from '../composables/useHitokoto'
+
+const { hitokoto, loading: hitokotoLoading, progress: hitokotoProgress, refresh: refreshHitokoto } = useHitokoto()
 
 const otherModules = [
   {
@@ -43,6 +46,21 @@ const recentSeries = tutorialSeries.slice(0, 3)
             </svg>
           </RouterLink>
           <RouterLink to="/todo" class="btn-secondary"> 待办管理 </RouterLink>
+        </div>
+        <!-- 一言 -->
+        <div class="hero-widgets hero-animate delay-3">
+          <div class="hitokoto-widget" @click="refreshHitokoto" title="点击刷新一言">
+            <div class="hitokoto-content">
+              <span v-if="hitokotoLoading" class="widget-loading">加载一言中...</span>
+              <template v-else-if="hitokoto">
+                <span class="hitokoto-text">{{ hitokoto.hitokoto }}</span>
+                <span v-if="hitokoto.from" class="hitokoto-from">—— {{ hitokoto.from }}</span>
+              </template>
+            </div>
+            <div class="hitokoto-progress">
+              <div class="progress-bar" :style="{ width: hitokotoProgress + '%' }"></div>
+            </div>
+          </div>
         </div>
       </div>
       <div class="hero-decoration">
@@ -252,6 +270,85 @@ const recentSeries = tutorialSeries.slice(0, 3)
   background: var(--bg-glass-hover);
   border-color: var(--border-hover);
   transform: translateY(-2px);
+}
+
+/* Hero Widgets */
+.hero-widgets {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+.hitokoto-widget {
+  position: relative;
+  max-width: 600px;
+  width: 100%;
+  padding: 1.25rem 1.5rem;
+  background: var(--bg-glass);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+
+.hitokoto-widget:hover {
+  background: var(--bg-glass-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.hitokoto-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.hitokoto-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+  font-style: italic;
+}
+
+.hitokoto-from {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.hitokoto-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--border-color);
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.05s linear;
+}
+
+.widget-loading,
+.widget-error {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.hero-animate.delay-3 {
+  animation-delay: 0.6s;
 }
 
 .hero-decoration {
@@ -573,6 +670,14 @@ const recentSeries = tutorialSeries.slice(0, 3)
   .recent-card,
   .other-card {
     padding: 1.25rem;
+  }
+
+  .hitokoto-widget {
+    padding: 1rem 1.25rem;
+  }
+
+  .hitokoto-text {
+    font-size: 0.9rem;
   }
 }
 </style>

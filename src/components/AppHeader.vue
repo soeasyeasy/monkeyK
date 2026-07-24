@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import ThemeSwitcher from './ThemeSwitcher.vue'
 import SearchBar from './SearchBar.vue'
+import WeatherWidget from './WeatherWidget.vue'
 </script>
 
 <template>
@@ -15,6 +16,7 @@ import SearchBar from './SearchBar.vue'
         <RouterLink to="/tutorials" class="nav-link">教程</RouterLink>
         <RouterLink to="/todo" class="nav-link">待办</RouterLink>
         <RouterLink to="/life" class="nav-link">生活</RouterLink>
+        <WeatherWidget />
         <ThemeSwitcher />
       </nav>
     </div>
