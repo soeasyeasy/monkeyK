@@ -2,6 +2,8 @@
 
 一个基于 Vue 3 + Vite 构建的在线技术教程平台，提供系统化的编程学习资源。
 
+**在线预览**：[https://www.monkeyk.cn/](https://www.monkeyk.cn/)
+
 ## 项目特色
 
 - **多系列教程**：涵盖前端、后端、操作系统、网络、DevOps 等多个领域
