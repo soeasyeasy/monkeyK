@@ -5,6 +5,50 @@ description: "掌握 Shell 脚本编程的核心技能，包括变量、条件�
 
 # 第十五章：Shell 脚本编程
 
+## 本章导读
+
+在开始学习 Shell 脚本编程之前，你可能会有这些疑问：
+
+1. **Shell 脚本和命令行有什么区别？** 命令行是输入一条执行一条，脚本是把很多命令写到一个文件里批量执行。
+2. **为什么要学 Shell 脚本？** 手动操作太麻烦了，比如你要备份 100 台服务器的数据，难道要一台一台手动操作吗？
+3. **Shell 脚本难不难？** 如果你已经掌握了上一章的 Linux 命令，那脚本编程就很简单，只是把命令组合起来而已。
+4. **Shell 脚本能做什么？** 系统管理、文件处理、自动化任务、服务监控，几乎所有你能想到的重复性工作。
+
+本章会带你从零开始，学习 Shell 脚本的核心语法。学完之后，你就能写出实用的自动化脚本，解放你的双手。
+
+## 为什么需要 Shell 脚本
+
+### 没有脚本会怎样
+
+想象一下，你是一家公司的运维工程师，每天需要：
+
+- 检查 50 台服务器的磁盘空间
+- 备份数据库并上传到云存储
+- 清理超过 7 天的日志文件
+- 监控服务状态，异常时自动重启
+
+如果没有脚本，你每天都要手动执行这些操作，重复几百次。这不仅浪费时间，还容易出错。
+
+### 生活化类比：Shell 脚本就像菜谱
+
+把 Shell 脚本想象成一份详细的菜谱：
+
+- **变量**：食材（比如"鸡蛋 2 个"）
+- **条件语句**：判断（比如"如果鸡蛋坏了就换新的"）
+- **循环**：重复操作（比如"搅拌 10 次"）
+- **函数**：可复用的步骤（比如"打鸡蛋"这个动作可以在多个菜里用）
+
+你按照菜谱一步步做，就能做出一道菜。同样，Shell 按照脚本一步步执行，就能完成一个任务。
+
+### 脚本的核心优势
+
+| 优势 | 说明 | 类比 |
+|------|------|------|
+| 自动化 | 一次编写，重复执行 | 像洗衣机一样自动 |
+| 可复用 | 写一次，到处用 | 像菜谱可以反复用 |
+| 可维护 | 修改脚本就能改变行为 | 像改菜谱就能改菜品 |
+| 可分享 | 可以把脚本分享给别人 | 像分享菜谱一样简单 |
+
 ## Shell 脚本基础
 
 ### 什么是 Shell 脚本
@@ -993,6 +1037,299 @@ name="张三"  # 正确
 if [ $name = "张三" ]; then  # 如果 name 为空会报错
 if [ "$name" = "张三" ]; then  # 正确
 ```
+
+## 对比表格
+
+### 循环语句对比
+
+| 循环类型 | 语法 | 适用场景 | 特点 |
+|----------|------|----------|------|
+| for（列表） | for item in list | 遍历已知列表 | 简单直观 |
+| for（C风格） | for ((i=0; i<N; i++)) | 需要计数器 | 类似 C 语言 |
+| while | while [ condition ] | 条件满足时执行 | 先判断后执行 |
+| until | until [ condition ] | 条件满足时停止 | 先判断后执行，条件为假时循环 |
+
+### 条件判断对比
+
+| 判断类型 | 运算符 | 示例 | 说明 |
+|----------|--------|------|------|
+| 数值比较 | -eq, -ne, -gt, -lt, -ge, -le | [ "$a" -eq "$b" ] | 只能用于整数 |
+| 字符串比较 | =, !=, -z, -n | [ "$s" = "hello" ] | 注意用引号包裹变量 |
+| 文件测试 | -e, -f, -d, -r, -w, -x | [ -f "file.txt" ] | 检查文件属性 |
+| 逻辑运算 | -a, -o, ! 或 &&, \|\| | [ "$a" -gt 0 -a "$b" -lt 10 ] | -a 是与，-o 是或 |
+
+### 变量类型对比
+
+| 变量类型 | 定义方式 | 作用域 | 示例 |
+|----------|----------|--------|------|
+| 局部变量 | name="value" | 当前 Shell | name="张三" |
+| 环境变量 | export VAR="value" | 所有子进程 | export PATH="/usr/bin" |
+| 位置参数 | 命令行传入 | 当前脚本 | $1, $2, $* |
+| 特殊变量 | 系统定义 | 当前 Shell | $$, $?, $! |
+| 局部变量（函数内） | local var="value" | 函数内部 | local temp=10 |
+
+## 新手常见误区
+
+### 误区一：变量赋值时等号两边加空格
+
+**错误做法**：
+```bash
+name = "张三"    # 错误！Shell 会把 name 当成命令
+```
+
+**正确做法**：
+```bash
+name="张三"      # 正确，等号两边不能有空格
+```
+
+**为什么错**：在 Shell 中，空格是命令和参数的分隔符。`name = "张三"` 会被解释为"执行 name 命令，参数是 = 和张三"，而不是赋值。这是新手最常犯的错误。
+
+### 误区二：if 语句中方括号不加空格
+
+**错误做法**：
+```bash
+if [$a -eq $b]; then    # 错误！缺少空格
+```
+
+**正确做法**：
+```bash
+if [ "$a" -eq "$b" ]; then    # 正确，方括号两边要加空格
+```
+
+**为什么错**：`[` 实际上是一个命令（等同于 `test`），它需要和参数之间用空格分隔。不加空格的话，Shell 会把 `[$a` 当成一个整体，找不到这个命令。
+
+### 误区三：变量引用不加引号
+
+**错误做法**：
+```bash
+name="张 三"
+if [ $name = "李四" ]; then    # 如果 name 包含空格，会报错
+```
+
+**正确做法**：
+```bash
+name="张 三"
+if [ "$name" = "李四" ]; then    # 正确，用引号包裹变量
+```
+
+**为什么错**：如果变量值包含空格，不加引号会导致 Shell 把它拆分成多个参数。`$name` 会展开成 `张 三`，条件判断就变成了 `[ 张 三 = "李四" ]`，参数数量不对，直接报错。
+
+### 误区四：混淆 source 执行和直接执行的区别
+
+**错误理解**：`bash script.sh` 和 `source script.sh` 是一样的。
+
+**正确理解**：
+```bash
+# 直接执行：在子 Shell 中运行，脚本中的变量不会影响当前 Shell
+bash script.sh
+
+# source 执行：在当前 Shell 中运行，脚本中的变量会影响当前 Shell
+source script.sh
+```
+
+**区别**：直接执行时，脚本在一个新的子进程中运行，脚本里设置的变量、函数在脚本结束后就消失了。source 执行时，脚本在当前进程中运行，变量和函数会保留在当前环境中。
+
+### 误区五：函数返回值用 return 返回字符串
+
+**错误做法**：
+```bash
+get_name() {
+    return "张三"    # 错误！return 只能返回 0-255 的整数
+}
+```
+
+**正确做法**：
+```bash
+# 方式一：用 echo 输出，调用时用命令替换获取
+get_name() {
+    echo "张三"
+}
+name=$(get_name)
+
+# 方式二：用 return 返回状态码（0-255）
+check_status() {
+    if [ -f "$1" ]; then
+        return 0    # 成功返回 0
+    else
+        return 1    # 失败返回 1
+    fi
+}
+```
+
+**为什么错**：Shell 函数的 return 只能返回 0-255 的整数，用来表示退出状态。如果要返回字符串，需要用 echo 输出，然后在调用处用 `$()` 命令替换来获取。
+
+## 动手练习
+
+### 练习一：基础题 - 编写判断脚本
+
+**题目**：编写一个脚本，接收一个文件名作为参数，判断该文件是否存在、是否为普通文件、是否可读。
+
+<details>
+<summary>点击查看答案</summary>
+
+```bash
+#!/bin/bash
+
+# 检查是否传入了参数
+if [ $# -lt 1 ]; then
+    echo "用法：$0 <文件名>"
+    exit 1
+fi
+
+file="$1"
+
+# 判断文件是否存在
+if [ -e "$file" ]; then
+    echo "文件存在：$file"
+else
+    echo "文件不存在：$file"
+    exit 1
+fi
+
+# 判断是否为普通文件
+if [ -f "$file" ]; then
+    echo "是普通文件"
+else
+    echo "不是普通文件"
+fi
+
+# 判断是否可读
+if [ -r "$file" ]; then
+    echo "文件可读"
+else
+    echo "文件不可读"
+fi
+```
+
+</details>
+
+### 练习二：进阶题 - 编写统计脚本
+
+**题目**：编写一个脚本，统计指定目录下各种类型文件的数量。比如 `.txt` 文件有多少个，`.jpg` 文件有多少个，等等。
+
+<details>
+<summary>点击查看答案</summary>
+
+```bash
+#!/bin/bash
+
+# 检查参数
+if [ $# -lt 1 ]; then
+    echo "用法：$0 <目录>"
+    exit 1
+fi
+
+dir="$1"
+
+# 检查目录是否存在
+if [ ! -d "$dir" ]; then
+    echo "错误：目录不存在"
+    exit 1
+fi
+
+echo "统计目录：$dir"
+echo "===================="
+
+# 统计总文件数
+total=$(find "$dir" -type f | wc -l)
+echo "总文件数：$total"
+echo
+
+# 统计各类型文件
+echo "文件类型统计："
+find "$dir" -type f | awk -F. '{print $NF}' | sort | uniq -c | sort -rn | while read count ext; do
+    printf "  .%-10s %d 个\n" "$ext" "$count"
+done
+
+echo
+echo "===================="
+echo "统计完成"
+```
+
+</details>
+
+### 练习三：挑战题 - 编写自动备份脚本
+
+**题目**：编写一个自动备份脚本，要求：
+1. 接收两个参数：源目录和目标目录
+2. 创建带时间戳的压缩包备份
+3. 保留最近 5 个备份，删除旧的
+4. 输出备份结果（成功/失败、文件大小）
+
+<details>
+<summary>点击查看答案</summary>
+
+```bash
+#!/bin/bash
+
+# 自动备份脚本
+
+# 检查参数
+if [ $# -lt 2 ]; then
+    echo "用法：$0 <源目录> <备份目录>"
+    exit 1
+fi
+
+SOURCE="$1"
+BACKUP_DIR="$2"
+MAX_BACKUPS=5
+
+# 检查源目录
+if [ ! -d "$SOURCE" ]; then
+    echo "错误：源目录不存在：$SOURCE"
+    exit 1
+fi
+
+# 创建备份目录
+if [ ! -d "$BACKUP_DIR" ]; then
+    mkdir -p "$BACKUP_DIR"
+    echo "创建备份目录：$BACKUP_DIR"
+fi
+
+# 生成备份文件名（带时间戳）
+timestamp=$(date +%Y%m%d_%H%M%S)
+source_name=$(basename "$SOURCE")
+backup_file="${BACKUP_DIR}/${source_name}_${timestamp}.tar.gz"
+
+# 执行备份
+echo "开始备份..."
+echo "源目录：$SOURCE"
+echo "备份文件：$backup_file"
+
+tar -czf "$backup_file" -C "$(dirname "$SOURCE")" "$source_name" 2>/dev/null
+
+if [ $? -eq 0 ]; then
+    file_size=$(du -h "$backup_file" | cut -f1)
+    echo "备份成功！文件大小：$file_size"
+else
+    echo "备份失败！"
+    rm -f "$backup_file"
+    exit 1
+fi
+
+# 清理旧备份（保留最近 MAX_BACKUPS 个）
+backup_count=$(ls -1 "${BACKUP_DIR}/${source_name}_"*.tar.gz 2>/dev/null | wc -l)
+
+if [ "$backup_count" -gt "$MAX_BACKUPS" ]; then
+    delete_count=$((backup_count - MAX_BACKUPS))
+    echo "清理旧备份（删除 $delete_count 个）..."
+    ls -1t "${BACKUP_DIR}/${source_name}_"*.tar.gz | tail -n "$delete_count" | xargs rm -f
+    echo "清理完成"
+fi
+
+# 显示当前所有备份
+echo
+echo "当前备份列表："
+ls -lh "${BACKUP_DIR}/${source_name}_"*.tar.gz 2>/dev/null
+echo
+echo "备份任务完成"
+```
+
+</details>
+
+## 下一章预告
+
+恭喜你完成了 Shell 脚本编程的学习！现在你已经能写出实用的自动化脚本了。在下一章（也是最后一章）中，我们将学习系统性能调优，包括如何使用监控工具发现性能瓶颈、如何优化 CPU 和内存使用、如何提升 I/O 性能。这是运维工程师的核心技能，学完之后你就能让系统跑得更快更稳。让我们为这个操作系统教程画上一个圆满的句号吧！
 
 ## 本章小结
 

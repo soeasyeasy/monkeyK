@@ -5,9 +5,50 @@ description: "了解生产者-消费者、读者-写者、哲学家进餐等经�
 
 # 第七章：经典同步问题
 
-## 生产者-消费者问题
+## 本章导读
+
+在学这一章之前，你可能会有这些疑问：
+
+- 实际开发中，多个进程是怎么协调共享资源的？
+- 什么是"生产者-消费者"问题？为什么它这么经典？
+- 哲学家进餐问题到底在说明什么？怎么解决死锁？
+- 读者和写者同时想访问数据时，该让谁先？
+
+这一章就是为了解答这些问题。我们会通过三个经典的同步问题，学习如何用信号量解决实际的并发难题。这些问题是理解操作系统和并发编程的基础，也是面试中的高频考点。
+
+---
+
+## 7.1 为什么需要学习经典同步问题？
+
+### 痛点分析
+
+想象一下现实生活中的场景：
+
+- 工厂流水线：工人 A 生产零件，工人 B 组装零件。如果 A 生产太快，零件堆积如山；如果 B 太快，零件供应不上。
+- 图书馆：多人同时看书没问题，但如果有人要修改书的内容，必须独占这本书。
+- 餐厅：5 个哲学家围坐一桌，每人需要两根筷子才能吃饭，但只有 5 根筷子。如果大家都拿起左边的筷子，就都吃不了。
+
+这些场景的共同点是：**多个执行流需要协调访问共享资源，否则会出现数据不一致、死锁或饥饿**。
+
+### 解决方案
+
+操作系统和并发编程总结了三个经典问题，并给出了标准解决方案：
+
+1. **生产者-消费者问题**：解决生产者和消费者的协调
+2. **读者-写者问题**：解决读操作和写操作的协调
+3. **哲学家进餐问题**：解决资源竞争和死锁避免
+
+> **一句话总结**：经典同步问题是并发编程的"必修课"，掌握了它们，你就能应对大多数并发场景。
+
+---
+
+## 7.2 生产者-消费者问题
 
 **生产者-消费者问题（Producer-Consumer Problem）** 也称为有界缓冲区问题，是最经典的进程同步问题之一。
+
+打个比方：
+
+> 就像餐厅的厨房和餐厅：厨师（生产者）做菜放到传菜台（缓冲区），服务员（消费者）从传菜台端菜给客人。传菜台位置有限，满了厨师就不能再做，空了服务员就没菜可端。
 
 ### 问题描述
 
@@ -25,38 +66,40 @@ description: "了解生产者-消费者、读者-写者、哲学家进餐等经�
 ### 使用信号量解决
 
 ```c
-// 信号量
-semaphore empty = N;    // 空位数量，初始为缓冲区大小 N
-semaphore full = 0;     // 满位数量，初始为 0
-semaphore mutex = 1;    // 互斥信号量
+// 定义三个信号量
+semaphore empty = N;    // 空位数量，初始为缓冲区大小 N（表示还有多少空位）
+semaphore full = 0;     // 满位数量，初始为 0（表示缓冲区有多少数据）
+semaphore mutex = 1;    // 互斥信号量，保护缓冲区的访问（初始为 1，表示可用）
 
-// 生产者
+// 生产者进程
 void producer() {
     while (true) {
-        item = produce();       // 生产一个产品
-        wait(empty);            // 等待空位
-        wait(mutex);            // 进入临界区
-        insert(item);           // 放入缓冲区
-        signal(mutex);          // 离开临界区
-        signal(full);           // 增加满位计数
+        item = produce();       // 第一步：生产一个产品
+        wait(empty);            // 第二步：等待空位（如果 empty=0，说明满了，阻塞等待）
+        wait(mutex);            // 第三步：进入临界区，加锁（保证对缓冲区的互斥访问）
+        insert(item);           // 第四步：把产品放入缓冲区
+        signal(mutex);          // 第五步：离开临界区，解锁
+        signal(full);           // 第六步：满位数量加 1，通知消费者可以取了
     }
 }
 
-// 消费者
+// 消费者进程
 void consumer() {
     while (true) {
-        wait(full);             // 等待产品
-        wait(mutex);            // 进入临界区
-        item = remove();        // 从缓冲区取出
-        signal(mutex);          // 离开临界区
-        signal(empty);          // 增加空位计数
-        consume(item);          // 消费产品
+        wait(full);             // 第一步：等待产品（如果 full=0，说明空了，阻塞等待）
+        wait(mutex);            // 第二步：进入临界区，加锁
+        item = remove();        // 第三步：从缓冲区取出产品
+        signal(mutex);          // 第四步：离开临界区，解锁
+        signal(empty);          // 第五步：空位数量加 1，通知生产者可以放了
+        consume(item);          // 第六步：消费产品
     }
 }
 ```
 
 ::: tip
 注意 `wait(empty)` 和 `wait(mutex)` 的顺序不能颠倒！如果先 `wait(mutex)` 再 `wait(empty)`，当缓冲区满时，生产者会持有 mutex 并等待 empty，消费者也无法获取 mutex 来消费，导致**死锁**。
+
+正确顺序：先检查资源（wait empty/full），再加锁（wait mutex）。
 :::
 
 ### 执行流程示例
@@ -64,66 +107,73 @@ void consumer() {
 ```
 初始状态：empty = 3, full = 0, mutex = 1
 
-生产者 P1：
-  wait(empty)  → empty = 2
-  wait(mutex)  → mutex = 0
-  insert(item) → 缓冲区 [item1]
-  signal(mutex)→ mutex = 1
-  signal(full) → full = 1
+生产者 P1 生产一个产品：
+  wait(empty)  → empty = 2（空位减 1）
+  wait(mutex)  → mutex = 0（加锁）
+  insert(item) → 缓冲区 [item1]（放入产品）
+  signal(mutex)→ mutex = 1（解锁）
+  signal(full) → full = 1（满位加 1）
 
-消费者 C1：
-  wait(full)   → full = 0
-  wait(mutex)  → mutex = 0
-  remove()     → 取出 item1
-  signal(mutex)→ mutex = 1
-  signal(empty)→ empty = 3
+消费者 C1 消费一个产品：
+  wait(full)   → full = 0（满位减 1）
+  wait(mutex)  → mutex = 0（加锁）
+  remove()     → 取出 item1（取出产品）
+  signal(mutex)→ mutex = 1（解锁）
+  signal(empty)→ empty = 3（空位加 1）
 ```
 
-## 读者-写者问题
+---
+
+## 7.3 读者-写者问题
 
 **读者-写者问题（Readers-Writers Problem）** 描述多个进程共享一个数据对象，其中一些只读，一些要写。
 
+打个比方：
+
+> 就像一本共享的笔记本：多个人可以同时看（读），但如果有人要修改（写），必须独占笔记本，其他人不能看也不能写。
+
 ### 问题描述
 
-- 多个读者可以同时读取共享数据
+- 多个读者可以同时读取共享数据（读不互斥）
 - 写者必须独占访问（写时不能有读者或其他写者）
 - 如何协调读者和写者的访问？
 
 ### 第一类读者-写者（读者优先）
 
 ```c
-semaphore mutex = 1;     // 保护 readCount
-semaphore wrt = 1;       // 写者互斥
-int readCount = 0;       // 读者计数
+// 定义信号量和变量
+semaphore mutex = 1;     // 保护 readCount 的互斥信号量
+semaphore wrt = 1;       // 写者互斥信号量（保证写者独占）
+int readCount = 0;       // 当前读者数量
 
-// 读者
+// 读者进程
 void reader() {
     while (true) {
-        wait(mutex);             // 进入区
-        readCount++;             // 增加读者计数
-        if (readCount == 1) {    // 第一个读者
-            wait(wrt);           // 阻止写者
+        wait(mutex);             // 第一步：进入区，申请对 readCount 的互斥访问
+        readCount++;             // 第二步：读者数量加 1
+        if (readCount == 1) {    // 第三步：如果是第一个读者
+            wait(wrt);           // 第四步：阻止写者（锁住写者）
         }
-        signal(mutex);           // 离开区
+        signal(mutex);           // 第五步：离开区，释放对 readCount 的访问
 
-        // 读取数据（多个读者可同时进行）
+        // 读取数据（多个读者可以同时进行，不需要互斥）
         readData();
 
-        wait(mutex);             // 进入区
-        readCount--;             // 减少读者计数
-        if (readCount == 0) {    // 最后一个读者
-            signal(wrt);         // 允许写者
+        wait(mutex);             // 第六步：进入区，申请对 readCount 的互斥访问
+        readCount--;             // 第七步：读者数量减 1
+        if (readCount == 0) {    // 第八步：如果是最后一个读者
+            signal(wrt);         // 第九步：允许写者（解锁写者）
         }
-        signal(mutex);           // 离开区
+        signal(mutex);           // 第十步：离开区，释放对 readCount 的访问
     }
 }
 
-// 写者
+// 写者进程
 void writer() {
     while (true) {
-        wait(wrt);               // 等待无读者和写者
-        writeData();             // 写入数据
-        signal(wrt);             // 释放
+        wait(wrt);               // 第一步：等待无读者和写者（如果有人在访问，阻塞）
+        writeData();             // 第二步：写入数据（独占访问）
+        signal(wrt);             // 第三步：释放，允许其他读者或写者
     }
 }
 ```
@@ -131,58 +181,65 @@ void writer() {
 ### 第二类读者-写者（写者优先）
 
 ```c
-semaphore mutex = 1;
-semaphore wrt = 1;
-semaphore r = 1;           // 读者排队信号量
-int readCount = 0;
+// 定义信号量和变量
+semaphore mutex = 1;     // 保护 readCount 的互斥信号量
+semaphore wrt = 1;       // 写者互斥信号量
+semaphore r = 1;         // 读者排队信号量（用于写者优先）
+int readCount = 0;       // 当前读者数量
 
-// 读者
+// 读者进程
 void reader() {
     while (true) {
-        wait(r);                 // 等待写者放行
-        wait(mutex);
-        readCount++;
-        if (readCount == 1) {
-            wait(wrt);           // 第一个读者阻止写者
+        wait(r);                 // 第一步：等待写者放行（写者优先时，写者会锁住 r）
+        wait(mutex);             // 第二步：进入区，申请对 readCount 的访问
+        readCount++;             // 第三步：读者数量加 1
+        if (readCount == 1) {    // 第四步：如果是第一个读者
+            wait(wrt);           // 第五步：阻止写者
         }
-        signal(mutex);
-        signal(r);               // 放行下一个读者
+        signal(mutex);           // 第六步：离开区
+        signal(r);               // 第七步：放行下一个读者
 
-        readData();
+        readData();              // 第八步：读取数据
 
-        wait(mutex);
-        readCount--;
-        if (readCount == 0) {
-            signal(wrt);
+        wait(mutex);             // 第九步：进入区
+        readCount--;             // 第十步：读者数量减 1
+        if (readCount == 0) {    // 第十一步：如果是最后一个读者
+            signal(wrt);         // 第十二步：允许写者
         }
-        signal(mutex);
+        signal(mutex);           // 第十三步：离开区
     }
 }
 
-// 写者
+// 写者进程
 void writer() {
     while (true) {
-        wait(r);                 // 阻止新读者进入
-        wait(wrt);
-        writeData();
-        signal(wrt);
-        signal(r);               // 放行读者
+        wait(r);                 // 第一步：阻止新读者进入（锁住 r）
+        wait(wrt);               // 第二步：等待无读者和写者
+        writeData();             // 第三步：写入数据
+        signal(wrt);             // 第四步：释放写者锁
+        signal(r);               // 第五步：放行读者
     }
 }
 ```
 
-| 策略 | 特点 | 风险 |
-| --- | --- | --- |
-| 读者优先 | 新读者可以立即进入 | 写者可能饥饿 |
-| 写者优先 | 新写者到达后，阻止新读者 | 读者可能饥饿 |
+| 策略 | 特点 | 风险 | 适用场景 |
+| --- | --- | --- | --- |
+| 读者优先 | 新读者可以立即进入，即使有写者在等待 | 写者可能饥饿 | 读多写少 |
+| 写者优先 | 新写者到达后，阻止新读者，直到写者完成 | 读者可能饥饿 | 写多读少 |
 
 ::: info
-实际应用中，通常采用折中方案（如 Linux 的 `rwlock`），在公平性和性能之间取得平衡。
+实际应用中，通常采用折中方案（如 Linux 的 `rwlock`），在公平性和性能之间取得平衡。没有绝对的"读者优先"或"写者优先"，需要根据具体场景选择。
 :::
 
-## 哲学家进餐问题
+---
+
+## 7.4 哲学家进餐问题
 
 **哲学家进餐问题（Dining Philosophers Problem）** 由 Dijkstra 提出，用于说明同步问题和死锁。
+
+打个比方：
+
+> 5 个哲学家围坐一桌，每人左右各有一根筷子，共 5 根筷子。哲学家交替思考和进餐，进餐时需要同时拿到左右两根筷子。如果大家都拿起左边的筷子，就都吃不了——这就是死锁。
 
 ### 问题描述
 
@@ -210,100 +267,338 @@ void writer() {
 ### 错误解法（会导致死锁）
 
 ```c
+// 定义 5 根筷子，每根筷子是一个信号量，初始值为 1（可用）
 semaphore chopstick[5] = {1, 1, 1, 1, 1};
 
+// 哲学家 i 的行为
 void philosopher(int i) {
     while (true) {
-        think();
-        wait(chopstick[i]);           // 拿左筷子
-        wait(chopstick[(i+1) % 5]);   // 拿右筷子
-        eat();
-        signal(chopstick[i]);         // 放左筷子
-        signal(chopstick[(i+1) % 5]); // 放右筷子
+        think();                          // 思考
+        wait(chopstick[i]);               // 拿起左边的筷子
+        wait(chopstick[(i+1) % 5]);       // 拿起右边的筷子
+        eat();                            // 进餐
+        signal(chopstick[i]);             // 放下左边的筷子
+        signal(chopstick[(i+1) % 5]);     // 放下右边的筷子
     }
 }
 ```
 
 ::: info
-如果 5 个哲学家同时拿起左筷子，然后都在等待右筷子，就会发生死锁——每个人都在等，没人能进餐。
+如果 5 个哲学家同时拿起左筷子，然后都在等待右筷子，就会发生死锁——每个人都在等，没人能进餐。这就是经典的死锁场景。
 :::
 
 ### 解决方案一：限制最多 4 个哲学家同时拿筷子
 
 ```c
-semaphore chopstick[5] = {1, 1, 1, 1, 1};
-semaphore room = 4;  // 最多允许 4 人同时尝试
+// 定义 5 根筷子和一个房间信号量
+semaphore chopstick[5] = {1, 1, 1, 1, 1};  // 每根筷子初始可用
+semaphore room = 4;                         // 最多允许 4 人同时尝试拿筷子
 
+// 哲学家 i 的行为
 void philosopher(int i) {
     while (true) {
-        think();
-        wait(room);                    // 进入房间
-        wait(chopstick[i]);            // 拿左筷子
-        wait(chopstick[(i+1) % 5]);    // 拿右筷子
-        eat();
-        signal(chopstick[i]);          // 放左筷子
-        signal(chopstick[(i+1) % 5]);  // 放右筷子
-        signal(room);                  // 离开房间
+        think();                            // 思考
+        wait(room);                         // 进入房间（如果已有 4 人，第 5 人等待）
+        wait(chopstick[i]);                 // 拿左筷子
+        wait(chopstick[(i+1) % 5]);         // 拿右筷子
+        eat();                              // 进餐
+        signal(chopstick[i]);               // 放左筷子
+        signal(chopstick[(i+1) % 5]);       // 放右筷子
+        signal(room);                       // 离开房间
     }
 }
 ```
+
+**原理：** 最多 4 人同时拿筷子，保证至少有一个人能拿到两根筷子（因为 5 根筷子分给 4 人，至少一人能拿到两根）。
 
 ### 解决方案二：奇数先拿左，偶数先拿右
 
 ```c
+// 定义 5 根筷子
+semaphore chopstick[5] = {1, 1, 1, 1, 1};
+
+// 哲学家 i 的行为
 void philosopher(int i) {
     while (true) {
-        think();
-        if (i % 2 == 0) {
-            wait(chopstick[(i+1) % 5]);  // 先拿右
-            wait(chopstick[i]);           // 再拿左
-        } else {
-            wait(chopstick[i]);           // 先拿左
-            wait(chopstick[(i+1) % 5]);   // 再拿右
+        think();                            // 思考
+        if (i % 2 == 0) {                   // 如果是偶数号哲学家
+            wait(chopstick[(i+1) % 5]);     // 先拿右筷子
+            wait(chopstick[i]);             // 再拿左筷子
+        } else {                            // 如果是奇数号哲学家
+            wait(chopstick[i]);             // 先拿左筷子
+            wait(chopstick[(i+1) % 5]);     // 再拿右筷子
         }
-        eat();
-        signal(chopstick[i]);
-        signal(chopstick[(i+1) % 5]);
+        eat();                              // 进餐
+        signal(chopstick[i]);               // 放左筷子
+        signal(chopstick[(i+1) % 5]);       // 放右筷子
     }
 }
 ```
+
+**原理：** 奇数号哲学家先拿左筷子，偶数号先拿右筷子，打破了循环等待的条件，保证至少有一个人能进餐。
 
 ### 解决方案三：只有左右筷子都可用时才拿
 
 ```c
+// 定义 5 根筷子和一个互斥信号量
+semaphore chopstick[5] = {1, 1, 1, 1, 1};  // 筷子状态：1 可用，0 不可用
+semaphore mutex = 1;                        // 互斥信号量，保护筷子状态检查
+
+// 哲学家 i 的行为
 void philosopher(int i) {
     while (true) {
-        think();
-        // 使用 TestAndSet 原子操作
+        think();                            // 思考
+        // 使用 TestAndSet 原子操作，同时检查并拿取筷子
         while (true) {
-            wait(mutex);
-            int left = i;
-            int right = (i + 1) % 5;
-            if (chopstick[left] == 1 && chopstick[right] == 1) {
-                chopstick[left] = 0;
-                chopstick[right] = 0;
-                signal(mutex);
-                break;
+            wait(mutex);                    // 进入临界区
+            int left = i;                   // 左筷子编号
+            int right = (i + 1) % 5;        // 右筷子编号
+            if (chopstick[left] == 1 && chopstick[right] == 1) {  // 如果左右筷子都可用
+                chopstick[left] = 0;        // 拿左筷子
+                chopstick[right] = 0;       // 拿右筷子
+                signal(mutex);              // 离开临界区
+                break;                      // 拿到筷子，跳出循环
             }
-            signal(mutex);
-            // 等待一下再试
+            signal(mutex);                  // 离开临界区
+            // 等待一下再试（避免忙等待）
         }
-        eat();
-        chopstick[left] = 1;
-        chopstick[right] = 1;
+        eat();                              // 进餐
+        chopstick[left] = 1;                // 放左筷子
+        chopstick[right] = 1;               // 放右筷子
     }
 }
 ```
 
+**原理：** 只有当左右筷子都可用时才同时拿取，避免了"持有并等待"的情况。
+
 | 解决方案 | 原理 | 优缺点 |
 | --- | --- | --- |
 | 限制人数 | 破坏循环等待条件 | 简单，但降低并发度 |
-| 奇偶策略 | 破坏循环等待条件 | 保证至少一人能进餐 |
-| 同时拿取 | 破坏持有并等待条件 | 可能饥饿 |
+| 奇偶策略 | 破坏循环等待条件 | 保证至少一人能进餐，实现简单 |
+| 同时拿取 | 破坏持有并等待条件 | 可能饥饿，需要重试机制 |
 
-## 本章小结
+---
 
-- **生产者-消费者问题**：使用信号量 `empty`、`full`、`mutex` 协调生产者和消费者
-- **读者-写者问题**：读者优先策略可能导致写者饥饿，写者优先策略可能导致读者饥饿
-- **哲学家进餐问题**：通过限制人数、奇偶策略或同时拿取等方式避免死锁
-- 解决同步问题的关键是**破坏死锁的四个必要条件**之一
+## 7.5 经典同步问题对比
+
+| 问题 | 核心难题 | 解决思路 | 典型应用 |
+| --- | --- | --- | --- |
+| 生产者-消费者 | 缓冲区满/空的协调 | 用 empty/full 信号量计数 | 消息队列、任务调度 |
+| 读者-写者 | 读读并发、读写互斥 | 用 readCount 和 wrt 信号量 | 数据库、文件系统 |
+| 哲学家进餐 | 避免死锁和饥饿 | 限制资源、打破循环等待 | 资源分配、锁管理 |
+
+---
+
+## 7.6 新手常见误区
+
+### 误区 1："生产者-消费者问题中，wait(empty) 和 wait(mutex) 的顺序无所谓"
+
+**错！** 顺序非常重要：
+
+1. 如果先 `wait(mutex)` 再 `wait(empty)`，当缓冲区满时，生产者持有 mutex 等待 empty，消费者无法获取 mutex 来消费，导致死锁
+2. 正确顺序：先 `wait(empty)` 检查资源，再 `wait(mutex)` 加锁
+
+正确做法：先检查资源（wait empty/full），再加锁（wait mutex）。
+
+### 误区 2："读者-写者问题中，读者优先总是最好的"
+
+**不是的！** 读者优先会导致写者饥饿：
+
+1. 如果不断有读者到来，写者可能永远无法获得访问权
+2. 写者优先会导致读者饥饿
+3. 实际应用中需要折中，如 Linux 的 rwlock
+
+正确做法：根据场景选择策略，读多写少用读者优先，写多读少用写者优先。
+
+### 误区 3："哲学家进餐问题中，只要让每个人都能拿到筷子就不会死锁"
+
+**不完全对！** 死锁的关键是循环等待：
+
+1. 即使每个人都能拿到筷子，如果形成循环等待链，仍然会死锁
+2. 必须破坏死锁的四个必要条件之一（互斥、持有并等待、不可抢占、循环等待）
+3. 限制人数、奇偶策略、同时拿取都是通过破坏循环等待或持有并等待来避免死锁
+
+正确做法：理解死锁的四个必要条件，针对性地破坏其中一个。
+
+### 误区 4："信号量可以解决所有同步问题"
+
+**不是的！** 信号量虽然强大，但也有局限：
+
+1. 使用不当容易导致死锁、饥饿
+2. 复杂的同步逻辑难以用信号量清晰表达
+3. 高级语言提供了更安全的同步机制（如管程、条件变量）
+
+正确做法：根据场景选择合适的同步机制，简单问题用信号量，复杂问题用管程或高级同步原语。
+
+---
+
+## 7.7 动手练习
+
+### 练习 1：基础练习 - 生产者-消费者分析
+
+假设有 1 个生产者和 1 个消费者，缓冲区大小为 2。初始时缓冲区为空。
+
+请写出以下操作的信号量变化过程：
+1. 生产者生产一个产品
+2. 消费者消费一个产品
+3. 生产者再生产两个产品
+
+<details>
+<summary>点击查看答案</summary>
+
+**初始状态：** empty = 2, full = 0, mutex = 1
+
+**操作 1：生产者生产一个产品**
+```
+wait(empty)  → empty = 1
+wait(mutex)  → mutex = 0
+insert(item1)→ 缓冲区 [item1]
+signal(mutex)→ mutex = 1
+signal(full) → full = 1
+```
+
+**操作 2：消费者消费一个产品**
+```
+wait(full)   → full = 0
+wait(mutex)  → mutex = 0
+remove()     → 取出 item1，缓冲区 []
+signal(mutex)→ mutex = 1
+signal(empty)→ empty = 2
+```
+
+**操作 3：生产者再生产两个产品**
+```
+// 第一个产品
+wait(empty)  → empty = 1
+wait(mutex)  → mutex = 0
+insert(item2)→ 缓冲区 [item2]
+signal(mutex)→ mutex = 1
+signal(full) → full = 1
+
+// 第二个产品
+wait(empty)  → empty = 0
+wait(mutex)  → mutex = 0
+insert(item3)→ 缓冲区 [item2, item3]
+signal(mutex)→ mutex = 1
+signal(full) → full = 2
+```
+
+**最终状态：** empty = 0, full = 2, mutex = 1, 缓冲区 [item2, item3]
+
+</details>
+
+### 练习 2：进阶练习 - 读者-写者策略对比
+
+假设有 3 个读者（R1, R2, R3）和 1 个写者（W1），初始时没有读者和写者。
+
+请分别写出在"读者优先"和"写者优先"策略下，以下操作的执行顺序：
+1. R1 开始读
+2. W1 请求写
+3. R2 开始读
+
+<details>
+<summary>点击查看答案</summary>
+
+**读者优先策略：**
+
+1. R1 开始读：
+   - wait(mutex) → readCount = 1
+   - wait(wrt) → 阻止写者
+   - signal(mutex)
+   - R1 读取数据
+
+2. W1 请求写：
+   - wait(wrt) → 阻塞（因为有读者 R1）
+
+3. R2 开始读：
+   - wait(mutex) → readCount = 2
+   - readCount != 1，不执行 wait(wrt)
+   - signal(mutex)
+   - R2 读取数据（R1 和 R2 同时读）
+
+**结果：** W1 被阻塞，R1 和 R2 同时读取。
+
+**写者优先策略：**
+
+1. R1 开始读：
+   - wait(r) → 获取 r
+   - wait(mutex) → readCount = 1
+   - wait(wrt) → 阻止写者
+   - signal(mutex)
+   - signal(r) → 释放 r
+   - R1 读取数据
+
+2. W1 请求写：
+   - wait(r) → 获取 r（阻止新读者）
+   - wait(wrt) → 阻塞（因为有读者 R1）
+
+3. R2 开始读：
+   - wait(r) → 阻塞（因为 W1 持有 r）
+
+**结果：** R2 被阻塞，W1 等待 R1 完成后立即写入。
+
+**对比：** 读者优先允许新读者继续进入，写者优先阻止新读者，让写者尽快执行。
+
+</details>
+
+### 练习 3（挑战）：综合练习 - 哲学家进餐问题改进
+
+假设 3 个哲学家和 3 根筷子，使用"限制人数"的策略（最多 2 人同时拿筷子）。
+
+请写出以下操作的执行过程：
+1. 哲学家 0 开始进餐
+2. 哲学家 1 开始进餐
+3. 哲学家 2 尝试进餐
+4. 哲学家 0 完成进餐
+5. 哲学家 2 再次尝试进餐
+
+<details>
+<summary>点击查看答案</summary>
+
+**初始状态：** chopstick[3] = {1, 1, 1}, room = 2
+
+**操作 1：哲学家 0 开始进餐**
+```
+wait(room)   → room = 1（进入房间）
+wait(chopstick[0]) → chopstick[0] = 0（拿左筷子）
+wait(chopstick[1]) → chopstick[1] = 0（拿右筷子）
+eat()        → 进餐
+```
+
+**操作 2：哲学家 1 开始进餐**
+```
+wait(room)   → room = 0（进入房间）
+wait(chopstick[1]) → 阻塞（筷子 1 被哲学家 0 拿走）
+```
+
+**操作 3：哲学家 2 尝试进餐**
+```
+wait(room)   → 阻塞（room = 0，房间已满）
+```
+
+**操作 4：哲学家 0 完成进餐**
+```
+signal(chopstick[0]) → chopstick[0] = 1（放左筷子）
+signal(chopstick[1]) → chopstick[1] = 1（放右筷子）
+signal(room) → room = 1（离开房间）
+```
+
+**操作 5：哲学家 2 再次尝试进餐**
+```
+// 哲学家 1 现在可以拿到筷子了
+wait(chopstick[1]) → chopstick[1] = 0（哲学家 1 拿到左筷子）
+wait(chopstick[2]) → chopstick[2] = 0（哲学家 1 拿到右筷子）
+eat() → 哲学家 1 进餐
+
+// 哲学家 2 等待哲学家 1 完成后才能进餐
+```
+
+**关键点：** 限制房间人数为 2，保证至少有一个人能拿到两根筷子，避免死锁。
+
+</details>
+
+---
+
+## 下一章预告
+
+下一章我们会学习 **死锁处理**——什么是死锁？如何预防、避免、检测和恢复死锁？你会学到银行家算法等经典死锁避免方法。这些知识对于理解操作系统和并发编程中的资源管理非常重要。
