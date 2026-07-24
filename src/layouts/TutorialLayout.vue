@@ -47,7 +47,7 @@ function toggleSidebar() {
       <nav class="header-nav">
         <RouterLink to="/">首页</RouterLink>
         <RouterLink to="/tutorials" class="active">教程</RouterLink>
-        <a href="https://www.typescriptlang.org/docs/" target="_blank" rel="noopener">官方文档</a>
+        <!-- <a href="https://www.typescriptlang.org/docs/" target="_blank" rel="noopener">官方文档</a> -->
         <ThemeSwitcher />
       </nav>
     </header>
