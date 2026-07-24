@@ -264,50 +264,96 @@ const recentSeries = tutorialSeries.slice(0, 3)
 .decoration-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(80px);
-  animation: float 20s infinite ease-in-out;
+  filter: blur(120px);
+  animation: float 10s infinite ease-in-out;
+  will-change: transform, opacity;
 }
 
 .blob-1 {
-  width: 500px;
-  height: 500px;
-  background: var(--accent);
-  top: -150px;
-  right: -100px;
-  opacity: 0.15;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  top: -250px;
+  right: -200px;
+  opacity: 0.4;
+  animation-name: float1;
 }
 
 .blob-2 {
-  width: 400px;
-  height: 400px;
-  background: var(--accent);
-  bottom: -100px;
-  left: -100px;
-  opacity: 0.1;
-  animation-delay: -7s;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  bottom: -200px;
+  left: -200px;
+  opacity: 0.35;
+  animation-name: float2;
+  animation-delay: -5s;
 }
 
 .blob-3 {
-  width: 300px;
-  height: 300px;
-  background: var(--accent);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0.08;
-  animation-delay: -14s;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+  top: 20%;
+  left: 10%;
+  opacity: 0.3;
+  animation-name: float3;
+  animation-delay: -10s;
 }
 
-@keyframes float {
+@keyframes float1 {
   0%,
   100% {
-    transform: translate(0, 0) scale(1);
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.4;
+  }
+  25% {
+    transform: translate(60px, -60px) scale(1.3) rotate(90deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(-40px, 50px) scale(0.8) rotate(180deg);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translate(50px, 40px) scale(1.2) rotate(270deg);
+    opacity: 0.45;
+  }
+}
+
+@keyframes float2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.35;
+  }
+  25% {
+    transform: translate(-50px, -40px) scale(1.25) rotate(-90deg);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate(60px, -50px) scale(0.85) rotate(-180deg);
+    opacity: 0.25;
+  }
+  75% {
+    transform: translate(-40px, 60px) scale(1.15) rotate(-270deg);
+    opacity: 0.4;
+  }
+}
+
+@keyframes float3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1) rotate(0deg);
+    opacity: 0.3;
   }
   33% {
-    transform: translate(30px, -30px) scale(1.1);
+    transform: translate(80px, -50px) scale(1.4) rotate(120deg);
+    opacity: 0.4;
   }
   66% {
-    transform: translate(-20px, 20px) scale(0.9);
+    transform: translate(-60px, 40px) scale(0.75) rotate(240deg);
+    opacity: 0.2;
   }
 }
 
