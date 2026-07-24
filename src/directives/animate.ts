@@ -24,7 +24,7 @@ const animateDirective: Directive = {
     const modifiers = Object.keys(binding.modifiers)
     const animationType = modifiers.find(m => ['fade', 'slide-up', 'slide-left', 'slide-right', 'scale'].includes(m)) || 'fade'
     const delayModifier = modifiers.find(m => m.startsWith('delay-'))
-    const delay = delayModifier ? parseInt(delayModifier.split('-')[1]) : 0
+    const delay = delayModifier ? parseInt(delayModifier.split('-')[1] ?? '0') : 0
 
     // 保存原始样式
     el._animateOriginalStyles = el.style.cssText
