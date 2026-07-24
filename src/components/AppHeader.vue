@@ -6,7 +6,7 @@ import ThemeSwitcher from './ThemeSwitcher.vue'
   <header class="app-header">
     <div class="header-content">
       <RouterLink to="/" class="header-logo">
-        <span class="logo-text">全栈学习中心</span>
+        <span class="logo-text">MonkeyK</span>
       </RouterLink>
 
       <nav class="header-nav">
