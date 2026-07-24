@@ -2,7 +2,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useTheme } from '../composables/useTheme'
 
-const { currentTheme, themes, setTheme } = useTheme()
+const { currentMode, currentAccent, modes, accentColors, setMode, setAccent } = useTheme()
 const isOpen = ref(false)
 const dropdownRef = ref<HTMLElement | null>(null)
 
@@ -10,9 +10,12 @@ function toggleDropdown() {
   isOpen.value = !isOpen.value
 }
 
-function selectTheme(themeName: string) {
-  setTheme(themeName as any)
-  isOpen.value = false
+function selectMode(modeName: string) {
+  setMode(modeName as any)
+}
+
+function selectAccent(accentName: string) {
+  setAccent(accentName as any)
 }
 
 function handleClickOutside(event: MouseEvent) {
@@ -29,15 +32,15 @@ onUnmounted(() => {
   document.removeEventListener('click', handleClickOutside)
 })
 
-const currentThemeData = () => {
-  return themes.find((t) => t.name === currentTheme.value)
+const currentModeData = () => {
+  return modes.find((t) => t.name === currentMode.value)
 }
 </script>
 
 <template>
   <div class="theme-switcher" ref="dropdownRef">
     <button class="theme-trigger" @click="toggleDropdown">
-      <span class="theme-label">{{ currentThemeData()?.label }}</span>
+      <span class="theme-label">{{ currentModeData()?.label }}</span>
       <svg class="theme-arrow" :class="{ open: isOpen }" width="12" height="12" viewBox="0 0 12 12">
         <path
           d="M3 4.5L6 7.5L9 4.5"
@@ -51,30 +54,63 @@ const currentThemeData = () => {
 
     <Transition name="dropdown">
       <div v-if="isOpen" class="theme-dropdown">
-        <button
-          v-for="theme in themes"
-          :key="theme.name"
-          class="theme-option"
-          :class="{ active: currentTheme === theme.name }"
-          @click="selectTheme(theme.name)"
-        >
-          <span class="option-label">{{ theme.label }}</span>
-          <svg
-            v-if="currentTheme === theme.name"
-            class="option-check"
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
+        <!-- 模式选择（浅色/深色） -->
+        <div class="theme-section">
+          <div class="section-title">模式</div>
+          <button
+            v-for="mode in modes"
+            :key="mode.name"
+            class="theme-option"
+            :class="{ active: currentMode === mode.name }"
+            @click="selectMode(mode.name)"
           >
-            <path
-              d="M3.5 8.5L6.5 11.5L12.5 4.5"
-              stroke="currentColor"
-              stroke-width="1.5"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </button>
+            <span class="option-label">{{ mode.label }}</span>
+            <svg
+              v-if="currentMode === mode.name"
+              class="option-check"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3.5 8.5L6.5 11.5L12.5 4.5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- 强调色选择 -->
+        <div class="theme-section">
+          <div class="section-title">强调色</div>
+          <button
+            v-for="accent in accentColors"
+            :key="accent.name"
+            class="theme-option"
+            :class="{ active: currentAccent === accent.name }"
+            @click="selectAccent(accent.name)"
+          >
+            <span class="option-label">{{ accent.label }}</span>
+            <svg
+              v-if="currentAccent === accent.name"
+              class="option-check"
+              width="16"
+              height="16"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3.5 8.5L6.5 11.5L12.5 4.5"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
       </div>
     </Transition>
   </div>
@@ -123,7 +159,7 @@ const currentThemeData = () => {
   position: absolute;
   top: calc(100% + 0.5rem);
   right: 0;
-  min-width: 140px;
+  min-width: 160px;
   background: var(--bg-glass-strong);
   backdrop-filter: blur(var(--blur-strong));
   -webkit-backdrop-filter: blur(var(--blur-strong));
@@ -132,6 +168,26 @@ const currentThemeData = () => {
   box-shadow: var(--shadow-lg);
   overflow: hidden;
   z-index: 1000;
+  padding: 0.5rem 0;
+}
+
+.theme-section {
+  padding: 0.25rem 0;
+}
+
+.theme-section + .theme-section {
+  border-top: 1px solid var(--border-color);
+  margin-top: 0.25rem;
+  padding-top: 0.5rem;
+}
+
+.section-title {
+  padding: 0.25rem 1rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .theme-option {
@@ -139,7 +195,7 @@ const currentThemeData = () => {
   align-items: center;
   gap: 0.5rem;
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 0.5rem 1rem;
   background: transparent;
   border: none;
   cursor: pointer;

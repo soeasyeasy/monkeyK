@@ -1,12 +1,18 @@
 import { ref, watch } from 'vue'
 
-export type ThemeName = 'light' | 'dark' | 'ocean' | 'forest' | 'violet' | 'sunset' | 'rose'
+export type ThemeMode = 'light' | 'dark'
+export type AccentColor = 'default' | 'ocean' | 'forest' | 'violet' | 'sunset' | 'rose'
 
-const STORAGE_KEY = 'ts-tutorial-theme'
+const MODE_KEY = 'ts-tutorial-mode'
+const ACCENT_KEY = 'ts-tutorial-accent'
 
-const themes: { name: ThemeName; label: string }[] = [
+const modes: { name: ThemeMode; label: string }[] = [
   { name: 'light', label: '浅色' },
   { name: 'dark', label: '深色' },
+]
+
+const accentColors: { name: AccentColor; label: string }[] = [
+  { name: 'default', label: '默认' },
   { name: 'ocean', label: '海洋蓝' },
   { name: 'forest', label: '森林绿' },
   { name: 'violet', label: '紫罗兰' },
@@ -14,54 +20,83 @@ const themes: { name: ThemeName; label: string }[] = [
   { name: 'rose', label: '玫瑰粉' },
 ]
 
-function getInitialTheme(): ThemeName {
+function getInitialMode(): ThemeMode {
   try {
-    const saved = localStorage.getItem(STORAGE_KEY)
-    if (saved && themes.some((t) => t.name === saved)) {
-      return saved as ThemeName
+    const saved = localStorage.getItem(MODE_KEY)
+    if (saved && modes.some((t) => t.name === saved)) {
+      return saved as ThemeMode
     }
   } catch {}
   return 'light'
 }
 
-const currentTheme = ref<ThemeName>(getInitialTheme())
+function getInitialAccent(): AccentColor {
+  try {
+    const saved = localStorage.getItem(ACCENT_KEY)
+    if (saved && accentColors.some((t) => t.name === saved)) {
+      return saved as AccentColor
+    }
+  } catch {}
+  return 'default'
+}
 
-function applyTheme(theme: ThemeName) {
-  if (theme === 'light') {
+const currentMode = ref<ThemeMode>(getInitialMode())
+const currentAccent = ref<AccentColor>(getInitialAccent())
+
+function applyTheme() {
+  const mode = currentMode.value
+  const accent = currentAccent.value
+
+  // 应用 mode（light/dark）
+  if (mode === 'light') {
     document.documentElement.removeAttribute('data-theme')
   } else {
-    document.documentElement.setAttribute('data-theme', theme)
+    document.documentElement.setAttribute('data-theme', mode)
   }
+
+  // 应用 accent color
+  if (accent === 'default') {
+    document.documentElement.removeAttribute('data-theme-accent')
+  } else {
+    document.documentElement.setAttribute('data-theme-accent', accent)
+  }
+
   try {
-    localStorage.setItem(STORAGE_KEY, theme)
+    localStorage.setItem(MODE_KEY, mode)
+    localStorage.setItem(ACCENT_KEY, accent)
   } catch {}
 }
 
 // 初始化
-applyTheme(currentTheme.value)
+applyTheme()
 
 export function useTheme() {
-  function setTheme(theme: ThemeName) {
-    currentTheme.value = theme
-    applyTheme(theme)
+  function setMode(mode: ThemeMode) {
+    currentMode.value = mode
+    applyTheme()
   }
 
-  function toggleTheme() {
-    const idx = themes.findIndex((t) => t.name === currentTheme.value)
-    const nextTheme = themes[(idx + 1) % themes.length]
-    if (nextTheme) {
-      setTheme(nextTheme.name)
-    }
+  function setAccent(accent: AccentColor) {
+    currentAccent.value = accent
+    applyTheme()
   }
 
-  watch(currentTheme, (theme) => {
-    applyTheme(theme)
+  function toggleMode() {
+    currentMode.value = currentMode.value === 'light' ? 'dark' : 'light'
+    applyTheme()
+  }
+
+  watch([currentMode, currentAccent], () => {
+    applyTheme()
   })
 
   return {
-    currentTheme,
-    themes,
-    setTheme,
-    toggleTheme,
+    currentMode,
+    currentAccent,
+    modes,
+    accentColors,
+    setMode,
+    setAccent,
+    toggleMode,
   }
 }
