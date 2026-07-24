@@ -29,45 +29,49 @@ vue3-study/
 
 ## 教程系列
 
-启动开发服务器后，点击以下链接即可查看各教程系列：
-
 ### 前端开发
 
-| 教程名称 | 章节数 | 简介 | 访问链接 |
-| --- | --- | --- | --- |
-| HTML 基础到精通 | 12 | 从零开始学习 HTML，构建语义化网页 | [查看教程](/tutorials/html) |
-| CSS 完全指南 | 12 | 从基础样式到现代布局 | [查看教程](/tutorials/css) |
-| JavaScript 核心教程 | 12 | 掌握 JavaScript 核心概念 | [查看教程](/tutorials/javascript) |
-| TypeScript 从零到精通 | 12 | TypeScript 基础到实战 | [查看教程](/tutorials/typescript) |
-| Vue 2 经典教程 | 16 | Vue 2 选项式 API 与生态 | [查看教程](/tutorials/vue2) |
-| Vue 3 完全指南 | 16 | Vue 3 组合式 API 与核心特性 | [查看教程](/tutorials/vue3) |
-| Vite 完全指南 | 16 | 下一代前端构建工具 | [查看教程](/tutorials/vite) |
-| npm 完全指南 | 16 | Node.js 包管理与项目工作流 | [查看教程](/tutorials/npm) |
-| 前端性能优化实战 | 16 | 系统掌握性能优化技术 | [查看教程](/tutorials/performance) |
+| 教程名称             | 章节数 | 简介                  | 查看链接                                                                   |
+| ---------------- | --- | ------------------- | ---------------------------------------------------------------------- |
+| HTML 基础到精通       | 12  | 从零开始学习 HTML，构建语义化网页 | [src/content/tutorials/html](src/content/tutorials/html)               |
+| CSS 完全指南         | 12  | 从基础样式到现代布局          | [src/content/tutorials/css](src/content/tutorials/css)                 |
+| JavaScript 核心教程  | 12  | 掌握 JavaScript 核心概念  | [src/content/tutorials/javascript](src/content/tutorials/javascript)   |
+| TypeScript 从零到精通 | 12  | TypeScript 基础到实战    | [src/content/tutorials/typescript](src/content/tutorials/typescript)   |
+| Vue 2 经典教程       | 16  | Vue 2 选项式 API 与生态   | [src/content/tutorials/vue2](src/content/tutorials/vue2)               |
+| Vue 3 完全指南       | 16  | Vue 3 组合式 API 与核心特性 | [src/content/tutorials/vue3](src/content/tutorials/vue3)               |
+| Vite 完全指南        | 16  | 下一代前端构建工具           | [src/content/tutorials/vite](src/content/tutorials/vite)               |
+| npm 完全指南         | 16  | Node.js 包管理与项目工作流   | [src/content/tutorials/npm](src/content/tutorials/npm)                 |
+| 前端性能优化实战         | 16  | 系统掌握性能优化技术          | [src/content/tutorials/performance](src/content/tutorials/performance) |
 
 ### 后端开发
 
-| 教程名称 | 章节数 | 简介 | 访问链接 |
-| --- | --- | --- | --- |
-| Java 从入门到精通 | 16 | Java 基础语法到面向对象 | [查看教程](/tutorials/java) |
+| 教程名称        | 章节数 | 简介             | 查看链接                                                     |
+| ----------- | --- | -------------- | -------------------------------------------------------- |
+| Java 从入门到精通 | 16  | Java 基础语法到面向对象 | [src/content/tutorials/java](src/content/tutorials/java) |
 
 ### 操作系统
 
-| 教程名称 | 章节数 | 简介 | 访问链接 |
-| --- | --- | --- | --- |
-| 操作系统核心教程 | 16 | 进程、内存、文件系统核心概念 | [查看教程](/tutorials/os) |
+| 教程名称     | 章节数 | 简介             | 查看链接                                                 |
+| -------- | --- | -------------- | ---------------------------------------------------- |
+| 操作系统核心教程 | 16  | 进程、内存、文件系统核心概念 | [src/content/tutorials/os](src/content/tutorials/os) |
 
 ### 网络
 
-| 教程名称 | 章节数 | 简介 | 访问链接 |
-| --- | --- | --- | --- |
-| 浏览器与网络基础教程 | 16 | 浏览器原理与网络协议 | [查看教程](/tutorials/browser-network) |
+| 教程名称       | 章节数 | 简介         | 查看链接                                                                           |
+| ---------- | --- | ---------- | ------------------------------------------------------------------------------ |
+| 浏览器与网络基础教程 | 16  | 浏览器原理与网络协议 | [src/content/tutorials/browser-network](src/content/tutorials/browser-network) |
 
 ### DevOps
 
-| 教程名称 | 章节数 | 简介 | 访问链接 |
-| --- | --- | --- | --- |
-| Git 版本控制教程 | 16 | 高效管理代码版本与团队协作 | [查看教程](/tutorials/git) |
+| 教程名称       | 章节数 | 简介            | 查看链接                                                   |
+| ---------- | --- | ------------- | ------------------------------------------------------ |
+| Git 版本控制教程 | 16  | 高效管理代码版本与团队协作 | [src/content/tutorials/git](src/content/tutorials/git) |
+
+启动开发服务器后，可以通过以下路由访问：
+
+- 教程中心首页：`/tutorials`
+- 具体系列页面：`/tutorials/{seriesId}`
+- 具体章节页面：`/tutorials/{seriesId}/{chapterSlug}`
 
 ## 技术栈
 
@@ -182,150 +186,6 @@ mkdir src/content/tutorials/react
 
 在教程目录下创建 Markdown 文件，文件命名格式为 `{number}-{slug}.md`。
 
-示例：创建第一章
-
-```bash
-touch src/content/tutorials/react/01-introduction.md
-```
-
-每个 Markdown 文件必须包含以下结构：
-
-```markdown
----
-title: "第一章：章节标题"
-description: "一句话说明本章内容"
----
-
-# 第一章：章节标题
-
-## 本章导读
-
-在学这一章之前，你可能会有这些疑问：
-
-- 问题1？
-- 问题2？
-- 问题3？
-
-这一章就是为了解答这些问题。我们会先搞清楚核心概念，再动手实践。
-
----
-
-## 1.1 为什么需要这个技术？
-
-### 痛点分析
-
-描述没有这个技术时的问题。
-
-### 解决方案
-
-描述这个技术如何解决痛点。
-
-> **一句话总结**：...
-
----
-
-## 1.2 核心原理
-
-### 概念解释
-
-用通俗语言解释原理。
-
-打个比方：
-
-> 生活化类比
-
-### 对比分析
-
-| 特性 | 方案A | 方案B |
-| --- | --- | --- |
-| ... | ... | ... |
-
----
-
-## 1.3 基础用法
-
-### 示例代码
-
-```javascript
-// 逐行注释
-```
-
-> **原理**：...
-
----
-
-## 1.4 进阶用法
-
-更复杂的用法和场景。
-
----
-
-## 1.5 核心知识点总结
-
-| 知识点 | 说明 |
-| --- | --- |
-| ... | ... |
-
----
-
-## 1.6 新手常见误区
-
-### 误区 1："..."
-
-**错！** 解释为什么错。
-
-正确做法：...
-
----
-
-## 1.7 动手练习
-
-### 练习 1：基础练习
-
-题目描述。
-
-<details>
-<summary>点击查看答案</summary>
-
-```javascript
-// 完整答案代码
-```
-
-</details>
-
-### 练习 2：进阶练习
-
-题目描述。
-
-<details>
-<summary>点击查看答案</summary>
-
-```javascript
-// 完整答案代码
-```
-
-</details>
-
-### 练习 3（挑战）：综合练习
-
-题目描述。
-
-<details>
-<summary>点击查看答案</summary>
-
-```javascript
-// 完整答案代码
-```
-
-</details>
-
----
-
-## 下一章预告
-
-下一章我们会学习——也就是...。你会学到...。
-```
-
 ### 教程编写规范
 
 每章教程必须包含以下八个部分：
@@ -357,6 +217,8 @@ description: "一句话说明本章内容"
 无需手动配置路由，系统会根据 `tutorial-series.ts` 自动生成。
 
 ### 开发流程建议
+
+ 可使用skill进行自动生成
 
 1. 先规划教程系列的整体大纲和章节结构
 2. 在 `tutorial-series.ts` 中注册所有章节的元数据
