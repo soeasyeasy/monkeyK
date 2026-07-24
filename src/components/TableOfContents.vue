@@ -77,7 +77,7 @@ watch(tocItems, () => {
   top: 60px;
   right: 0;
   bottom: 0;
-  width: 220px;
+  width: 250px;
   padding: 1.5rem 1rem;
   overflow-y: auto;
   border-left: 1px solid var(--border-color);

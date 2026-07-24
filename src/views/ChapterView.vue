@@ -157,7 +157,7 @@ onMounted(() => {
 }
 
 .doc-content {
-  max-width: 720px;
+  max-width: 1020px;
   margin: 0 auto;
   padding: 2rem 2.5rem 4rem;
 }
