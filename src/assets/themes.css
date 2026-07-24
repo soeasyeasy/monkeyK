@@ -1,0 +1,345 @@
+/* ========== Apple 风格多主题系统 ========== */
+
+/* 1. 浅色主题 - Apple Light（默认） */
+:root {
+  --theme-name: 'light';
+
+  /* 背景色 */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f5f7;
+  --bg-glass: rgba(255, 255, 255, 0.72);
+  --bg-glass-hover: rgba(255, 255, 255, 0.88);
+  --bg-glass-strong: rgba(255, 255, 255, 0.92);
+  --bg-code: #1d1d1f;
+  --bg-badge: #007aff;
+  --bg-badge-text: #ffffff;
+  --bg-stat: rgba(0, 122, 255, 0.08);
+  --bg-card: rgba(255, 255, 255, 0.8);
+  --bg-card-hover: rgba(255, 255, 255, 0.95);
+  --bg-demo: rgba(245, 245, 247, 0.6);
+  --bg-table-header: #007aff;
+  --bg-table-stripe: rgba(0, 0, 0, 0.02);
+  --bg-tip: rgba(255, 243, 205, 0.6);
+  --bg-best: rgba(0, 122, 255, 0.06);
+  --bg-input: rgba(255, 255, 255, 0.9);
+  --bg-button: rgba(255, 255, 255, 0.9);
+  --bg-overlay: rgba(0, 0, 0, 0.4);
+
+  /* 文本色 */
+  --text-primary: #1d1d1f;
+  --text-secondary: #86868b;
+  --text-muted: #86868b;
+  --text-code: #e5e5e7;
+  --text-link: #007aff;
+  --text-badge: #ffffff;
+  --text-stat: #007aff;
+  --text-inline-code: #ff3b30;
+
+  /* 边框色 */
+  --border-color: rgba(0, 0, 0, 0.08);
+  --border-hover: rgba(0, 122, 255, 0.3);
+  --border-glass: rgba(255, 255, 255, 0.6);
+
+  /* 强调色 */
+  --accent: #007aff;
+  --accent-light: rgba(0, 122, 255, 0.1);
+  --accent-hover: #0051d5;
+
+  /* 阴影 */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.04), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.06), 0 3px 6px rgba(0, 0, 0, 0.04);
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.08);
+
+  /* 模糊 */
+  --blur: 20px;
+  --blur-strong: 30px;
+
+  /* 圆角 */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+}
+
+/* 2. 深色主题 - Apple Dark */
+[data-theme='dark'] {
+  --theme-name: 'dark';
+
+  --bg-primary: #000000;
+  --bg-secondary: #1c1c1e;
+  --bg-glass: rgba(28, 28, 30, 0.72);
+  --bg-glass-hover: rgba(44, 44, 46, 0.88);
+  --bg-glass-strong: rgba(28, 28, 30, 0.95);
+  --bg-code: #1c1c1e;
+  --bg-badge: #0a84ff;
+  --bg-badge-text: #000000;
+  --bg-stat: rgba(10, 132, 255, 0.12);
+  --bg-card: rgba(28, 28, 30, 0.8);
+  --bg-card-hover: rgba(44, 44, 46, 0.9);
+  --bg-demo: rgba(28, 28, 30, 0.6);
+  --bg-table-header: #0a84ff;
+  --bg-table-stripe: rgba(255, 255, 255, 0.03);
+  --bg-tip: rgba(255, 214, 10, 0.12);
+  --bg-best: rgba(10, 132, 255, 0.1);
+  --bg-input: rgba(44, 44, 46, 0.9);
+  --bg-button: rgba(44, 44, 46, 0.9);
+  --bg-overlay: rgba(0, 0, 0, 0.6);
+
+  --text-primary: #f5f5f7;
+  --text-secondary: #86868b;
+  --text-muted: #86868b;
+  --text-code: #e5e5e7;
+  --text-link: #0a84ff;
+  --text-badge: #000000;
+  --text-stat: #0a84ff;
+  --text-inline-code: #ff453a;
+
+  --border-color: rgba(255, 255, 255, 0.1);
+  --border-hover: rgba(10, 132, 255, 0.4);
+  --border-glass: rgba(255, 255, 255, 0.08);
+
+  --accent: #0a84ff;
+  --accent-light: rgba(10, 132, 255, 0.15);
+  --accent-hover: #409cff;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.4), 0 3px 6px rgba(0, 0, 0, 0.3);
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* 3. 海洋蓝主题 - Ocean */
+[data-theme='ocean'] {
+  --theme-name: 'ocean';
+
+  --bg-primary: #0a1929;
+  --bg-secondary: #132f4c;
+  --bg-glass: rgba(19, 47, 76, 0.72);
+  --bg-glass-hover: rgba(25, 60, 95, 0.88);
+  --bg-glass-strong: rgba(19, 47, 76, 0.95);
+  --bg-code: #0a1929;
+  --bg-badge: #00b4d8;
+  --bg-badge-text: #0a1929;
+  --bg-stat: rgba(0, 180, 216, 0.12);
+  --bg-card: rgba(19, 47, 76, 0.8);
+  --bg-card-hover: rgba(25, 60, 95, 0.9);
+  --bg-demo: rgba(19, 47, 76, 0.6);
+  --bg-table-header: #00b4d8;
+  --bg-table-stripe: rgba(0, 180, 216, 0.03);
+  --bg-tip: rgba(255, 214, 10, 0.12);
+  --bg-best: rgba(0, 180, 216, 0.1);
+  --bg-input: rgba(25, 60, 95, 0.9);
+  --bg-button: rgba(25, 60, 95, 0.9);
+  --bg-overlay: rgba(0, 0, 0, 0.6);
+
+  --text-primary: #e0f7fa;
+  --text-secondary: #80deea;
+  --text-muted: #4dd0e1;
+  --text-code: #e0f7fa;
+  --text-link: #00b4d8;
+  --text-badge: #0a1929;
+  --text-stat: #00b4d8;
+  --text-inline-code: #ffab91;
+
+  --border-color: rgba(0, 180, 216, 0.15);
+  --border-hover: rgba(0, 180, 216, 0.4);
+  --border-glass: rgba(0, 180, 216, 0.1);
+
+  --accent: #00b4d8;
+  --accent-light: rgba(0, 180, 216, 0.15);
+  --accent-hover: #48cae4;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.4), 0 3px 6px rgba(0, 0, 0, 0.3);
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* 4. 森林绿主题 - Forest */
+[data-theme='forest'] {
+  --theme-name: 'forest';
+
+  --bg-primary: #0f1f14;
+  --bg-secondary: #1b3a24;
+  --bg-glass: rgba(27, 58, 36, 0.72);
+  --bg-glass-hover: rgba(35, 72, 45, 0.88);
+  --bg-glass-strong: rgba(27, 58, 36, 0.95);
+  --bg-code: #0f1f14;
+  --bg-badge: #52b788;
+  --bg-badge-text: #0f1f14;
+  --bg-stat: rgba(82, 183, 136, 0.12);
+  --bg-card: rgba(27, 58, 36, 0.8);
+  --bg-card-hover: rgba(35, 72, 45, 0.9);
+  --bg-demo: rgba(27, 58, 36, 0.6);
+  --bg-table-header: #52b788;
+  --bg-table-stripe: rgba(82, 183, 136, 0.03);
+  --bg-tip: rgba(255, 214, 10, 0.12);
+  --bg-best: rgba(82, 183, 136, 0.1);
+  --bg-input: rgba(35, 72, 45, 0.9);
+  --bg-button: rgba(35, 72, 45, 0.9);
+  --bg-overlay: rgba(0, 0, 0, 0.6);
+
+  --text-primary: #d8f3dc;
+  --text-secondary: #95d5b2;
+  --text-muted: #74c69d;
+  --text-code: #d8f3dc;
+  --text-link: #52b788;
+  --text-badge: #0f1f14;
+  --text-stat: #52b788;
+  --text-inline-code: #ffab91;
+
+  --border-color: rgba(82, 183, 136, 0.15);
+  --border-hover: rgba(82, 183, 136, 0.4);
+  --border-glass: rgba(82, 183, 136, 0.1);
+
+  --accent: #52b788;
+  --accent-light: rgba(82, 183, 136, 0.15);
+  --accent-hover: #74c69d;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.4), 0 3px 6px rgba(0, 0, 0, 0.3);
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* 5. 紫罗兰主题 - Violet */
+[data-theme='violet'] {
+  --theme-name: 'violet';
+
+  --bg-primary: #1a0b2e;
+  --bg-secondary: #2d1b4e;
+  --bg-glass: rgba(45, 27, 78, 0.72);
+  --bg-glass-hover: rgba(58, 35, 100, 0.88);
+  --bg-glass-strong: rgba(45, 27, 78, 0.95);
+  --bg-code: #1a0b2e;
+  --bg-badge: #a855f7;
+  --bg-badge-text: #ffffff;
+  --bg-stat: rgba(168, 85, 247, 0.12);
+  --bg-card: rgba(45, 27, 78, 0.8);
+  --bg-card-hover: rgba(58, 35, 100, 0.9);
+  --bg-demo: rgba(45, 27, 78, 0.6);
+  --bg-table-header: #a855f7;
+  --bg-table-stripe: rgba(168, 85, 247, 0.03);
+  --bg-tip: rgba(255, 214, 10, 0.12);
+  --bg-best: rgba(168, 85, 247, 0.1);
+  --bg-input: rgba(58, 35, 100, 0.9);
+  --bg-button: rgba(58, 35, 100, 0.9);
+  --bg-overlay: rgba(0, 0, 0, 0.6);
+
+  --text-primary: #e9d5ff;
+  --text-secondary: #c4b5fd;
+  --text-muted: #a78bfa;
+  --text-code: #e9d5ff;
+  --text-link: #a855f7;
+  --text-badge: #ffffff;
+  --text-stat: #a855f7;
+  --text-inline-code: #fca5a5;
+
+  --border-color: rgba(168, 85, 247, 0.15);
+  --border-hover: rgba(168, 85, 247, 0.4);
+  --border-glass: rgba(168, 85, 247, 0.1);
+
+  --accent: #a855f7;
+  --accent-light: rgba(168, 85, 247, 0.15);
+  --accent-hover: #c084fc;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.4), 0 3px 6px rgba(0, 0, 0, 0.3);
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* 6. 暮光橙主题 - Sunset */
+[data-theme='sunset'] {
+  --theme-name: 'sunset';
+
+  --bg-primary: #1f1410;
+  --bg-secondary: #2e1f17;
+  --bg-glass: rgba(46, 31, 23, 0.72);
+  --bg-glass-hover: rgba(60, 40, 30, 0.88);
+  --bg-glass-strong: rgba(46, 31, 23, 0.95);
+  --bg-code: #1f1410;
+  --bg-badge: #f97316;
+  --bg-badge-text: #ffffff;
+  --bg-stat: rgba(249, 115, 22, 0.12);
+  --bg-card: rgba(46, 31, 23, 0.8);
+  --bg-card-hover: rgba(60, 40, 30, 0.9);
+  --bg-demo: rgba(46, 31, 23, 0.6);
+  --bg-table-header: #f97316;
+  --bg-table-stripe: rgba(249, 115, 22, 0.03);
+  --bg-tip: rgba(255, 214, 10, 0.12);
+  --bg-best: rgba(249, 115, 22, 0.1);
+  --bg-input: rgba(60, 40, 30, 0.9);
+  --bg-button: rgba(60, 40, 30, 0.9);
+  --bg-overlay: rgba(0, 0, 0, 0.6);
+
+  --text-primary: #fed7aa;
+  --text-secondary: #fdba74;
+  --text-muted: #fb923c;
+  --text-code: #fed7aa;
+  --text-link: #f97316;
+  --text-badge: #ffffff;
+  --text-stat: #f97316;
+  --text-inline-code: #fca5a5;
+
+  --border-color: rgba(249, 115, 22, 0.15);
+  --border-hover: rgba(249, 115, 22, 0.4);
+  --border-glass: rgba(249, 115, 22, 0.1);
+
+  --accent: #f97316;
+  --accent-light: rgba(249, 115, 22, 0.15);
+  --accent-hover: #fb923c;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.4), 0 3px 6px rgba(0, 0, 0, 0.3);
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* 7. 玫瑰粉主题 - Rose */
+[data-theme='rose'] {
+  --theme-name: 'rose';
+
+  --bg-primary: #1a0e14;
+  --bg-secondary: #2d1929;
+  --bg-glass: rgba(45, 25, 41, 0.72);
+  --bg-glass-hover: rgba(58, 32, 53, 0.88);
+  --bg-glass-strong: rgba(45, 25, 41, 0.95);
+  --bg-code: #1a0e14;
+  --bg-badge: #ec4899;
+  --bg-badge-text: #ffffff;
+  --bg-stat: rgba(236, 72, 153, 0.12);
+  --bg-card: rgba(45, 25, 41, 0.8);
+  --bg-card-hover: rgba(58, 32, 53, 0.9);
+  --bg-demo: rgba(45, 25, 41, 0.6);
+  --bg-table-header: #ec4899;
+  --bg-table-stripe: rgba(236, 72, 153, 0.03);
+  --bg-tip: rgba(255, 214, 10, 0.12);
+  --bg-best: rgba(236, 72, 153, 0.1);
+  --bg-input: rgba(58, 32, 53, 0.9);
+  --bg-button: rgba(58, 32, 53, 0.9);
+  --bg-overlay: rgba(0, 0, 0, 0.6);
+
+  --text-primary: #fbcfe8;
+  --text-secondary: #f9a8d4;
+  --text-muted: #f472b6;
+  --text-code: #fbcfe8;
+  --text-link: #ec4899;
+  --text-badge: #ffffff;
+  --text-stat: #ec4899;
+  --text-inline-code: #fca5a5;
+
+  --border-color: rgba(236, 72, 153, 0.15);
+  --border-hover: rgba(236, 72, 153, 0.4);
+  --border-glass: rgba(236, 72, 153, 0.1);
+
+  --accent: #ec4899;
+  --accent-light: rgba(236, 72, 153, 0.15);
+  --accent-hover: #f472b6;
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.4), 0 3px 6px rgba(0, 0, 0, 0.3);
+  --shadow-glass: 0 8px 32px rgba(0, 0, 0, 0.5);
+}

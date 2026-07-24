@@ -1,0 +1,524 @@
+/* ========== 文档全局样式 ========== */
+
+.doc-content {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 2.5rem 4rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+.doc-content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.doc-content > .desc {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  margin-bottom: 2.5rem;
+  line-height: 1.6;
+}
+
+.doc-content .section {
+  margin-bottom: 2.5rem;
+}
+
+.doc-content .section h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.doc-content .section h3 {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.doc-content .code-block {
+  margin-bottom: 1.5rem;
+}
+
+.doc-content pre {
+  background: var(--bg-code);
+  color: var(--text-code);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin: 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.doc-content code {
+  font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+}
+
+.doc-content p code,
+.doc-content li code {
+  background: var(--bg-card);
+  padding: 0.15em 0.4em;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: var(--text-inline-code);
+  border: 1px solid var(--border-color);
+}
+
+/* 结果展示卡片 */
+.doc-content .result-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.doc-content .result-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  transition: all 0.2s;
+}
+
+.doc-content .result-card:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.doc-content .result-title {
+  font-weight: 600;
+  color: var(--text-link);
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.doc-content .result-card ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.doc-content .result-card li {
+  font-family: 'Consolas', 'Monaco', monospace;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+}
+
+/* 演示卡片网格 */
+.doc-content .demo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.doc-content .demo-card {
+  background: var(--bg-card);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  transition: all 0.2s;
+}
+
+.doc-content .demo-card:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.doc-content .demo-title {
+  font-family: monospace;
+  font-weight: 600;
+  color: var(--text-link);
+  margin-bottom: 0.25rem;
+}
+
+.doc-content .demo-desc {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+}
+
+.doc-content .demo-value {
+  font-family: monospace;
+  color: var(--text-primary);
+  background: var(--bg-glass);
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  word-break: break-all;
+  font-size: 0.85rem;
+  border: 1px solid var(--border-color);
+}
+
+/* 结果列表 */
+.doc-content .result-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.doc-content .demo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.doc-content .demo-item {
+  background: var(--bg-card);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+  transition: all 0.2s;
+}
+
+.doc-content .demo-item:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.doc-content .demo-item .demo-title {
+  font-weight: 600;
+  color: var(--text-link);
+  margin-bottom: 0.5rem;
+}
+
+.doc-content .demo-item .demo-data {
+  margin: 0;
+  font-size: 0.85rem;
+  background: var(--bg-glass);
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+/* 结果表格 */
+.doc-content .result-table {
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-card);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+}
+
+.doc-content .result-row {
+  display: flex;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  align-items: center;
+}
+
+.doc-content .result-row:last-child {
+  border-bottom: none;
+}
+
+.doc-content .type-label {
+  font-weight: 600;
+  color: var(--text-link);
+  min-width: 140px;
+  font-family: monospace;
+}
+
+.doc-content .type-value {
+  color: var(--text-primary);
+  font-family: monospace;
+}
+
+/* 对比表格 */
+.doc-content .compare-table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-top: 1rem;
+  background: var(--bg-card);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+}
+
+.doc-content .compare-table th {
+  background: var(--bg-table-header);
+  color: var(--bg-badge-text);
+  padding: 0.75rem 1rem;
+  text-align: left;
+  font-weight: 500;
+}
+
+.doc-content .compare-table td {
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.doc-content .compare-table tr:nth-child(even) {
+  background: var(--bg-table-stripe);
+}
+
+/* 提示框 */
+.doc-content .tip {
+  background: var(--bg-tip);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 0.75rem 1rem;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+}
+
+/* 最佳实践列表 */
+.doc-content .best-practices {
+  background: var(--bg-best);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.5rem;
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+}
+
+.doc-content .best-practices li {
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+}
+
+.doc-content .best-practices li:last-child {
+  margin-bottom: 0;
+}
+
+/* 交互演示区域 */
+.doc-content .demo-area {
+  background: var(--bg-demo);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+}
+
+.doc-content .demo-row {
+  margin-bottom: 1.5rem;
+}
+
+.doc-content .demo-row:last-child {
+  margin-bottom: 0;
+}
+
+.doc-content .demo-row button {
+  margin-right: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-button);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  transition: all 0.2s;
+}
+
+.doc-content .demo-row button:hover {
+  background: var(--accent);
+  color: var(--bg-badge-text);
+  border-color: var(--accent);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-sm);
+}
+
+.doc-content .demo-row input {
+  padding: 0.5rem;
+  width: 200px;
+  margin-right: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  background: var(--bg-input);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+  color: var(--text-primary);
+}
+
+.doc-content .demo-row ul {
+  list-style: none;
+  padding: 0;
+}
+
+.doc-content .demo-row li {
+  padding: 0.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+
+.doc-content .demo-row li:hover {
+  background: var(--accent-light);
+}
+
+.doc-content .done {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.doc-content .status {
+  color: var(--text-link);
+}
+
+/* ========== 教程索引页样式 ========== */
+.tutorial-index {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 2rem 2.5rem 4rem;
+}
+
+.tutorial-index .index-header {
+  margin-bottom: 3rem;
+}
+
+.tutorial-index .index-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.tutorial-index .index-header .subtitle {
+  color: var(--text-secondary);
+  font-size: 1.05rem;
+  margin-bottom: 1.5rem;
+}
+
+.tutorial-index .index-header .stats {
+  display: flex;
+  gap: 1rem;
+}
+
+.tutorial-index .index-header .stat {
+  background: var(--bg-stat);
+  color: var(--text-stat);
+  padding: 0.35rem 0.9rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+}
+
+.tutorial-index .category-section {
+  margin-bottom: 2rem;
+}
+
+.tutorial-index .category-badge {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg-badge-text);
+  padding: 0.3rem 1rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.tutorial-index .chapter-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tutorial-index .chapter-link {
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border-color);
+  border-bottom: none;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s;
+  background: var(--bg-card);
+  backdrop-filter: blur(var(--blur));
+  -webkit-backdrop-filter: blur(var(--blur));
+}
+
+.tutorial-index .chapter-link:first-child {
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.tutorial-index .chapter-link:last-child {
+  border-bottom: 1px solid var(--border-color);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+.tutorial-index .chapter-link:only-child {
+  border-radius: var(--radius-md);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.tutorial-index .chapter-link:hover {
+  background: var(--bg-card-hover);
+  transform: translateX(4px);
+  box-shadow: var(--shadow-sm);
+}
+
+.tutorial-index .chapter-num {
+  background: var(--accent);
+  color: var(--bg-badge-text);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  margin-right: 1rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.tutorial-index .chapter-info {
+  flex: 1;
+}
+
+.tutorial-index .chapter-info h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.tutorial-index .chapter-info p {
+  margin: 0.15rem 0 0;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+}
+
+.tutorial-index .chapter-arrow {
+  color: var(--text-muted);
+  font-size: 1rem;
+  transition: transform 0.2s;
+}
+
+.tutorial-index .chapter-link:hover .chapter-arrow {
+  transform: translateX(4px);
+  color: var(--text-link);
+}
