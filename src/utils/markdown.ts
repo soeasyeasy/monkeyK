@@ -7,10 +7,12 @@ const md = new MarkdownIt({
   linkify: true,
   typographer: true,
   highlight(str: string, lang: string): string {
-    if (lang && hljs.getLanguage(lang)) {
+    // Vue SFC 使用 xml 高亮（支持 HTML 标签高亮）
+    const resolvedLang = lang === 'vue' ? 'xml' : lang
+    if (resolvedLang && hljs.getLanguage(resolvedLang)) {
       try {
         return `<pre class="hljs"><code>${
-          hljs.highlight(str, { language: lang, ignoreIllegals: true }).value
+          hljs.highlight(str, { language: resolvedLang, ignoreIllegals: true }).value
         }</code></pre>`
       } catch {}
     }
