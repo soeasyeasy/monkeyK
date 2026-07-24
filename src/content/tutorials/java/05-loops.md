@@ -5,6 +5,73 @@ description: 'for、while、do-while、增强 for'
 
 # 第五章：循环
 
+## 本章导读
+
+在学这一章之前，你可能会有这些疑问：
+
+- 循环有哪几种？它们之间有什么区别？
+- 什么时候用 `for`，什么时候用 `while`？
+- `break` 和 `continue` 到底怎么用？有什么区别？
+- 什么是"死循环"？怎么避免？
+
+这一章就是为了解答这些问题。我们会先搞清楚 **四种循环的适用场景**，再通过大量实例帮你掌握循环的写法。学完这章，你就能让程序自动重复执行任务了。
+
+---
+
+## 5.1 为什么需要循环？
+
+### 痛点分析
+
+想象你要打印 100 份试卷，你会怎么做？一份一份复印 100 次？当然不会，你会用复印机的"连续复印"功能。循环就是程序的"连续复印"功能——让某段代码自动重复执行。
+
+**生活类比**：循环就像洗衣机的工作流程。"加水→洗涤→排水→脱水"这个流程会重复多次，直到衣服洗干净。程序中的循环也是让一段代码重复执行，直到满足某个条件。
+
+### 代码对比
+
+```java
+// ❌ 没有循环：手动写 5 次
+System.out.println("第 1 次");
+System.out.println("第 2 次");
+System.out.println("第 3 次");
+System.out.println("第 4 次");
+System.out.println("第 5 次");
+
+// ✅ 有循环：一行代码搞定
+for (int i = 1; i <= 5; i++) {
+    System.out.println("第 " + i + " 次");
+}
+```
+
+> **一句话总结**：循环让程序能自动重复执行任务，避免写重复代码。
+
+---
+
+## 5.2 核心原理
+
+### 概念解释
+
+循环的本质是**重复执行**。程序在执行时遇到循环，就像进入一个"跑步圈"：
+
+- `for` 循环：像计时跑步，知道要跑几圈（已知循环次数）
+- `while` 循环：像条件跑步，跑到满足条件为止（未知次数）
+- `do-while` 循环：像试吃，至少尝一口再决定是否继续（至少执行一次）
+- 增强 `for` 循环：像点名，逐个叫名字（遍历集合）
+
+打个比方：
+
+> 循环就像工厂的流水线。`for` 循环是定量生产线，生产固定数量的产品；`while` 循环是质检线，检查到合格为止；`do-while` 循环是试吃线，至少尝一次；增强 `for` 是包装线，逐个包装产品。
+
+### 对比分析
+
+| 循环类型 | 适用场景             | 特点               | 执行顺序              |
+| -------- | -------------------- | ------------------ | --------------------- |
+| for      | 已知循环次数         | 结构清晰，最常用   | 初始化→判断→执行→更新 |
+| while    | 未知次数，按条件循环 | 先判断后执行       | 判断→执行→更新        |
+| do-while | 至少执行一次         | 先执行后判断       | 执行→判断→更新        |
+| 增强 for | 遍历数组/集合        | 语法简洁，无需索引 | 自动遍历              |
+
+---
+
 ## 运行结果
 
 | 循环类型 | 适用场景             | 特点               |
@@ -371,6 +438,271 @@ for (int i = 0; i < 3; i++) {
 5. **break**：完全退出循环
 6. **continue**：跳过本次迭代，继续下一次
 7. **标签跳转**：可以跳出多层循环，但慎用
+
+---
+
+## 新手常见误区
+
+### 误区 1："while(true) 就是死循环"
+
+**不一定！** `while(true)` 确实是无限循环，但可以通过 `break` 退出。
+
+```java
+// ❌ 真正的死循环：永远无法退出
+while (true) {
+    System.out.println("无限循环");  // 会一直输出
+}
+
+// ✅ 正确的无限循环：有退出条件
+while (true) {
+    System.out.println("请输入数字（0退出）：");
+    int num = scanner.nextInt();
+
+    if (num == 0) {
+        break;  // 满足条件时退出循环
+    }
+    System.out.println("你输入了：" + num);
+}
+```
+
+### 误区 2："for 循环的变量可以在外部使用"
+
+**错！** `for` 循环的初始化变量（如 `int i`）作用域仅在循环内部。
+
+```java
+// ❌ 错误写法
+for (int i = 0; i < 5; i++) {
+    System.out.println(i);
+}
+System.out.println(i);  // 编译错误：i 不在作用域内
+
+// ✅ 正确写法：在外部声明变量
+int j;
+for (j = 0; j < 5; j++) {
+    System.out.println(j);
+}
+System.out.println("最终 j = " + j);  // 输出 5
+```
+
+### 误区 3："增强 for 可以修改数组元素"
+
+**错！** 增强 `for` 循环中的变量是副本，修改它不会影响原数组。
+
+```java
+int[] arr = {1, 2, 3, 4, 5};
+
+// ❌ 错误写法：修改的是副本
+for (int num : arr) {
+    num = num * 2;  // 修改的是局部变量 num，不影响 arr
+}
+System.out.println(Arrays.toString(arr));  // [1, 2, 3, 4, 5]（没变）
+
+// ✅ 正确写法：需要修改时用传统 for
+for (int i = 0; i < arr.length; i++) {
+    arr[i] = arr[i] * 2;  // 通过索引修改原数组
+}
+System.out.println(Arrays.toString(arr));  // [2, 4, 6, 8, 10]
+```
+
+### 误区 4："break 和 continue 效果一样"
+
+**错！** 它们的作用完全不同。
+
+```java
+// break：完全退出循环
+for (int i = 0; i < 5; i++) {
+    if (i == 3) break;
+    System.out.println(i);
+}
+// 输出：0, 1, 2（遇到 3 就完全退出）
+
+// continue：跳过本次，继续下一次
+for (int i = 0; i < 5; i++) {
+    if (i == 3) continue;
+    System.out.println(i);
+}
+// 输出：0, 1, 2, 4（跳过 3，继续执行 4）
+```
+
+### 误区 5："循环条件写 >= 而不是 >"
+
+**常见 bug！** 边界条件容易搞混，导致多执行一次或少执行一次。
+
+```java
+// ❌ 错误：想执行 5 次，结果执行了 6 次
+for (int i = 0; i <= 5; i++) {
+    System.out.println(i);  // 输出 0, 1, 2, 3, 4, 5（6次）
+}
+
+// ✅ 正确：执行 5 次
+for (int i = 0; i < 5; i++) {
+    System.out.println(i);  // 输出 0, 1, 2, 3, 4（5次）
+}
+
+// ✅ 或者从 1 开始
+for (int i = 1; i <= 5; i++) {
+    System.out.println(i);  // 输出 1, 2, 3, 4, 5（5次）
+}
+```
+
+---
+
+## 动手练习
+
+### 练习 1：基础练习 - 求和
+
+编写程序，计算 1 到 100 的和。
+
+要求：
+
+- 使用 `for` 循环
+- 输出最终结果
+
+<details>
+<summary>点击查看答案</summary>
+
+```java
+public class SumCalculator {
+    public static void main(String[] args) {
+        // 初始化累加器
+        int sum = 0;
+
+        // 使用 for 循环累加 1 到 100
+        for (int i = 1; i <= 100; i++) {
+            sum += i;  // 等价于 sum = sum + i
+        }
+
+        // 输出结果
+        System.out.println("1+2+...+100 = " + sum);  // 5050
+    }
+}
+```
+
+**测试用例**：
+
+- 1 到 100 的和：5050
+- 1 到 10 的和：55
+- 1 到 50 的和：1275
+
+</details>
+
+### 练习 2：进阶练习 - 猜数字游戏
+
+编写一个猜数字游戏程序。
+
+要求：
+
+- 程序随机生成 1-100 的数字
+- 用户输入猜测的数字
+- 提示"太大"或"太小"
+- 猜对后输出猜测次数
+- 使用 `while` 循环
+
+<details>
+<summary>点击查看答案</summary>
+
+```java
+import java.util.Random;
+import java.util.Scanner;
+
+public class GuessNumber {
+    public static void main(String[] args) {
+        // 生成随机数
+        Random random = new Random();
+        int target = random.nextInt(100) + 1;  // 1-100
+
+        Scanner scanner = new Scanner(System.in);
+        int guess = 0;
+        int attempts = 0;
+
+        System.out.println("猜数字游戏开始！我想了一个 1-100 的数字。");
+
+        // 使用 while 循环，直到猜对为止
+        while (guess != target) {
+            System.out.print("请猜一个数字：");
+            guess = scanner.nextInt();
+            attempts++;
+
+            // 判断大小
+            if (guess > target) {
+                System.out.println("太大了！");
+            } else if (guess < target) {
+                System.out.println("太小了！");
+            } else {
+                System.out.println("恭喜！猜对了，用了 " + attempts + " 次");
+            }
+        }
+
+        scanner.close();
+    }
+}
+```
+
+**测试用例**：
+
+- 随机数是 50，用户依次输入 70、30、50，输出"恭喜！猜对了，用了 3 次"
+- 随机数是 1，用户输入 1，输出"恭喜！猜对了，用了 1 次"
+
+</details>
+
+### 练习 3（挑战）：综合练习 - 打印九九乘法表
+
+编写程序，打印九九乘法表。
+
+要求：
+
+- 使用嵌套 `for` 循环
+- 格式对齐，使用 `\t` 制表符
+- 输出完整的 9×9 乘法表
+
+<details>
+<summary>点击查看答案</summary>
+
+```java
+public class MultiplicationTable {
+    public static void main(String[] args) {
+        // 外层循环控制行数（1-9）
+        for (int i = 1; i <= 9; i++) {
+            // 内层循环控制每行的列数（1-i）
+            for (int j = 1; j <= i; j++) {
+                // 打印乘法表达式，使用 \t 对齐
+                System.out.print(j + "×" + i + "=" + (i * j) + "\t");
+            }
+            // 每行结束后换行
+            System.out.println();
+        }
+    }
+}
+```
+
+**输出结果**：
+
+```
+1×1=1
+1×2=2	2×2=4
+1×3=3	2×3=6	3×3=9
+1×4=4	2×4=8	3×4=12	4×4=16
+...
+1×9=9	2×9=18	3×9=27	...	9×9=81
+```
+
+</details>
+
+---
+
+## 下一章预告
+
+下一章我们会学习 **数组** ——也就是存储多个相同类型数据的数据结构。你会学到：
+
+- 如何声明和初始化数组
+- 如何通过索引访问和修改数组元素
+- 如何遍历数组
+- `Arrays` 工具类的常用方法（排序、查找、填充）
+- 二维数组的使用
+
+数组是编程中非常重要的数据结构，掌握它能让你的程序处理批量数据。准备好了吗？让我们继续前进！
+
+---
 
 ## 本章小结
 

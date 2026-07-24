@@ -5,112 +5,199 @@ description: 'File、Stream、Reader/Writer、NIO 通道与缓冲区'
 
 # 第十二章：IO 与 NIO
 
-## File 类
+## 本章导读
+
+在学这一章之前，你可能会有这些疑问：
+
+- 程序怎么读写文件？数据在硬盘上是怎么流动的？
+- 字节流和字符流有什么区别？什么时候用哪个？
+- 什么是序列化？为什么要序列化对象？
+- NIO 和传统 IO 有什么不同？什么时候该用 NIO？
+
+这一章就是为了解答这些问题。我们会先搞清楚 **IO 流的核心概念**，再动手实践文件读写、对象序列化，最后了解 NIO 的高效操作。学完这章，你就能在程序中自由读写文件了。
+
+---
+
+## 12.1 为什么需要 IO？
+
+### 痛点分析
+
+程序运行时数据都在内存里，一关机就没了。怎么把数据**持久化**到硬盘上？
+
+```java
+// ❌ 没有 IO：数据只在内存中，程序结束就丢失
+String data = "重要数据";
+// 程序关闭后，data 就没了
+```
+
+### 解决方案
+
+```java
+// ✅ 用 IO：把数据写入文件，永久保存
+try (FileWriter fw = new FileWriter("data.txt")) {
+    fw.write("重要数据");  // 写入文件
+}
+// 数据已经保存到 data.txt 中了，程序关闭也不会丢失
+```
+
+> **一句话总结**：IO 就是程序和外部世界（文件、网络、数据库）之间的"数据通道"。
+
+### 生活类比
+
+打个比方：
+
+> IO 就像**水管**——水（数据）从水源（文件/网络）通过水管（IO 流）流到你家（程序）。字节流是"粗水管"，传输原始数据；字符流是"净水器"，专门处理文本数据。
+
+---
+
+## 12.2 核心原理
+
+### IO 流分类
+
+```
+IO 流
+├── 字节流（处理原始字节，适合所有文件）
+│   ├── InputStream（读）
+│   │   └── FileInputStream
+│   └── OutputStream（写）
+│       └── FileOutputStream
+├── 字符流（处理文本，自动处理编码）
+│   ├── Reader（读）
+│   │   ├── FileReader
+│   │   └── BufferedReader（带缓冲）
+│   └── Writer（写）
+│       ├── FileWriter
+│       └── BufferedWriter（带缓冲）
+└── 对象流（序列化/反序列化对象）
+    ├── ObjectInputStream
+    └── ObjectOutputStream
+```
+
+打个比方：
+
+> - **字节流** 像**搬运工**——一字节一字节地搬数据，不管内容是什么。
+> - **字符流** 像**翻译官**——专门处理文本，自动处理字符编码。
+> - **缓冲流** 像**大卡车**——一次搬一大批，减少往返次数，提高效率。
+
+### 字节流 vs 字符流 对比
+
+| 特性     | 字节流                     | 字符流           |
+| -------- | -------------------------- | ---------------- |
+| 基类     | InputStream / OutputStream | Reader / Writer  |
+| 处理单位 | 字节（8 bit）              | 字符（16 bit）   |
+| 适用场景 | 图片、视频、二进制文件     | 文本文件         |
+| 缓冲     | BufferedInputStream        | BufferedReader   |
+| 编码处理 | 不处理                     | 自动处理字符编码 |
+
+---
+
+## 12.3 基础用法
+
+### File 类
 
 ```java
 import java.io.File;
 
+// 创建一个 File 对象（不代表真实文件，只是路径）
 File file = new File("test.txt");
 
-System.out.println(file.getName());        // test.txt
-System.out.println(file.getPath());        // test.txt
-System.out.println(file.getAbsolutePath()); // 绝对路径
-System.out.println(file.exists());         // 是否存在
-System.out.println(file.isFile());         // 是否文件
-System.out.println(file.isDirectory());    // 是否目录
-System.out.println(file.length());         // 文件大小（字节）
+System.out.println(file.getName());         // 输出：test.txt（文件名）
+System.out.println(file.getPath());         // 输出：test.txt（路径）
+System.out.println(file.getAbsolutePath()); // 输出绝对路径
+System.out.println(file.exists());          // 输出：是否存在
+System.out.println(file.isFile());          // 输出：是否是文件
+System.out.println(file.isDirectory());     // 输出：是否是目录
+System.out.println(file.length());          // 输出：文件大小（字节）
 
 // 创建文件
 file.createNewFile();
 
 // 创建目录
 File dir = new File("mydir");
-dir.mkdir();          // 创建单级目录
-dir.mkdirs();         // 创建多级目录
+dir.mkdir();      // 创建单级目录
+dir.mkdirs();     // 创建多级目录（自动创建父目录）
 
 // 列出目录内容
 File[] files = dir.listFiles();
 ```
 
-## 字节流
+### 字节流
 
-### FileInputStream
+#### FileInputStream（读文件）
 
 ```java
 import java.io.FileInputStream;
 
+// 使用 try-with-resources 自动关闭流
 try (FileInputStream fis = new FileInputStream("test.txt")) {
-    int data;
-    while ((data = fis.read()) != -1) {
-        System.out.print((char) data);
+    int data;  // 存储每次读取的字节
+    while ((data = fis.read()) != -1) {  // read() 返回 -1 表示读完
+        System.out.print((char) data);  // 把字节转为字符打印
     }
 } catch (IOException e) {
     e.printStackTrace();
 }
 ```
 
-### FileOutputStream
+#### FileOutputStream（写文件）
 
 ```java
 import java.io.FileOutputStream;
 
+// 使用 try-with-resources 自动关闭流
 try (FileOutputStream fos = new FileOutputStream("output.txt")) {
     String text = "Hello, Java IO!";
-    fos.write(text.getBytes());
+    fos.write(text.getBytes());  // 把字符串转为字节数组写入
 } catch (IOException e) {
     e.printStackTrace();
 }
 ```
 
-## 字符流
+### 字符流
 
-### FileReader
+#### FileReader + BufferedReader（读文本）
 
 ```java
 import java.io.FileReader;
 import java.io.BufferedReader;
 
+// BufferedReader 提供缓冲，提高读取效率，还能逐行读取
 try (BufferedReader br = new BufferedReader(new FileReader("test.txt"))) {
-    String line;
-    while ((line = br.readLine()) != null) {
-        System.out.println(line);
+    String line;  // 存储每一行
+    while ((line = br.readLine()) != null) {  // readLine() 读取一行
+        System.out.println(line);  // 打印每一行
     }
 } catch (IOException e) {
     e.printStackTrace();
 }
 ```
 
-### FileWriter
+#### FileWriter + BufferedWriter（写文本）
 
 ```java
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 
+// BufferedWriter 提供缓冲，提高写入效率
 try (BufferedWriter bw = new BufferedWriter(new FileWriter("output.txt"))) {
-    bw.write("第一行");
-    bw.newLine();
+    bw.write("第一行");  // 写入文本
+    bw.newLine();        // 写入换行符
     bw.write("第二行");
 } catch (IOException e) {
     e.printStackTrace();
 }
 ```
 
-## 字节流 vs 字符流
+### 对象序列化
 
-| 特性     | 字节流                     | 字符流          |
-| -------- | -------------------------- | --------------- |
-| 基类     | InputStream / OutputStream | Reader / Writer |
-| 处理单位 | 字节（8 bit）              | 字符（16 bit）  |
-| 适用场景 | 图片、视频、二进制文件     | 文本文件        |
-| 缓冲     | BufferedInputStream        | BufferedReader  |
-
-## 对象序列化
+把对象保存到文件中，以后还能恢复。
 
 ```java
 import java.io.*;
 
+// 要序列化的类必须实现 Serializable 接口
 class User implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;  // 版本号
     String name;
     int age;
 
@@ -120,44 +207,49 @@ class User implements Serializable {
     }
 }
 
-// 序列化
+// 序列化：对象 → 字节流 → 文件
 try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("user.dat"))) {
-    User user = new User("张三", 25);
-    oos.writeObject(user);
+    User user = new User("张三", 25);  // 创建对象
+    oos.writeObject(user);             // 写入文件
 }
 
-// 反序列化
+// 反序列化：文件 → 字节流 → 对象
 try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("user.dat"))) {
-    User user = (User) ois.readObject();
-    System.out.println(user.name + ", " + user.age);
+    User user = (User) ois.readObject();  // 从文件读取并转型
+    System.out.println(user.name + ", " + user.age);  // 输出：张三, 25
 }
 ```
 
-## NIO（New IO）
+---
+
+## 12.4 NIO（New IO）
+
+NIO 是 Java 1.4 引入的新 IO API，更强大、更高效。
 
 ### Path 与 Files
 
 ```java
 import java.nio.file.*;
 
+// Path 替代 File，功能更强大
 Path path = Path.of("test.txt");
 
-// 读取文件
-String content = Files.readString(path);
-List<String> lines = Files.readAllLines(path);
+// 读取文件（一行代码搞定）
+String content = Files.readString(path);           // 读取全部内容
+List<String> lines = Files.readAllLines(path);     // 读取所有行
 
 // 写入文件
-Files.writeString(path, "Hello NIO");
-Files.write(path, List.of("第一行", "第二行"));
+Files.writeString(path, "Hello NIO");              // 写入字符串
+Files.write(path, List.of("第一行", "第二行"));     // 写入多行
 
 // 复制、移动、删除
-Files.copy(path, Path.of("copy.txt"));
-Files.move(path, Path.of("new.txt"));
-Files.delete(path);
+Files.copy(path, Path.of("copy.txt"));             // 复制文件
+Files.move(path, Path.of("new.txt"));              // 移动/重命名
+Files.delete(path);                                // 删除文件
 
 // 判断
-System.out.println(Files.exists(path));
-System.out.println(Files.isDirectory(path));
+System.out.println(Files.exists(path));            // 是否存在
+System.out.println(Files.isDirectory(path));       // 是否是目录
 ```
 
 ### Channel 与 Buffer
@@ -167,291 +259,275 @@ import java.nio.*;
 import java.nio.channels.*;
 import java.nio.file.*;
 
-// 使用 Channel 和 Buffer 读写文件
+// 使用 Channel 和 Buffer 读写文件（NIO 核心机制）
 try (FileChannel channel = FileChannel.open(Path.of("test.txt"),
         StandardOpenOption.READ)) {
-    ByteBuffer buffer = ByteBuffer.allocate(1024);
-    while (channel.read(buffer) > 0) {
-        buffer.flip();    // 切换为读模式
-        System.out.print(Charset.defaultCharset().decode(buffer));
-        buffer.clear();   // 清空缓冲区
+    ByteBuffer buffer = ByteBuffer.allocate(1024);  // 分配 1024 字节的缓冲区
+    while (channel.read(buffer) > 0) {  // 从通道读取到缓冲区
+        buffer.flip();    // 切换为读模式（position 归零，limit 设为之前的 position）
+        System.out.print(Charset.defaultCharset().decode(buffer));  // 解码并打印
+        buffer.clear();   // 清空缓冲区，准备下次读取
     }
 }
 ```
 
-## 字符编码
-
-### 常见编码格式
+### 字符编码
 
 ```java
-import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 
 // 查看系统默认编码
 System.out.println(Charset.defaultCharset());  // 通常是 UTF-8
 
-// 常用编码
-Charset utf8 = StandardCharsets.UTF_8;
-Charset gbk = Charset.forName("GBK");
-
 // 字符串与字节转换
 String text = "Hello 你好";
-byte[] utf8Bytes = text.getBytes(StandardCharsets.UTF_8);
-byte[] gbkBytes = text.getBytes("GBK");
+byte[] utf8Bytes = text.getBytes(StandardCharsets.UTF_8);  // 用 UTF-8 编码
+byte[] gbkBytes = text.getBytes("GBK");                     // 用 GBK 编码
 
-// 字节转字符串
-String fromUtf8 = new String(utf8Bytes, StandardCharsets.UTF_8);
-String fromGbk = new String(gbkBytes, "GBK");
+// 字节转字符串（必须用相同编码，否则乱码）
+String fromUtf8 = new String(utf8Bytes, StandardCharsets.UTF_8);  // ✅ 正常
+String wrong = new String(utf8Bytes, "GBK");                       // ❌ 乱码
 ```
 
-### 乱码问题
+---
+
+## 12.5 新手常见误区
+
+### 误区 1：不关闭流
+
+**错！** 不关闭流会导致资源泄漏。
 
 ```java
-// ❌ 编码不一致导致乱码
-String original = "你好";
-byte[] bytes = original.getBytes("UTF-8");
-String wrong = new String(bytes, "GBK");  // 乱码
-System.out.println(wrong);  // 显示乱码字符
-
-// ✅ 正确做法：使用相同编码
-String correct = new String(bytes, "UTF-8");
-System.out.println(correct);  // 正常显示
-```
-
-## 文件操作实战
-
-### 复制文件
-
-```java
-// 方式一：使用 Files.copy
-Path source = Path.of("source.txt");
-Path target = Path.of("target.txt");
-Files.copy(source, target, StandardCopyOption.REPLACE_EXISTING);
-
-// 方式二：使用流（适合大文件）
-try (InputStream in = Files.newInputStream(source);
-     OutputStream out = Files.newOutputStream(target)) {
-    byte[] buffer = new byte[8192];
-    int bytesRead;
-    while ((bytesRead = in.read(buffer)) != -1) {
-        out.write(buffer, 0, bytesRead);
-    }
-}
-```
-
-### 遍历目录
-
-```java
-// 遍历当前目录
-try (Stream<Path> paths = Files.list(Path.of("."))) {
-    paths.forEach(System.out::println);
-}
-
-// 递归遍历所有子目录
-try (Stream<Path> paths = Files.walk(Path.of("."))) {
-    paths.filter(Files::isRegularFile)
-         .forEach(System.out::println);
-}
-
-// 使用 DirectoryStream（适合大目录）
-try (DirectoryStream<Path> stream = Files.newDirectoryStream(Path.of("."), "*.java")) {
-    for (Path entry : stream) {
-        System.out.println(entry);
-    }
-}
-```
-
-### 文件属性
-
-```java
-Path path = Path.of("test.txt");
-
-// 基本属性
-System.out.println("文件大小: " + Files.size(path) + " bytes");
-System.out.println("最后修改时间: " + Files.getLastModifiedTime(path));
-System.out.println("是否可读: " + Files.isReadable(path));
-System.out.println("是否可写: " + Files.isWritable(path));
-
-// 详细属性（使用 BasicFileAttributes）
-BasicFileAttributes attrs = Files.readAttributes(path, BasicFileAttributes.class);
-System.out.println("创建时间: " + attrs.creationTime());
-System.out.println("是否目录: " + attrs.isDirectory());
-System.out.println("是否符号链接: " + attrs.isSymbolicLink());
-```
-
-## 对象序列化高级特性
-
-### transient 关键字
-
-```java
-class User implements Serializable {
-    private static final long serialVersionUID = 1L;
-
-    String username;
-    String password;
-    transient String tempData;  // 不会被序列化
-
-    User(String username, String password) {
-        this.username = username;
-        this.password = password;
-        this.tempData = "临时数据";
-    }
-}
-
-User user = new User("admin", "123456");
-try (ObjectOutputStream oos = new ObjectOutputStream(
-        new FileOutputStream("user.dat"))) {
-    oos.writeObject(user);
-}
-
-try (ObjectInputStream ois = new ObjectInputStream(
-        new FileInputStream("user.dat"))) {
-    User loaded = (User) ois.readObject();
-    System.out.println(loaded.username);    // admin
-    System.out.println(loaded.password);    // 123456
-    System.out.println(loaded.tempData);    // null（未被序列化）
-}
-```
-
-### 自定义序列化
-
-```java
-class CustomObject implements Serializable {
-    private String data;
-    private transient String cachedValue;
-
-    // 自定义序列化
-    private void writeObject(ObjectOutputStream out) throws IOException {
-        out.defaultWriteObject();  // 序列化默认字段
-        out.writeUTF(cachedValue); // 手动序列化 transient 字段
-    }
-
-    // 自定义反序列化
-    private void readObject(ObjectInputStream in)
-            throws IOException, ClassNotFoundException {
-        in.defaultReadObject();    // 反序列化默认字段
-        cachedValue = in.readUTF(); // 手动反序列化
-    }
-}
-```
-
-## NIO 高级特性
-
-### 文件监听（WatchService）
-
-```java
-import java.nio.file.*;
-
-WatchService watchService = FileSystems.getDefault().newWatchService();
-Path dir = Path.of(".");
-
-// 注册监听事件
-dir.register(watchService,
-    StandardWatchEventKinds.ENTRY_CREATE,
-    StandardWatchEventKinds.ENTRY_MODIFY,
-    StandardWatchEventKinds.ENTRY_DELETE);
-
-System.out.println("开始监听文件变化...");
-
-// 监听事件
-while (true) {
-    WatchKey key = watchService.take();  // 阻塞等待
-
-    for (WatchEvent<?> event : key.pollEvents()) {
-        WatchEvent.Kind<?> kind = event.kind();
-        Path fileName = (Path) event.context();
-
-        System.out.println("检测到: " + kind.name() + " - " + fileName);
-    }
-
-    key.reset();  // 重置，继续监听
-}
-```
-
-### 内存映射文件
-
-```java
-// 适合大文件的高效读写
-try (FileChannel channel = FileChannel.open(
-        Path.of("large.dat"),
-        StandardOpenOption.READ,
-        StandardOpenOption.WRITE)) {
-
-    // 映射整个文件到内存
-    MappedByteBuffer buffer = channel.map(
-        FileChannel.MapMode.READ_WRITE, 0, channel.size());
-
-    // 直接操作缓冲区
-    buffer.put(0, (byte) 'H');
-    buffer.put(1, (byte) 'i');
-
-    // 强制写入磁盘
-    buffer.force();
-}
-```
-
-## IO vs NIO 对比
-
-| 特性       | IO（传统）       | NIO（新IO）          |
-| ---------- | ---------------- | -------------------- |
-| 面向       | 流（Stream）     | 缓冲区（Buffer）     |
-| 阻塞       | 阻塞IO           | 非阻塞IO             |
-| 选择器     | 无               | 支持Selector         |
-| 适用场景   | 小文件、简单操作 | 大文件、高并发       |
-| 代码复杂度 | 简单             | 较复杂               |
-| 性能       | 一般             | 更高（特别是大文件） |
-
-## 常见问题与解决方案
-
-### 1. 文件路径问题
-
-```java
-// ❌ 硬编码路径分隔符
-Path wrong = Path.of("folder\\file.txt");  // Windows 可以，Linux 不行
-
-// ✅ 使用 Path 的 resolve 方法
-Path correct = Path.of("folder").resolve("file.txt");  // 跨平台
-```
-
-### 2. 资源未关闭
-
-```java
-// ❌ 可能资源泄漏
+// ❌ 错误：忘记关闭流
 FileInputStream fis = new FileInputStream("test.txt");
 int data = fis.read();
-// 忘记关闭
+// 忘记关闭了！
 
-// ✅ 使用 try-with-resources
+// ✅ 正确：使用 try-with-resources
 try (FileInputStream fis = new FileInputStream("test.txt")) {
     int data = fis.read();
 }  // 自动关闭
 ```
 
-### 3. 大文件内存溢出
+### 误区 2：读写文本文件用字节流
+
+**不推荐！** 字符流会自动处理编码，字节流需要手动处理。
 
 ```java
-// ❌ 读取大文件到内存
-String content = Files.readString(Path.of("large.txt"));  // 可能 OOM
+// ❌ 不推荐：用字节流读文本，需要手动处理编码
+try (FileInputStream fis = new FileInputStream("test.txt")) {
+    byte[] bytes = fis.readAllBytes();
+    String text = new String(bytes, StandardCharsets.UTF_8);  // 手动指定编码
+}
 
-// ✅ 逐行读取
-try (BufferedReader reader = Files.newBufferedReader(Path.of("large.txt"))) {
+// ✅ 推荐：用字符流读文本
+try (BufferedReader br = Files.newBufferedReader(Path.of("test.txt"))) {
     String line;
-    while ((line = reader.readLine()) != null) {
-        processLine(line);  // 逐行处理
+    while ((line = br.readLine()) != null) {
+        System.out.println(line);
     }
 }
 ```
 
-## 核心知识点
+### 误区 3：硬编码路径分隔符
 
-1. **File 类**：文件和目录的基本操作
-2. **字节流**：InputStream/OutputStream，处理二进制数据
-3. **字符流**：Reader/Writer，处理文本数据
-4. **缓冲流**：提高IO性能
-5. **对象序列化**：使用 Serializable 接口，transient 排除字段
-6. **NIO**：Path/Files 工具类，Channel/Buffer 机制
-7. **字符编码**：UTF-8、GBK 等，注意乱码问题
+**错！** Windows 用 `\`，Linux 用 `/`，硬编码会导致跨平台问题。
 
-## 本章小结
+```java
+// ❌ 错误：硬编码 Windows 路径
+Path wrong = Path.of("folder\\file.txt");  // Linux 上不行
 
-IO 流分为字节流和字符流，分别处理二进制和文本数据。NIO 提供 Path/Files 工具类和 Channel/Buffer 机制，性能更高。实际开发中要注意资源关闭、编码一致性和大文件处理。接下来我们将学习多线程与并发。
+// ✅ 正确：使用 Path.resolve 拼接路径
+Path correct = Path.of("folder").resolve("file.txt");  // 跨平台兼容
+```
+
+### 误区 4：大文件一次性读入内存
+
+**错！** 大文件一次性读入会导致内存溢出（OOM）。
+
+```java
+// ❌ 错误：大文件可能 OOM
+String content = Files.readString(Path.of("large.txt"));  // 整个文件加载到内存
+
+// ✅ 正确：逐行读取
+try (BufferedReader reader = Files.newBufferedReader(Path.of("large.txt"))) {
+    String line;
+    while ((line = reader.readLine()) != null) {
+        processLine(line);  // 逐行处理，不会 OOM
+    }
+}
+```
+
+### 误区 5：序列化对象不需要实现 Serializable
+
+**错！** 不实现 Serializable 接口会抛出 `NotSerializableException`。
+
+```java
+// ❌ 错误：没有实现 Serializable
+class User {
+    String name;
+}
+
+// ✅ 正确：实现 Serializable
+class User implements Serializable {
+    private static final long serialVersionUID = 1L;
+    String name;
+}
+```
+
+---
+
+## 12.6 动手练习
+
+### 练习 1：基础练习 —— 文本文件复制
+
+使用字符流读取一个文本文件，将内容写入另一个文件。
+
+<details>
+<summary>点击查看答案</summary>
+
+```java
+import java.io.*;
+import java.nio.file.*;
+
+public class FileCopy {
+    public static void main(String[] args) {
+        // 使用 try-with-resources 自动关闭流
+        try (BufferedReader br = new BufferedReader(new FileReader("source.txt"));
+             BufferedWriter bw = new BufferedWriter(new FileWriter("target.txt"))) {
+            String line;  // 存储每一行
+            while ((line = br.readLine()) != null) {  // 逐行读取
+                bw.write(line);  // 写入目标文件
+                bw.newLine();    // 写入换行符
+            }
+            System.out.println("文件复制完成");
+        } catch (IOException e) {
+            System.out.println("文件操作失败: " + e.getMessage());
+        }
+    }
+}
+```
+
+</details>
+
+### 练习 2：进阶练习 —— 统计文件信息
+
+读取一个文本文件，统计行数、单词数和字符数。
+
+<details>
+<summary>点击查看答案</summary>
+
+```java
+import java.io.*;
+import java.nio.file.*;
+
+public class FileStats {
+    public static void main(String[] args) {
+        int lineCount = 0;    // 行数计数器
+        int wordCount = 0;    // 单词计数器
+        int charCount = 0;    // 字符计数器
+
+        try (BufferedReader br = Files.newBufferedReader(Path.of("test.txt"))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                lineCount++;                    // 每读一行，行数加 1
+                charCount += line.length();     // 累加字符数
+                String[] words = line.split("\\s+");  // 按空白字符分割
+                for (String word : words) {
+                    if (!word.isEmpty()) {      // 跳过空字符串
+                        wordCount++;            // 单词数加 1
+                    }
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("读取失败: " + e.getMessage());
+        }
+
+        System.out.println("行数: " + lineCount);
+        System.out.println("单词数: " + wordCount);
+        System.out.println("字符数: " + charCount);
+    }
+}
+```
+
+</details>
+
+### 练习 3（挑战）：综合练习 —— 对象序列化与反序列化
+
+创建一个 `Student` 类，实现序列化和反序列化，将对象保存到文件并恢复。
+
+<details>
+<summary>点击查看答案</summary>
+
+```java
+import java.io.*;
+
+// 实现 Serializable 接口才能序列化
+class Student implements Serializable {
+    private static final long serialVersionUID = 1L;  // 版本号
+    String name;
+    int age;
+    double score;
+
+    Student(String name, int age, double score) {
+        this.name = name;
+        this.age = age;
+        this.score = score;
+    }
+
+    @Override
+    public String toString() {
+        return name + ", " + age + "岁, " + score + "分";
+    }
+}
+
+public class StudentSerializer {
+    public static void main(String[] args) {
+        // 序列化：保存对象到文件
+        try (ObjectOutputStream oos = new ObjectOutputStream(
+                new FileOutputStream("students.dat"))) {
+            Student s1 = new Student("张三", 20, 92.5);
+            Student s2 = new Student("李四", 21, 88.0);
+            oos.writeObject(s1);  // 写入第一个对象
+            oos.writeObject(s2);  // 写入第二个对象
+            System.out.println("序列化完成");
+        } catch (IOException e) {
+            System.out.println("序列化失败: " + e.getMessage());
+        }
+
+        // 反序列化：从文件恢复对象
+        try (ObjectInputStream ois = new ObjectInputStream(
+                new FileInputStream("students.dat"))) {
+            Student s1 = (Student) ois.readObject();  // 读取第一个对象
+            Student s2 = (Student) ois.readObject();  // 读取第二个对象
+            System.out.println("恢复的对象:");
+            System.out.println(s1);
+            System.out.println(s2);
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("反序列化失败: " + e.getMessage());
+        }
+    }
+}
+```
+
+</details>
+
+---
+
+## 12.7 核心知识点
+
+| 知识点     | 说明                                        |
+| ---------- | ------------------------------------------- |
+| File 类    | 文件和目录的基本操作（创建、删除、判断）    |
+| 字节流     | InputStream/OutputStream，处理二进制数据    |
+| 字符流     | Reader/Writer，处理文本数据，自动处理编码   |
+| 缓冲流     | BufferedReader/BufferedWriter，提高 IO 性能 |
+| 对象序列化 | 使用 Serializable 接口，transient 排除字段  |
+| NIO        | Path/Files 工具类，Channel/Buffer 机制      |
+| 字符编码   | UTF-8、GBK 等，注意编码一致性               |
+
+---
+
+## 下一章预告
+
+下一章我们会学习 **多线程与并发**——让程序同时做多件事。你会学到 Thread、Runnable、线程池、synchronized 和 Lock。学完这章，你就能编写高效的多线程程序了。
