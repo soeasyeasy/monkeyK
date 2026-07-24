@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import ThemeSwitcher from './ThemeSwitcher.vue'
+import SearchBar from './SearchBar.vue'
 </script>
 
 <template>
@@ -10,6 +11,7 @@ import ThemeSwitcher from './ThemeSwitcher.vue'
       </RouterLink>
 
       <nav class="header-nav">
+        <SearchBar />
         <RouterLink to="/tutorials" class="nav-link">教程</RouterLink>
         <RouterLink to="/todo" class="nav-link">待办</RouterLink>
         <RouterLink to="/life" class="nav-link">生活</RouterLink>

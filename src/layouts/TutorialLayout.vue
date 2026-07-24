@@ -3,6 +3,7 @@ import { ref, provide } from 'vue'
 import TutorialSidebar from '../components/TutorialSidebar.vue'
 import TableOfContents from '../components/TableOfContents.vue'
 import ThemeSwitcher from '../components/ThemeSwitcher.vue'
+import SearchBar from '../components/SearchBar.vue'
 
 const sidebarOpen = ref(false)
 
@@ -48,6 +49,7 @@ function toggleSidebar() {
         <RouterLink to="/">首页</RouterLink>
         <RouterLink to="/tutorials" class="active">教程</RouterLink>
         <!-- <a href="https://www.typescriptlang.org/docs/" target="_blank" rel="noopener">官方文档</a> -->
+        <SearchBar />
         <ThemeSwitcher />
       </nav>
     </header>
