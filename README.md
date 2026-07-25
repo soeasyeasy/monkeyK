@@ -80,6 +80,7 @@ vue3-study/
 | 教程名称          | 章节数 | 简介                            | 查看链接                                               |
 | ------------- | --- | ----------------------------- | -------------------------------------------------- |
 | MySQL 从入门到精通 | 16  | 从基础 SQL 到性能优化与高可用集群实战 | [src/content/tutorials/mysql](src/content/tutorials/mysql) |
+| MySQL 原理深度解析 | 16  | 深入 MySQL 底层，掌握架构原理、存储引擎、索引机制、事务锁、日志系统等核心技术 | [src/content/tutorials/mysql-principle](src/content/tutorials/mysql-principle) |
 
 ### 网络
 
