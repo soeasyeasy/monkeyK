@@ -1,4 +1,4 @@
-export type TutorialCategory = 'frontend' | 'backend' | 'system' | 'network' | 'devops'
+export type TutorialCategory = 'frontend' | 'backend' | 'mobile' | 'database' | 'cs-fundamentals' | 'ai' | 'cloud-native' | 'devops'
 
 export interface ChapterMeta {
   number: string
@@ -25,9 +25,12 @@ export interface TutorialCategoryInfo {
 export const tutorialCategories: TutorialCategoryInfo[] = [
   { id: 'frontend', label: '前端', description: '前端开发技术教程' },
   { id: 'backend', label: '后端', description: '后端开发技术教程' },
-  { id: 'system', label: '操作系统', description: '操作系统相关教程' },
-  { id: 'network', label: '网络', description: '网络协议与架构教程' },
-  { id: 'devops', label: '运维', description: 'DevOps 与运维教程' },
+  { id: 'mobile', label: '移动端', description: '移动端开发技术教程' },
+  { id: 'database', label: '数据库', description: 'MySQL/Redis/MongoDB/ES 数据库教程' },
+  { id: 'cs-fundamentals', label: '计算机基础', description: '数据结构/算法/网络/操作系统' },
+  { id: 'ai', label: '人工智能', description: 'AI/大数据/算法教程' },
+  { id: 'cloud-native', label: '云原生', description: 'Docker/K8s/微服务教程' },
+  { id: 'devops', label: '运维', description: 'Linux/CI/CD/监控教程' },
 ]
 
 export const tutorialSeries: TutorialSeries[] = [
@@ -883,7 +886,7 @@ export const tutorialSeries: TutorialSeries[] = [
     id: 'browser-network',
     title: '浏览器与网络基础教程',
     description: '深入理解浏览器工作原理与网络协议基础',
-    category: 'network',
+    category: 'cs-fundamentals',
     chapters: [
       {
         number: '01',
@@ -1243,7 +1246,7 @@ export const tutorialSeries: TutorialSeries[] = [
     id: 'os',
     title: '操作系统核心教程',
     description: '深入理解操作系统原理，掌握进程、内存、文件系统核心概念',
-    category: 'system',
+    category: 'cs-fundamentals',
     chapters: [
       {
         number: '01',
