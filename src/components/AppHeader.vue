@@ -87,16 +87,21 @@ import WeatherWidget from './WeatherWidget.vue'
 
 @media (max-width: 640px) {
   .header-content {
-    padding: 0 1rem;
+    padding: 0 0.75rem;
   }
 
   .logo-text {
     display: none;
   }
 
+  .header-nav {
+    gap: 0.15rem;
+  }
+
   .nav-link {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.85rem;
+    padding: 0.35rem 0.5rem;
+    font-size: 0.78rem;
+    white-space: nowrap;
   }
 }
 </style>

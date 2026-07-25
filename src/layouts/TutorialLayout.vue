@@ -46,7 +46,7 @@ function toggleSidebar() {
         </RouterLink>
       </div>
       <nav class="header-nav">
-        <RouterLink to="/">首页</RouterLink>
+        <RouterLink to="/" class="home-link">首页</RouterLink>
         <RouterLink to="/tutorials" class="active">教程</RouterLink>
         <!-- <a href="https://www.typescriptlang.org/docs/" target="_blank" rel="noopener">官方文档</a> -->
         <SearchBar />
@@ -288,6 +288,10 @@ function toggleSidebar() {
 
   .header-nav a:not(.theme-switcher-wrapper) {
     display: none;
+  }
+
+  .header-nav .home-link {
+    display: inline-flex;
   }
 }
 </style>
