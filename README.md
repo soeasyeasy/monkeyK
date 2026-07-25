@@ -75,6 +75,12 @@ vue3-study/
 | 操作系统核心教程   | 16  | 进程、内存、文件系统核心概念 | [src/content/tutorials/os](src/content/tutorials/os)                             |
 | 数据结构完全教程   | 16  | 数组、链表、树、图等核心概念 | [src/content/tutorials/data-structures](src/content/tutorials/data-structures) |
 
+### 数据库
+
+| 教程名称          | 章节数 | 简介                            | 查看链接                                               |
+| ------------- | --- | ----------------------------- | -------------------------------------------------- |
+| MySQL 从入门到精通 | 16  | 从基础 SQL 到性能优化与高可用集群实战 | [src/content/tutorials/mysql](src/content/tutorials/mysql) |
+
 ### 网络
 
 | 教程名称       | 章节数 | 简介         | 查看链接                                                                           |
