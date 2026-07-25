@@ -68,11 +68,12 @@ vue3-study/
 | Spring 原理深度解析 | 16  | 深入 Spring 底层，掌握 IoC、AOP、自动配置等核心原理 | [src/content/tutorials/spring-principle](src/content/tutorials/spring-principle) |
 | JVM 核心原理与实战 | 16  | 深入理解 Java 虚拟机，掌握内存管理、垃圾回收、性能调优核心技术 | [src/content/tutorials/jvm](src/content/tutorials/jvm) |
 
-### 操作系统
+### 计算机基础
 
-| 教程名称     | 章节数 | 简介             | 查看链接                                                 |
-| -------- | --- | -------------- | ---------------------------------------------------- |
-| 操作系统核心教程 | 16  | 进程、内存、文件系统核心概念 | [src/content/tutorials/os](src/content/tutorials/os) |
+| 教程名称       | 章节数 | 简介             | 查看链接                                                                           |
+| ---------- | --- | -------------- | ------------------------------------------------------------------------------ |
+| 操作系统核心教程   | 16  | 进程、内存、文件系统核心概念 | [src/content/tutorials/os](src/content/tutorials/os)                             |
+| 数据结构完全教程   | 16  | 数组、链表、树、图等核心概念 | [src/content/tutorials/data-structures](src/content/tutorials/data-structures) |
 
 ### 网络
 
