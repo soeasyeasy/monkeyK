@@ -64,6 +64,7 @@ vue3-study/
 | 教程名称        | 章节数 | 简介             | 查看链接                                                     |
 | ----------- | --- | -------------- | -------------------------------------------------------- |
 | Java 从入门到精通 | 16  | Java 基础语法到面向对象 | [src/content/tutorials/java](src/content/tutorials/java) |
+| Spring 完全指南 | 16  | 从 Spring 核心到 Spring Boot 实战 | [src/content/tutorials/spring](src/content/tutorials/spring) |
 
 ### 操作系统
 
