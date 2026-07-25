@@ -96,17 +96,17 @@ const seriesByCategory = computed(() => {
 
 <style scoped>
 .tutorial-index {
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 2rem 2.5rem 4rem;
 }
 
 .index-header {
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   background: var(--bg-glass);
   backdrop-filter: blur(var(--blur));
   -webkit-backdrop-filter: blur(var(--blur));
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-glass);
   box-shadow: var(--shadow-md);
@@ -121,7 +121,7 @@ const seriesByCategory = computed(() => {
 
 .subtitle {
   color: var(--text-secondary);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .category-tabs {
@@ -156,7 +156,7 @@ const seriesByCategory = computed(() => {
 }
 
 .category-group {
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.75rem;
 }
 
 .group-header {
@@ -173,9 +173,10 @@ const seriesByCategory = computed(() => {
 }
 
 .series-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.25rem;
+  align-items: stretch;
 }
 
 .series-card {
@@ -196,10 +197,11 @@ const seriesByCategory = computed(() => {
 .series-link {
   display: flex;
   align-items: center;
-  gap: 1.25rem;
-  padding: 1.25rem 1.5rem;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
   text-decoration: none;
   color: inherit;
+  height: 100%;
 }
 
 .series-info {
@@ -225,6 +227,7 @@ const seriesByCategory = computed(() => {
   margin: 0 0 0.5rem;
   color: var(--text-secondary);
   font-size: 0.9rem;
+  line-height: 1.5;
 }
 
 .series-meta {

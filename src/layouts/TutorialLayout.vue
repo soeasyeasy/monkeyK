@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, provide } from 'vue'
+import { ref, provide, computed } from 'vue'
 import TutorialSidebar from '../components/TutorialSidebar.vue'
 import TableOfContents from '../components/TableOfContents.vue'
 import ThemeSwitcher from '../components/ThemeSwitcher.vue'
@@ -15,6 +15,8 @@ interface TocItem {
 
 const tocItems = ref<TocItem[]>([])
 provide('tocItems', tocItems)
+
+const hasToc = computed(() => tocItems.value.length > 0)
 
 function toggleSidebar() {
   sidebarOpen.value = !sidebarOpen.value
@@ -64,7 +66,7 @@ function toggleSidebar() {
     <TableOfContents />
 
     <!-- 主内容区 -->
-    <main class="doc-main">
+    <main class="doc-main" :class="{ 'no-toc': !hasToc }">
       <slot />
     </main>
   </div>
@@ -256,6 +258,10 @@ function toggleSidebar() {
   z-index: 1;
 }
 
+.doc-main.no-toc {
+  margin-right: 0;
+}
+
 /* 侧边栏遮罩 */
 .sidebar-overlay {
   display: none;
@@ -267,12 +273,6 @@ function toggleSidebar() {
 }
 
 /* 响应式 */
-@media (max-width: 1279px) {
-  .doc-main {
-    margin-right: 0;
-  }
-}
-
 @media (max-width: 959px) {
   .menu-btn {
     display: block;
