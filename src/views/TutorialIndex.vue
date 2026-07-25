@@ -31,7 +31,7 @@ const seriesByCategory = computed(() => {
           全部
         </RouterLink>
         <RouterLink
-          v-for="cat in tutorialCategories"
+          v-for="cat in tutorialCategories.filter(c => c.id !== 'more')"
           :key="cat.id"
           :to="`/tutorials?category=${cat.id}`"
           class="tab"

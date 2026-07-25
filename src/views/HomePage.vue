@@ -1,8 +1,104 @@
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
 import { tutorialCategories, tutorialSeries } from '../data/tutorial-series'
 import { useHitokoto } from '../composables/useHitokoto'
 
 const { hitokoto, loading: hitokotoLoading, progress: hitokotoProgress, refresh: refreshHitokoto } = useHitokoto()
+
+// 分类图标
+const categoryIcons: Record<string, string> = {
+  frontend: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M7 8h4"/><path d="M7 12h3"/></svg>`,
+  backend: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><circle cx="6" cy="6" r="1" fill="currentColor"/><circle cx="6" cy="18" r="1" fill="currentColor"/></svg>`,
+  mobile: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>`,
+  database: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>`,
+  'cs-fundamentals': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>`,
+  ai: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-8 0V6a4 4 0 0 1 4-4z"/><path d="M12 12v4"/><path d="M8 20h8"/><path d="M6 8H4a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2"/><path d="M18 8h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2h-2"/></svg>`,
+  'cloud-native': `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>`,
+  devops: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>`,
+  more: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>`,
+}
+
+// 分类渐变色
+const categoryGradients: Record<string, [string, string]> = {
+  frontend: ['#667eea', '#764ba2'],
+  backend: ['#f093fb', '#f5576c'],
+  mobile: ['#4facfe', '#00f2fe'],
+  database: ['#43e97b', '#38f9d7'],
+  'cs-fundamentals': ['#fa709a', '#fee140'],
+  ai: ['#a18cd1', '#fbc2eb'],
+  'cloud-native': ['#fccb90', '#d57eeb'],
+  devops: ['#96fbc4', '#f9f586'],
+  more: ['#667eea', '#764ba2'],
+}
+
+// 3D 轮播 - 正面展示 3 张卡片
+const carouselIndex = ref(0)
+const carouselPaused = ref(false)
+const totalCards = tutorialCategories.length
+
+// 获取每个卡片相对于当前索引的偏移位置
+const getCardPosition = (index: number) => {
+  const offset = ((index - carouselIndex.value + totalCards) % totalCards + totalCards) % totalCards
+  let pos = offset
+  if (offset >= totalCards / 2) pos = offset - totalCards
+  return pos
+}
+
+const getCardTransform = (index: number) => {
+  const pos = getCardPosition(index) // -4, -3, -2, -1, 0, 1, 2, 3
+  const isMobile = windowWidth.value <= 768
+  const cardGap = isMobile ? 140 : 230
+  const maxVisible = 1 // 中间 3 张高亮：-1, 0, 1
+
+  const absPos = Math.abs(pos)
+  const isHighlight = absPos <= maxVisible
+
+  const x = pos * cardGap
+  const z = isHighlight ? -absPos * 50 : -300
+  const scale = isHighlight ? (1 - absPos * 0.1) : 0.65
+  const opacity = isHighlight ? (1 - absPos * 0.12) : 0.35
+  const rotateY = isHighlight ? pos * -5 : 0
+  const blurAmount = isHighlight ? 0 : 1
+
+  return {
+    transform: `translateX(${x}px) translateZ(${z}px) rotateY(${rotateY}deg) scale(${scale})`,
+    opacity: Math.max(opacity, 0.2),
+    zIndex: isHighlight ? (100 - absPos) : 10,
+    filter: blurAmount > 0 ? `blur(${blurAmount}px)` : 'none',
+    pointerEvents: 'auto' as const,
+  }
+}
+
+const rotateCarousel = (dir: number) => {
+  carouselIndex.value = (carouselIndex.value + dir + totalCards) % totalCards
+}
+
+let autoPlayTimer: ReturnType<typeof setInterval>
+const startAutoPlay = () => {
+  autoPlayTimer = setInterval(() => {
+    if (!carouselPaused.value) rotateCarousel(1)
+  }, 3500)
+}
+const stopAutoPlay = () => clearInterval(autoPlayTimer)
+
+const windowWidth = ref(window.innerWidth)
+const handleResize = () => {
+  windowWidth.value = window.innerWidth
+}
+
+onMounted(() => {
+  startAutoPlay()
+  window.addEventListener('resize', handleResize)
+})
+onUnmounted(() => {
+  stopAutoPlay()
+  window.removeEventListener('resize', handleResize)
+})
+
+const handleWheel = (e: WheelEvent) => {
+  e.preventDefault()
+  rotateCarousel(e.deltaY > 0 ? 1 : -1)
+}
 
 const otherModules = [
   {
@@ -70,27 +166,63 @@ const recentSeries = tutorialSeries.slice(0, 3)
       </div>
     </section>
 
-    <!-- 全栈教程入口 -->
+    <!-- 全栈教程入口 - 3D 轮播 -->
     <section class="section tutorials-section">
       <div class="section-header">
         <h2 class="section-title">全栈教程</h2>
-        <p class="section-subtitle">覆盖前端、后端、系统、网络、运维五大领域</p>
+        <p class="section-subtitle">覆盖前端、后端、移动端、数据库、计算机基础、人工智能、云原生、运维等领域</p>
       </div>
-      <div class="categories-grid">
-        <RouterLink
-          v-for="(category, index) in tutorialCategories"
-          :key="category.id"
-          :to="`/tutorials?category=${category.id}`"
-          class="category-card"
-          v-animate.slide-up
-          :style="{ transitionDelay: `${index * 80}ms` }"
-        >
-          <h3 class="category-title">{{ category.label }}</h3>
-          <p class="category-desc">{{ category.description }}</p>
-          <div class="category-count">
-            {{ tutorialSeries.filter((s) => s.category === category.id).length }} 个系列
-          </div>
-        </RouterLink>
+      <div
+        class="carousel-wrapper"
+        @mouseenter="carouselPaused = true"
+        @mouseleave="carouselPaused = false"
+        @wheel.prevent="handleWheel"
+      >
+        <button class="carousel-btn carousel-btn-prev" @click="rotateCarousel(-1)" aria-label="上一个">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="carousel-viewport">
+          <RouterLink
+            v-for="(category, index) in tutorialCategories"
+            :key="category.id"
+            :to="category.id === 'more' ? '/tutorials' : `/tutorials?category=${category.id}`"
+            class="category-card-3d"
+            :class="{ 'is-front': index === carouselIndex }"
+            :style="getCardTransform(index)"
+          >
+            <div
+              class="card-icon-wrapper"
+              :style="{ background: `linear-gradient(135deg, ${categoryGradients[category.id]?.[0] ?? '#667eea'}, ${categoryGradients[category.id]?.[1] ?? '#764ba2'})` }"
+            >
+              <span class="card-icon" v-html="categoryIcons[category.id]"></span>
+            </div>
+            <h3 class="category-title">{{ category.label }}</h3>
+            <p class="category-desc">{{ category.description }}</p>
+            <div v-if="category.id !== 'more'" class="category-count">
+              <span class="count-number">{{ tutorialSeries.filter((s) => s.category === category.id).length }}</span>
+              <span class="count-label">个系列</span>
+            </div>
+            <div v-else class="category-count category-count-placeholder">
+              <span class="count-label">查看全部</span>
+            </div>
+          </RouterLink>
+        </div>
+        <button class="carousel-btn carousel-btn-next" @click="rotateCarousel(1)" aria-label="下一个">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="carousel-dots">
+        <span
+          v-for="(_, index) in tutorialCategories"
+          :key="index"
+          class="carousel-dot"
+          :class="{ active: index === carouselIndex }"
+          @click="carouselIndex = index"
+        ></span>
       </div>
     </section>
 
@@ -481,55 +613,176 @@ const recentSeries = tutorialSeries.slice(0, 3)
   background: var(--bg-secondary);
 }
 
-.categories-grid {
-  max-width: 1200px;
+/* 3D 轮播 */
+.carousel-wrapper {
+  position: relative;
+  max-width: 1000px;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
-.category-card {
+.carousel-btn {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  z-index: 20;
+  box-shadow: var(--shadow-sm);
+}
+
+.carousel-btn:hover {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+  transform: scale(1.1);
+  box-shadow: var(--shadow-md);
+}
+
+.carousel-viewport {
+  flex: 1;
+  height: 300px;
+  perspective: 1000px;
+  overflow: visible;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.category-card-3d {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 200px;
+  margin-left: -110px;
+  margin-top: -140px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 2rem 1.5rem;
+  padding: 1.75rem 1.25rem 1.5rem;
   background: var(--bg-card);
   backdrop-filter: blur(var(--blur));
   -webkit-backdrop-filter: blur(var(--blur));
   border: 1px solid var(--border-color);
   border-radius: var(--radius-xl);
   text-decoration: none;
-  transition: all 0.3s;
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 0.5s ease,
+              filter 0.5s ease,
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
+  cursor: pointer;
+  will-change: transform, opacity;
 }
 
-.category-card:hover {
-  background: var(--bg-card-hover);
-  transform: translateY(-4px);
+.category-card-3d.is-front {
+  border-color: var(--accent);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 0 0 1px var(--accent);
+}
+
+.category-card-3d:hover {
   box-shadow: var(--shadow-lg);
 }
 
+.card-icon-wrapper {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  width: 24px;
+  height: 24px;
+}
+
+.card-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
 .category-title {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.01em;
 }
 
 .category-desc {
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   color: var(--text-secondary);
-  margin-bottom: 1rem;
+  margin-bottom: 0.65rem;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .category-count {
-  font-size: 0.85rem;
-  color: var(--text-link);
-  font-weight: 500;
-  padding: 0.25rem 0.75rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  padding: 0.3rem 0.85rem;
   background: var(--bg-stat);
-  border-radius: 12px;
+  border-radius: 20px;
+}
+
+.count-number {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.count-label {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 2rem;
+}
+
+.carousel-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-dot.active {
+  background: var(--accent);
+  width: 24px;
+  border-radius: 4px;
+}
+
+.carousel-dot:hover {
+  background: var(--accent);
 }
 
 /* Recent */
@@ -663,8 +916,32 @@ const recentSeries = tutorialSeries.slice(0, 3)
     padding: 4rem 1.5rem;
   }
 
-  .categories-grid {
-    grid-template-columns: 1fr 1fr;
+  .carousel-viewport {
+    height: 280px;
+  }
+
+  .category-card-3d {
+    width: 140px;
+    margin-left: -70px;
+    margin-top: -100px;
+    padding: 1rem 0.5rem 0.75rem;
+  }
+
+  .card-icon-wrapper {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    margin-bottom: 0.6rem;
+  }
+
+  .card-icon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .carousel-btn {
+    width: 38px;
+    height: 38px;
   }
 
   .recent-card,

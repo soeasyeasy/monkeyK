@@ -1,4 +1,4 @@
-export type TutorialCategory = 'frontend' | 'backend' | 'mobile' | 'database' | 'cs-fundamentals' | 'ai' | 'cloud-native' | 'devops'
+export type TutorialCategory = 'frontend' | 'backend' | 'mobile' | 'database' | 'cs-fundamentals' | 'ai' | 'cloud-native' | 'devops' | 'more'
 
 export interface ChapterMeta {
   number: string
@@ -31,6 +31,7 @@ export const tutorialCategories: TutorialCategoryInfo[] = [
   { id: 'ai', label: '人工智能', description: 'AI/大数据/算法教程' },
   { id: 'cloud-native', label: '云原生', description: 'Docker/K8s/微服务教程' },
   { id: 'devops', label: '运维', description: 'Linux/CI/CD/监控教程' },
+  { id: 'more', label: '更多', description: '浏览全部教程系列' },
 ]
 
 export const tutorialSeries: TutorialSeries[] = [
