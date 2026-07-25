@@ -115,7 +115,7 @@ const otherModules = [
   },
 ]
 
-const recentSeries = tutorialSeries.slice(0, 3)
+const recentSeries = tutorialSeries.filter(s => s.featured).slice(0, 6)
 </script>
 
 <template>
@@ -226,7 +226,7 @@ const recentSeries = tutorialSeries.slice(0, 3)
       </div>
     </section>
 
-    <!-- 最近更新 -->
+    <!-- 推荐教程 -->
     <section class="section recent-section">
       <div class="section-header">
         <h2 class="section-title">推荐教程</h2>
@@ -238,13 +238,23 @@ const recentSeries = tutorialSeries.slice(0, 3)
           :key="series.id"
           :to="`/tutorials/${series.id}`"
           class="recent-card"
-          v-animate.slide-right
-          :style="{ transitionDelay: `${index * 100}ms` }"
+          v-animate.slide-up
+          :style="{ transitionDelay: `${index * 120}ms` }"
         >
           <div class="recent-content">
             <h3 class="recent-title">{{ series.title }}</h3>
             <p class="recent-desc">{{ series.description }}</p>
-            <div class="recent-meta">{{ series.chapters.length }} 章节</div>
+          </div>
+          <div class="recent-card-footer">
+            <div class="recent-chapters">
+              <span class="chapter-count">{{ series.chapters.length }}</span>
+              <span class="chapter-label">章节</span>
+            </div>
+            <div class="recent-arrow">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
           </div>
         </RouterLink>
       </div>
@@ -790,13 +800,14 @@ const recentSeries = tutorialSeries.slice(0, 3)
   max-width: 1000px;
   margin: 0 auto;
   display: grid;
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
 }
 
 .recent-card {
   display: flex;
-  align-items: center;
-  gap: 1.5rem;
+  flex-direction: column;
+  gap: 1rem;
   padding: 1.5rem;
   background: var(--bg-card);
   backdrop-filter: blur(var(--blur));
@@ -804,13 +815,64 @@ const recentSeries = tutorialSeries.slice(0, 3)
   border: 1px solid var(--border-color);
   border-radius: var(--radius-xl);
   text-decoration: none;
-  transition: all 0.3s;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.recent-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-light));
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .recent-card:hover {
   background: var(--bg-card-hover);
-  transform: translateX(8px);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-lg);
+  border-color: var(--accent);
+}
+
+.recent-card:hover::before {
+  opacity: 1;
+}
+
+.recent-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.recent-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.recent-card-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.recent-card-tag {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--accent);
+  background: var(--bg-stat);
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
 }
 
 .recent-content {
@@ -818,21 +880,52 @@ const recentSeries = tutorialSeries.slice(0, 3)
 }
 
 .recent-title {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: 1.15rem;
+  font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
 }
 
 .recent-desc {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--text-secondary);
-  margin-bottom: 0.5rem;
+  line-height: 1.5;
 }
 
-.recent-meta {
-  font-size: 0.85rem;
+.recent-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.recent-chapters {
+  display: flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.chapter-count {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.chapter-label {
+  font-size: 0.8rem;
   color: var(--text-muted);
+}
+
+.recent-arrow {
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+}
+
+.recent-card:hover .recent-arrow {
+  color: var(--accent);
+  transform: translateX(4px);
 }
 
 /* Other modules */
@@ -947,6 +1040,10 @@ const recentSeries = tutorialSeries.slice(0, 3)
   .recent-card,
   .other-card {
     padding: 1.25rem;
+  }
+
+  .recent-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .hitokoto-widget {

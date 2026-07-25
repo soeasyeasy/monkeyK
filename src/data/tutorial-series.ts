@@ -14,6 +14,7 @@ export interface TutorialSeries {
   description: string
   category: TutorialCategory
   chapters: ChapterMeta[]
+  featured?: boolean
 }
 
 export interface TutorialCategoryInfo {
@@ -218,6 +219,7 @@ export const tutorialSeries: TutorialSeries[] = [
         slug: 'modern-css',
       },
     ],
+     featured: true,
   },
   {
     id: 'javascript',
@@ -402,6 +404,7 @@ export const tutorialSeries: TutorialSeries[] = [
         slug: 'vue-with-ts',
       },
     ],
+     featured: true,
   },
   {
     id: 'vue2',
@@ -642,6 +645,7 @@ export const tutorialSeries: TutorialSeries[] = [
         slug: 'performance',
       },
     ],
+     featured: true,
   },
   {
     id: 'npm',
@@ -1482,6 +1486,7 @@ export const tutorialSeries: TutorialSeries[] = [
         slug: 'maven',
       },
     ],
+     featured: true,
   },
   {
     id: 'spring',
@@ -1722,6 +1727,7 @@ export const tutorialSeries: TutorialSeries[] = [
         slug: 'design-patterns',
       },
     ],
+     featured: true,
   },
   {
     id: 'jvm',
