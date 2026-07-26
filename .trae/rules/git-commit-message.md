@@ -3,4 +3,4 @@ alwaysApply: true
 scene: git_message
 ---
 
-使用中文总结 简短
+使用中文 简短
