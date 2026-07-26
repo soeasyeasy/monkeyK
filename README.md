@@ -83,6 +83,7 @@ vue3-study/
 | MySQL 原理深度解析 | 16  | 深入 MySQL 底层，掌握架构原理、存储引擎、索引机制、事务锁、日志系统等核心技术 | [src/content/tutorials/mysql-principle](src/content/tutorials/mysql-principle) |
 | Redis 从入门到精通 | 16  | 系统学习 Redis 内存数据库，从基础操作到高性能缓存架构实战 | [src/content/tutorials/redis](src/content/tutorials/redis) |
 | MongoDB 从入门到精通 | 16  | 系统学习 MongoDB 文档数据库，从基础操作到分布式集群实战 | [src/content/tutorials/mongodb](src/content/tutorials/mongodb) |
+| Elasticsearch 从入门到精通 | 16  | 系统学习 Elasticsearch 搜索引擎，从基础操作到分布式集群与实战应用 | [src/content/tutorials/elasticsearch](src/content/tutorials/elasticsearch) |
 
 ### 网络
 
