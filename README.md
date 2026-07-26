@@ -101,6 +101,7 @@ vue3-study/
 | 教程名称       | 章节数 | 简介            | 查看链接                                                   |
 | ---------- | --- | ------------- | ------------------------------------------------------ |
 | Docker 从入门到精通 | 16  | 系统学习容器技术，从基础概念到生产环境实战 | [src/content/tutorials/docker](src/content/tutorials/docker) |
+| Kubernetes 从入门到精通 | 16  | 系统学习 K8s 容器编排，从基础概念到生产环境实战 | [src/content/tutorials/kubernetes](src/content/tutorials/kubernetes) |
 
 启动开发服务器后，可以通过以下路由访问：
 
