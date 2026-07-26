@@ -6,6 +6,10 @@ import ThemeSwitcher from '../components/ThemeSwitcher.vue'
 import SearchBar from '../components/SearchBar.vue'
 
 const sidebarOpen = ref(false)
+const isMobile = ref(window.innerWidth < 960)
+window.addEventListener('resize', () => {
+  isMobile.value = window.innerWidth < 960
+})
 
 interface TocItem {
   id: string
@@ -42,7 +46,7 @@ function toggleSidebar() {
             <span></span>
           </span>
         </button>
-        <RouterLink to="/tutorials" class="header-logo">
+        <RouterLink :to="isMobile ? '/' : '/tutorials'" class="header-logo">
           <span class="logo-badge">MonkeyK</span>
           <span class="logo-name">知新</span>
         </RouterLink>
@@ -284,14 +288,15 @@ function toggleSidebar() {
 
   .doc-main {
     margin-left: 0;
+    margin-right: 0;
   }
 
   .header-nav a:not(.theme-switcher-wrapper) {
     display: none;
   }
 
-  .header-nav .home-link {
-    display: inline-flex;
+  .logo-name {
+    display: none;
   }
 }
 </style>
