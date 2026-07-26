@@ -88,6 +88,7 @@ vue3-study/
 | 教程名称       | 章节数 | 简介         | 查看链接                                                                           |
 | ---------- | --- | ---------- | ------------------------------------------------------------------------------ |
 | 浏览器与网络基础教程 | 16  | 浏览器原理与网络协议 | [src/content/tutorials/browser-network](src/content/tutorials/browser-network) |
+| 计算机网络完全指南 | 16  | 系统学习计算机网络原理，从基础协议到网络编程与实战应用 | [src/content/tutorials/computer-network](src/content/tutorials/computer-network) |
 
 ### DevOps
 
