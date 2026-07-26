@@ -98,6 +98,7 @@ vue3-study/
 | 教程名称       | 章节数 | 简介            | 查看链接                                                   |
 | ---------- | --- | ------------- | ------------------------------------------------------ |
 | Git 版本控制教程 | 16  | 高效管理代码版本与团队协作 | [src/content/tutorials/git](src/content/tutorials/git) |
+| Linux 从入门到精通 | 16  | 系统学习 Linux 操作系统，从基础命令到服务器管理与实战应用 | [src/content/tutorials/linux](src/content/tutorials/linux) |
 
 ### 云原生
 
