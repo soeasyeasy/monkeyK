@@ -109,6 +109,12 @@ vue3-study/
 | Docker 从入门到精通 | 16  | 系统学习容器技术，从基础概念到生产环境实战 | [src/content/tutorials/docker](src/content/tutorials/docker) |
 | Kubernetes 从入门到精通 | 16  | 系统学习 K8s 容器编排，从基础概念到生产环境实战 | [src/content/tutorials/kubernetes](src/content/tutorials/kubernetes) |
 
+### 人工智能
+
+| 教程名称       | 章节数 | 简介            | 查看链接                                                   |
+| ---------- | --- | ------------- | ------------------------------------------------------ |
+| Python 人工智能基础 | 16  | 从零开始学习 Python 人工智能，掌握机器学习与深度学习核心技术 | [src/content/tutorials/python-ai](src/content/tutorials/python-ai) |
+
 启动开发服务器后，可以通过以下路由访问：
 
 - 教程中心首页：`/tutorials`
