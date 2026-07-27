@@ -114,6 +114,7 @@ vue3-study/
 | 教程名称       | 章节数 | 简介            | 查看链接                                                   |
 | ---------- | --- | ------------- | ------------------------------------------------------ |
 | Python 人工智能基础 | 16  | 从零开始学习 Python 人工智能，掌握机器学习与深度学习核心技术 | [src/content/tutorials/python-ai](src/content/tutorials/python-ai) |
+| AI 数学基础：从小学到大学 | 19  | 系统补充 AI 学习所需的数学基础，从小学算术到大学微积分，零基础友好 | [src/content/tutorials/ai-math-basics](src/content/tutorials/ai-math-basics) |
 
 启动开发服务器后，可以通过以下路由访问：
 
