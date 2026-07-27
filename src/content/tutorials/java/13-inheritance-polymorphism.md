@@ -1,9 +1,9 @@
 ---
-title: '第九章：继承与多态'
+title: '第十三章：继承与多态'
 description: 'extends、override、抽象类、interface'
 ---
 
-# 第九章：继承与多态
+# 第十三章：继承与多态
 
 ## 本章导读
 

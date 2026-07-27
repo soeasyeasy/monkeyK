@@ -1,9 +1,9 @@
 ---
-title: '第十六章：Maven 与项目构建'
+title: '第二十章：Maven 与项目构建'
 description: 'Maven 基础、pom.xml、依赖管理、生命周期'
 ---
 
-# 第十六章：Maven 与项目构建
+# 第二十章：Maven 与项目构建
 
 ## 本章导读
 
@@ -1067,6 +1067,4 @@ mvn clean package -P prod
 
 ## 下一章预告
 
-恭喜你完成了 Java 基础教程的全部学习！到这里，你已经掌握了从基础语法到项目构建的完整知识体系。
-
-接下来，你可以开始学习 **Spring Boot 框架**——它是 Java 企业开发的事实标准。Spring Boot 基于 Maven 构建，让你用极少的配置就能快速搭建一个 Web 应用。你会发现，之前学的 JDBC、Maven、注解、接口等知识，在 Spring Boot 中都会派上用场。
+下一章我们会学习 **单元测试**——保证代码质量的重要手段。你会学到 JUnit 5 的基本使用、断言方法、测试生命周期、Mock 基础。

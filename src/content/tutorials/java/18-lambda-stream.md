@@ -1,9 +1,9 @@
 ---
-title: '第十四章：Lambda 与 Stream API'
+title: '第十八章：Lambda 与 Stream API'
 description: '函数式接口、Lambda 表达式、Stream 操作'
 ---
 
-# 第十四章：Lambda 与 Stream API
+# 第十八章：Lambda 与 Stream API
 
 ## 本章导读
 

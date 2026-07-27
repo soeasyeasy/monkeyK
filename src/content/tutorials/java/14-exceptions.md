@@ -1,9 +1,9 @@
 ---
-title: '第十章：异常处理'
+title: '第十四章：异常处理'
 description: 'try-catch-finally、自定义异常、checked 与 unchecked'
 ---
 
-# 第十章：异常处理
+# 第十四章：异常处理
 
 ## 本章导读
 

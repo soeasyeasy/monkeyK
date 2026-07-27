@@ -1,9 +1,9 @@
 ---
-title: '第十一章：集合框架'
+title: '第十五章：集合框架'
 description: 'List、Set、Map、Iterator、泛型集合'
 ---
 
-# 第十一章：集合框架
+# 第十五章：集合框架
 
 ## 本章导读
 

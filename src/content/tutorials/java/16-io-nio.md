@@ -1,9 +1,9 @@
 ---
-title: '第十二章：IO 与 NIO'
+title: '第十六章：IO 与 NIO'
 description: 'File、Stream、Reader/Writer、NIO 通道与缓冲区'
 ---
 
-# 第十二章：IO 与 NIO
+# 第十六章：IO 与 NIO
 
 ## 本章导读
 

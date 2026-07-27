@@ -1,9 +1,9 @@
 ---
-title: '第十三章：多线程与并发'
+title: '第十七章：多线程与并发'
 description: 'Thread、Runnable、线程池、synchronized、Lock'
 ---
 
-# 第十三章：多线程与并发
+# 第十七章：多线程与并发
 
 ## 本章导读
 

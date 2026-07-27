@@ -1,9 +1,9 @@
 ---
-title: '第十五章：JDBC 数据库编程'
+title: '第十九章：JDBC 数据库编程'
 description: 'JDBC 连接、PreparedStatement、事务管理'
 ---
 
-# 第十五章：JDBC 数据库编程
+# 第十九章：JDBC 数据库编程
 
 ## 本章导读
 
