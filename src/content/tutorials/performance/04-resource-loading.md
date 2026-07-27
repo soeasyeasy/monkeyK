@@ -18,7 +18,7 @@ description: "掌握资源预加载、懒加载、优先级控制等优化技术
 
 ---
 
-## 4.1 为什么需要资源加载优化？
+## 1 为什么需要资源加载优化？
 
 ### 痛点分析
 
@@ -49,7 +49,7 @@ description: "掌握资源预加载、懒加载、优先级控制等优化技术
 
 ---
 
-## 4.2 预加载（Preload）
+## 2 预加载（Preload）
 
 ### 什么是预加载？
 
@@ -87,7 +87,7 @@ description: "掌握资源预加载、懒加载、优先级控制等优化技术
 
 ---
 
-## 4.3 预连接（Preconnect）
+## 3 预连接（Preconnect）
 
 ### 什么是预连接？
 
@@ -122,7 +122,7 @@ description: "掌握资源预加载、懒加载、优先级控制等优化技术
 
 ---
 
-## 4.4 DNS 预解析（DNS-prefetch）
+## 4 DNS 预解析（DNS-prefetch）
 
 ### 什么是 DNS 预解析？
 
@@ -144,7 +144,7 @@ description: "掌握资源预加载、懒加载、优先级控制等优化技术
 
 ---
 
-## 4.5 资源优先级
+## 5 资源优先级
 
 ### fetchpriority 属性
 
@@ -173,7 +173,7 @@ description: "掌握资源预加载、懒加载、优先级控制等优化技术
 
 ---
 
-## 4.6 懒加载（Lazy Loading）
+## 6 懒加载（Lazy Loading）
 
 ### 原生图片懒加载
 
@@ -209,7 +209,7 @@ lazyImages.forEach((img) => observer.observe(img));
 
 ---
 
-## 4.7 组件懒加载
+## 7 组件懒加载
 
 ### 动态导入
 
@@ -238,7 +238,7 @@ const Dashboard = React.lazy(() => import('./Dashboard'));
 
 ---
 
-## 4.8 预获取（Prefetch）
+## 8 预获取（Prefetch）
 
 ### 什么是预获取？
 
@@ -260,7 +260,7 @@ const Dashboard = React.lazy(() => import('./Dashboard'));
 
 ---
 
-## 4.9 资源提示对比
+## 9 资源提示对比
 
 | 方式 | 用途 | 优先级 | 时机 |
 | --- | --- | --- | --- |
@@ -271,7 +271,7 @@ const Dashboard = React.lazy(() => import('./Dashboard'));
 
 ---
 
-## 4.10 代码分割策略
+## 10 代码分割策略
 
 ### 按路由分割
 
@@ -304,7 +304,7 @@ async function showEditor() {
 
 ---
 
-## 4.11 核心知识点总结
+## 11 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -316,7 +316,7 @@ async function showEditor() {
 
 ---
 
-## 4.12 新手常见误区
+## 12 新手常见误区
 
 ### 误区 1："preload 所有资源"
 
@@ -360,7 +360,7 @@ async function showEditor() {
 
 ---
 
-## 4.13 动手练习
+## 13 动手练习
 
 ### 练习 1：基础练习 - 资源提示
 

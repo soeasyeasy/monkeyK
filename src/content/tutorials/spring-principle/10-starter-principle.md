@@ -18,7 +18,7 @@ description: "深入理解 Starter 组成结构、自定义 Starter 开发实战
 
 ---
 
-## 10.1 为什么需要 Starter？
+## 1 为什么需要 Starter？
 
 ### 痛点分析
 
@@ -77,7 +77,7 @@ Spring Boot 通过 Starter 实现"一键引入"：
 
 ---
 
-## 10.2 核心原理
+## 2 核心原理
 
 ### 10.2.1 Starter 的组成结构
 
@@ -332,7 +332,7 @@ public class Binder {
 
 ---
 
-## 10.3 基础用法
+## 3 基础用法
 
 ### 10.3.1 自定义 Starter 完整开发流程
 
@@ -847,7 +847,7 @@ public class ImmutableAppProperties {
 
 ---
 
-## 10.4 对比表格
+## 4 对比表格
 
 ### 官方常用 Starter 对比
 
@@ -883,7 +883,7 @@ public class ImmutableAppProperties {
 
 ---
 
-## 10.5 新手常见误区
+## 5 新手常见误区
 
 ### 误区 1：Starter 模块必须包含代码
 
@@ -984,7 +984,7 @@ public class AppProperties {
 
 ---
 
-## 10.6 动手练习
+## 6 动手练习
 
 ### 练习 1：基础练习 - 创建简单 Starter
 

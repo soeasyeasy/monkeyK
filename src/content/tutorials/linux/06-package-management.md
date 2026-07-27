@@ -18,7 +18,7 @@ description: 'Linux 软件安装、更新与卸载，apt/yum/dnf 详解'
 
 ---
 
-## 6.1 为什么需要软件包管理？
+## 1 为什么需要软件包管理？
 
 ### 痛点分析
 
@@ -57,7 +57,7 @@ Linux 的包管理系统就像一个**应用商店**：
 
 ---
 
-## 6.2 包管理核心概念
+## 2 包管理核心概念
 
 ### 软件包是什么？
 
@@ -113,7 +113,7 @@ sudo apt update
 
 ---
 
-## 6.3 APT 包管理（Debian/Ubuntu）
+## 3 APT 包管理（Debian/Ubuntu）
 
 APT（Advanced Package Tool）是 Debian 系发行版的包管理工具。
 
@@ -224,7 +224,7 @@ dpkg-deb -x package.deb /tmp/extract/
 
 ---
 
-## 6.4 YUM/DNF 包管理（RHEL/CentOS/Fedora）
+## 4 YUM/DNF 包管理（RHEL/CentOS/Fedora）
 
 YUM（Yellowdog Updater Modified）和 DNF 是 Red Hat 系发行版的包管理工具。DNF 是 YUM 的下一代版本，Fedora 和 RHEL 8+ 默认使用 DNF。
 
@@ -314,7 +314,7 @@ rpm -qf /usr/sbin/nginx
 
 ---
 
-## 6.5 Pacman 包管理（Arch Linux）
+## 5 Pacman 包管理（Arch Linux）
 
 Pacman 是 Arch Linux 的包管理工具，语法简洁高效。
 
@@ -362,7 +362,7 @@ sudo pacman -Scc
 
 ---
 
-## 6.6 源码编译安装
+## 6 源码编译安装
 
 当软件源里没有你需要的版本，或者需要自定义编译选项时，可以从源码编译安装。
 
@@ -430,7 +430,7 @@ sudo make install
 
 ---
 
-## 6.7 新型包管理：Snap 和 Flatpak
+## 7 新型包管理：Snap 和 Flatpak
 
 Snap 和 Flatpak 是跨发行版的包管理方案，解决"不同发行版软件不兼容"的问题。
 
@@ -494,7 +494,7 @@ flatpak uninstall org.gimp.GIMP
 
 ---
 
-## 6.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1："apt update 和 apt upgrade 是一回事"
 
@@ -518,7 +518,7 @@ flatpak uninstall org.gimp.GIMP
 
 ---
 
-## 6.9 动手练习
+## 9 动手练习
 
 ### 练习 1：基础练习
 

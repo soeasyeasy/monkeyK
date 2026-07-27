@@ -18,7 +18,7 @@ description: 'Java 发展史、JDK 安装、Hello World'
 
 ---
 
-## 1.1 为什么需要 Java？
+## 1 为什么需要 Java？
 
 ### 痛点分析
 
@@ -50,7 +50,7 @@ Java 的设计者说："我来解决这个问题。"
 
 ---
 
-## 1.2 Java 的核心原理
+## 2 Java 的核心原理
 
 ### 编译与运行过程
 
@@ -88,7 +88,7 @@ Java 程序的运行分两步：
 
 ---
 
-## 1.3 Java 简介
+## 3 Java 简介
 
 Java 是由 Sun Microsystems（现属 Oracle）于 1995 年推出的面向对象编程语言。Java 以"一次编写，到处运行"（Write Once, Run Anywhere）著称。
 
@@ -117,7 +117,7 @@ Java 是由 Sun Microsystems（现属 Oracle）于 1995 年推出的面向对象
 
 ---
 
-## 1.4 安装 JDK
+## 4 安装 JDK
 
 ### 1. 下载 JDK
 
@@ -210,7 +210,7 @@ javac -version
 
 ---
 
-## 1.5 Hello World 程序
+## 5 Hello World 程序
 
 ### 第一个 Java 程序
 
@@ -268,7 +268,7 @@ public class HelloWorld {       // ① 定义一个公共类，类名为 HelloWo
 
 ---
 
-## 1.6 Java 程序结构
+## 6 Java 程序结构
 
 ### 包声明（可选）
 
@@ -326,7 +326,7 @@ class Person {
 
 ---
 
-## 1.7 Java 开发工具
+## 7 Java 开发工具
 
 ### 命令行工具
 
@@ -355,7 +355,7 @@ class Person {
 
 ---
 
-## 1.8 使用 JShell（Java 9+）
+## 8 使用 JShell（Java 9+）
 
 JShell 是 Java 的交互式编程工具，可以立即执行代码片段，不用写完整的类。
 
@@ -390,7 +390,7 @@ jshell> /exit
 
 ---
 
-## 1.9 新手常见误区
+## 9 新手常见误区
 
 ### 误区 1："java 不是内部或外部命令"
 
@@ -447,7 +447,7 @@ javac -encoding UTF-8 HelloWorld.java
 
 ---
 
-## 1.10 动手练习
+## 10 动手练习
 
 ### 练习 1：基础练习 —— 输出个人信息
 
@@ -546,7 +546,7 @@ public class Calculator {
 
 ---
 
-## 1.11 核心知识点
+## 11 核心知识点
 
 | 知识点       | 说明                                                          |
 | ------------ | ------------------------------------------------------------- |

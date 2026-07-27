@@ -19,7 +19,7 @@ description: '泛型类、泛型方法、通配符、类型擦除'
 
 ---
 
-## 20.1 为什么需要泛型？
+## 1 为什么需要泛型？
 
 ### 痛点分析
 
@@ -96,7 +96,7 @@ Integer num = box.get();  // ❌ 编译错误！类型不匹配
 
 ---
 
-## 20.2 泛型类
+## 2 泛型类
 
 ### 基本语法
 
@@ -213,7 +213,7 @@ Result<Object> errorResult = Result.error("操作失败");
 
 ---
 
-## 20.3 泛型方法
+## 3 泛型方法
 
 ### 基本语法
 
@@ -333,7 +333,7 @@ String maxStr = ArrayUtil.max(strings);  // "Cherry"
 
 ---
 
-## 20.4 泛型通配符
+## 4 泛型通配符
 
 ### 无界通配符 `<?>`
 
@@ -437,7 +437,7 @@ CollectionUtil.copy(source, dest);  // dest: [1, 2, 3]
 
 ---
 
-## 20.5 类型限制
+## 5 类型限制
 
 ### 限制类型参数
 
@@ -484,7 +484,7 @@ public class SortableData<T extends Comparable<T> & Serializable> {
 
 ---
 
-## 20.6 类型擦除
+## 6 类型擦除
 
 ### 什么是类型擦除？
 
@@ -583,7 +583,7 @@ public class Box<T> {
 
 ---
 
-## 20.7 泛型的实际应用
+## 7 泛型的实际应用
 
 ### 1. 集合框架
 
@@ -664,7 +664,7 @@ String str = intToString.convert(456);  // "456"
 
 ---
 
-## 20.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1：认为泛型类型可以不同
 
@@ -757,7 +757,7 @@ System.out.println(strings.getClass() == integers.getClass());
 
 ---
 
-## 20.9 动手练习
+## 9 动手练习
 
 ### 练习 1：基础练习 —— 泛型盒子
 
@@ -905,7 +905,7 @@ public class Cache<K, V> {
 
 ---
 
-## 20.10 核心知识点
+## 10 核心知识点
 
 | 知识点 | 说明 |
 |--------|------|

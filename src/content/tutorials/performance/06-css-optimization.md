@@ -18,7 +18,7 @@ description: "掌握 CSS 加载优化、选择器优化、动画性能优化"
 
 ---
 
-## 6.1 为什么需要 CSS 性能优化？
+## 1 为什么需要 CSS 性能优化？
 
 ### 痛点分析
 
@@ -48,7 +48,7 @@ CSS 优化方向：
 
 ---
 
-## 6.2 CSS 加载优化
+## 2 CSS 加载优化
 
 ### 关键 CSS 内联
 
@@ -100,7 +100,7 @@ CSS 优化方向：
 
 ---
 
-## 6.3 CSS 选择器优化
+## 3 CSS 选择器优化
 
 ### 选择器性能
 
@@ -143,7 +143,7 @@ CSS 优化方向：
 
 ---
 
-## 6.4 减少重排重绘
+## 4 减少重排重绘
 
 ### 重排（Reflow）
 
@@ -214,7 +214,7 @@ element.style.width = styles[styles.length - 1];  // 只触发 1 次重排
 
 ---
 
-## 6.5 动画性能优化
+## 5 动画性能优化
 
 ### 使用 will-change
 
@@ -265,7 +265,7 @@ element.style.width = styles[styles.length - 1];  // 只触发 1 次重排
 
 ---
 
-## 6.6 CSS  containment
+## 6 CSS  containment
 
 ### contain 属性
 
@@ -293,7 +293,7 @@ element.style.width = styles[styles.length - 1];  // 只触发 1 次重排
 
 ---
 
-## 6.7 核心知识点总结
+## 7 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -306,7 +306,7 @@ element.style.width = styles[styles.length - 1];  // 只触发 1 次重排
 
 ---
 
-## 6.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1："CSS 选择器怎么写都行"
 
@@ -350,7 +350,7 @@ element.style.width = styles[styles.length - 1];  // 只触发 1 次重排
 
 ---
 
-## 6.9 动手练习
+## 9 动手练习
 
 ### 练习 1：基础练习 - 关键 CSS 内联
 

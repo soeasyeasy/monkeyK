@@ -18,7 +18,7 @@ description: "镜像搜索、拉取、查看、删除、标签管理"
 
 ---
 
-## 3.1 为什么需要管理镜像？
+## 1 为什么需要管理镜像？
 
 ### 痛点分析
 
@@ -38,7 +38,7 @@ description: "镜像搜索、拉取、查看、删除、标签管理"
 
 ---
 
-## 3.2 搜索镜像
+## 2 搜索镜像
 
 ### 使用 Docker Hub 网站
 
@@ -81,7 +81,7 @@ docker search --limit 5 nginx
 
 ---
 
-## 3.3 拉取镜像
+## 3 拉取镜像
 
 ### 基础拉取
 
@@ -125,7 +125,7 @@ docker pull nginx
 
 ---
 
-## 3.4 查看镜像
+## 4 查看镜像
 
 ### 列出本地镜像
 
@@ -194,7 +194,7 @@ docker history --format "table {{.ID}}\t{{.Size}}" nginx:latest
 
 ---
 
-## 3.5 镜像标签管理
+## 5 镜像标签管理
 
 ### 标签的作用
 
@@ -236,7 +236,7 @@ docker rmi nginx:latest
 
 ---
 
-## 3.6 删除镜像
+## 6 删除镜像
 
 ### 删除单个镜像
 
@@ -297,7 +297,7 @@ docker system prune -a --volumes
 
 ---
 
-## 3.7 镜像的导入与导出
+## 7 镜像的导入与导出
 
 ### 导出镜像
 
@@ -336,7 +336,7 @@ gunzip -c nginx.tar.gz | docker load
 
 ---
 
-## 3.8 构建镜像基础
+## 8 构建镜像基础
 
 ### 使用 docker commit
 
@@ -367,7 +367,7 @@ docker run -it my-ubuntu-with-nginx:v1 nginx -v
 
 ---
 
-## 3.9 核心知识点总结
+## 9 核心知识点总结
 
 | 操作 | 命令 | 说明 |
 | --- | --- | --- |
@@ -385,7 +385,7 @@ docker run -it my-ubuntu-with-nginx:v1 nginx -v
 
 ---
 
-## 3.10 新手常见误区
+## 10 新手常见误区
 
 ### 误区 1："删除标签就是删除镜像"
 
@@ -405,7 +405,7 @@ docker run -it my-ubuntu-with-nginx:v1 nginx -v
 
 ---
 
-## 3.11 动手练习
+## 11 动手练习
 
 ### 练习 1：镜像搜索与拉取
 

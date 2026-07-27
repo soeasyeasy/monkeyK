@@ -18,7 +18,7 @@ description: "掌握 cherry-pick、bisect、reflog 等高级功能，成为 Git 
 
 ---
 
-## 16.1 为什么需要这些高级技巧？
+## 1 为什么需要这些高级技巧？
 
 ### 痛点分析
 
@@ -43,7 +43,7 @@ description: "掌握 cherry-pick、bisect、reflog 等高级功能，成为 Git 
 
 ---
 
-## 16.2 git cherry-pick：精确摘取提交
+## 2 git cherry-pick：精确摘取提交
 
 ### 概念解释
 
@@ -96,7 +96,7 @@ git cherry-pick --abort
 
 ---
 
-## 16.3 git bisect：二分查找定位 Bug
+## 3 git bisect：二分查找定位 Bug
 
 ### 概念解释
 
@@ -150,7 +150,7 @@ git bisect run npm test
 
 ---
 
-## 16.4 git reflog：后悔药
+## 4 git reflog：后悔药
 
 ### 概念解释
 
@@ -194,7 +194,7 @@ git cherry-pick i7j8k9l
 
 ---
 
-## 16.5 git blame：谁改了这行？
+## 5 git blame：谁改了这行？
 
 ### 概念解释
 
@@ -222,7 +222,7 @@ git blame -L 10,20 src/index.js
 
 ---
 
-## 16.6 实用搜索和统计
+## 6 实用搜索和统计
 
 ### 搜索提交
 
@@ -274,7 +274,7 @@ git shortlog -n
 
 ---
 
-## 16.7 别名配置：让命令更短
+## 7 别名配置：让命令更短
 
 每次打 `git checkout`、`git status` 这些命令太长了，配置别名可以大幅提升效率。
 
@@ -305,7 +305,7 @@ git unstage file   # 等同于 git reset HEAD -- file
 
 ---
 
-## 16.8 性能优化
+## 8 性能优化
 
 ### 清理仓库
 
@@ -338,7 +338,7 @@ git update-index --no-assume-unchanged config.json
 
 ---
 
-## 16.9 高级技巧对比总结
+## 9 高级技巧对比总结
 
 | 命令 | 用途 | 类比 |
 | --- | --- | --- |
@@ -354,7 +354,7 @@ git update-index --no-assume-unchanged config.json
 
 ---
 
-## 16.10 核心知识点总结
+## 10 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -373,7 +373,7 @@ git update-index --no-assume-unchanged config.json
 
 ---
 
-## 16.11 新手常见误区
+## 11 新手常见误区
 
 ### 误区 1："cherry-pick 会移动原来的提交"
 
@@ -397,7 +397,7 @@ git update-index --no-assume-unchanged config.json
 
 ---
 
-## 16.12 动手练习
+## 12 动手练习
 
 ### 练习 1（基础）：cherry-pick
 

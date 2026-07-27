@@ -24,7 +24,7 @@ description: "深入理解 Spring IoC 容器的底层实现原理，掌握容器
 
 ---
 
-## 1.1 为什么需要 IoC 容器？
+## 1 为什么需要 IoC 容器？
 
 ### 痛点分析
 
@@ -89,7 +89,7 @@ public class Restaurant {
 
 ---
 
-## 1.2 核心原理：IoC 容器的本质
+## 2 核心原理：IoC 容器的本质
 
 ### 概念解释
 
@@ -209,7 +209,7 @@ public interface ApplicationContext extends
 
 ---
 
-## 1.3 容器启动流程：refresh() 12 步详解
+## 3 容器启动流程：refresh() 12 步详解
 
 ### 核心源码位置
 
@@ -667,7 +667,7 @@ protected void finishRefresh() {
 
 ---
 
-## 1.4 BeanDefinition 注册中心
+## 4 BeanDefinition 注册中心
 
 ### 什么是 BeanDefinition？
 
@@ -769,7 +769,7 @@ public class DefaultListableBeanFactory extends ... implements BeanDefinitionReg
 
 ---
 
-## 1.5 基础用法：手动创建 IoC 容器
+## 5 基础用法：手动创建 IoC 容器
 
 ### 使用 ClassPathXmlApplicationContext
 
@@ -897,7 +897,7 @@ public class WebContainerDemo {
 
 ---
 
-## 1.6 对比表格
+## 6 对比表格
 
 ### 容器类型对比
 
@@ -926,7 +926,7 @@ public class WebContainerDemo {
 
 ---
 
-## 1.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区 1："BeanFactory 和 ApplicationContext 是一样的"
 
@@ -1029,7 +1029,7 @@ public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 
 ---
 
-## 1.8 动手练习
+## 8 动手练习
 
 ### 练习 1：基础练习 - 手动创建 IoC 容器
 

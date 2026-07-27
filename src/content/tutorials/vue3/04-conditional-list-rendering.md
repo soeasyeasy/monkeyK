@@ -22,7 +22,7 @@ description: '深入掌握 v-if、v-show、v-for 的原理与最佳实践'
 
 ---
 
-## 4.1 为什么需要条件渲染和列表渲染？
+## 1 为什么需要条件渲染和列表渲染？
 
 ### 痛点分析
 
@@ -82,7 +82,7 @@ const user = ref({ name: '张三' })
 
 ---
 
-## 4.2 核心原理
+## 2 核心原理
 
 ### v-if vs v-show 的底层差异
 
@@ -126,7 +126,7 @@ const user = ref({ name: '张三' })
 
 ---
 
-## 4.3 基础用法
+## 3 基础用法
 
 ### v-if 条件渲染
 
@@ -195,7 +195,7 @@ const isVisible = ref(true)
 
 ---
 
-## 4.4 进阶用法
+## 4 进阶用法
 
 ### v-for 列表渲染
 
@@ -297,7 +297,7 @@ const activeTodos = computed(() => todos.value.filter((t) => !t.done))
 
 ---
 
-## 4.5 核心知识点总结
+## 5 核心知识点总结
 
 | 指令        | 用途       | 特点                         | 适用场景     |
 | ----------- | ---------- | ---------------------------- | ------------ |
@@ -309,7 +309,7 @@ const activeTodos = computed(() => todos.value.filter((t) => !t.done))
 
 ---
 
-## 4.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："v-if 和 v-show 是一样的"
 
@@ -374,7 +374,7 @@ const activeTodos = computed(() => todos.value.filter((t) => !t.done))
 
 ---
 
-## 4.7 动手练习
+## 7 动手练习
 
 ### 练习 1：成绩评级
 

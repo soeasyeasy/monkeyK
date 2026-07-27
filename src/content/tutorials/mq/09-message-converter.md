@@ -18,7 +18,7 @@ description: "掌握 JSON 消息转换、对象序列化、消息格式设计"
 
 ---
 
-## 9.1 为什么需要消息转换器？
+## 1 为什么需要消息转换器？
 
 ### 痛点分析
 
@@ -60,7 +60,7 @@ public void receive(Order order) {
 
 ---
 
-## 9.2 常用消息转换器
+## 2 常用消息转换器
 
 ### Jackson2JsonMessageConverter
 
@@ -111,7 +111,7 @@ public MessageConverter xmlMessageConverter() {
 
 ---
 
-## 9.3 使用 Jackson2JsonMessageConverter
+## 3 使用 Jackson2JsonMessageConverter
 
 ### 配置转换器
 
@@ -188,7 +188,7 @@ public class OrderConsumer {
 
 ---
 
-## 9.4 自定义消息格式
+## 4 自定义消息格式
 
 ### 设计消息结构
 
@@ -252,7 +252,7 @@ public class OrderConsumer {
 
 ---
 
-## 9.5 处理序列化异常
+## 5 处理序列化异常
 
 ### 全局异常处理
 
@@ -294,7 +294,7 @@ public void receiveOrder(Order order) {
 
 ---
 
-## 9.6 消息版本控制
+## 6 消息版本控制
 
 ### 问题
 
@@ -339,7 +339,7 @@ public void receiveOrder(Message message) {
 
 ---
 
-## 9.7 核心知识点总结
+## 7 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -351,7 +351,7 @@ public void receiveOrder(Message message) {
 
 ---
 
-## 9.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1："JSON 格式一定比 XML 好"
 
@@ -367,7 +367,7 @@ public void receiveOrder(Message message) {
 
 ---
 
-## 9.9 动手练习
+## 9 动手练习
 
 ### 练习 1：基础练习
 

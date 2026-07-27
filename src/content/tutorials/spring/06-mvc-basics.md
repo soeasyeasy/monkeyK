@@ -18,7 +18,7 @@ description: "使用 Spring MVC 构建 Web 应用，掌握控制器和请求处�
 
 ---
 
-## 6.1 为什么需要 Spring MVC？
+## 1 为什么需要 Spring MVC？
 
 ### 痛点分析
 
@@ -82,7 +82,7 @@ public class UserController {
 
 ---
 
-## 6.2 核心原理
+## 2 核心原理
 
 ### 6.2.1 Spring MVC 架构
 
@@ -160,7 +160,7 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 
 ---
 
-## 6.3 基础用法
+## 3 基础用法
 
 ### 6.3.1 创建控制器
 
@@ -383,7 +383,7 @@ public String createUser(User user, RedirectAttributes attributes) {
 
 ---
 
-## 6.4 进阶用法
+## 4 进阶用法
 
 ### 6.4.1 模型数据
 
@@ -477,7 +477,7 @@ public class UserController {
 
 ---
 
-## 6.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -498,7 +498,7 @@ public class UserController {
 
 ---
 
-## 6.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："@Controller 和 @RestController 是一样的"
 
@@ -557,7 +557,7 @@ public String getUser(
 
 ---
 
-## 6.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础练习 - 简单控制器
 

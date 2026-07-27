@@ -19,7 +19,7 @@ description: "基于角色的访问控制、ServiceAccount、权限管理"
 
 ---
 
-## 13.1 为什么需要 RBAC？
+## 1 为什么需要 RBAC？
 
 ### 痛点分析
 
@@ -58,7 +58,7 @@ RBAC（Role-Based Access Control，基于角色的访问控制）专门解决这
 
 ---
 
-## 13.2 ServiceAccount 基础
+## 2 ServiceAccount 基础
 
 ### 什么是 ServiceAccount？
 
@@ -139,7 +139,7 @@ cat /var/run/secrets/kubernetes.io/serviceaccount/token
 
 ---
 
-## 13.3 Role 和 ClusterRole
+## 3 Role 和 ClusterRole
 
 ### Role（命名空间级别）
 
@@ -242,7 +242,7 @@ kubectl get clusterrole
 
 ---
 
-## 13.4 RoleBinding 和 ClusterRoleBinding
+## 4 RoleBinding 和 ClusterRoleBinding
 
 ### RoleBinding（命名空间级别绑定）
 
@@ -341,7 +341,7 @@ roleRef:
 
 ---
 
-## 13.5 默认 ClusterRole
+## 5 默认 ClusterRole
 
 Kubernetes 提供了四个默认的 ClusterRole：
 
@@ -385,7 +385,7 @@ kubectl auth can-i --list --as=ops-user
 
 ---
 
-## 13.6 自定义 Role 示例
+## 6 自定义 Role 示例
 
 ### 示例 1：开发人员权限
 
@@ -450,7 +450,7 @@ rules:
 
 ---
 
-## 13.7 权限验证
+## 7 权限验证
 
 ### 检查权限
 
@@ -482,7 +482,7 @@ kubectl auth can-i create deployments --as=dev-user --namespace=dev
 
 ---
 
-## 13.8 对比表格
+## 8 对比表格
 
 | 特性 | Role | ClusterRole | RoleBinding | ClusterRoleBinding |
 |------|------|-------------|-------------|-------------------|
@@ -500,7 +500,7 @@ kubectl auth can-i create deployments --as=dev-user --namespace=dev
 
 ---
 
-## 13.9 新手常见误区
+## 9 新手常见误区
 
 ### 误区 1："Role 和 ClusterRole 可以混用"
 
@@ -562,7 +562,7 @@ roleRef:
 
 ---
 
-## 13.10 动手练习
+## 10 动手练习
 
 ### 练习 1：创建只读 Role
 

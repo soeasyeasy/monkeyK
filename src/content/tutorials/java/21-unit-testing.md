@@ -19,7 +19,7 @@ description: 'JUnit 5、断言、测试生命周期、Mock 基础'
 
 ---
 
-## 21.1 为什么需要单元测试？
+## 1 为什么需要单元测试？
 
 ### 痛点分析
 
@@ -76,7 +76,7 @@ public class CalculatorTest {
 
 ---
 
-## 21.2 JUnit 5 基础
+## 2 JUnit 5 基础
 
 ### 什么是 JUnit 5？
 
@@ -154,7 +154,7 @@ public class MyTest { }
 
 ---
 
-## 21.3 测试注解
+## 3 测试注解
 
 ### 核心注解
 
@@ -287,7 +287,7 @@ public class UserServiceTest {
 
 ---
 
-## 21.4 断言方法
+## 4 断言方法
 
 ### 基本断言
 
@@ -415,7 +415,7 @@ void testGroupedAssertions() {
 
 ---
 
-## 21.5 参数化测试
+## 5 参数化测试
 
 ### 基本参数化测试
 
@@ -493,7 +493,7 @@ static Stream<User> provideUsers() {
 
 ---
 
-## 21.6 测试组织
+## 6 测试组织
 
 ### 测试套件
 
@@ -546,7 +546,7 @@ mvn test -DexcludedGroups="slow"
 
 ---
 
-## 21.7 Mock 基础
+## 7 Mock 基础
 
 ### 什么是 Mock？
 
@@ -717,7 +717,7 @@ void testArgumentMatchers() {
 
 ---
 
-## 21.8 测试最佳实践
+## 8 测试最佳实践
 
 ### 1. 测试命名规范
 
@@ -839,7 +839,7 @@ void testArrayBoundary() {
 
 ---
 
-## 21.9 新手常见误区
+## 9 新手常见误区
 
 ### 误区 1：测试代码不需要维护
 
@@ -990,7 +990,7 @@ void testWithReasonableMocks() {
 
 ---
 
-## 21.10 动手练习
+## 10 动手练习
 
 ### 练习 1：基础练习 - 编写计算器测试
 
@@ -1207,7 +1207,7 @@ public class StringUtilsTest {
 
 ---
 
-## 21.11 核心知识点
+## 11 核心知识点
 
 | 知识点 | 说明 |
 |--------|------|

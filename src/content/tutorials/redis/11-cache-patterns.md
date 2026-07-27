@@ -19,7 +19,7 @@ description: "Cache Aside、Read/Write Through、Write Behind 模式"
 
 ---
 
-## 11.1 为什么需要缓存设计模式？
+## 1 为什么需要缓存设计模式？
 
 ### 痛点分析
 
@@ -43,7 +43,7 @@ description: "Cache Aside、Read/Write Through、Write Behind 模式"
 
 ---
 
-## 11.2 Cache Aside 模式
+## 2 Cache Aside 模式
 
 ### 概念解释
 
@@ -121,7 +121,7 @@ public void updateUser(User user) {
 
 ---
 
-## 11.3 Read Through 模式
+## 3 Read Through 模式
 
 ### 概念解释
 
@@ -160,7 +160,7 @@ public User getUser(Long userId) {
 
 ---
 
-## 11.4 Write Through 模式
+## 4 Write Through 模式
 
 ### 概念解释
 
@@ -193,7 +193,7 @@ public void updateUser(User user) {
 
 ---
 
-## 11.5 Write Behind 模式
+## 5 Write Behind 模式
 
 ### 概念解释
 
@@ -238,7 +238,7 @@ public void flushToDatabase() {
 
 ---
 
-## 11.6 模式对比与选择
+## 6 模式对比与选择
 
 ### 对比表格
 
@@ -267,7 +267,7 @@ public void flushToDatabase() {
 
 ---
 
-## 11.7 缓存更新策略
+## 7 缓存更新策略
 
 ### 过期时间设计
 
@@ -304,7 +304,7 @@ public void updateUser(User user) {
 
 ---
 
-## 11.8 核心知识点总结
+## 8 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -316,7 +316,7 @@ public void updateUser(User user) {
 
 ---
 
-## 11.9 新手常见误区
+## 9 新手常见误区
 
 ### 误区 1："先删除缓存，再更新数据库"
 
@@ -338,7 +338,7 @@ public void updateUser(User user) {
 
 ---
 
-## 11.10 动手练习
+## 10 动手练习
 
 ### 练习 1：Cache Aside 实现
 

@@ -18,7 +18,7 @@ description: "TypeScript 为数组提供了更精确的类型定义，元组则�
 
 ---
 
-## 2.1 为什么需要数组类型？
+## 1 为什么需要数组类型？
 
 ### 痛点分析
 
@@ -47,7 +47,7 @@ console.log(numbers[0].toFixed(2))  // ✅ 安全！
 
 ---
 
-## 2.2 核心原理
+## 2 核心原理
 
 ### 数组类型 vs 元组类型
 
@@ -65,7 +65,7 @@ console.log(numbers[0].toFixed(2))  // ✅ 安全！
 
 ---
 
-## 2.3 数组类型详解
+## 3 数组类型详解
 
 ### 方式一：类型 + 方括号
 
@@ -124,7 +124,7 @@ const sum: number = nums.reduce(
 
 ---
 
-## 2.4 元组类型详解
+## 4 元组类型详解
 
 ### 基本元组
 
@@ -167,7 +167,7 @@ const readonlyTuple: readonly [string, number] = ['fixed', 100]
 
 ---
 
-## 2.5 数组 vs 元组对比
+## 5 数组 vs 元组对比
 
 | 特性 | 数组 | 元组 |
 | --- | --- | --- |
@@ -180,7 +180,7 @@ const readonlyTuple: readonly [string, number] = ['fixed', 100]
 
 ---
 
-## 2.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："元组可以随意添加元素"
 
@@ -239,7 +239,7 @@ const doubled = readonlyNums.map(n => n * 2)
 
 ---
 
-## 2.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础练习
 

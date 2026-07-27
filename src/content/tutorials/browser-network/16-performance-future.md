@@ -18,7 +18,7 @@ description: "加载优化、渲染优化、Service Worker、PWA、HTTP/3、Web 
 
 ---
 
-## 16.1 为什么需要性能优化？
+## 1 为什么需要性能优化？
 
 ### 痛点分析：慢的代价
 
@@ -49,7 +49,7 @@ description: "加载优化、渲染优化、Service Worker、PWA、HTTP/3、Web 
 
 ---
 
-## 16.2 核心原理
+## 2 核心原理
 
 ### 16.2.1 性能指标：怎么衡量"快不快"
 
@@ -109,7 +109,7 @@ TLS 握手（如果是 HTTPS）
 
 ---
 
-## 16.3 加载优化
+## 3 加载优化
 
 ### 16.3.1 资源压缩
 
@@ -220,7 +220,7 @@ if (needChart) {
 
 ---
 
-## 16.4 渲染优化
+## 4 渲染优化
 
 ### 16.4.1 关键渲染路径
 
@@ -351,7 +351,7 @@ function onScroll(event) {
 
 ---
 
-## 16.5 Service Worker
+## 5 Service Worker
 
 Service Worker 是运行在浏览器后台的脚本，它可以拦截网络请求、管理缓存、推送通知。它是 PWA（渐进式 Web 应用）的核心技术。
 
@@ -482,7 +482,7 @@ self.addEventListener('fetch', (event) => {
 
 ---
 
-## 16.6 PWA（渐进式 Web 应用）
+## 6 PWA（渐进式 Web 应用）
 
 PWA 不是某一项具体技术，而是一种理念：用 Web 技术做出接近原生 App 的体验。
 
@@ -545,7 +545,7 @@ Manifest 是一个 JSON 文件，告诉浏览器你的应用信息（名称、�
 
 ---
 
-## 16.7 HTTP/3 与 QUIC
+## 7 HTTP/3 与 QUIC
 
 HTTP/3 是下一代 HTTP 协议，基于 QUIC 协议（由 Google 开发）。它解决了 HTTP/2 的一些痛点。
 
@@ -584,7 +584,7 @@ server {
 
 ---
 
-## 16.8 Web 未来趋势
+## 8 Web 未来趋势
 
 ### 16.8.1 WebAssembly（Wasm）
 
@@ -675,7 +675,7 @@ customElements.define('my-button', MyButton)
 
 ---
 
-## 16.9 性能监控
+## 9 性能监控
 
 ### 16.9.1 Performance API
 
@@ -734,7 +734,7 @@ navigator.sendBeacon('/analytics', JSON.stringify(metrics))
 
 ---
 
-## 16.10 核心知识点总结
+## 10 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -752,7 +752,7 @@ navigator.sendBeacon('/analytics', JSON.stringify(metrics))
 
 ---
 
-## 16.11 新手常见误区
+## 11 新手常见误区
 
 ### 误区 1："代码分割越细越好，拆成几百个小文件"
 
@@ -779,7 +779,7 @@ navigator.sendBeacon('/analytics', JSON.stringify(metrics))
 
 ---
 
-## 16.12 动手练习
+## 12 动手练习
 
 ### 练习 1（基础）：优化一个页面的加载性能
 

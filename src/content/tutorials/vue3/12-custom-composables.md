@@ -18,7 +18,7 @@ description: '学习如何封装可复用的组合式函数（Composables），�
 
 ---
 
-## 12.1 为什么需要组合式函数？
+## 1 为什么需要组合式函数？
 
 ### 痛点分析
 
@@ -90,7 +90,7 @@ const { count, increment, decrement, reset } = useCounter(10)
 
 ---
 
-## 12.2 核心原理
+## 2 核心原理
 
 ### 什么是组合式函数？
 
@@ -173,7 +173,7 @@ const { count } = useCounter()
 
 ---
 
-## 12.3 基础用法：6 个常用组合式函数
+## 3 基础用法：6 个常用组合式函数
 
 ### 1. useCounter - 计数器
 
@@ -654,7 +654,7 @@ const isDesktop = useMediaQuery('(min-width: 1025px)')
 
 ---
 
-## 12.4 进阶用法：组合多个 Hooks
+## 4 进阶用法：组合多个 Hooks
 
 组合式函数最强大的地方在于 **可以互相组合**。一个组合式函数可以调用其他组合式函数。
 
@@ -728,7 +728,7 @@ const { user, loading, isLoggedIn, logout } = useUser()
 
 ---
 
-## 12.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点     | 说明                                           |
 | ---------- | ---------------------------------------------- |
@@ -742,7 +742,7 @@ const { user, loading, isLoggedIn, logout } = useUser()
 
 ---
 
-## 12.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："组合式函数必须用在 `<script setup>` 里"
 
@@ -790,7 +790,7 @@ const { count } = useCounter()
 
 ---
 
-## 12.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础练习 - 封装 useToggle
 

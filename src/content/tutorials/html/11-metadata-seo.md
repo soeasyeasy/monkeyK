@@ -18,7 +18,7 @@ description: "使用 meta 标签、Open Graph、结构化数据优化搜索引�
 
 ---
 
-## 11.1 为什么需要元数据？
+## 1 为什么需要元数据？
 
 ### 痛点分析
 
@@ -68,7 +68,7 @@ description: "使用 meta 标签、Open Graph、结构化数据优化搜索引�
 
 ---
 
-## 11.2 核心原理
+## 2 核心原理
 
 ### 概念解释
 
@@ -93,7 +93,7 @@ description: "使用 meta 标签、Open Graph、结构化数据优化搜索引�
 
 ---
 
-## 11.3 基础用法
+## 3 基础用法
 
 ### 必备元数据
 
@@ -161,7 +161,7 @@ description: "使用 meta 标签、Open Graph、结构化数据优化搜索引�
 
 ---
 
-## 11.4 Open Graph 协议
+## 4 Open Graph 协议
 
 ### 什么是 Open Graph？
 
@@ -206,7 +206,7 @@ Open Graph（OG）是 Facebook 推出的协议，用于控制页面在社交平�
 
 ---
 
-## 11.5 Twitter Card
+## 5 Twitter Card
 
 ### 什么是 Twitter Card？
 
@@ -247,7 +247,7 @@ Twitter Card 是 Twitter 推出的协议，类似于 Open Graph，专门用于 T
 
 ---
 
-## 11.6 结构化数据
+## 6 结构化数据
 
 ### 什么是结构化数据？
 
@@ -333,7 +333,7 @@ Twitter Card 是 Twitter 推出的协议，类似于 Open Graph，专门用于 T
 
 ---
 
-## 11.7 SEO 最佳实践
+## 7 SEO 最佳实践
 
 ### 标题优化
 
@@ -374,7 +374,7 @@ Twitter Card 是 Twitter 推出的协议，类似于 Open Graph，专门用于 T
 
 ---
 
-## 11.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1："关键词越多越好"
 
@@ -459,7 +459,7 @@ Twitter Card 是 Twitter 推出的协议，类似于 Open Graph，专门用于 T
 
 ---
 
-## 11.9 动手练习
+## 9 动手练习
 
 ### 练习 1：基础练习
 

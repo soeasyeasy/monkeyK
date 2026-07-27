@@ -19,7 +19,7 @@ description: "INNER JOIN、LEFT JOIN、RIGHT JOIN、FULL JOIN、自连接"
 
 ---
 
-## 7.1 为什么需要连接查询？
+## 1 为什么需要连接查询？
 
 ### 痛点分析
 
@@ -60,7 +60,7 @@ INNER JOIN orders o ON u.id = o.user_id;
 
 ---
 
-## 7.2 核心原理
+## 2 核心原理
 
 ### 概念解释
 
@@ -87,7 +87,7 @@ INNER JOIN orders o ON u.id = o.user_id;
 
 ---
 
-## 7.3 基础用法
+## 3 基础用法
 
 ### 准备工作
 
@@ -233,7 +233,7 @@ CROSS JOIN departments d;
 
 ---
 
-## 7.4 进阶用法
+## 4 进阶用法
 
 ### 多表连接
 
@@ -331,7 +331,7 @@ WHERE e.salary > (
 
 ---
 
-## 7.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -345,7 +345,7 @@ WHERE e.salary > (
 
 ---
 
-## 7.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："LEFT JOIN 和 RIGHT JOIN 可以互换"
 
@@ -399,7 +399,7 @@ JOIN departments d ON e.department_id = d.id;
 
 ---
 
-## 7.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础连接
 

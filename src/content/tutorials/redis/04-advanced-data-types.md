@@ -19,7 +19,7 @@ description: "Bitmap、HyperLogLog、Geospatial、Stream"
 
 ---
 
-## 4.1 为什么需要高级数据类型？
+## 1 为什么需要高级数据类型？
 
 ### 痛点分析
 
@@ -43,7 +43,7 @@ description: "Bitmap、HyperLogLog、Geospatial、Stream"
 
 ---
 
-## 4.2 Bitmap 类型
+## 2 Bitmap 类型
 
 ### 概念解释
 
@@ -141,7 +141,7 @@ Bitmap 本质上是一个 String 类型，但通过位操作来存储数据，�
 
 ---
 
-## 4.3 HyperLogLog 类型
+## 3 HyperLogLog 类型
 
 ### 概念解释
 
@@ -197,7 +197,7 @@ OK
 
 ---
 
-## 4.4 Geospatial 类型
+## 4 Geospatial 类型
 
 ### 概念解释
 
@@ -268,7 +268,7 @@ Geospatial 用于存储地理位置信息，支持距离计算和范围查询。
 
 ---
 
-## 4.5 Stream 类型
+## 5 Stream 类型
 
 ### 概念解释
 
@@ -361,7 +361,7 @@ OK
 
 ---
 
-## 4.6 核心知识点总结
+## 6 核心知识点总结
 
 | 类型 | 用途 | 内存占用 | 特点 |
 | --- | --- | --- | --- |
@@ -372,7 +372,7 @@ OK
 
 ---
 
-## 4.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区 1："Bitmap 可以存储任意值"
 
@@ -392,7 +392,7 @@ OK
 
 ---
 
-## 4.8 动手练习
+## 8 动手练习
 
 ### 练习 1：Bitmap 签到统计
 

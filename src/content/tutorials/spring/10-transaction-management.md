@@ -19,7 +19,7 @@ description: "掌握声明式事务、事务传播行为和隔离级别"
 
 ---
 
-## 10.1 为什么需要事务？
+## 1 为什么需要事务？
 
 ### 痛点分析
 
@@ -71,7 +71,7 @@ public void transfer(Long fromId, Long toId, BigDecimal amount) {
 
 ---
 
-## 10.2 核心原理
+## 2 核心原理
 
 ### 10.2.1 事务的 ACID 特性
 
@@ -112,7 +112,7 @@ Spring 事务基于 AOP 实现：
 
 ---
 
-## 10.3 基础用法
+## 3 基础用法
 
 ### 10.3.1 启用事务管理
 
@@ -209,7 +209,7 @@ public class UserService {
 
 ---
 
-## 10.4 进阶用法
+## 4 进阶用法
 
 ### 10.4.1 事务传播行为
 
@@ -316,7 +316,7 @@ public class ReportService {
 
 ---
 
-## 10.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -331,7 +331,7 @@ public class ReportService {
 
 ---
 
-## 10.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："@Transactional 可以加在任何方法上"
 
@@ -376,7 +376,7 @@ public class MyService { // 没有 @Service
 
 ---
 
-## 10.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础练习 - 转账事务
 

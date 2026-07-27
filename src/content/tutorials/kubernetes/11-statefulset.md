@@ -20,7 +20,7 @@ description: "有状态应用部署、稳定网络标识、持久化存储"
 
 ---
 
-## 11.1 Deployment vs StatefulSet
+## 1 Deployment vs StatefulSet
 
 ### 痛点分析
 
@@ -59,7 +59,7 @@ StatefulSet 专门用于部署有状态应用，它提供：
 
 ---
 
-## 11.2 StatefulSet 基础用法
+## 2 StatefulSet 基础用法
 
 ### 基本结构
 
@@ -152,7 +152,7 @@ kubectl get pvc
 
 ---
 
-## 11.3 Pod 命名规则
+## 3 Pod 命名规则
 
 StatefulSet 的 Pod 命名遵循固定规则：
 
@@ -202,7 +202,7 @@ kubectl exec mysql-0 -- nslookup mysql-1.mysql-headless
 
 ---
 
-## 11.4 有序部署和扩缩容
+## 4 有序部署和扩缩容
 
 ### 有序部署
 
@@ -267,7 +267,7 @@ kubectl get pods -w
 
 ---
 
-## 11.5 VolumeClaimTemplates
+## 5 VolumeClaimTemplates
 
 VolumeClaimTemplates 是 StatefulSet 的核心特性，它为每个 Pod 自动创建独立的 PVC。
 
@@ -323,7 +323,7 @@ kubectl describe pod mysql-1 | grep -A 5 "Volumes:"
 
 ---
 
-## 11.6 更新策略
+## 6 更新策略
 
 StatefulSet 支持两种更新策略：
 
@@ -409,7 +409,7 @@ kubectl patch statefulset mysql -p '{"spec":{"updateStrategy":{"rollingUpdate":{
 
 ---
 
-## 11.7 常见使用场景
+## 7 常见使用场景
 
 ### 场景 1：MySQL 主从复制
 
@@ -547,7 +547,7 @@ spec:
 
 ---
 
-## 11.8 对比表格
+## 8 对比表格
 
 | 特性 | Deployment | StatefulSet |
 |------|------------|-------------|
@@ -561,7 +561,7 @@ spec:
 
 ---
 
-## 11.9 新手常见误区
+## 9 新手常见误区
 
 ### 误区 1："StatefulSet 比 Deployment 更强大，应该优先使用"
 
@@ -595,7 +595,7 @@ kubectl delete pvc mysql-data-mysql-2
 
 ---
 
-## 11.10 动手练习
+## 10 动手练习
 
 ### 练习 1：创建基础 StatefulSet
 

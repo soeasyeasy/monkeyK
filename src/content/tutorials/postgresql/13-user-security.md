@@ -19,7 +19,7 @@ description: "CREATE USER、GRANT、REVOKE、角色管理、SSL 连接"
 
 ---
 
-## 13.1 为什么需要用户权限管理？
+## 1 为什么需要用户权限管理？
 
 ### 痛点分析
 
@@ -60,7 +60,7 @@ psql -U app_user -d mydb
 
 ---
 
-## 13.2 核心原理
+## 2 核心原理
 
 ### 概念解释
 
@@ -98,7 +98,7 @@ psql -U app_user -d mydb
 
 ---
 
-## 13.3 基础用法
+## 3 基础用法
 
 ### 创建用户
 
@@ -187,7 +187,7 @@ SELECT session_user;
 
 ---
 
-## 13.4 进阶用法
+## 4 进阶用法
 
 ### 角色继承
 
@@ -275,7 +275,7 @@ sudo systemctl restart postgresql
 
 ---
 
-## 13.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -291,7 +291,7 @@ sudo systemctl restart postgresql
 
 ---
 
-## 13.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："所有应用都使用 postgres 用户"
 
@@ -353,7 +353,7 @@ WHERE grantor = 'postgres';
 
 ---
 
-## 13.7 动手练习
+## 7 动手练习
 
 ### 练习 1：创建用户和角色
 

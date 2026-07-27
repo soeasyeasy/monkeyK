@@ -18,7 +18,7 @@ description: "整合 MyBatis 进行数据访问，掌握 Mapper 和动态 SQL"
 
 ---
 
-## 9.1 为什么需要 MyBatis？
+## 1 为什么需要 MyBatis？
 
 ### 痛点分析
 
@@ -88,7 +88,7 @@ public interface UserMapper {
 
 ---
 
-## 9.2 核心原理
+## 2 核心原理
 
 ### 9.2.1 MyBatis 架构
 
@@ -119,7 +119,7 @@ public interface UserMapper {
 
 ---
 
-## 9.3 基础用法
+## 3 基础用法
 
 ### 9.3.1 添加依赖
 
@@ -294,7 +294,7 @@ public class UserService {
 
 ---
 
-## 9.4 进阶用法
+## 4 进阶用法
 
 ### 9.4.1 动态 SQL
 
@@ -419,7 +419,7 @@ public class UserService {
 
 ---
 
-## 9.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -434,7 +434,7 @@ public class UserService {
 
 ---
 
-## 9.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："Mapper 接口需要实现类"
 
@@ -452,7 +452,7 @@ public class UserService {
 
 ---
 
-## 9.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础练习 - MyBatis CRUD
 

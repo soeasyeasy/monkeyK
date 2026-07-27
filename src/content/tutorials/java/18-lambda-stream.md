@@ -18,7 +18,7 @@ description: '函数式接口、Lambda 表达式、Stream 操作'
 
 ---
 
-## 14.1 为什么需要 Lambda 和 Stream？
+## 1 为什么需要 Lambda 和 Stream？
 
 ### 痛点分析
 
@@ -56,7 +56,7 @@ List<Student> passed = students.stream()
 
 ---
 
-## 14.2 核心原理
+## 2 核心原理
 
 ### Lambda 表达式
 
@@ -102,7 +102,7 @@ Stream 是对集合的链式操作，支持 filter、map、reduce 等操作。
 
 ---
 
-## 14.3 基础用法
+## 3 基础用法
 
 ### Lambda 表达式（逐行注释）
 
@@ -360,7 +360,7 @@ opt1.ifPresent(s -> System.out.println("值: " + s));
 
 ---
 
-## 14.4 高级用法
+## 4 高级用法
 
 ### flatMap：扁平化
 
@@ -451,7 +451,7 @@ System.out.println("并行: " + (System.currentTimeMillis() - t2) + "ms");
 
 ---
 
-## 14.5 新手常见误区
+## 5 新手常见误区
 
 ### 误区 1：Lambda 中修改外部变量
 
@@ -523,7 +523,7 @@ for (String item : list) {
 
 ---
 
-## 14.6 动手练习
+## 6 动手练习
 
 ### 练习 1：基础练习 —— 筛选偶数
 
@@ -646,7 +646,7 @@ public class WordCount {
 
 ---
 
-## 14.7 核心知识点
+## 7 核心知识点
 
 | 知识点        | 说明                                                      |
 | ------------- | --------------------------------------------------------- |

@@ -18,7 +18,7 @@ description: "深入理解生产者、消费者、Exchange、Queue、Binding 等
 
 ---
 
-## 2.1 为什么需要 Exchange？
+## 1 为什么需要 Exchange？
 
 ### 痛点分析
 
@@ -39,7 +39,7 @@ RabbitMQ 的设计哲学是：**生产者永远不直接把消息发到队列，
 
 ---
 
-## 2.2 核心概念详解
+## 2 核心概念详解
 
 ### 2.2.1 生产者（Producer）
 
@@ -146,7 +146,7 @@ channel.queueBind("order_queue", "order_exchange", "order.create");
 
 ---
 
-## 2.3 消息流转全流程
+## 3 消息流转全流程
 
 一条消息从生产者到消费者的完整路径：
 
@@ -168,7 +168,7 @@ channel.queueBind("order_queue", "order_exchange", "order.create");
 
 ---
 
-## 2.4 Virtual Host（虚拟主机）
+## 4 Virtual Host（虚拟主机）
 
 RabbitMQ 支持通过 **Virtual Host** 来隔离不同的应用。每个 vhost 有自己的 Exchange、Queue、用户权限，互不干扰。
 
@@ -184,7 +184,7 @@ rabbitmqctl set_permissions -p /myapp myuser ".*" ".*" ".*"
 
 ---
 
-## 2.5 Connection 与 Channel
+## 5 Connection 与 Channel
 
 | 概念 | 说明 |
 | --- | --- |
@@ -208,7 +208,7 @@ Connection conn2 = factory.newConnection(); // 浪费资源
 
 ---
 
-## 2.6 核心知识点总结
+## 6 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -223,7 +223,7 @@ Connection conn2 = factory.newConnection(); // 浪费资源
 
 ---
 
-## 2.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区 1："生产者直接发消息到队列"
 
@@ -243,7 +243,7 @@ Connection conn2 = factory.newConnection(); // 浪费资源
 
 ---
 
-## 2.8 动手练习
+## 8 动手练习
 
 ### 练习 1：概念理解
 

@@ -18,7 +18,7 @@ description: "掌握性能监控体系、Lighthouse 审计、DevTools 分析，�
 
 ---
 
-## 13.1 为什么需要性能监控？
+## 1 为什么需要性能监控？
 
 ### 痛点分析
 
@@ -49,7 +49,7 @@ description: "掌握性能监控体系、Lighthouse 审计、DevTools 分析，�
 
 ---
 
-## 13.2 性能监控体系
+## 2 性能监控体系
 
 ### 监控维度
 
@@ -149,7 +149,7 @@ function reportMetrics(metrics) {
 
 ---
 
-## 13.3 Lighthouse 性能审计
+## 3 Lighthouse 性能审计
 
 ### 使用方式
 
@@ -210,7 +210,7 @@ module.exports = {
 
 ---
 
-## 13.4 Chrome DevTools 性能分析
+## 4 Chrome DevTools 性能分析
 
 ### Performance 面板
 
@@ -261,7 +261,7 @@ fetch('/api/data')
 
 ---
 
-## 13.5 性能分析工具
+## 5 性能分析工具
 
 ### Web Vitals 扩展
 
@@ -299,7 +299,7 @@ onCLS(console.log);
 
 ---
 
-## 13.6 性能预算
+## 6 性能预算
 
 ### 设定预算
 
@@ -346,7 +346,7 @@ export default defineConfig({
 
 ---
 
-## 13.7 核心知识点
+## 7 核心知识点
 
 1. **监控体系**：建立完整的性能指标采集和上报机制
 2. **Lighthouse**：定期审计，自动化集成到 CI/CD

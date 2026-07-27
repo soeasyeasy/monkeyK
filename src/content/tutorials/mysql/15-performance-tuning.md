@@ -17,7 +17,7 @@ description: "慢查询分析、执行计划、索引优化、配置调优"
 
 ---
 
-## 15.1 为什么需要性能优化？
+## 1 为什么需要性能优化？
 
 ### 慢查询的痛苦
 
@@ -50,7 +50,7 @@ description: "慢查询分析、执行计划、索引优化、配置调优"
 
 ---
 
-## 15.2 慢查询日志
+## 2 慢查询日志
 
 ### 什么是慢查询日志？
 
@@ -107,7 +107,7 @@ mysqldumpslow -s t -t 10 /var/log/mysql/slow.log
 
 ---
 
-## 15.3 EXPLAIN 执行计划
+## 3 EXPLAIN 执行计划
 
 ### 什么是 EXPLAIN？
 
@@ -177,7 +177,7 @@ EXPLAIN SELECT id, name FROM users WHERE id = 1;
 
 ---
 
-## 15.4 SQL 优化技巧
+## 4 SQL 优化技巧
 
 ### 1. 避免 SELECT *
 
@@ -256,7 +256,7 @@ SELECT * FROM users WHERE name = 'john';
 
 ---
 
-## 15.5 索引优化
+## 5 索引优化
 
 ### 1. 选择合适的索引列
 
@@ -309,7 +309,7 @@ DROP INDEX idx_unused ON users;
 
 ---
 
-## 15.6 MySQL 配置调优
+## 6 MySQL 配置调优
 
 ### 1. innodb_buffer_pool_size
 
@@ -365,7 +365,7 @@ query_cache_size = 128M
 
 ---
 
-## 15.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区 1："索引越多越好"
 
@@ -389,7 +389,7 @@ query_cache_size = 128M
 
 ---
 
-## 15.8 动手练习
+## 8 动手练习
 
 ### 练习 1：使用 EXPLAIN 分析查询
 

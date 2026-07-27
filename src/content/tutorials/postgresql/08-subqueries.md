@@ -18,7 +18,7 @@ description: "标量子查询、列子查询、行子查询、相关子查询"
 
 ---
 
-## 8.1 为什么需要子查询？
+## 1 为什么需要子查询？
 
 ### 痛点分析
 
@@ -57,7 +57,7 @@ WHERE salary > (SELECT AVG(salary) FROM employees);
 
 ---
 
-## 8.2 核心原理
+## 2 核心原理
 
 ### 概念解释
 
@@ -84,7 +84,7 @@ WHERE salary > (SELECT AVG(salary) FROM employees);
 
 ---
 
-## 8.3 基础用法
+## 3 基础用法
 
 ### 准备工作
 
@@ -194,7 +194,7 @@ WHERE dept_avg.avg_salary > 15000;
 
 ---
 
-## 8.4 进阶用法
+## 4 进阶用法
 
 ### 相关子查询
 
@@ -255,7 +255,7 @@ WHERE id NOT IN (SELECT DISTINCT department_id FROM employees WHERE department_i
 
 ---
 
-## 8.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -271,7 +271,7 @@ WHERE id NOT IN (SELECT DISTINCT department_id FROM employees WHERE department_i
 
 ---
 
-## 8.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："子查询必须放在 WHERE 中"
 
@@ -338,7 +338,7 @@ WHERE salary > (
 
 ---
 
-## 8.7 动手练习
+## 7 动手练习
 
 ### 练习 1：标量子查询
 

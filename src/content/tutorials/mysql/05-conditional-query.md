@@ -18,7 +18,7 @@ description: "WHERE、ORDER BY、LIMIT、聚合函数"
 
 ---
 
-## 5.1 为什么需要条件查询和排序？
+## 1 为什么需要条件查询和排序？
 
 ### 痛点分析
 
@@ -48,7 +48,7 @@ description: "WHERE、ORDER BY、LIMIT、聚合函数"
 
 ---
 
-## 5.2 WHERE 条件查询
+## 2 WHERE 条件查询
 
 WHERE 子句用来筛选满足条件的记录。
 
@@ -85,7 +85,7 @@ SELECT * FROM students WHERE age <= 25;
 
 ---
 
-## 5.3 逻辑运算符
+## 3 逻辑运算符
 
 当需要多个条件组合时，使用逻辑运算符。
 
@@ -126,7 +126,7 @@ AND age > 20;
 
 ---
 
-## 5.4 高级条件查询
+## 4 高级条件查询
 
 ### BETWEEN 范围查询
 
@@ -185,7 +185,7 @@ SELECT * FROM students WHERE email LIKE 'abc%';
 
 ---
 
-## 5.5 ORDER BY 排序
+## 5 ORDER BY 排序
 
 ORDER BY 子句用来对查询结果进行排序。
 
@@ -234,7 +234,7 @@ LIMIT 10;
 
 ---
 
-## 5.6 LIMIT 分页查询
+## 6 LIMIT 分页查询
 
 LIMIT 子句用来限制查询结果的数量，常用于分页。
 
@@ -279,7 +279,7 @@ SELECT * FROM students LIMIT 10 OFFSET 20;
 
 ---
 
-## 5.7 聚合函数
+## 7 聚合函数
 
 聚合函数用来对一组值进行计算，返回单个值。
 
@@ -333,7 +333,7 @@ SELECT class, AVG(score) FROM students GROUP BY class;
 
 ---
 
-## 5.8 核心知识点总结
+## 8 核心知识点总结
 
 | 功能 | 语法 | 作用 |
 |-----|------|------|
@@ -351,7 +351,7 @@ SELECT class, AVG(score) FROM students GROUP BY class;
 
 ---
 
-## 5.9 新手常见误区
+## 9 新手常见误区
 
 ### 误区 1："WHERE 中可以使用聚合函数"
 
@@ -405,7 +405,7 @@ SELECT * FROM students LIMIT 10 OFFSET 0;
 
 ---
 
-## 5.10 动手练习
+## 10 动手练习
 
 ### 练习 1：基础条件查询
 

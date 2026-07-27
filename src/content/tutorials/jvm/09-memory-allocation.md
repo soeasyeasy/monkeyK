@@ -18,7 +18,7 @@ description: '对象分配、TLAB、内存分配担保、 Minor/Major GC'
 
 ---
 
-## 9.1 为什么需要内存分配策略？
+## 1 为什么需要内存分配策略？
 
 ### 痛点分析
 
@@ -38,7 +38,7 @@ JVM 采用**分代分配**策略，根据对象的生命周期特点，将堆分
 
 ---
 
-## 9.2 对象分配规则
+## 2 对象分配规则
 
 ### 优先在 Eden 区分配
 
@@ -123,7 +123,7 @@ public class ObjectAgeDemo {
 
 ---
 
-## 9.3 TLAB（Thread Local Allocation Buffer）
+## 3 TLAB（Thread Local Allocation Buffer）
 
 ### 什么是 TLAB
 
@@ -176,7 +176,7 @@ TLAB 的解决方案：
 
 ---
 
-## 9.4 Minor GC、Major GC、Full GC
+## 4 Minor GC、Major GC、Full GC
 
 ### Minor GC（新生代 GC）
 
@@ -249,7 +249,7 @@ Full GC 是指**整个堆和方法区的垃圾回收**。
 
 ---
 
-## 9.5 内存分配担保机制
+## 5 内存分配担保机制
 
 ### 什么是内存分配担保
 
@@ -294,7 +294,7 @@ public class PromotionDemo {
 
 ---
 
-## 9.6 空间分配担保
+## 6 空间分配担保
 
 ### 什么是空间分配担保
 
@@ -318,7 +318,7 @@ Minor GC 前：
 
 ---
 
-## 9.7 核心知识点总结
+## 7 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -331,7 +331,7 @@ Minor GC 前：
 
 ---
 
-## 9.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1："所有对象都在 Eden 区分配"
 
@@ -353,7 +353,7 @@ Minor GC 前：
 
 ---
 
-## 9.9 动手练习
+## 9 动手练习
 
 ### 练习 1：基础题
 

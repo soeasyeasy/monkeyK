@@ -18,7 +18,7 @@ description: "深入理解索引失效场景、覆盖索引、索引下推、最
 
 ---
 
-## 6.1 为什么需要索引优化？
+## 1 为什么需要索引优化？
 
 ### 痛点分析
 
@@ -40,7 +40,7 @@ description: "深入理解索引失效场景、覆盖索引、索引下推、最
 
 ---
 
-## 6.2 核心原理讲解
+## 2 核心原理讲解
 
 ### 6.2.1 索引失效的常见场景
 
@@ -239,7 +239,7 @@ EXPLAIN SELECT * FROM users WHERE name LIKE '张%' AND age = 25;
 
 ---
 
-## 6.3 基础用法 + 逐行注释
+## 3 基础用法 + 逐行注释
 
 ### 6.3.1 创建表和索引
 
@@ -385,7 +385,7 @@ SET optimizer_switch = 'index_condition_pushdown=on';
 
 ---
 
-## 6.4 对比表格
+## 4 对比表格
 
 ### 索引失效场景对比
 
@@ -433,7 +433,7 @@ SET optimizer_switch = 'index_condition_pushdown=on';
 
 ---
 
-## 6.5 新手常见误区
+## 5 新手常见误区
 
 ### 误区 1："联合索引顺序无所谓"
 
@@ -478,7 +478,7 @@ SET optimizer_switch = 'index_condition_pushdown=on';
 
 ---
 
-## 6.6 动手练习
+## 6 动手练习
 
 ### 练习 1：判断索引是否生效（基础）
 

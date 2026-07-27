@@ -21,7 +21,7 @@ description: '深入理解 Namespace 的使用场景，掌握 ResourceQuota 和 
 
 ---
 
-## 5.1 为什么需要 Namespace 和资源配额？
+## 1 为什么需要 Namespace 和资源配额？
 
 ### 没有 Namespace 的混乱
 
@@ -69,7 +69,7 @@ description: '深入理解 Namespace 的使用场景，掌握 ResourceQuota 和 
 
 ---
 
-## 5.2 默认的 Namespace
+## 2 默认的 Namespace
 
 Kubernetes 安装后会自动创建 4 个 Namespace：
 
@@ -99,7 +99,7 @@ kubectl get pods -n kube-system
 
 ---
 
-## 5.3 创建和管理 Namespace
+## 3 创建和管理 Namespace
 
 ### 创建 Namespace
 
@@ -163,7 +163,7 @@ kubectl delete namespace frontend
 
 ---
 
-## 5.4 ResourceQuota：资源配额
+## 4 ResourceQuota：资源配额
 
 ### 什么是 ResourceQuota？
 
@@ -231,7 +231,7 @@ kubectl describe resourcequota compute-quota -n frontend
 
 ---
 
-## 5.5 LimitRange：默认限制
+## 5 LimitRange：默认限制
 
 ### 什么是 LimitRange？
 
@@ -307,7 +307,7 @@ kubectl get pod test-pod -n frontend -o jsonpath='{.spec.containers[0].resources
 
 ---
 
-## 5.6 Namespace 的作用域
+## 6 Namespace 的作用域
 
 ### 哪些资源是 Namespace 级别的？
 
@@ -350,7 +350,7 @@ spec:
 
 ---
 
-## 5.7 Namespace 组织最佳实践
+## 7 Namespace 组织最佳实践
 
 ### 按团队划分
 
@@ -393,7 +393,7 @@ spec:
 
 ---
 
-## 5.8 核心知识点总结
+## 8 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -407,7 +407,7 @@ spec:
 
 ---
 
-## 5.9 新手常见误区
+## 9 新手常见误区
 
 ### 误区 1："Namespace 提供了完全的安全隔离"
 
@@ -441,7 +441,7 @@ spec:
 
 ---
 
-## 5.10 动手练习
+## 10 动手练习
 
 ### 练习 1：创建 Namespace 并设置 ResourceQuota
 

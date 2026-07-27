@@ -18,7 +18,7 @@ description: "网络模式、自定义网络、容器间通信"
 
 ---
 
-## 7.1 为什么需要理解 Docker 网络？
+## 1 为什么需要理解 Docker 网络？
 
 ### 痛点分析
 
@@ -40,7 +40,7 @@ description: "网络模式、自定义网络、容器间通信"
 
 ---
 
-## 7.2 Docker 网络模式
+## 2 Docker 网络模式
 
 ### 默认网络
 
@@ -139,7 +139,7 @@ docker run -d --network container:container1 alpine sleep 3600
 
 ---
 
-## 7.3 自定义网络
+## 3 自定义网络
 
 ### 创建自定义网络
 
@@ -181,7 +181,7 @@ docker exec web1 ping web2
 
 ---
 
-## 7.4 容器间通信
+## 4 容器间通信
 
 ### 使用容器名通信
 
@@ -221,7 +221,7 @@ docker inspect -f '{{.NetworkSettings.IPAddress}}' mysql
 
 ---
 
-## 7.5 端口映射
+## 5 端口映射
 
 ### 基础端口映射
 
@@ -261,7 +261,7 @@ docker port <container_name>
 
 ---
 
-## 7.6 网络操作命令
+## 6 网络操作命令
 
 ### 查看网络
 
@@ -294,7 +294,7 @@ docker network prune
 
 ---
 
-## 7.7 DNS 配置
+## 7 DNS 配置
 
 ### 自定义 DNS
 
@@ -326,7 +326,7 @@ docker exec my-container cat /etc/resolv.conf
 
 ---
 
-## 7.8 网络最佳实践
+## 8 网络最佳实践
 
 ### 1. 使用自定义网络
 
@@ -371,7 +371,7 @@ docker network create db-network
 
 ---
 
-## 7.9 核心知识点总结
+## 9 核心知识点总结
 
 | 网络模式 | 说明 | 适用场景 |
 | --- | --- | --- |
@@ -383,7 +383,7 @@ docker network create db-network
 
 ---
 
-## 7.10 新手常见误区
+## 10 新手常见误区
 
 ### 误区 1："容器之间默认可以互相访问"
 
@@ -403,7 +403,7 @@ docker network create db-network
 
 ---
 
-## 7.11 动手练习
+## 11 动手练习
 
 ### 练习 1：自定义网络通信
 

@@ -21,7 +21,7 @@ description: '掌握 Deployment 的使用，包括滚动更新、回滚、扩缩
 
 ---
 
-## 6.1 为什么需要 Deployment？
+## 1 为什么需要 Deployment？
 
 ### 没有 Deployment 的痛点
 
@@ -57,7 +57,7 @@ Deployment 自动化了这一切：
 
 ---
 
-## 6.2 Deployment YAML 详解
+## 2 Deployment YAML 详解
 
 ### 完整的 Deployment 结构
 
@@ -126,7 +126,7 @@ spec:                                   # 规格定义
 
 ---
 
-## 6.3 滚动更新（Rolling Update）
+## 3 滚动更新（Rolling Update）
 
 ### 滚动更新的工作原理
 
@@ -202,7 +202,7 @@ kubectl describe deployment web-deployment
 
 ---
 
-## 6.4 回滚（Rollback）
+## 4 回滚（Rollback）
 
 ### 为什么需要回滚？
 
@@ -257,7 +257,7 @@ Deployment: web-deployment
 
 ---
 
-## 6.5 扩缩容（Scaling）
+## 5 扩缩容（Scaling）
 
 ### 手动扩缩容
 
@@ -325,7 +325,7 @@ kubectl describe hpa web-hpa
 
 ---
 
-## 6.6 暂停和恢复（Pause/Resume）
+## 6 暂停和恢复（Pause/Resume）
 
 ### 为什么需要暂停？
 
@@ -367,7 +367,7 @@ kubectl rollout resume deployment/web-deployment
 
 ---
 
-## 6.7 清理策略（Cleanup Policy）
+## 7 清理策略（Cleanup Policy）
 
 ### revisionHistoryLimit
 
@@ -396,7 +396,7 @@ kubectl rollout history deployment/web-deployment
 
 ---
 
-## 6.8 更新策略对比
+## 8 更新策略对比
 
 ### RollingUpdate vs Recreate
 
@@ -413,7 +413,7 @@ strategy:
 
 ---
 
-## 6.9 核心知识点总结
+## 9 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -429,7 +429,7 @@ strategy:
 
 ---
 
-## 6.10 新手常见误区
+## 10 新手常见误区
 
 ### 误区 1："滚动更新时 maxUnavailable 设为 0 最好"
 
@@ -463,7 +463,7 @@ strategy:
 
 ---
 
-## 6.11 动手练习
+## 11 动手练习
 
 ### 练习 1：创建 Deployment 并执行滚动更新
 

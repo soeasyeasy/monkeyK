@@ -18,7 +18,7 @@ description: "深入理解 Spring EL 表达式语言，掌握 SpEL 语法与解�
 
 ---
 
-## 14.1 为什么需要 SpEL？
+## 1 为什么需要 SpEL？
 
 ### 痛点分析
 
@@ -81,7 +81,7 @@ private String homeDir;
 
 ---
 
-## 14.2 核心原理讲解
+## 2 核心原理讲解
 
 ### 概念解释
 
@@ -219,7 +219,7 @@ String result = expression.getValue(context, String.class);
 
 ---
 
-## 14.3 基础用法
+## 3 基础用法
 
 ### 示例 1：字面量表达式
 
@@ -430,7 +430,7 @@ public class SystemObjectDemo {
 
 ---
 
-## 14.4 进阶用法
+## 4 进阶用法
 
 ### 集合操作
 
@@ -648,7 +648,7 @@ public class ConditionalConfig {
 
 ---
 
-## 14.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -665,7 +665,7 @@ public class ConditionalConfig {
 
 ---
 
-## 14.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："SpEL 和占位符表达式是一回事"
 
@@ -745,7 +745,7 @@ public void testSpelExpression() {
 
 ---
 
-## 14.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础练习 - 使用 SpEL 注入系统属性
 

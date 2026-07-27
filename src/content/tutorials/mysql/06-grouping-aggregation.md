@@ -19,7 +19,7 @@ description: "GROUP BY、HAVING、COUNT、SUM、AVG"
 
 ---
 
-## 6.1 为什么需要分组与聚合？
+## 1 为什么需要分组与聚合？
 
 ### 痛点分析
 
@@ -50,7 +50,7 @@ description: "GROUP BY、HAVING、COUNT、SUM、AVG"
 
 ---
 
-## 6.2 GROUP BY 基础分组
+## 2 GROUP BY 基础分组
 
 ### 基本语法
 
@@ -93,7 +93,7 @@ GROUP BY class;
 
 ---
 
-## 6.3 多字段分组
+## 3 多字段分组
 
 可以按多个字段进行分组，分组时会考虑所有指定的列。
 
@@ -128,7 +128,7 @@ GROUP BY department, job_title;
 
 ---
 
-## 6.4 HAVING 过滤分组
+## 4 HAVING 过滤分组
 
 WHERE 在分组前过滤行，HAVING 在分组后过滤组。
 
@@ -185,7 +185,7 @@ HAVING gender = '男' AND COUNT(*) > (
 
 ---
 
-## 6.5 聚合函数组合使用
+## 5 聚合函数组合使用
 
 ### 示例代码
 
@@ -233,7 +233,7 @@ ORDER BY 月份 DESC;
 
 ---
 
-## 6.6 WITH ROLLUP 汇总
+## 6 WITH ROLLUP 汇总
 
 WITH ROLLUP 会在分组统计结果的最后添加一行汇总数据。
 
@@ -269,7 +269,7 @@ GROUP BY class WITH ROLLUP;
 
 ---
 
-## 6.7 核心知识点总结
+## 7 核心知识点总结
 
 | 语法 | 作用 | 使用场景 |
 |-----|------|---------|
@@ -300,7 +300,7 @@ FROM -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY -> LIMIT
 
 ---
 
-## 6.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1："SELECT 的列不用出现在 GROUP BY 中"
 
@@ -373,7 +373,7 @@ GROUP BY class;
 
 ---
 
-## 6.9 动手练习
+## 9 动手练习
 
 ### 练习 1：基础分组
 

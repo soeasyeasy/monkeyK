@@ -19,7 +19,7 @@ description: "慢查询分析、执行计划、索引优化、配置调优"
 
 ---
 
-## 15.1 为什么需要性能优化？
+## 1 为什么需要性能优化？
 
 ### 痛点分析
 
@@ -57,7 +57,7 @@ SELECT id, name FROM users WHERE age > 25;  -- 只查询需要的列
 
 ---
 
-## 15.2 核心原理
+## 2 核心原理
 
 ### 概念解释
 
@@ -85,7 +85,7 @@ SELECT id, name FROM users WHERE age > 25;  -- 只查询需要的列
 
 ---
 
-## 15.3 基础用法
+## 3 基础用法
 
 ### 慢查询分析
 
@@ -202,7 +202,7 @@ WHERE idx_scan = 0;
 
 ---
 
-## 15.4 进阶用法
+## 4 进阶用法
 
 ### 配置调优
 
@@ -364,7 +364,7 @@ WHERE EXISTS (SELECT 1 FROM orders o WHERE o.user_id = u.id);
 
 ---
 
-## 15.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -380,7 +380,7 @@ WHERE EXISTS (SELECT 1 FROM orders o WHERE o.user_id = u.id);
 
 ---
 
-## 15.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："索引越多越好"
 
@@ -433,7 +433,7 @@ SELECT * FROM pg_stat_statements ORDER BY total_time DESC LIMIT 10;
 
 ---
 
-## 15.7 动手练习
+## 7 动手练习
 
 ### 练习 1：执行计划分析
 

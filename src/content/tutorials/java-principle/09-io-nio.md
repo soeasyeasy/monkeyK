@@ -16,7 +16,7 @@ description: "深入理解 Java IO 与 NIO 的底层机制，掌握阻塞/非阻
 - 理解零拷贝的两种实现方式（mmap 和 sendfile）
 - 了解 PageCache 机制和 DirectBuffer 的底层原理
 
-## 9.1 为什么需要 IO/NIO？
+## 1 为什么需要 IO/NIO？
 
 ### 生活中的类比
 
@@ -52,7 +52,7 @@ while (true) {
 
 这就是为什么 Java 1.4 引入了 NIO（New IO / Non-blocking IO）。
 
-## 9.2 核心原理
+## 2 核心原理
 
 ### 9.2.1 IO 的本质：数据在缓冲区之间传输
 
@@ -275,7 +275,7 @@ Linux 系统中，文件 IO 并不是直接和硬盘交互的，而是通过 **P
 **PageCache 的风险：**
 如果系统突然断电，PageCache 中还没刷到硬盘的数据就丢了。所以重要数据需要调用 `fsync()` 强制刷盘。
 
-## 9.3 基础用法
+## 3 基础用法
 
 ### 9.3.1 NIO 读取文件示例
 
@@ -453,7 +453,7 @@ public class ZeroCopyDemo {
 }
 ```
 
-## 9.4 进阶用法
+## 4 进阶用法
 
 ### 9.4.1 BIO vs NIO vs AIO 对比
 
@@ -532,7 +532,7 @@ public class DirectBufferDemo {
 }
 ```
 
-## 9.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 核心要点 |
 |--------|----------|
@@ -546,7 +546,7 @@ public class DirectBufferDemo {
 | PageCache | 操作系统缓存文件数据的内存区域，写操作先写 PageCache 再异步刷盘 |
 | BIO vs NIO vs AIO | 阻塞/多路复用/异步回调，适用场景不同 |
 
-## 9.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1：NIO 就是非阻塞 IO
 
@@ -578,7 +578,7 @@ public class DirectBufferDemo {
 
 **正确理解：** AIO（异步 IO）在 Linux 上的实现并不成熟，底层仍然是基于 epoll 模拟的，性能不一定比 NIO 好。业界主流的高性能网络框架（如 Netty）都基于 NIO 而非 AIO。AIO 更适合 Windows 平台（Windows 原生支持异步 IO）。选择 NIO 还是 AIO 要看具体平台和场景。
 
-## 9.7 动手练习
+## 7 动手练习
 
 ### 练习 1：实现一个简单的文件复制程序
 

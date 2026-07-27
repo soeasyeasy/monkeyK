@@ -21,7 +21,7 @@ description: '深入理解 Service 的作用、类型、服务发现机制和负
 
 ---
 
-## 7.1 为什么需要 Service？
+## 1 为什么需要 Service？
 
 ### Pod IP 的问题
 
@@ -71,7 +71,7 @@ Service 将请求分发到 Pod-1、Pod-2 或 Pod-3
 
 ---
 
-## 7.2 Service 的类型
+## 2 Service 的类型
 
 Kubernetes 提供了 4 种 Service 类型，适用于不同的场景：
 
@@ -229,7 +229,7 @@ curl http://external-db:80
 
 ---
 
-## 7.3 Service 的服务发现
+## 3 Service 的服务发现
 
 ### Selector 关联 Pod
 
@@ -296,7 +296,7 @@ subsets:
 
 ---
 
-## 7.4 Headless Service（无头服务）
+## 4 Headless Service（无头服务）
 
 ### 什么是 Headless Service？
 
@@ -346,7 +346,7 @@ Headless Service：
 
 ---
 
-## 7.5 端口命名和多云端口
+## 5 端口命名和多云端口
 
 ### 端口命名
 
@@ -399,7 +399,7 @@ kubectl get services
 
 ---
 
-## 7.6 会话亲和性（Session Affinity）
+## 6 会话亲和性（Session Affinity）
 
 ### 什么是会话亲和性？
 
@@ -445,7 +445,7 @@ spec:
 
 ---
 
-## 7.7 DNS 集成
+## 7 DNS 集成
 
 ### Kubernetes DNS 机制
 
@@ -489,7 +489,7 @@ curl http://api-service.production.svc.cluster.local
 
 ---
 
-## 7.8 核心知识点总结
+## 8 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -507,7 +507,7 @@ curl http://api-service.production.svc.cluster.local
 
 ---
 
-## 7.9 新手常见误区
+## 9 新手常见误区
 
 ### 误区 1："Service 的 port 和 targetPort 必须一样"
 
@@ -541,7 +541,7 @@ curl http://api-service.production.svc.cluster.local
 
 ---
 
-## 7.10 动手练习
+## 10 动手练习
 
 ### 练习 1：创建 ClusterIP Service 并验证
 

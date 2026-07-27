@@ -17,7 +17,7 @@ description: "深入理解 JDK 动态代理、CGLIB 代理及 AOP 底层原理"
 - 了解 Spring AOP 如何选择代理方式
 - 手写简单的动态代理实现
 
-## 12.1 为什么需要动态代理？
+## 1 为什么需要动态代理？
 
 ### 生活中的类比
 
@@ -54,7 +54,7 @@ public class UserService {
 3. **MyBatis**：Mapper 接口通过动态代理生成实现类
 4. **Mock 框架**：Mockito 通过动态代理生成 Mock 对象
 
-## 12.2 核心原理
+## 2 核心原理
 
 ### 12.2.1 代理模式基础
 
@@ -421,7 +421,7 @@ class AuthProxy implements InvocationHandler {
 }
 ```
 
-## 12.3 基础用法
+## 3 基础用法
 
 ### 12.3.1 JDK 动态代理完整示例
 
@@ -650,7 +650,7 @@ public class SimpleProxyFactory {
 }
 ```
 
-## 12.4 进阶用法
+## 4 进阶用法
 
 ### 12.4.1 动态代理的性能优化
 
@@ -719,7 +719,7 @@ public class ProxyFactory {
 }
 ```
 
-## 12.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 核心要点 |
 |--------|----------|
@@ -732,7 +732,7 @@ public class ProxyFactory {
 | 应用场景 | 事务、日志、权限、RPC、Mock 等 |
 | 限制 | JDK 代理必须实现接口，CGLIB 不能代理 final 类/方法 |
 
-## 12.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1：JDK 动态代理比 CGLIB 慢
 
@@ -771,7 +771,7 @@ public class ProxyFactory {
 2. 通过 `AopContext.currentProxy()` 获取代理对象（需开启 `exposeProxy=true`）
 3. 自己注入自己（不推荐）
 
-## 12.7 动手练习
+## 7 动手练习
 
 ### 练习 1：实现一个性能监控代理
 

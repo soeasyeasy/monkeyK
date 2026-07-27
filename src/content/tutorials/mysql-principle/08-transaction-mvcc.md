@@ -18,7 +18,7 @@ description: "深入理解 ACID 实现原理、MVCC 机制、undo log、版本�
 
 ---
 
-## 8.1 为什么需要事务和 MVCC？
+## 1 为什么需要事务和 MVCC？
 
 ### 痛点分析
 
@@ -47,7 +47,7 @@ description: "深入理解 ACID 实现原理、MVCC 机制、undo log、版本�
 
 ---
 
-## 8.2 核心原理讲解
+## 2 核心原理讲解
 
 ### 8.2.1 ACID 特性的实现原理
 
@@ -306,7 +306,7 @@ SELECT balance FROM users WHERE id = 1;  -- 读到 1000（复用旧 Read View）
 
 ---
 
-## 8.3 基础用法 + 逐行注释
+## 3 基础用法 + 逐行注释
 
 ### 8.3.1 创建测试表和数据
 
@@ -471,7 +471,7 @@ SELECT balance FROM users WHERE id = 1;
 
 ---
 
-## 8.4 对比表格
+## 4 对比表格
 
 ### ACID 特性实现机制对比
 
@@ -511,7 +511,7 @@ SELECT balance FROM users WHERE id = 1;
 
 ---
 
-## 8.5 新手常见误区
+## 5 新手常见误区
 
 ### 误区 1："MVCC 可以替代锁"
 
@@ -549,7 +549,7 @@ SELECT balance FROM users WHERE id = 1;
 
 ---
 
-## 8.6 动手练习
+## 6 动手练习
 
 ### 练习 1：验证事务的原子性（基础）
 

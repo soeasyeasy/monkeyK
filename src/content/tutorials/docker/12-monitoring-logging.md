@@ -18,7 +18,7 @@ description: "容器监控、日志收集、性能分析"
 
 ---
 
-## 12.1 为什么需要监控和日志？
+## 1 为什么需要监控和日志？
 
 ### 痛点分析
 
@@ -46,7 +46,7 @@ description: "容器监控、日志收集、性能分析"
 
 ---
 
-## 12.2 容器状态监控
+## 2 容器状态监控
 
 ### 查看容器状态
 
@@ -95,7 +95,7 @@ docker stats --no-stream
 
 ---
 
-## 12.3 日志管理基础
+## 3 日志管理基础
 
 ### 查看容器日志
 
@@ -131,7 +131,7 @@ ls -lh /var/lib/docker/containers/<container_id>/<container_id>-json.log
 
 ---
 
-## 12.4 日志驱动
+## 4 日志驱动
 
 ### 默认日志驱动
 
@@ -202,7 +202,7 @@ docker run -d \
 
 ---
 
-## 12.5 性能分析工具
+## 5 性能分析工具
 
 ### docker top
 
@@ -248,7 +248,7 @@ docker run -d \
 
 ---
 
-## 12.6 健康检查
+## 6 健康检查
 
 ### 配置健康检查
 
@@ -305,7 +305,7 @@ services:
 
 ---
 
-## 12.7 事件监控
+## 7 事件监控
 
 ### docker events
 
@@ -342,7 +342,7 @@ docker events --since '2024-01-01T00:00:00' --until '2024-01-01T23:59:59'
 
 ---
 
-## 12.8 集中日志管理
+## 8 集中日志管理
 
 ### ELK Stack
 
@@ -413,7 +413,7 @@ services:
 
 ---
 
-## 12.9 Prometheus + Grafana
+## 9 Prometheus + Grafana
 
 ### 监控方案
 
@@ -469,7 +469,7 @@ scrape_configs:
 
 ---
 
-## 12.10 故障排查
+## 10 故障排查
 
 ### 常见问题排查
 
@@ -513,7 +513,7 @@ docker inspect --format='{{json .NetworkSettings}}' <container_name> | jq
 
 ---
 
-## 12.11 核心知识点总结
+## 11 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -527,7 +527,7 @@ docker inspect --format='{{json .NetworkSettings}}' <container_name> | jq
 
 ---
 
-## 12.12 新手常见误区
+## 12 新手常见误区
 
 ### 误区 1："日志不需要管理"
 
@@ -547,7 +547,7 @@ docker inspect --format='{{json .NetworkSettings}}' <container_name> | jq
 
 ---
 
-## 12.13 动手练习
+## 13 动手练习
 
 ### 练习 1：查看容器日志
 

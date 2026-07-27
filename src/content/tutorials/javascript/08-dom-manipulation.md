@@ -18,7 +18,7 @@ description: "选择元素、修改内容、创建节点，掌握网页交互"
 
 ---
 
-## 8.1 为什么需要 DOM 操作？
+## 1 为什么需要 DOM 操作？
 
 ### 痛点分析
 
@@ -55,7 +55,7 @@ setInterval(updateTime, 1000)
 
 ---
 
-## 8.2 核心原理
+## 2 核心原理
 
 ### DOM 的本质
 
@@ -96,7 +96,7 @@ document
 
 ---
 
-## 8.3 选择元素
+## 3 选择元素
 
 ### querySelector（推荐）
 
@@ -149,7 +149,7 @@ const paragraphs = document.getElementsByTagName('p')
 
 ---
 
-## 8.4 修改内容
+## 4 修改内容
 
 ### textContent
 
@@ -195,7 +195,7 @@ console.log(element.innerText)   // '可见文本'
 
 ---
 
-## 8.5 修改属性
+## 5 修改属性
 
 ### getAttribute / setAttribute
 
@@ -231,7 +231,7 @@ console.log(element.dataset.id) // 获取 data-id 属性值
 
 ---
 
-## 8.6 修改样式
+## 6 修改样式
 
 ### 直接设置样式
 
@@ -273,7 +273,7 @@ element.classList.replace('old', 'new')
 
 ---
 
-## 8.7 创建元素
+## 7 创建元素
 
 ```javascript
 // 创建新元素
@@ -290,7 +290,7 @@ document.body.appendChild(div)
 
 ---
 
-## 8.8 插入元素
+## 8 插入元素
 
 ```javascript
 const parent = document.querySelector('.container')
@@ -327,7 +327,7 @@ parent.insertAdjacentHTML('beforeend', '<div>新内容</div>')
 
 ---
 
-## 8.9 删除元素
+## 9 删除元素
 
 ```javascript
 const element = document.querySelector('.item')
@@ -342,7 +342,7 @@ parent.removeChild(element)
 
 ---
 
-## 8.10 遍历节点
+## 10 遍历节点
 
 ```javascript
 const parent = document.querySelector('.container')
@@ -375,7 +375,7 @@ const last = parent.lastElementChild
 
 ---
 
-## 8.11 修改结构
+## 11 修改结构
 
 ### 克隆节点
 
@@ -411,7 +411,7 @@ oldElement.replaceWith(newElement)
 
 ---
 
-## 8.12 获取尺寸和位置
+## 12 获取尺寸和位置
 
 ```javascript
 const element = document.querySelector('.box')
@@ -438,7 +438,7 @@ console.log(rect.height)  // 高度
 
 ---
 
-## 8.13 性能优化
+## 13 性能优化
 
 ### 使用 DocumentFragment
 
@@ -471,7 +471,7 @@ document.querySelector('ul').innerHTML = items.join('')
 
 ---
 
-## 8.14 核心知识点总结
+## 14 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -487,7 +487,7 @@ document.querySelector('ul').innerHTML = items.join('')
 
 ---
 
-## 8.15 新手常见误区
+## 15 新手常见误区
 
 ### 误区 1：`innerHTML` 可以安全使用
 
@@ -559,7 +559,7 @@ console.log(computedStyle.color) // 'rgb(255, 0, 0)'
 
 ---
 
-## 8.16 动手练习
+## 16 动手练习
 
 ### 练习 1：基础练习
 

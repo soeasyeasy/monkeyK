@@ -19,7 +19,7 @@ description: 'String 深入、StringBuilder、字符串格式化、常用方法'
 
 ---
 
-## 17.1 为什么需要深入理解字符串？
+## 1 为什么需要深入理解字符串？
 
 ### 痛点分析
 
@@ -51,7 +51,7 @@ String result = sb.toString();
 
 ---
 
-## 17.2 String 的不可变性
+## 2 String 的不可变性
 
 ### 什么是不可变？
 
@@ -121,7 +121,7 @@ System.out.println(s2 == s3);  // true（都指向常量池中的对象）
 
 ---
 
-## 17.3 String 常用方法
+## 3 String 常用方法
 
 ### 字符串查找
 
@@ -263,7 +263,7 @@ String joined = String.join("-", "2024", "01", "15");  // "2024-01-15"
 
 ---
 
-## 17.4 StringBuilder 和 StringBuffer
+## 4 StringBuilder 和 StringBuffer
 
 ### 为什么需要 StringBuilder？
 
@@ -344,7 +344,7 @@ sb3.ensureCapacity(50);  // 如果当前容量小于 50，则扩容
 
 ---
 
-## 17.5 字符串格式化
+## 5 字符串格式化
 
 ### String.format()
 
@@ -422,7 +422,7 @@ System.out.println(MessageFormat.format(pattern4, 5));  // "共 5件商品"
 
 ---
 
-## 17.6 字符串与基本类型转换
+## 6 字符串与基本类型转换
 
 ### 基本类型转字符串
 
@@ -481,7 +481,7 @@ int num3 = safeParseInt(null, 0);    // 0（默认值）
 
 ---
 
-## 17.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区 1：用 == 比较字符串内容
 
@@ -574,7 +574,7 @@ String wrong = new String(utf8Bytes, StandardCharsets.GBK);  // 乱码
 
 ---
 
-## 17.8 动手练习
+## 8 动手练习
 
 ### 练习 1：基础练习 —— 字符串统计
 
@@ -684,7 +684,7 @@ public class CsvParser {
 
 ---
 
-## 17.9 核心知识点
+## 9 核心知识点
 
 | 知识点 | 说明 |
 |--------|------|

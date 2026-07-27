@@ -19,7 +19,7 @@ description: '掌握 TypeScript 内置工具类型，包括 Partial、Required�
 
 ---
 
-## 11.1 为什么需要工具类型？
+## 1 为什么需要工具类型？
 
 ### 痛点分析
 
@@ -69,7 +69,7 @@ type ReadonlyUser = Readonly<User>
 
 ---
 
-## 11.2 核心原理
+## 2 核心原理
 
 ### 工具类型的工作原理
 
@@ -98,7 +98,7 @@ type Pick<T, K extends keyof T> = {
 
 ---
 
-## 11.3 常用工具类型详解
+## 3 常用工具类型详解
 
 ### 1. Partial<T>
 
@@ -390,7 +390,7 @@ type DataResult = Awaited<ReturnType<typeof fetchData>>
 
 ---
 
-## 11.4 工具类型对比
+## 4 工具类型对比
 
 | 工具类型 | 语法 | 作用 | 示例 |
 | --- | --- | --- | --- |
@@ -409,7 +409,7 @@ type DataResult = Awaited<ReturnType<typeof fetchData>>
 
 ---
 
-## 11.5 自定义工具类型
+## 5 自定义工具类型
 
 ### 示例 1：提取对象的方法名
 
@@ -473,7 +473,7 @@ const partial: PartialNestedUser = {
 
 ---
 
-## 11.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："Partial 和 Omit 可以互相替代"
 
@@ -545,7 +545,7 @@ type Excluded = Exclude<Union, boolean>  // string | number
 
 ---
 
-## 11.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础练习
 

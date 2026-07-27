@@ -17,7 +17,7 @@ description: "CREATE USER、GRANT、REVOKE、SQL 注入防护"
 
 ---
 
-## 13.1 为什么需要用户权限管理？
+## 1 为什么需要用户权限管理？
 
 ### 权限混乱的痛苦
 
@@ -51,7 +51,7 @@ description: "CREATE USER、GRANT、REVOKE、SQL 注入防护"
 
 ---
 
-## 13.2 用户管理
+## 2 用户管理
 
 ### 创建用户
 
@@ -96,7 +96,7 @@ ALTER USER 'admin'@'%' IDENTIFIED BY 'new_password';
 
 ---
 
-## 13.3 权限管理
+## 3 权限管理
 
 ### GRANT：授予权限
 
@@ -169,7 +169,7 @@ GRANT SELECT(id, name, email) ON company.users TO 'developer'@'localhost';
 
 ---
 
-## 13.4 角色管理
+## 4 角色管理
 
 ### 什么是角色？
 
@@ -213,7 +213,7 @@ REVOKE 'developer_role' FROM 'dev1'@'localhost';
 
 ---
 
-## 13.5 SQL 注入防护
+## 5 SQL 注入防护
 
 ### 什么是 SQL 注入？
 
@@ -305,7 +305,7 @@ GRANT SELECT, INSERT, UPDATE ON company.* TO 'app_user'@'localhost';
 
 ---
 
-## 13.6 密码安全策略
+## 6 密码安全策略
 
 ### 密码复杂度要求
 
@@ -357,7 +357,7 @@ SHOW VARIABLES LIKE 'default_password_lifetime';
 
 ---
 
-## 13.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区 1："一直用 root 用户开发"
 
@@ -381,7 +381,7 @@ SHOW VARIABLES LIKE 'default_password_lifetime';
 
 ---
 
-## 13.8 动手练习
+## 8 动手练习
 
 ### 练习 1：创建用户并分配权限
 

@@ -18,7 +18,7 @@ description: '使用 Pinia 管理 Vue 3 应用的全局状态'
 
 ---
 
-## 14.1 为什么需要 Pinia？
+## 1 为什么需要 Pinia？
 
 ### 痛点分析
 
@@ -88,7 +88,7 @@ console.log(userStore.user.name)
 
 ---
 
-## 14.2 核心原理
+## 2 核心原理
 
 ### 什么是 Store？
 
@@ -148,7 +148,7 @@ Pinia 支持两种方式定义 store：
 
 ---
 
-## 14.3 基础用法
+## 3 基础用法
 
 ### 1. 安装和配置 Pinia
 
@@ -698,7 +698,7 @@ const { items, totalPrice, itemCount, addItem, checkout } = useCart()
 
 ---
 
-## 14.4 核心知识点总结
+## 4 核心知识点总结
 
 | 知识点     | 说明                                                  | 示例                                             |
 | ---------- | ----------------------------------------------------- | ------------------------------------------------ |
@@ -713,7 +713,7 @@ const { items, totalPrice, itemCount, addItem, checkout } = useCart()
 
 ---
 
-## 14.5 新手常见误区
+## 5 新手常见误区
 
 ### 误区 1：解构 state 时不用 storeToRefs
 
@@ -881,7 +881,7 @@ const showDialog = ref(false) // 组件本地状态
 
 ---
 
-## 14.6 动手练习
+## 6 动手练习
 
 ### 练习 1：基础练习 - 创建计数器 Store
 

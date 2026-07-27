@@ -18,7 +18,7 @@ description: "理解 Spring 框架的核心思想、IoC 和 AOP 原理"
 
 ---
 
-## 1.1 为什么需要 Spring？
+## 1 为什么需要 Spring？
 
 ### 痛点分析
 
@@ -89,7 +89,7 @@ public class OrderService {
 
 ---
 
-## 1.2 核心原理
+## 2 核心原理
 
 ### 1.2.1 IoC（控制反转）
 
@@ -230,7 +230,7 @@ public class LogAspect {
 
 ---
 
-## 1.3 Spring 容器
+## 3 Spring 容器
 
 ### 概念解释
 
@@ -289,7 +289,7 @@ public class MyBean {
 
 ---
 
-## 1.4 基础用法
+## 4 基础用法
 
 ### 1.4.1 创建 Spring 项目
 
@@ -379,7 +379,7 @@ public class Main {
 
 ---
 
-## 1.5 Spring vs Spring Boot
+## 5 Spring vs Spring Boot
 
 | 特性 | Spring | Spring Boot |
 | --- | --- | --- |
@@ -394,7 +394,7 @@ public class Main {
 
 ---
 
-## 1.6 核心知识点总结
+## 6 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -410,7 +410,7 @@ public class Main {
 
 ---
 
-## 1.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区 1："Spring 和 Spring Boot 是一回事"
 
@@ -476,7 +476,7 @@ public class UserService {
 
 ---
 
-## 1.8 动手练习
+## 8 动手练习
 
 ### 练习 1：基础练习 - 创建简单的 Spring 应用
 

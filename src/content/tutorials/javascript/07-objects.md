@@ -18,7 +18,7 @@ description: "对象字面量、this、解构赋值，掌握复杂数据组织"
 
 ---
 
-## 7.1 为什么需要对象？
+## 1 为什么需要对象？
 
 ### 痛点分析
 
@@ -58,7 +58,7 @@ console.log(`姓名：${user.name}，年龄：${user.age}，城市：${user.city
 
 ---
 
-## 7.2 核心原理
+## 2 核心原理
 
 ### 对象的本质
 
@@ -86,7 +86,7 @@ console.log(obj1.name) // '李四' ❗ obj1 也被修改了
 
 ---
 
-## 7.3 创建对象
+## 3 创建对象
 
 ### 对象字面量（最常用）
 
@@ -135,7 +135,7 @@ child.greet() // '你好'（继承自父对象）
 
 ---
 
-## 7.4 访问属性
+## 4 访问属性
 
 ### 点语法
 
@@ -167,7 +167,7 @@ console.log(obj['is-active'])  // true
 
 ---
 
-## 7.5 修改属性
+## 5 修改属性
 
 ```javascript
 const person = { name: '张三', age: 25 }
@@ -187,7 +187,7 @@ console.log(person.age) // undefined
 
 ---
 
-## 7.6 方法简写
+## 6 方法简写
 
 ```javascript
 // 传统写法
@@ -209,7 +209,7 @@ const obj2 = {
 
 ---
 
-## 7.7 this 关键字
+## 7 this 关键字
 
 ### this 的指向
 
@@ -270,7 +270,7 @@ const obj = {
 
 ---
 
-## 7.8 解构赋值
+## 8 解构赋值
 
 ### 基本解构
 
@@ -333,7 +333,7 @@ console.log(district) // '朝阳区'
 
 ---
 
-## 7.9 展开运算符
+## 9 展开运算符
 
 ```javascript
 const person = { name: '张三', age: 25 }
@@ -360,7 +360,7 @@ console.log(combined) // { a: 1, b: 2, c: 3 }
 
 ---
 
-## 7.10 对象方法
+## 10 对象方法
 
 ### Object.keys()
 
@@ -413,7 +413,7 @@ const newObj = Object.assign({}, target, source)
 
 ---
 
-## 7.11 可选链
+## 11 可选链
 
 可选链用于安全访问嵌套对象的属性：
 
@@ -444,7 +444,7 @@ console.log(user3?.address?.city) // undefined（不会报错）
 
 ---
 
-## 7.12 计算属性
+## 12 计算属性
 
 ```javascript
 // 动态属性名
@@ -462,7 +462,7 @@ console.log(person['user-name']) // 'user-张三'
 
 ---
 
-## 7.13 getter 和 setter
+## 13 getter 和 setter
 
 getter 和 setter 用于定义属性的访问器：
 
@@ -504,7 +504,7 @@ console.log(person.lastName)  // '四'
 
 ---
 
-## 7.14 浅拷贝 vs 深拷贝
+## 14 浅拷贝 vs 深拷贝
 
 ### 浅拷贝
 
@@ -567,7 +567,7 @@ const deepCopy2 = deepClone(original)
 
 ---
 
-## 7.15 核心知识点总结
+## 15 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -583,7 +583,7 @@ const deepCopy2 = deepClone(original)
 
 ---
 
-## 7.16 新手常见误区
+## 16 新手常见误区
 
 ### 误区 1：`const` 声明的对象完全不能修改
 
@@ -657,7 +657,7 @@ console.log(obj[key]) // '张三'
 
 ---
 
-## 7.17 动手练习
+## 17 动手练习
 
 ### 练习 1：基础练习
 

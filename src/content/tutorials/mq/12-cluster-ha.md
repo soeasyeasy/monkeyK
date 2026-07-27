@@ -18,7 +18,7 @@ description: "掌握 RabbitMQ 集群搭建、镜像队列、Quorum 队列"
 
 ---
 
-## 12.1 为什么需要集群？
+## 1 为什么需要集群？
 
 ### 单点故障问题
 
@@ -52,7 +52,7 @@ description: "掌握 RabbitMQ 集群搭建、镜像队列、Quorum 队列"
 
 ---
 
-## 12.2 RabbitMQ 集群模式
+## 2 RabbitMQ 集群模式
 
 ### 普通集群
 
@@ -104,7 +104,7 @@ description: "掌握 RabbitMQ 集群搭建、镜像队列、Quorum 队列"
 
 ---
 
-## 12.3 搭建普通集群
+## 3 搭建普通集群
 
 ### 环境准备
 
@@ -177,7 +177,7 @@ rabbitmqctl set_policy ha-two "^" '{"ha-mode":"exactly","ha-params":2}'
 
 ---
 
-## 12.4 Quorum 队列
+## 4 Quorum 队列
 
 ### 什么是 Quorum 队列？
 
@@ -223,7 +223,7 @@ public Queue quorumQueue() {
 
 ---
 
-## 12.5 负载均衡
+## 5 负载均衡
 
 ### 使用 Nginx 负载均衡
 
@@ -256,7 +256,7 @@ backend rabbitmq_backend
 
 ---
 
-## 12.6 监控与维护
+## 6 监控与维护
 
 ### 集群监控
 
@@ -300,7 +300,7 @@ rabbitmqctl reset
 
 ---
 
-## 12.7 核心知识点总结
+## 7 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -313,7 +313,7 @@ rabbitmqctl reset
 
 ---
 
-## 12.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1："普通集群就是高可用"
 
@@ -332,7 +332,7 @@ rabbitmqctl reset
 
 ---
 
-## 12.9 动手练习
+## 9 动手练习
 
 ### 练习 1：基础练习
 

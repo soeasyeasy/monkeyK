@@ -18,7 +18,7 @@ description: "使用 header、nav、main、article、section、footer 等标签�
 
 ---
 
-## 9.1 为什么需要语义化标签？
+## 1 为什么需要语义化标签？
 
 ### 痛点分析
 
@@ -80,7 +80,7 @@ description: "使用 header、nav、main、article、section、footer 等标签�
 
 ---
 
-## 9.2 核心原理
+## 2 核心原理
 
 ### 概念解释
 
@@ -102,7 +102,7 @@ description: "使用 header、nav、main、article、section、footer 等标签�
 
 ---
 
-## 9.3 基础用法
+## 3 基础用法
 
 ### 完整页面结构示例
 
@@ -301,7 +301,7 @@ description: "使用 header、nav、main、article、section、footer 等标签�
 
 ---
 
-## 9.4 section vs article vs div
+## 4 section vs article vs div
 
 这是新手最容易混淆的三个标签，用表格对比一下：
 
@@ -323,7 +323,7 @@ description: "使用 header、nav、main、article、section、footer 等标签�
 
 ---
 
-## 9.5 新手常见误区
+## 5 新手常见误区
 
 ### 误区 1："语义化标签能改变样式"
 
@@ -419,7 +419,7 @@ description: "使用 header、nav、main、article、section、footer 等标签�
 
 ---
 
-## 9.6 动手练习
+## 6 动手练习
 
 ### 练习 1：基础练习
 

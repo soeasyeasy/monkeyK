@@ -19,7 +19,7 @@ description: "pg_dump、pg_restore、WAL 日志、时间点恢复"
 
 ---
 
-## 14.1 为什么需要备份？
+## 1 为什么需要备份？
 
 ### 痛点分析
 
@@ -60,7 +60,7 @@ psql mydb_test < backup_20240115.sql
 
 ---
 
-## 14.2 核心原理
+## 2 核心原理
 
 ### 概念解释
 
@@ -99,7 +99,7 @@ WAL 是 PostgreSQL 的日志机制，记录所有数据变更。
 
 ---
 
-## 14.3 基础用法
+## 3 基础用法
 
 ### pg_dump（逻辑备份）
 
@@ -186,7 +186,7 @@ gunzip -c backup.sql.gz | psql -d mydb
 
 ---
 
-## 14.4 进阶用法
+## 4 进阶用法
 
 ### pg_basebackup（物理备份）
 
@@ -319,7 +319,7 @@ echo "Backup completed: ${DB_NAME}_${DATE}.dump" >> $BACKUP_DIR/backup.log
 
 ---
 
-## 14.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -332,7 +332,7 @@ echo "Backup completed: ${DB_NAME}_${DATE}.dump" >> $BACKUP_DIR/backup.log
 
 ---
 
-## 14.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："只需要逻辑备份"
 
@@ -384,7 +384,7 @@ DELETE FROM users;
 
 ---
 
-## 14.7 动手练习
+## 7 动手练习
 
 ### 练习 1：逻辑备份
 

@@ -21,7 +21,7 @@ description: "Java 设计哲学、语言特性演进、核心机制概览"
 
 ---
 
-## 1.1 为什么需要理解 Java 原理？
+## 1 为什么需要理解 Java 原理？
 
 ### 1.1.1 三个灵魂拷问
 
@@ -74,7 +74,7 @@ public class CacheManager {
 
 ---
 
-## 1.2 Java 的设计哲学
+## 2 Java 的设计哲学
 
 ### 1.2.1 四大核心设计理念
 
@@ -160,7 +160,7 @@ Integer num = new Integer(10);  // 自动分配内存
 
 ---
 
-## 1.3 Java 核心机制概览
+## 3 Java 核心机制概览
 
 ### 1.3.1 编译与运行机制
 
@@ -349,7 +349,7 @@ public class GCDemo {
 
 ---
 
-## 1.4 Java 与其他语言的设计哲学对比
+## 4 Java 与其他语言的设计哲学对比
 
 ### 1.4.1 对比表格
 
@@ -415,7 +415,7 @@ Java 像成熟的商务轿车，稳定可靠；Go 像新兴的电动跑车，速
 
 ---
 
-## 1.5 Java 语言特性演进路线
+## 5 Java 语言特性演进路线
 
 ### 1.5.1 重要版本特性
 
@@ -566,7 +566,7 @@ try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
 
 ---
 
-## 1.6 本教程的学习路线图
+## 6 本教程的学习路线图
 
 ### 1.6.1 教程结构
 
@@ -633,7 +633,7 @@ try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
 
 ---
 
-## 1.7 核心知识点总结
+## 7 核心知识点总结
 
 ### 1.7.1 本章核心概念
 
@@ -669,7 +669,7 @@ try (var executor = Executors.newVirtualThreadPerTaskExecutor()) {
 
 ---
 
-## 1.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1：Java 是完全解释执行的语言
 
@@ -774,7 +774,7 @@ public class NativeDemo {
 
 ---
 
-## 1.9 动手练习
+## 9 动手练习
 
 ### 练习 1：验证 Java 的编译与运行过程
 

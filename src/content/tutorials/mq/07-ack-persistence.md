@@ -18,7 +18,7 @@ description: "学习消息确认机制和持久化策略,保证消息不丢失"
 
 ---
 
-## 7.1 为什么需要消息确认和持久化?
+## 1 为什么需要消息确认和持久化?
 
 ### 痛点分析
 
@@ -95,7 +95,7 @@ channel.basicPublish(exchange, routingKey,
 
 ---
 
-## 7.2 核心原理讲解
+## 2 核心原理讲解
 
 ### 消息确认机制
 
@@ -198,7 +198,7 @@ channel.basicPublish(exchange, routingKey,
 
 ---
 
-## 7.3 基础用法:手动确认模式
+## 3 基础用法:手动确认模式
 
 ### 完整示例:可靠的消息消费
 
@@ -350,7 +350,7 @@ public class ReliableConsumer {
 
 ---
 
-## 7.4 生产者确认机制
+## 4 生产者确认机制
 
 ### 为什么需要生产者确认?
 
@@ -439,7 +439,7 @@ public class PublisherConfirmProducer {
 
 ---
 
-## 7.5 对比表格
+## 5 对比表格
 
 ### 消息确认方式对比
 
@@ -471,7 +471,7 @@ public class PublisherConfirmProducer {
 
 ---
 
-## 7.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1:"设置了队列持久化,消息就永远不会丢失"
 
@@ -550,7 +550,7 @@ DeliverCallback deliverCallback = (consumerTag, delivery) -> {
 
 ---
 
-## 7.7 动手练习
+## 7 动手练习
 
 ### 练习 1:基础概念
 

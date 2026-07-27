@@ -18,7 +18,7 @@ description: "BSON 格式、文档结构、集合概念、命名空间"
 
 ---
 
-## 2.1 BSON 格式详解
+## 1 BSON 格式详解
 
 ### 什么是 BSON？
 
@@ -84,7 +84,7 @@ BSON（Binary JSON）是 MongoDB 用来存储数据和进行网络传输的二�
 
 ---
 
-## 2.2 文档结构设计
+## 2 文档结构设计
 
 ### 什么是文档？
 
@@ -189,7 +189,7 @@ BSON（Binary JSON）是 MongoDB 用来存储数据和进行网络传输的二�
 
 ---
 
-## 2.3 集合的概念
+## 3 集合的概念
 
 ### 什么是集合？
 
@@ -250,7 +250,7 @@ db.products.renameCollection("goods")
 
 ---
 
-## 2.4 _id 字段与 ObjectId
+## 4 _id 字段与 ObjectId
 
 ### _id 字段的作用
 
@@ -331,7 +331,7 @@ id.getTimestamp()
 
 ---
 
-## 2.5 命名空间
+## 5 命名空间
 
 ### 什么是命名空间？
 
@@ -371,7 +371,7 @@ db.getSiblingDB("otherdb").orders.find()
 
 ---
 
-## 2.6 文档大小限制
+## 6 文档大小限制
 
 ### 16MB 限制
 
@@ -447,7 +447,7 @@ db.users.find().sort({ $natural: -1 }).limit(1).forEach(function(doc) {
 
 ---
 
-## 2.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区一：文档必须有相同的结构
 
@@ -521,7 +521,7 @@ db.createCollection("users", {
 
 ---
 
-## 2.8 动手练习
+## 8 动手练习
 
 ### 练习 1：创建包含嵌套文档和数组的文档
 
@@ -642,7 +642,7 @@ Object.bsonsize(doc)
 
 ---
 
-## 2.9 下一章预告
+## 9 下一章预告
 
 恭喜你完成了第二章！现在你已经深入理解了 MongoDB 的文档和集合概念，掌握了 BSON 格式、文档结构设计、ObjectId 生成规则等核心知识。
 

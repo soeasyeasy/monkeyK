@@ -17,7 +17,7 @@ description: "从 Socket 到 Netty，深入理解 Java 网络编程的演进与�
 - 了解 Netty 的架构设计和核心组件
 - 解决网络编程中的粘包/拆包问题
 
-## 11.1 为什么需要网络编程？
+## 1 为什么需要网络编程？
 
 ### 生活中的类比
 
@@ -38,7 +38,7 @@ description: "从 Socket 到 Netty，深入理解 Java 网络编程的演进与�
 
 所有这些底层都依赖网络编程。理解网络编程原理，是成为高级 Java 工程师的必经之路。
 
-## 11.2 核心原理
+## 2 核心原理
 
 ### 11.2.1 Socket 编程基础
 
@@ -484,7 +484,7 @@ pipeline.addLast(new LengthFieldBasedFrameDecoder(
 ));
 ```
 
-## 11.3 基础用法
+## 3 基础用法
 
 ### 11.3.1 BIO 聊天室示例
 
@@ -682,7 +682,7 @@ public class NettyClient {
 }
 ```
 
-## 11.4 进阶用法
+## 4 进阶用法
 
 ### 11.4.1 BIO vs NIO vs Netty 对比
 
@@ -748,7 +748,7 @@ pipeline.addLast(new ChannelInboundHandlerAdapter() {
 });
 ```
 
-## 11.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 核心要点 |
 |--------|----------|
@@ -762,7 +762,7 @@ pipeline.addLast(new ChannelInboundHandlerAdapter() {
 | 粘包/拆包 | TCP 无消息边界，需通过定长、分隔符或长度字段解决 |
 | Netty 优势 | API 友好、性能高、稳定性好、生态丰富 |
 
-## 11.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1：UDP 比 TCP 快，应该优先使用 UDP
 
@@ -797,7 +797,7 @@ pipeline.addLast(new ChannelInboundHandlerAdapter() {
 
 **正确理解：** Netty 同时支持 TCP 和 UDP。通过 `NioDatagramChannel` 可以使用 UDP 协议。Netty 的很多特性（如 Pipeline、Handler 链）对 UDP 同样适用。此外，Netty 还支持 Unix Domain Socket、SCTP 等协议。
 
-## 11.7 动手练习
+## 7 动手练习
 
 ### 练习 1：实现一个简单的 RPC 框架
 

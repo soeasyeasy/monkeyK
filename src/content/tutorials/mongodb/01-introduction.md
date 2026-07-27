@@ -18,7 +18,7 @@ description: "什么是 MongoDB，核心优势，安装配置，第一个数据�
 
 ---
 
-## 1.1 为什么需要 MongoDB？
+## 1 为什么需要 MongoDB？
 
 ### 痛点分析
 
@@ -96,7 +96,7 @@ db.products.insertOne({
 
 ---
 
-## 1.2 MongoDB 是什么？
+## 2 MongoDB 是什么？
 
 ### 概念解释
 
@@ -120,7 +120,7 @@ MongoDB 是一个开源的 **文档型 NoSQL 数据库**，它使用类似 JSON 
 
 ---
 
-## 1.3 MongoDB vs MySQL 对比
+## 3 MongoDB vs MySQL 对比
 
 ### 对比表格
 
@@ -154,7 +154,7 @@ MongoDB 是一个开源的 **文档型 NoSQL 数据库**，它使用类似 JSON 
 
 ---
 
-## 1.4 安装 MongoDB
+## 4 安装 MongoDB
 
 ### Windows 安装
 
@@ -240,7 +240,7 @@ mongod --version
 
 ---
 
-## 1.5 配置文件 mongod.conf
+## 5 配置文件 mongod.conf
 
 MongoDB 的配置文件通常位于：
 
@@ -288,7 +288,7 @@ net:
 
 ---
 
-## 1.6 使用 mongosh 连接 MongoDB
+## 6 使用 mongosh 连接 MongoDB
 
 ### 启动 MongoDB Shell
 
@@ -363,7 +363,7 @@ db.dropDatabase()
 
 ---
 
-## 1.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区一：MongoDB 没有事务
 
@@ -391,7 +391,7 @@ db.dropDatabase()
 
 ---
 
-## 1.8 动手练习
+## 8 动手练习
 
 ### 练习 1：安装并连接 MongoDB
 
@@ -523,7 +523,7 @@ db.articles.insertOne({
 
 ---
 
-## 1.9 下一章预告
+## 9 下一章预告
 
 恭喜你完成了第一章！现在你已经了解了 MongoDB 的基本概念，并成功搭建了环境。
 

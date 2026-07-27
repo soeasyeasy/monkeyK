@@ -17,7 +17,7 @@ description: "mysqldump、mysqlpump、二进制日志、时间点恢复"
 
 ---
 
-## 14.1 为什么需要备份？
+## 1 为什么需要备份？
 
 ### 数据丢失的灾难
 
@@ -48,7 +48,7 @@ description: "mysqldump、mysqlpump、二进制日志、时间点恢复"
 
 ---
 
-## 14.2 逻辑备份：mysqldump
+## 2 逻辑备份：mysqldump
 
 ### 什么是逻辑备份？
 
@@ -118,7 +118,7 @@ mysqldump -u root -p \
 
 ---
 
-## 14.3 物理备份
+## 3 物理备份
 
 ### 什么是物理备份？
 
@@ -162,7 +162,7 @@ mysqlpump -u root -p --databases company > company_backup.sql
 
 ---
 
-## 14.4 全量备份 vs 增量备份
+## 4 全量备份 vs 增量备份
 
 ### 全量备份
 
@@ -209,7 +209,7 @@ mysqlbinlog --start-datetime="2024-01-02 00:00:00" \
 
 ---
 
-## 14.5 二进制日志（binlog）
+## 5 二进制日志（binlog）
 
 ### 什么是二进制日志？
 
@@ -272,7 +272,7 @@ SET GLOBAL binlog_format = 'ROW';
 
 ---
 
-## 14.6 时间点恢复
+## 6 时间点恢复
 
 ### 什么是时间点恢复？
 
@@ -310,7 +310,7 @@ mysqlbinlog --start-datetime="2024-01-15 00:00:00" \
 
 ---
 
-## 14.7 备份策略
+## 7 备份策略
 
 ### 备份策略设计
 
@@ -369,7 +369,7 @@ rsync -avz /backup/ user@remote_server:/backup/
 
 ---
 
-## 14.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1："有备份就行了，不需要测试恢复"
 
@@ -396,7 +396,7 @@ rsync -avz /backup/ user@remote_server:/backup/
 
 ---
 
-## 14.9 动手练习
+## 9 动手练习
 
 ### 练习 1：使用 mysqldump 备份
 

@@ -18,7 +18,7 @@ description: 'jps、jstat、jmap、jstack、jcmd、VisualVM'
 
 ---
 
-## 11.1 为什么需要性能监控工具？
+## 1 为什么需要性能监控工具？
 
 ### 痛点分析
 
@@ -45,7 +45,7 @@ JDK 提供了多种监控工具：
 
 ---
 
-## 11.2 jps：查看 Java 进程
+## 2 jps：查看 Java 进程
 
 ### 什么是 jps
 
@@ -88,7 +88,7 @@ jps -lvm
 
 ---
 
-## 11.3 jstat：监控 GC 和内存
+## 3 jstat：监控 GC 和内存
 
 ### 什么是 jstat
 
@@ -158,7 +158,7 @@ jstat -compiler <pid>
 
 ---
 
-## 11.4 jmap：生成堆转储
+## 4 jmap：生成堆转储
 
 ### 什么是 jmap
 
@@ -219,7 +219,7 @@ jmap -F -dump:format=b,file=heap.hprof <pid>
 
 ---
 
-## 11.5 jstack：生成线程转储
+## 5 jstack：生成线程转储
 
 ### 什么是 jstack
 
@@ -285,7 +285,7 @@ Found one Java-level deadlock:
 
 ---
 
-## 11.6 jcmd：综合诊断工具
+## 6 jcmd：综合诊断工具
 
 ### 什么是 jcmd
 
@@ -340,7 +340,7 @@ Compiler.codecache    # 查看代码缓存
 
 ---
 
-## 11.7 VisualVM：可视化监控
+## 7 VisualVM：可视化监控
 
 ### 什么是 VisualVM
 
@@ -384,7 +384,7 @@ visualvm
 
 ---
 
-## 11.8 核心知识点总结
+## 8 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -397,7 +397,7 @@ visualvm
 
 ---
 
-## 11.9 新手常见误区
+## 9 新手常见误区
 
 ### 误区 1："jmap 可以随意执行"
 
@@ -419,7 +419,7 @@ visualvm
 
 ---
 
-## 11.10 动手练习
+## 10 动手练习
 
 ### 练习 1：基础题
 

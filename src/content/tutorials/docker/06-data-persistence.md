@@ -18,7 +18,7 @@ description: "数据卷、挂载目录、容器数据管理"
 
 ---
 
-## 6.1 为什么需要数据持久化？
+## 1 为什么需要数据持久化？
 
 ### 痛点分析
 
@@ -45,7 +45,7 @@ Docker 提供了两种数据持久化方式：
 
 ---
 
-## 6.2 数据卷（Volumes）
+## 2 数据卷（Volumes）
 
 ### 创建数据卷
 
@@ -104,7 +104,7 @@ docker volume rm -f my-data
 
 ---
 
-## 6.3 绑定挂载（Bind Mounts）
+## 3 绑定挂载（Bind Mounts）
 
 ### 基础使用
 
@@ -147,7 +147,7 @@ docker run -d -v /var/log/myapp:/app/logs myapp
 
 ---
 
-## 6.4 在 Dockerfile 中使用 VOLUME
+## 4 在 Dockerfile 中使用 VOLUME
 
 ```dockerfile
 # 声明匿名卷
@@ -168,7 +168,7 @@ docker run -d -v my-data:/data nginx
 
 ---
 
-## 6.5 数据备份与恢复
+## 5 数据备份与恢复
 
 ### 备份数据卷
 
@@ -207,7 +207,7 @@ tar czf backup.tar.gz /host/path
 
 ---
 
-## 6.6 数据共享
+## 6 数据共享
 
 ### 多个容器共享数据卷
 
@@ -237,7 +237,7 @@ docker run -d -v my-data:/data:ro nginx
 
 ---
 
-## 6.7 数据管理最佳实践
+## 7 数据管理最佳实践
 
 ### 1. 优先使用数据卷
 
@@ -282,7 +282,7 @@ docker run --rm \
 
 ---
 
-## 6.8 核心知识点总结
+## 8 核心知识点总结
 
 | 概念 | 说明 |
 | --- | --- |
@@ -296,7 +296,7 @@ docker run --rm \
 
 ---
 
-## 6.9 新手常见误区
+## 9 新手常见误区
 
 ### 误区 1："容器删除后数据就没了"
 
@@ -316,7 +316,7 @@ docker run --rm \
 
 ---
 
-## 6.10 动手练习
+## 10 动手练习
 
 ### 练习 1：使用数据卷
 

@@ -18,7 +18,7 @@ description: "WebSocket 协议、双向通信、心跳重连、应用场景"
 
 ---
 
-## 13.1 为什么需要 WebSocket？
+## 1 为什么需要 WebSocket？
 
 ### 痛点分析：HTTP 的"先天缺陷"
 
@@ -75,7 +75,7 @@ ws.send(JSON.stringify({ text: '你好' }))
 
 ---
 
-## 13.2 核心原理
+## 2 核心原理
 
 ### 13.2.1 WebSocket 的连接过程
 
@@ -150,7 +150,7 @@ WebSocket 传输数据时，不是直接把数据扔过去，而是把数据包�
 
 ---
 
-## 13.3 基础用法
+## 3 基础用法
 
 ### 13.3.1 创建 WebSocket 连接
 
@@ -263,7 +263,7 @@ function sendMessage(data) {
 
 ---
 
-## 13.4 实战：心跳保活和断线重连
+## 4 实战：心跳保活和断线重连
 
 在实际项目中，WebSocket 连接不能"建了就不管"。你需要考虑两个问题：
 
@@ -440,7 +440,7 @@ client.send({ type: 'hello', content: '你好' })
 
 ---
 
-## 13.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -455,7 +455,7 @@ client.send({ type: 'hello', content: '你好' })
 
 ---
 
-## 13.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："WebSocket 不需要 HTTP 了"
 
@@ -489,7 +489,7 @@ if (ws.readyState === WebSocket.OPEN) {
 
 ---
 
-## 13.7 动手练习
+## 7 动手练习
 
 ### 练习 1（基础）：创建一个简单的 WebSocket 客户端
 

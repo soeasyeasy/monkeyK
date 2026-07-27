@@ -19,7 +19,7 @@ description: "SETNX 实现、Redlock 算法、锁超时与续期"
 
 ---
 
-## 13.1 为什么需要分布式锁？
+## 1 为什么需要分布式锁？
 
 ### 痛点分析
 
@@ -47,7 +47,7 @@ description: "SETNX 实现、Redlock 算法、锁超时与续期"
 
 ---
 
-## 13.2 Redis 分布式锁原理
+## 2 Redis 分布式锁原理
 
 ### 核心思想
 
@@ -218,7 +218,7 @@ public class RedisLockWithRenew {
 
 ---
 
-## 13.3 Redlock 算法
+## 3 Redlock 算法
 
 ### 问题背景
 
@@ -347,7 +347,7 @@ Redlock 算法存在争议，主要问题：
 
 ---
 
-## 13.4 Redisson 分布式锁
+## 4 Redisson 分布式锁
 
 Redisson 是一个基于 Redis 的 Java 驻内存数据网格，提供了开箱即用的分布式锁实现。
 
@@ -427,7 +427,7 @@ config.useSingleServer()
 
 ---
 
-## 13.5 分布式锁最佳实践
+## 5 分布式锁最佳实践
 
 ### 锁的粒度
 
@@ -493,7 +493,7 @@ public void process() {
 
 ---
 
-## 13.6 核心知识点总结
+## 6 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -506,7 +506,7 @@ public void process() {
 
 ---
 
-## 13.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区 1："SETNX 后设置过期时间是安全的"
 
@@ -526,7 +526,7 @@ public void process() {
 
 ---
 
-## 13.8 动手练习
+## 8 动手练习
 
 ### 练习 1：实现简单的分布式锁
 

@@ -19,7 +19,7 @@ description: "键操作、数据库管理、服务器管理命令"
 
 ---
 
-## 3.1 为什么需要通用命令？
+## 1 为什么需要通用命令？
 
 ### 痛点分析
 
@@ -40,7 +40,7 @@ Redis 提供了一套通用命令，适用于所有数据类型。掌握这些�
 
 ---
 
-## 3.2 键操作命令
+## 2 键操作命令
 
 ### 查看所有键
 
@@ -217,7 +217,7 @@ OK
 
 ---
 
-## 3.3 数据库管理命令
+## 3 数据库管理命令
 
 ### 切换数据库
 
@@ -270,7 +270,7 @@ OK
 
 ---
 
-## 3.4 服务器管理命令
+## 4 服务器管理命令
 
 ### 查看服务器信息
 
@@ -405,7 +405,7 @@ Background saving started
 
 ---
 
-## 3.5 批量操作命令
+## 5 批量操作命令
 
 ### MGET/MSET
 
@@ -455,7 +455,7 @@ List<Object> results = redisTemplate.executePipelined((RedisCallback<Object>) co
 
 ---
 
-## 3.6 核心知识点总结
+## 6 核心知识点总结
 
 | 命令类型 | 常用命令 | 说明 |
 | --- | --- | --- |
@@ -467,7 +467,7 @@ List<Object> results = redisTemplate.executePipelined((RedisCallback<Object>) co
 
 ---
 
-## 3.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区 1："生产环境可以用 KEYS * 查看所有键"
 
@@ -490,7 +490,7 @@ List<Object> results = redisTemplate.executePipelined((RedisCallback<Object>) co
 
 ---
 
-## 3.8 动手练习
+## 8 动手练习
 
 ### 练习 1：键操作
 

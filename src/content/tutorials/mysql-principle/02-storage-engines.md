@@ -24,7 +24,7 @@ description: "深入理解 InnoDB、MyISAM、Memory 存储引擎的底层实现�
 
 ---
 
-## 2.1 为什么需要多种存储引擎？
+## 1 为什么需要多种存储引擎？
 
 ### 痛点分析
 
@@ -57,7 +57,7 @@ description: "深入理解 InnoDB、MyISAM、Memory 存储引擎的底层实现�
 
 ---
 
-## 2.2 InnoDB 存储引擎
+## 2 InnoDB 存储引擎
 
 ### 核心特性
 
@@ -147,7 +147,7 @@ CREATE TABLE orders (
 
 ---
 
-## 2.3 MyISAM 存储引擎
+## 3 MyISAM 存储引擎
 
 ### 核心特性
 
@@ -213,7 +213,7 @@ OPTIMIZE TABLE article_logs;
 
 ---
 
-## 2.4 Memory 存储引擎
+## 4 Memory 存储引擎
 
 ### 核心特性
 
@@ -260,7 +260,7 @@ SHOW VARIABLES LIKE 'max_heap_table_size';
 
 ---
 
-## 2.5 对比表格：三大存储引擎
+## 5 对比表格：三大存储引擎
 
 | 对比维度 | InnoDB | MyISAM | Memory |
 |---------|--------|--------|--------|
@@ -278,7 +278,7 @@ SHOW VARIABLES LIKE 'max_heap_table_size';
 
 ---
 
-## 2.6 表空间管理
+## 6 表空间管理
 
 ### 什么是表空间？
 
@@ -332,7 +332,7 @@ SHOW STATUS LIKE 'Innodb_buffer_pool%';
 
 ---
 
-## 2.7 存储引擎选择策略
+## 7 存储引擎选择策略
 
 ### 选择原则
 
@@ -364,7 +364,7 @@ SHOW STATUS LIKE 'Innodb_buffer_pool%';
 
 ---
 
-## 2.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区一：认为 MyISAM 比 InnoDB 快
 
@@ -424,7 +424,7 @@ Memory 引擎有很多限制：
 
 ---
 
-## 2.9 动手练习
+## 9 动手练习
 
 ### 练习一（基础）：对比不同引擎的表信息
 
@@ -578,7 +578,7 @@ InnoDB 的情况：
 
 ---
 
-## 2.10 下一章预告
+## 10 下一章预告
 
 学完了存储引擎，我们知道数据是以"页"为单位存放在表空间中的。但不同类型的列（整数、字符串、日期...）在磁盘上到底占多少字节？中文和英文存储方式一样吗？
 

@@ -18,7 +18,7 @@ description: "深入理解基于成本优化、执行计划生成、连接算法
 
 ---
 
-## 7.1 为什么需要查询优化器？
+## 1 为什么需要查询优化器？
 
 ### 痛点分析
 
@@ -42,7 +42,7 @@ description: "深入理解基于成本优化、执行计划生成、连接算法
 
 ---
 
-## 7.2 核心原理讲解
+## 2 核心原理讲解
 
 ### 7.2.1 基于成本的优化（Cost-Based Optimization）
 
@@ -330,7 +330,7 @@ EXPLAIN SELECT * FROM users WHERE id IN (SELECT user_id FROM orders);
 
 ---
 
-## 7.3 基础用法 + 逐行注释
+## 3 基础用法 + 逐行注释
 
 ### 7.3.1 创建测试表和数据
 
@@ -454,7 +454,7 @@ EXPLAIN SELECT u.* FROM users u LEFT JOIN orders o ON u.id = o.user_id WHERE o.i
 
 ---
 
-## 7.4 对比表格
+## 4 对比表格
 
 ### 执行计划类型对比
 
@@ -486,7 +486,7 @@ EXPLAIN SELECT u.* FROM users u LEFT JOIN orders o ON u.id = o.user_id WHERE o.i
 
 ---
 
-## 7.5 新手常见误区
+## 5 新手常见误区
 
 ### 误区 1："优化器总是选最优的索引"
 
@@ -536,7 +536,7 @@ EXPLAIN SELECT u.* FROM users u LEFT JOIN orders o ON u.id = o.user_id WHERE o.i
 
 ---
 
-## 7.6 动手练习
+## 6 动手练习
 
 ### 练习 1：分析执行计划（基础）
 

@@ -18,7 +18,7 @@ description: "掌握 HTTP 缓存、Service Worker、Workbox 等缓存技术，�
 
 ---
 
-## 10.1 为什么需要缓存策略？
+## 1 为什么需要缓存策略？
 
 ### 痛点分析
 
@@ -49,7 +49,7 @@ description: "掌握 HTTP 缓存、Service Worker、Workbox 等缓存技术，�
 
 ---
 
-## 10.2 缓存类型概览
+## 2 缓存类型概览
 
 ### 浏览器缓存体系
 
@@ -82,7 +82,7 @@ description: "掌握 HTTP 缓存、Service Worker、Workbox 等缓存技术，�
 
 ---
 
-## 10.3 HTTP 缓存机制
+## 3 HTTP 缓存机制
 
 HTTP 缓存是最常用的缓存方式，通过响应头控制。分为两种：强缓存和协商缓存。
 
@@ -208,7 +208,7 @@ API 响应：
 
 ---
 
-## 10.4 Service Worker 缓存
+## 4 Service Worker 缓存
 
 Service Worker 是浏览器提供的可编程缓存层，可以拦截网络请求，实现离线访问。
 
@@ -380,7 +380,7 @@ self.addEventListener('fetch', (event) => {
 
 ---
 
-## 10.5 常用缓存策略对比
+## 5 常用缓存策略对比
 
 不同的资源适合不同的缓存策略：
 
@@ -433,7 +433,7 @@ event.respondWith(
 
 ---
 
-## 10.6 Workbox：简化 Service Worker
+## 6 Workbox：简化 Service Worker
 
 手写 Service Worker 很复杂，Workbox 是 Google 提供的库，封装了常用缓存策略。
 
@@ -553,7 +553,7 @@ export default defineConfig({
 
 ---
 
-## 10.7 缓存最佳实践
+## 7 缓存最佳实践
 
 ### 文件名 Hash
 
@@ -615,7 +615,7 @@ async function clearAllCache() {
 
 ---
 
-## 10.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1："no-cache 是不缓存"
 
@@ -661,7 +661,7 @@ async function clearAllCache() {
 
 ---
 
-## 10.9 动手练习
+## 9 动手练习
 
 ### 练习 1：基础练习 - HTTP 缓存配置
 

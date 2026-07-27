@@ -18,7 +18,7 @@ description: "学习 Direct 交换机和 Topic 交换机的使用,掌握路由�
 
 ---
 
-## 6.1 为什么需要路由模式?
+## 1 为什么需要路由模式?
 
 ### 痛点分析
 
@@ -65,7 +65,7 @@ channel.basicPublish("order_direct", "order.overseas", null, overseasOrder.getBy
 
 ---
 
-## 6.2 Direct 交换机:精确路由
+## 2 Direct 交换机:精确路由
 
 ### 工作原理
 
@@ -276,7 +276,7 @@ public class OverseasOrderConsumer {
 
 ---
 
-## 6.3 Topic 交换机:灵活订阅
+## 3 Topic 交换机:灵活订阅
 
 ### 为什么需要 Topic 交换机?
 
@@ -539,7 +539,7 @@ public class MonitorConsumer {
 
 ---
 
-## 6.4 对比表格
+## 4 对比表格
 
 ### Direct vs Topic 交换机对比
 
@@ -572,7 +572,7 @@ public class MonitorConsumer {
 
 ---
 
-## 6.5 路由键设计最佳实践
+## 5 路由键设计最佳实践
 
 ### 设计原则
 
@@ -631,7 +631,7 @@ channel.basicPublish("log_topic", "user_login_info", null, message.getBytes());
 
 ---
 
-## 6.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1:"Topic 交换机的 `*` 可以匹配多个单词"
 
@@ -696,7 +696,7 @@ channel.basicPublish("log_topic", "error.order.payment", null, message.getBytes(
 
 ---
 
-## 6.7 动手练习
+## 7 动手练习
 
 ### 练习 1:基础概念
 

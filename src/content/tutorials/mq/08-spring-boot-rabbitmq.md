@@ -19,7 +19,7 @@ description: "学习使用 Spring Boot 集成 RabbitMQ,掌握 RabbitTemplate 和
 
 ---
 
-## 8.1 为什么需要 Spring Boot 集成?
+## 1 为什么需要 Spring Boot 集成?
 
 ### 痛点分析
 
@@ -101,7 +101,7 @@ public class SpringProducer {
 
 ---
 
-## 8.2 核心原理讲解
+## 2 核心原理讲解
 
 ### Spring AMQP 架构
 
@@ -143,7 +143,7 @@ Spring AMQP 是 Spring 对 AMQP 协议的封装,它提供了两个核心组件:
 
 ---
 
-## 8.3 基础用法:完整示例
+## 3 基础用法:完整示例
 
 ### 第一步:添加依赖
 
@@ -422,7 +422,7 @@ public class Order implements Serializable {
 
 ---
 
-## 8.4 高级用法
+## 4 高级用法
 
 ### 1. 手动确认模式
 
@@ -548,7 +548,7 @@ public class RabbitMQMessageConfig {
 
 ---
 
-## 8.5 对比表格
+## 5 对比表格
 
 ### 原生 API vs Spring Boot 对比
 
@@ -582,7 +582,7 @@ public class RabbitMQMessageConfig {
 
 ---
 
-## 8.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1:"Spring Boot 会自动创建所有队列和交换机"
 
@@ -676,7 +676,7 @@ spring:
 
 ---
 
-## 8.7 动手练习
+## 7 动手练习
 
 ### 练习 1:基础概念
 

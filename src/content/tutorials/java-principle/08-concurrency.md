@@ -27,7 +27,7 @@ description: "线程模型、内存可见性、synchronized 锁升级、AQS 框�
 
 ---
 
-## 8.1 为什么需要并发编程？
+## 1 为什么需要并发编程？
 
 ### 痛点分析
 
@@ -74,7 +74,7 @@ public void handleRequests(List<Request> requests) {
 
 ---
 
-## 8.2 核心原理：线程的本质
+## 2 核心原理：线程的本质
 
 ### 操作系统线程 vs Java 线程
 
@@ -153,7 +153,7 @@ executor.submit(() -> System.out.println("线程运行"));
 
 ---
 
-## 8.3 Java 内存模型（JMM）
+## 3 Java 内存模型（JMM）
 
 ### 主内存与工作内存
 
@@ -275,7 +275,7 @@ synchronized (lock) {
 
 ---
 
-## 8.4 volatile 原理
+## 4 volatile 原理
 
 ### 内存屏障
 
@@ -371,7 +371,7 @@ private static AtomicInteger count = new AtomicInteger(0);
 
 ---
 
-## 8.5 synchronized 锁升级
+## 5 synchronized 锁升级
 
 ### 锁的四种状态
 
@@ -469,7 +469,7 @@ public void method() {
 
 ---
 
-## 8.6 AQS 框架原理
+## 6 AQS 框架原理
 
 ### 什么是 AQS
 
@@ -630,7 +630,7 @@ public class ReentrantLock implements Lock {
 
 ---
 
-## 8.7 线程池原理
+## 7 线程池原理
 
 ### 核心参数
 
@@ -723,7 +723,7 @@ ScheduledExecutorService scheduledPool = Executors.newScheduledThreadPool(5);
 
 ---
 
-## 8.8 核心知识点总结
+## 8 核心知识点总结
 
 ### 并发工具对比
 
@@ -749,7 +749,7 @@ ScheduledExecutorService scheduledPool = Executors.newScheduledThreadPool(5);
 
 ---
 
-## 8.9 新手常见误区
+## 9 新手常见误区
 
 ### 误区 1："volatile 可以替代 synchronized"
 
@@ -884,7 +884,7 @@ public void process(User user) {
 
 ---
 
-## 8.10 动手练习
+## 10 动手练习
 
 ### 练习 1：基础题
 

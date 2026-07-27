@@ -19,7 +19,7 @@ description: "回调函数、Promise、async/await，掌握异步操作"
 
 ---
 
-## 10.1 为什么需要异步编程？
+## 1 为什么需要异步编程？
 
 ### 痛点分析
 
@@ -74,7 +74,7 @@ console.log('结束')
 
 ---
 
-## 10.2 核心原理
+## 2 核心原理
 
 ### 同步 vs 异步
 
@@ -100,7 +100,7 @@ JavaScript 是**单线程**的，但它有一个强大的异步机制：
 
 ---
 
-## 10.3 回调函数
+## 3 回调函数
 
 ### 什么是回调函数
 
@@ -143,7 +143,7 @@ fetchUser(userId, (user) => {
 
 ---
 
-## 10.4 Promise
+## 4 Promise
 
 ### 什么是 Promise
 
@@ -201,7 +201,7 @@ fetchUser(userId)
 
 ---
 
-## 10.5 Promise 的常用方法
+## 5 Promise 的常用方法
 
 ### Promise.all
 
@@ -273,7 +273,7 @@ Promise.reject(new Error('失败')).catch(console.error)
 
 ---
 
-## 10.6 async/await
+## 6 async/await
 
 ### 什么是 async/await
 
@@ -337,7 +337,7 @@ getData().then(console.log)
 
 ---
 
-## 10.7 错误处理
+## 7 错误处理
 
 ### try/catch
 
@@ -373,7 +373,7 @@ async function getDataWithFallback() {
 
 ---
 
-## 10.8 并行执行
+## 8 并行执行
 
 ### 使用 Promise.all 并行执行
 
@@ -399,7 +399,7 @@ async function fetchDataParallel() {
 
 ---
 
-## 10.9 Promise 链 vs async/await
+## 9 Promise 链 vs async/await
 
 ### Promise 链写法
 
@@ -438,7 +438,7 @@ async function fetchUserData(userId) {
 
 ---
 
-## 10.10 微任务和宏任务
+## 10 微任务和宏任务
 
 ### 任务分类
 
@@ -475,7 +475,7 @@ console.log('4. 同步代码')
 
 ---
 
-## 10.11 实战：封装异步操作
+## 11 实战：封装异步操作
 
 ### 封装 setTimeout
 
@@ -527,7 +527,7 @@ readFiles()
 
 ---
 
-## 10.12 核心知识点总结
+## 12 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -545,7 +545,7 @@ readFiles()
 
 ---
 
-## 10.13 新手常见误区
+## 13 新手常见误区
 
 ### 误区 1：await 可以在普通函数中使用
 
@@ -623,7 +623,7 @@ console.log('4. 继续执行')
 
 ---
 
-## 10.14 动手练习
+## 14 动手练习
 
 ### 练习 1：基础练习
 

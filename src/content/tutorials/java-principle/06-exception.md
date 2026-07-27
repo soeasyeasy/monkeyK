@@ -27,7 +27,7 @@ description: "异常体系、异常链、异常性能优化、try-with-resources
 
 ---
 
-## 6.1 为什么需要异常处理？
+## 1 为什么需要异常处理？
 
 ### 痛点分析
 
@@ -111,7 +111,7 @@ try {
 
 ---
 
-## 6.2 核心原理：异常体系结构
+## 2 核心原理：异常体系结构
 
 ### 异常的继承体系
 
@@ -171,7 +171,7 @@ public void divide(int a, int b) {
 
 ---
 
-## 6.3 异常的底层实现
+## 3 异常的底层实现
 
 ### 异常对象的创建过程
 
@@ -267,7 +267,7 @@ public class StackTraceDemo {
 
 ---
 
-## 6.4 try-catch-finally 的字节码实现
+## 4 try-catch-finally 的字节码实现
 
 ### 编译器糖
 
@@ -341,7 +341,7 @@ public void test();
 
 ---
 
-## 6.5 try-with-resources 原理
+## 5 try-with-resources 原理
 
 ### 传统方式的问题
 
@@ -494,7 +494,7 @@ class MyResource implements AutoCloseable {
 
 ---
 
-## 6.6 异常链
+## 6 异常链
 
 ### 什么是异常链
 
@@ -578,7 +578,7 @@ public class ExceptionChainDemo {
 
 ---
 
-## 6.7 异常的性能问题
+## 7 异常的性能问题
 
 ### 为什么异常很慢？
 
@@ -689,7 +689,7 @@ public void process() {
 
 ---
 
-## 6.8 核心知识点总结
+## 8 核心知识点总结
 
 | 知识点 | 说明 |
 |--------|------|
@@ -704,7 +704,7 @@ public void process() {
 
 ---
 
-## 6.9 新手常见误区
+## 9 新手常见误区
 
 ### 误区 1："异常就是用来控制流程的"
 
@@ -845,7 +845,7 @@ public void process() {
 
 ---
 
-## 6.10 动手练习
+## 10 动手练习
 
 ### 练习 1：基础题
 

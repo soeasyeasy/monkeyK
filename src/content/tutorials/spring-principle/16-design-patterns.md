@@ -22,7 +22,7 @@ description: "深入理解 Spring 框架中运用的设计模式，掌握工厂�
 
 ---
 
-## 16.1 为什么需要学习设计模式？
+## 1 为什么需要学习设计模式？
 
 ### 痛点分析
 
@@ -49,7 +49,7 @@ description: "深入理解 Spring 框架中运用的设计模式，掌握工厂�
 
 ---
 
-## 16.2 核心原理讲解
+## 2 核心原理讲解
 
 ### 16.2.1 工厂模式（Factory Pattern）
 
@@ -1364,7 +1364,7 @@ public class UserHandler implements MyHandler {
 
 ---
 
-## 16.3 对比表格
+## 3 对比表格
 
 ### 设计模式对比
 
@@ -1380,7 +1380,7 @@ public class UserHandler implements MyHandler {
 
 ---
 
-## 16.4 新手常见误区
+## 4 新手常见误区
 
 ### 误区 1："Spring 的 Bean 都是单例的"
 
@@ -1505,7 +1505,7 @@ public class FileSystemResource implements Resource {
 
 ---
 
-## 16.5 动手练习
+## 5 动手练习
 
 ### 练习 1：基础练习 - 自定义工厂 Bean
 

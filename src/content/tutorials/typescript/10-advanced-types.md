@@ -18,7 +18,7 @@ description: '掌握 keyof、typeof、infer、条件类型、映射类型和模�
 
 ---
 
-## 10.1 为什么需要高级类型？
+## 1 为什么需要高级类型？
 
 ### 痛点分析
 
@@ -67,7 +67,7 @@ type UserReadonly = { readonly [K in keyof User]: User[K] }
 
 ---
 
-## 10.2 核心原理
+## 2 核心原理
 
 ### 高级类型的工作原理
 
@@ -91,7 +91,7 @@ type IsString<T> = T extends string ? 'yes' : 'no'
 
 ---
 
-## 10.3 高级类型详解
+## 3 高级类型详解
 
 ### 1. keyof 操作符
 
@@ -261,7 +261,7 @@ type DeepPartial<T> = {
 
 ---
 
-## 10.4 高级类型对比
+## 4 高级类型对比
 
 | 类型特性 | 语法 | 作用 | 示例 |
 | --- | --- | --- | --- |
@@ -274,7 +274,7 @@ type DeepPartial<T> = {
 
 ---
 
-## 10.5 新手常见误区
+## 5 新手常见误区
 
 ### 误区 1："typeof 只能用于值"
 
@@ -338,7 +338,7 @@ type Upper = UpperCaseUnion<'a' | 'b'>
 
 ---
 
-## 10.6 动手练习
+## 6 动手练习
 
 ### 练习 1：基础练习
 

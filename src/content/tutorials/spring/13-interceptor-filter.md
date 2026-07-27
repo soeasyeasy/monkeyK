@@ -18,7 +18,7 @@ description: "使用 Filter 和 HandlerInterceptor 拦截请求进行预处理"
 
 ---
 
-## 13.1 为什么需要拦截器？
+## 1 为什么需要拦截器？
 
 ### 痛点分析
 
@@ -57,7 +57,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 ---
 
-## 13.2 核心原理
+## 2 核心原理
 
 ### 13.2.1 Filter vs Interceptor
 
@@ -87,7 +87,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 ---
 
-## 13.3 基础用法
+## 3 基础用法
 
 ### 13.3.1 Filter 过滤器
 
@@ -221,7 +221,7 @@ public class WebConfig implements WebMvcConfigurer {
 
 ---
 
-## 13.4 进阶用法
+## 4 进阶用法
 
 ### 13.4.1 CORS 跨域过滤器
 
@@ -359,7 +359,7 @@ public class WebConfig implements WebMvcConfigurer {
 
 ---
 
-## 13.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -375,7 +375,7 @@ public class WebConfig implements WebMvcConfigurer {
 
 ---
 
-## 13.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："Filter 和 Interceptor 可以互相替代"
 
@@ -405,7 +405,7 @@ public class WebConfig implements WebMvcConfigurer {
 
 ---
 
-## 13.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础练习 - 请求日志
 

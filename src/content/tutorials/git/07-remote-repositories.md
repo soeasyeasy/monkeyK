@@ -18,7 +18,7 @@ description: "掌握远程仓库的配置与同步操作"
 
 ---
 
-## 7.1 为什么需要远程仓库
+## 1 为什么需要远程仓库
 
 ### 痛点分析
 
@@ -52,7 +52,7 @@ description: "掌握远程仓库的配置与同步操作"
 
 ---
 
-## 7.2 查看远程仓库
+## 2 查看远程仓库
 
 ```bash
 # 查看远程仓库地址
@@ -77,7 +77,7 @@ git remote
 
 ---
 
-## 7.3 添加远程仓库
+## 3 添加远程仓库
 
 ```bash
 # 添加远程仓库（HTTPS 协议）
@@ -99,7 +99,7 @@ git remote add upstream https://github.com/original/repo.git
 
 ---
 
-## 7.4 修改远程仓库
+## 4 修改远程仓库
 
 ```bash
 # 修改远程仓库地址
@@ -114,7 +114,7 @@ git remote remove origin
 
 ---
 
-## 7.5 核心原理：fetch、pull、push 的工作流程
+## 5 核心原理：fetch、pull、push 的工作流程
 
 这是本章最重要的部分。先理解整体流程，再逐个学习命令。
 
@@ -153,7 +153,7 @@ git remote remove origin
 
 ---
 
-## 7.6 git fetch -- 获取远程更新
+## 6 git fetch -- 获取远程更新
 
 从远程仓库下载最新的提交和引用，但**不合并**到本地。
 
@@ -188,7 +188,7 @@ git merge origin/main
 
 ---
 
-## 7.7 git pull -- 拉取并合并
+## 7 git pull -- 拉取并合并
 
 从远程仓库获取更新并**自动合并**到当前分支。
 
@@ -219,7 +219,7 @@ git merge origin/main
 
 ---
 
-## 7.8 git push -- 推送本地提交
+## 8 git push -- 推送本地提交
 
 将本地提交推送到远程仓库。
 
@@ -243,7 +243,7 @@ git push --all
 
 ---
 
-## 7.9 对比表格
+## 9 对比表格
 
 ### fetch vs pull vs push
 
@@ -265,7 +265,7 @@ git push --all
 
 ---
 
-## 7.10 远程跟踪分支
+## 10 远程跟踪分支
 
 当你执行 `git fetch` 或 `git pull` 时，Git 会更新远程跟踪分支。
 
@@ -294,7 +294,7 @@ git branch -a
 
 ---
 
-## 7.11 设置上游分支
+## 11 设置上游分支
 
 ```bash
 # 推送时设置上游分支
@@ -308,7 +308,7 @@ git push
 
 ---
 
-## 7.12 删除远程分支
+## 12 删除远程分支
 
 ```bash
 # 删除远程分支
@@ -320,7 +320,7 @@ git push origin :feature/login
 
 ---
 
-## 7.13 核心知识点总结
+## 13 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -335,7 +335,7 @@ git push origin :feature/login
 
 ---
 
-## 7.14 新手常见误区
+## 14 新手常见误区
 
 ### 误区 1："git pull 和 git fetch 是一样的"
 
@@ -359,7 +359,7 @@ git push origin :feature/login
 
 ---
 
-## 7.15 动手练习
+## 15 动手练习
 
 ### 练习 1（基础）：模拟远程协作流程
 

@@ -18,7 +18,7 @@ description: "使用 Fanout 交换机实现消息广播，多个消费者同时�
 
 ---
 
-## 5.1 为什么需要发布订阅？
+## 1 为什么需要发布订阅？
 
 ### 痛点分析
 
@@ -56,7 +56,7 @@ description: "使用 Fanout 交换机实现消息广播，多个消费者同时�
 
 ---
 
-## 5.2 Fanout 交换机原理
+## 2 Fanout 交换机原理
 
 Fanout 交换机的路由规则非常简单：**把消息广播到所有绑定到它的队列**。
 
@@ -73,7 +73,7 @@ channel.exchangeDeclare("order_fanout", "fanout");
 
 ---
 
-## 5.3 示例代码
+## 3 示例代码
 
 ### 生产者：发送订单消息
 
@@ -241,7 +241,7 @@ public class PointConsumer {
 
 ---
 
-## 5.4 临时队列 vs 持久队列
+## 4 临时队列 vs 持久队列
 
 | 特性 | 临时队列 | 持久队列 |
 | --- | --- | --- |
@@ -262,7 +262,7 @@ channel.queueDeclare("order_queue", true, false, false, null);
 
 ---
 
-## 5.5 绑定与解绑
+## 5 绑定与解绑
 
 ```java
 // 绑定队列到交换机
@@ -276,7 +276,7 @@ channel.queueUnbind(queueName, exchangeName, routingKey);
 
 ---
 
-## 5.6 核心知识点总结
+## 6 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -288,7 +288,7 @@ channel.queueUnbind(queueName, exchangeName, routingKey);
 
 ---
 
-## 5.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区 1："Fanout 交换机需要指定路由键"
 
@@ -304,7 +304,7 @@ channel.queueUnbind(queueName, exchangeName, routingKey);
 
 ---
 
-## 5.8 动手练习
+## 8 动手练习
 
 ### 练习 1：基础练习
 

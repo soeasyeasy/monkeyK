@@ -16,7 +16,7 @@ description: "深入理解 Java 序列化机制，掌握 Serializable、transien
 - 理解 JSON 序列化框架的反射原理
 - 对比不同序列化方案的优劣
 
-## 10.1 为什么需要序列化？
+## 1 为什么需要序列化？
 
 ### 生活中的类比
 
@@ -41,7 +41,7 @@ User user = new User("张三", 25);
 // 想保存到文件下次再用？不行！必须先序列化
 ```
 
-## 10.2 核心原理
+## 2 核心原理
 
 ### 10.2.1 序列化的本质
 
@@ -298,7 +298,7 @@ User 对象
 3. **安全**：不涉及代码执行，无反序列化漏洞
 4. **灵活**：字段可以增删，兼容性好
 
-## 10.3 基础用法
+## 3 基础用法
 
 ### 10.3.1 Java 原生序列化示例
 
@@ -480,7 +480,7 @@ public class JsonSerializationDemo {
 }
 ```
 
-## 10.4 进阶用法
+## 4 进阶用法
 
 ### 10.4.1 序列化方案对比
 
@@ -551,7 +551,7 @@ class OptimizedUser implements Serializable {
 // 5. 使用 @JsonIgnore 或 transient 排除不需要传输的字段
 ```
 
-## 10.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 核心要点 |
 |--------|----------|
@@ -564,7 +564,7 @@ class OptimizedUser implements Serializable {
 | JSON 序列化 | 基于反射获取字段信息，可读性好、跨语言，但性能中等 |
 | 序列化选型 | 内部 RPC 用 Protobuf/Kryo，Web API 用 JSON，避免 Java 原生序列化 |
 
-## 10.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1：static 字段会被序列化
 
@@ -596,7 +596,7 @@ class OptimizedUser implements Serializable {
 
 **正确理解：** 如果 serialVersionUID 不一致，ObjectInputStream 会直接抛出 `InvalidClassException`，反序列化失败。只有 serialVersionUID 完全一致时，反序列化才会继续。这也是为什么强烈建议手动声明 serialVersionUID——避免类结构变化后自动生成的 UID 改变导致旧数据无法反序列化。
 
-## 10.7 动手练习
+## 7 动手练习
 
 ### 练习 1：实现一个支持序列化的单例类
 

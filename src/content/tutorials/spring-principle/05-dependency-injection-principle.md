@@ -18,7 +18,7 @@ description: "深入理解 Spring 依赖注入的完整流程、注解区别与�
 
 ---
 
-## 5.1 为什么需要深入理解依赖注入？
+## 1 为什么需要深入理解依赖注入？
 
 ### 痛点分析
 
@@ -43,7 +43,7 @@ description: "深入理解 Spring 依赖注入的完整流程、注解区别与�
 
 ---
 
-## 5.2 核心原理讲解
+## 2 核心原理讲解
 
 ### 5.2.1 依赖注入的完整流程
 
@@ -227,7 +227,7 @@ protected Object getResourceToInject(Object target, String requestingBeanName) {
 
 ---
 
-## 5.3 基础用法与逐行注释
+## 3 基础用法与逐行注释
 
 ### 5.3.1 @Autowired 基础用法
 
@@ -413,7 +413,7 @@ public class ReportService {
 
 ---
 
-## 5.4 限定符与候选 Bean 解析
+## 4 限定符与候选 Bean 解析
 
 ### 5.4.1 候选 Bean 的查找过程
 
@@ -523,7 +523,7 @@ public class AllServicesCollector {
 
 ---
 
-## 5.5 对比表格
+## 5 对比表格
 
 ### 5.5.1 三种注入注解对比
 
@@ -563,7 +563,7 @@ public class AllServicesCollector {
 
 ---
 
-## 5.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1：字段注入是最方便所以最好的方式
 
@@ -712,7 +712,7 @@ public class SpecialServiceImpl implements MyService {}
 
 ---
 
-## 5.7 动手练习
+## 7 动手练习
 
 ### 练习 1：多实现类注入
 
@@ -899,7 +899,7 @@ public class DataService {
 
 ---
 
-## 5.8 下一章预告
+## 8 下一章预告
 
 恭喜你学完了依赖注入的底层实现！现在你已经知道了 @Autowired、@Resource、@Inject 三者的区别，也理解了 Spring 是如何在底层解析和注入依赖的。
 

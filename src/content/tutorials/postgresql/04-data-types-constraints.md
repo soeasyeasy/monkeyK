@@ -18,7 +18,7 @@ description: "数值、字符串、日期类型，NOT NULL、UNIQUE、DEFAULT、
 
 ---
 
-## 4.1 为什么需要数据类型和约束？
+## 1 为什么需要数据类型和约束？
 
 ### 痛点分析
 
@@ -57,7 +57,7 @@ CREATE TABLE users (
 
 ---
 
-## 4.2 核心原理
+## 2 核心原理
 
 ### 概念解释
 
@@ -85,7 +85,7 @@ CREATE TABLE users (
 
 ---
 
-## 4.3 基础用法
+## 3 基础用法
 
 ### 数值类型
 
@@ -273,7 +273,7 @@ CREATE INDEX idx_jsonb ON json_demo USING GIN (data_jsonb);
 
 ---
 
-## 4.4 约束详解
+## 4 约束详解
 
 ### NOT NULL 约束
 
@@ -441,7 +441,7 @@ CREATE TABLE orders (
 
 ---
 
-## 4.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -459,7 +459,7 @@ CREATE TABLE orders (
 
 ---
 
-## 4.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："VARCHAR 必须指定长度"
 
@@ -525,7 +525,7 @@ CREATE TABLE events (
 
 ---
 
-## 4.7 动手练习
+## 7 动手练习
 
 ### 练习 1：数据类型选择
 

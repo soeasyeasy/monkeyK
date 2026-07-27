@@ -21,7 +21,7 @@ description: '掌握 Ingress 的配置、路由规则、TLS 终止和常用 Ingr
 
 ---
 
-## 8.1 为什么需要 Ingress？
+## 1 为什么需要 Ingress？
 
 ### Service 的局限性
 
@@ -84,7 +84,7 @@ description: '掌握 Ingress 的配置、路由规则、TLS 终止和常用 Ingr
 
 ---
 
-## 8.2 Ingress 资源
+## 2 Ingress 资源
 
 ### 基本结构
 
@@ -145,7 +145,7 @@ spec:
 
 ---
 
-## 8.3 Ingress 控制器
+## 3 Ingress 控制器
 
 ### 什么是 Ingress 控制器？
 
@@ -198,7 +198,7 @@ kubectl get services -n ingress-nginx
 
 ---
 
-## 8.4 路由规则
+## 4 路由规则
 
 ### 基于域名的路由
 
@@ -336,7 +336,7 @@ spec:
 
 ---
 
-## 8.5 TLS/HTTPS 配置
+## 5 TLS/HTTPS 配置
 
 ### 为什么需要 TLS？
 
@@ -411,7 +411,7 @@ Ingress 控制器负责：
 
 ---
 
-## 8.6 高级功能
+## 6 高级功能
 
 ### 重写规则（Rewrite）
 
@@ -517,7 +517,7 @@ kubectl create secret generic basic-auth \
 
 ---
 
-## 8.7 Ingress 与 Service 类型对比
+## 7 Ingress 与 Service 类型对比
 
 | 对比项 | NodePort | LoadBalancer | Ingress |
 | --- | --- | --- | --- |
@@ -538,7 +538,7 @@ kubectl create secret generic basic-auth \
 
 ---
 
-## 8.8 核心知识点总结
+## 8 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -553,7 +553,7 @@ kubectl create secret generic basic-auth \
 
 ---
 
-## 8.9 新手常见误区
+## 9 新手常见误区
 
 ### 误区 1："Ingress 可以替代 Service"
 
@@ -587,7 +587,7 @@ kubectl create secret generic basic-auth \
 
 ---
 
-## 8.10 动手练习
+## 10 动手练习
 
 ### 练习 1：创建基于域名的 Ingress
 

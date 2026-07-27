@@ -23,7 +23,7 @@ description: "Class 对象、运行时类型识别、动态代理基础"
 
 ---
 
-## 4.1 为什么需要反射？
+## 1 为什么需要反射？
 
 ### 4.1.1 没有反射的困境
 
@@ -117,7 +117,7 @@ UserService proxy = (UserService) Proxy.newProxyInstance(
 
 ---
 
-## 4.2 核心原理
+## 2 核心原理
 
 ### 4.2.1 Class 对象的由来
 
@@ -521,7 +521,7 @@ public class IsAssignableFromDemo {
 
 ---
 
-## 4.3 基础用法
+## 3 基础用法
 
 ### 4.3.1 获取 Class 对象
 
@@ -657,7 +657,7 @@ public class InvokeMethodDemo {
 
 ---
 
-## 4.4 进阶用法
+## 4 进阶用法
 
 ### 4.4.1 反射与泛型
 
@@ -811,7 +811,7 @@ public class ArrayReflectionDemo {
 
 ---
 
-## 4.5 核心知识点总结
+## 5 核心知识点总结
 
 ### 4.5.1 本章核心概念
 
@@ -862,7 +862,7 @@ public class ArrayReflectionDemo {
 
 ---
 
-## 4.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1：认为反射可以获取局部变量的泛型信息
 
@@ -990,7 +990,7 @@ for (Parameter parameter : parameters) {
 
 ---
 
-## 4.7 动手练习
+## 7 动手练习
 
 ### 练习 1：通过反射调用私有方法
 

@@ -18,7 +18,7 @@ description: "深入理解 Spring 类型转换体系，掌握 ConversionService 
 
 ---
 
-## 15.1 为什么需要类型转换？
+## 1 为什么需要类型转换？
 
 ### 痛点分析
 
@@ -69,7 +69,7 @@ public String createUser(@RequestParam LocalDate birthday) {
 
 ---
 
-## 15.2 核心原理讲解
+## 2 核心原理讲解
 
 ### 概念解释
 
@@ -328,7 +328,7 @@ public String createUser(@Valid @RequestBody User user, BindingResult result) {
 
 ---
 
-## 15.3 基础用法
+## 3 基础用法
 
 ### 示例 1：自定义 Converter
 
@@ -537,7 +537,7 @@ public class UserController {
 
 ---
 
-## 15.4 进阶用法
+## 4 进阶用法
 
 ### 嵌套对象校验
 
@@ -711,7 +711,7 @@ public class ValidationExceptionHandler {
 
 ---
 
-## 15.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -727,7 +727,7 @@ public class ValidationExceptionHandler {
 
 ---
 
-## 15.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："@Valid 和 @Validated 是一回事"
 
@@ -835,7 +835,7 @@ public ResponseEntity<String> handleTypeMismatch(TypeMismatchException ex) {
 
 ---
 
-## 15.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础练习 - 自定义转换器
 

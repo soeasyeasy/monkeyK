@@ -19,7 +19,7 @@ description: "响应鼠标点击、键盘输入、表单提交，让网页动起
 
 ---
 
-## 9.1 为什么需要事件处理？
+## 1 为什么需要事件处理？
 
 ### 痛点分析
 
@@ -55,7 +55,7 @@ input.addEventListener('input', (e) => {
 
 ---
 
-## 9.2 核心原理
+## 2 核心原理
 
 ### 事件的本质
 
@@ -93,7 +93,7 @@ input.addEventListener('input', (e) => {
 
 ---
 
-## 9.3 绑定事件的三种方式
+## 3 绑定事件的三种方式
 
 ### 方式一：HTML 属性（不推荐）
 
@@ -136,7 +136,7 @@ btn.addEventListener('click', () => {
 
 ---
 
-## 9.4 事件对象
+## 4 事件对象
 
 事件处理函数会接收一个**事件对象**，包含事件的详细信息：
 
@@ -167,7 +167,7 @@ btn.addEventListener('click', (event) => {
 
 ---
 
-## 9.5 阻止默认行为
+## 5 阻止默认行为
 
 有些元素有默认行为，比如链接跳转、表单提交等：
 
@@ -189,7 +189,7 @@ form.addEventListener('submit', (e) => {
 
 ---
 
-## 9.6 事件冒泡和事件捕获
+## 6 事件冒泡和事件捕获
 
 ### 事件冒泡（默认）
 
@@ -252,7 +252,7 @@ document.querySelector('.child').addEventListener('click', (e) => {
 
 ---
 
-## 9.7 事件委托
+## 7 事件委托
 
 事件委托是一种**优化技术**，利用事件冒泡只绑定一个事件处理程序：
 
@@ -290,7 +290,7 @@ ul.addEventListener('click', (e) => {
 
 ---
 
-## 9.8 移除事件
+## 8 移除事件
 
 ```javascript
 // 定义事件处理函数
@@ -311,7 +311,7 @@ btn.removeEventListener('click', handleClick)
 
 ---
 
-## 9.9 事件触发时机对比
+## 9 事件触发时机对比
 
 ### input vs change
 
@@ -347,7 +347,7 @@ box.addEventListener('mouseover', () => {
 
 ---
 
-## 9.10 键盘事件
+## 10 键盘事件
 
 ```javascript
 const input = document.querySelector('input')
@@ -371,7 +371,7 @@ input.addEventListener('keydown', (e) => {
 
 ---
 
-## 9.11 表单事件
+## 11 表单事件
 
 ```javascript
 const form = document.querySelector('form')
@@ -399,7 +399,7 @@ form.addEventListener('submit', (e) => {
 
 ---
 
-## 9.12 窗口事件
+## 12 窗口事件
 
 ```javascript
 // load：页面完全加载（包括图片）
@@ -426,7 +426,7 @@ window.addEventListener('scroll', () => {
 
 ---
 
-## 9.13 事件性能优化
+## 13 事件性能优化
 
 ### 防抖（Debounce）
 
@@ -482,7 +482,7 @@ window.addEventListener('scroll', throttle(() => {
 
 ---
 
-## 9.14 核心知识点总结
+## 14 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -499,7 +499,7 @@ window.addEventListener('scroll', throttle(() => {
 
 ---
 
-## 9.15 新手常见误区
+## 15 新手常见误区
 
 ### 误区 1：事件处理函数中的 `this` 指向问题
 
@@ -583,7 +583,7 @@ document.querySelector('.parent').addEventListener('click', (e) => {
 
 ---
 
-## 9.16 动手练习
+## 16 动手练习
 
 ### 练习 1：基础练习
 

@@ -18,7 +18,7 @@ description: "掌握 Socket 编程、HTTP 请求与 WebSocket 通信"
 
 ---
 
-## 12.1 为什么需要网络编程？
+## 1 为什么需要网络编程？
 
 ### 痛点分析
 
@@ -39,7 +39,7 @@ description: "掌握 Socket 编程、HTTP 请求与 WebSocket 通信"
 
 ---
 
-## 12.2 Socket 编程
+## 2 Socket 编程
 
 ### 什么是 Socket？
 
@@ -157,7 +157,7 @@ sock.close()
 
 ---
 
-## 12.3 HTTP 请求编程
+## 3 HTTP 请求编程
 
 ### 使用 Fetch API（浏览器）
 
@@ -254,7 +254,7 @@ const response = await axios({
 
 ---
 
-## 12.4 WebSocket 通信
+## 4 WebSocket 通信
 
 ### 什么是 WebSocket？
 
@@ -363,7 +363,7 @@ console.log('WebSocket 服务器运行在 ws://localhost:8080');
 
 ---
 
-## 12.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 |--------|------|
@@ -376,7 +376,7 @@ console.log('WebSocket 服务器运行在 ws://localhost:8080');
 
 ---
 
-## 12.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："WebSocket 就是 HTTP 的升级版"
 
@@ -396,7 +396,7 @@ console.log('WebSocket 服务器运行在 ws://localhost:8080');
 
 ---
 
-## 12.7 动手练习
+## 7 动手练习
 
 ### 练习 1：TCP Socket 编程
 

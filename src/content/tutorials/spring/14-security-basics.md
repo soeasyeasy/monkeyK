@@ -18,7 +18,7 @@ description: "使用 Spring Security 实现认证与授权"
 
 ---
 
-## 14.1 为什么需要 Spring Security？
+## 1 为什么需要 Spring Security？
 
 ### 痛点分析
 
@@ -65,7 +65,7 @@ public class SecurityConfig {
 
 ---
 
-## 14.2 核心原理
+## 2 核心原理
 
 ### 14.2.1 认证与授权
 
@@ -103,7 +103,7 @@ public class SecurityConfig {
 
 ---
 
-## 14.3 基础用法
+## 3 基础用法
 
 ### 14.3.1 添加依赖
 
@@ -277,7 +277,7 @@ public class UserController {
 
 ---
 
-## 14.4 进阶用法
+## 4 进阶用法
 
 ### 14.4.1 方法级安全
 
@@ -422,7 +422,7 @@ public class JwtTokenProvider {
 
 ---
 
-## 14.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -438,7 +438,7 @@ public class JwtTokenProvider {
 
 ---
 
-## 14.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："Spring Security 太复杂，不如自己写"
 
@@ -476,7 +476,7 @@ user.setPassword(passwordEncoder.encode("123456"));
 
 ---
 
-## 14.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础练习 - 简单认证
 

@@ -17,7 +17,7 @@ description: '深入理解 Vue 3 响应式系统，掌握 ref、reactive、compu
 
 ---
 
-## 3.1 响应式原理：数据变了，页面怎么知道的？
+## 1 响应式原理：数据变了，页面怎么知道的？
 
 ### 核心概念：依赖收集与触发更新
 
@@ -74,7 +74,7 @@ proxy.count = 1 // 输出：设置了 count = 1
 
 ---
 
-## 3.2 ref：基本类型的响应式
+## 2 ref：基本类型的响应式
 
 ### 基础用法
 
@@ -179,7 +179,7 @@ user.value = { name: '王五', age: 30 }
 
 ---
 
-## 3.3 reactive：对象的响应式
+## 3 reactive：对象的响应式
 
 ### 基础用法
 
@@ -288,7 +288,7 @@ const { count, name } = toRefs(state)
 
 ---
 
-## 3.4 ref vs reactive：怎么选？
+## 4 ref vs reactive：怎么选？
 
 ### 对比表
 
@@ -314,7 +314,7 @@ const { count, name } = toRefs(state)
 
 ---
 
-## 3.5 computed：计算属性
+## 5 computed：计算属性
 
 ### 基础用法
 
@@ -434,7 +434,7 @@ console.log(lastName.value) // 输出：四
 
 ---
 
-## 3.6 readonly：只读响应式
+## 6 readonly：只读响应式
 
 ### 基础用法
 
@@ -482,7 +482,7 @@ const readonlyState = readonly(state)
 
 ---
 
-## 3.7 核心知识点总结
+## 7 核心知识点总结
 
 | API        | 用途           | 适用类型       | 访问方式 | 特点                             |
 | ---------- | -------------- | -------------- | -------- | -------------------------------- |
@@ -493,7 +493,7 @@ const readonlyState = readonly(state)
 
 ---
 
-## 3.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1："ref 只能用于基本类型"
 
@@ -517,7 +517,7 @@ const readonlyState = readonly(state)
 
 ---
 
-## 3.9 动手练习
+## 9 动手练习
 
 ### 练习 1：购物车总价
 

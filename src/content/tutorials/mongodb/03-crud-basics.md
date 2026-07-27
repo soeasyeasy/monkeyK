@@ -18,7 +18,7 @@ description: "插入、查询、更新、删除文档的基本操作"
 
 ---
 
-## 3.1 插入操作
+## 1 插入操作
 
 ### insertOne：插入单个文档
 
@@ -108,7 +108,7 @@ db.users.insertMany(
 
 ---
 
-## 3.2 查询操作
+## 2 查询操作
 
 ### find：查询多个文档
 
@@ -299,7 +299,7 @@ db.users.estimatedDocumentCount()
 
 ---
 
-## 3.3 更新操作
+## 3 更新操作
 
 ### updateOne：更新单个文档
 
@@ -580,7 +580,7 @@ db.users.updateOne(
 
 ---
 
-## 3.4 删除操作
+## 4 删除操作
 
 ### deleteOne：删除单个文档
 
@@ -629,7 +629,7 @@ db.users.updateMany(
 
 ---
 
-## 3.5 批量操作
+## 5 批量操作
 
 ### ordered 批量操作
 
@@ -664,7 +664,7 @@ db.users.bulkWrite(
 
 ---
 
-## 3.6 对比表格
+## 6 对比表格
 
 ### CRUD 操作对比
 
@@ -694,7 +694,7 @@ db.users.bulkWrite(
 
 ---
 
-## 3.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区一：updateOne 会更新所有匹配的文档
 
@@ -800,7 +800,7 @@ db.users.updateOne(
 
 ---
 
-## 3.8 动手练习
+## 8 动手练习
 
 ### 练习 1：实现用户管理 CRUD
 
@@ -950,7 +950,7 @@ db.articles.find().pretty()
 
 ---
 
-## 3.9 下一章预告
+## 9 下一章预告
 
 恭喜你完成了第三章！现在你已经掌握了 MongoDB 的 CRUD 操作，可以进行基本的数据管理了。
 

@@ -19,7 +19,7 @@ description: '掌握在 Vue 3 中使用 TypeScript 的最佳实践，包括组�
 
 ---
 
-## 12.1 为什么需要在 Vue 中使用 TypeScript？
+## 1 为什么需要在 Vue 中使用 TypeScript？
 
 ### 痛点分析
 
@@ -78,7 +78,7 @@ export default defineComponent({
 
 ---
 
-## 12.2 核心原理
+## 2 核心原理
 
 ### Vue 3 对 TypeScript 的支持
 
@@ -95,7 +95,7 @@ Vue 3 从底层设计就支持 TypeScript，主要体现在：
 
 ---
 
-## 12.3 Vue 3 + TypeScript 实战
+## 3 Vue 3 + TypeScript 实战
 
 ### 1. 项目配置
 
@@ -476,7 +476,7 @@ store.fetchUser(1)  // ✅ 有类型提示
 
 ---
 
-## 12.4 Vue 类型工具对比
+## 4 Vue 类型工具对比
 
 | 类型工具 | 作用 | 示例 |
 | --- | --- | --- |
@@ -490,7 +490,7 @@ store.fetchUser(1)  // ✅ 有类型提示
 
 ---
 
-## 12.5 新手常见误区
+## 5 新手常见误区
 
 ### 误区 1："ref 和 reactive 可以互换"
 
@@ -566,7 +566,7 @@ export default {
 
 ---
 
-## 12.6 动手练习
+## 6 动手练习
 
 ### 练习 1：基础练习
 

@@ -18,7 +18,7 @@ description: "了解 Kafka 的核心概念、架构设计与 RabbitMQ 的对比"
 
 ---
 
-## 13.1 Kafka 简介
+## 1 Kafka 简介
 
 ### 什么是 Kafka？
 
@@ -42,7 +42,7 @@ Kafka 是一个分布式流处理平台，最初由 LinkedIn 开发，现在是 
 
 ---
 
-## 13.2 Kafka 核心概念
+## 2 Kafka 核心概念
 
 ### 1. 消息和批次
 
@@ -102,7 +102,7 @@ order-topic
 
 ---
 
-## 13.3 Kafka vs RabbitMQ
+## 3 Kafka vs RabbitMQ
 
 | 特性 | Kafka | RabbitMQ |
 | --- | --- | --- |
@@ -132,7 +132,7 @@ order-topic
 
 ---
 
-## 13.4 Kafka 安装与启动
+## 4 Kafka 安装与启动
 
 ### 环境要求
 
@@ -176,7 +176,7 @@ bin/kafka-topics.sh --list --bootstrap-server localhost:9092
 
 ---
 
-## 13.5 Kafka 快速入门
+## 5 Kafka 快速入门
 
 ### 1. 创建主题
 
@@ -215,7 +215,7 @@ bin/kafka-console-consumer.sh --topic order-topic --from-beginning --bootstrap-s
 
 ---
 
-## 13.6 Kafka 架构原理
+## 6 Kafka 架构原理
 
 ### 消息存储
 
@@ -262,7 +262,7 @@ order-topic (3 partitions)
 
 ---
 
-## 13.7 Kafka 核心配置
+## 7 Kafka 核心配置
 
 ### Broker 配置
 
@@ -303,7 +303,7 @@ bin/kafka-topics.sh --create \
 
 ---
 
-## 13.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1："Kafka 消息消费后会被删除"
 
@@ -329,7 +329,7 @@ bin/kafka-topics.sh --create \
 
 ---
 
-## 13.9 动手练习
+## 9 动手练习
 
 ### 练习 1：基础练习
 

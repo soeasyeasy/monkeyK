@@ -18,7 +18,7 @@ description: 'File、Stream、Reader/Writer、NIO 通道与缓冲区'
 
 ---
 
-## 12.1 为什么需要 IO？
+## 1 为什么需要 IO？
 
 ### 痛点分析
 
@@ -50,7 +50,7 @@ try (FileWriter fw = new FileWriter("data.txt")) {
 
 ---
 
-## 12.2 核心原理
+## 2 核心原理
 
 ### IO 流分类
 
@@ -91,7 +91,7 @@ IO 流
 
 ---
 
-## 12.3 基础用法
+## 3 基础用法
 
 ### File 类
 
@@ -222,7 +222,7 @@ try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream("user.dat
 
 ---
 
-## 12.4 NIO（New IO）
+## 4 NIO（New IO）
 
 NIO 是 Java 1.4 引入的新 IO API，更强大、更高效。
 
@@ -291,7 +291,7 @@ String wrong = new String(utf8Bytes, "GBK");                       // ❌ 乱码
 
 ---
 
-## 12.5 新手常见误区
+## 5 新手常见误区
 
 ### 误区 1：不关闭流
 
@@ -377,7 +377,7 @@ class User implements Serializable {
 
 ---
 
-## 12.6 动手练习
+## 6 动手练习
 
 ### 练习 1：基础练习 —— 文本文件复制
 
@@ -514,7 +514,7 @@ public class StudentSerializer {
 
 ---
 
-## 12.7 核心知识点
+## 7 核心知识点
 
 | 知识点     | 说明                                        |
 | ---------- | ------------------------------------------- |

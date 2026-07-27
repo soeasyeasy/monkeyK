@@ -18,7 +18,7 @@ description: 'JDBC 连接、PreparedStatement、事务管理'
 
 ---
 
-## 15.1 为什么需要 JDBC？
+## 1 为什么需要 JDBC？
 
 ### 痛点分析
 
@@ -53,7 +53,7 @@ try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
 ---
 
-## 15.2 核心原理
+## 2 核心原理
 
 ### JDBC 架构
 
@@ -82,7 +82,7 @@ JDBC 驱动（数据库厂商提供）
 
 ---
 
-## 15.3 基础用法
+## 3 基础用法
 
 ### 1. 添加驱动依赖
 
@@ -209,7 +209,7 @@ while (rs.next()) {  // 遍历结果集
 
 ---
 
-## 15.4 事务管理
+## 4 事务管理
 
 事务保证多个操作要么全部成功，要么全部失败。
 
@@ -264,7 +264,7 @@ try {
 
 ---
 
-## 15.5 连接池
+## 5 连接池
 
 实际项目中推荐使用连接池，避免频繁创建和关闭连接。
 
@@ -305,7 +305,7 @@ try (HikariDataSource ds = new HikariDataSource(config)) {
 
 ---
 
-## 15.6 DAO 模式
+## 6 DAO 模式
 
 DAO（Data Access Object）模式封装数据库操作，解耦业务逻辑。
 
@@ -404,7 +404,7 @@ public class UserDaoImpl implements UserDao {
 
 ---
 
-## 15.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区 1：使用 Statement 而不是 PreparedStatement
 
@@ -514,7 +514,7 @@ public class UserService {
 
 ---
 
-## 15.8 动手练习
+## 8 动手练习
 
 ### 练习 1：基础练习 —— 查询用户
 
@@ -688,7 +688,7 @@ public class AccountService {
 
 ---
 
-## 15.9 核心知识点
+## 9 核心知识点
 
 | 知识点            | 说明                                       |
 | ----------------- | ------------------------------------------ |

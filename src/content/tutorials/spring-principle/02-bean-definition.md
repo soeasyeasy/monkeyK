@@ -24,7 +24,7 @@ description: "深入理解 BeanDefinition 的数据结构、注册流程以及�
 
 ---
 
-## 2.1 为什么需要 BeanDefinition？
+## 1 为什么需要 BeanDefinition？
 
 ### 痛点分析
 
@@ -97,7 +97,7 @@ public class GoodContainer {
 
 ---
 
-## 2.2 核心原理：BeanDefinition 数据结构
+## 2 核心原理：BeanDefinition 数据结构
 
 ### BeanDefinition 接口体系
 
@@ -437,7 +437,7 @@ public class ScannedGenericBeanDefinition extends GenericBeanDefinition
 
 ---
 
-## 2.3 三种配置方式的解析原理
+## 3 三种配置方式的解析原理
 
 ### 整体架构：BeanDefinitionReader 体系
 
@@ -1058,7 +1058,7 @@ class ConfigurationClassBeanDefinitionReader {
 
 ---
 
-## 2.4 基础用法：BeanDefinition 操作
+## 4 基础用法：BeanDefinition 操作
 
 ### 手动注册 BeanDefinition
 
@@ -1228,7 +1228,7 @@ public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 
 ---
 
-## 2.5 对比表格
+## 5 对比表格
 
 ### 三种配置方式对比
 
@@ -1265,7 +1265,7 @@ public class MyBeanFactoryPostProcessor implements BeanFactoryPostProcessor {
 
 ---
 
-## 2.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："BeanDefinition 就是 Bean 实例"
 
@@ -1375,7 +1375,7 @@ public class UserService {
 
 ---
 
-## 2.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础练习 - 手动注册 BeanDefinition
 

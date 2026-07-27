@@ -18,7 +18,7 @@ description: "什么是 PostgreSQL，核心优势，安装配置，第一个数�
 
 ---
 
-## 1.1 为什么需要 PostgreSQL？
+## 1 为什么需要 PostgreSQL？
 
 ### 痛点分析
 
@@ -44,7 +44,7 @@ PostgreSQL 就像是一个**超级智能的仓库管理员**：
 
 ---
 
-## 1.2 核心原理
+## 2 核心原理
 
 ### 概念解释
 
@@ -72,7 +72,7 @@ PostgreSQL 是一个**对象-关系型数据库管理系统（ORDBMS）**。
 
 ---
 
-## 1.3 安装与配置
+## 3 安装与配置
 
 ### Windows 安装
 
@@ -123,7 +123,7 @@ pg_ctl stop -D "C:\Program Files\PostgreSQL\16\data"
 
 ---
 
-## 1.4 基础用法
+## 4 基础用法
 
 ### 连接到 PostgreSQL
 
@@ -213,7 +213,7 @@ SELECT * FROM users ORDER BY created_at DESC;
 
 ---
 
-## 1.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -227,7 +227,7 @@ SELECT * FROM users ORDER BY created_at DESC;
 
 ---
 
-## 1.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："PostgreSQL 和 MySQL 完全一样"
 
@@ -256,7 +256,7 @@ SELECT * FROM users ORDER BY created_at DESC;
 
 ---
 
-## 1.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础操作
 

@@ -18,7 +18,7 @@ description: "深入理解 BeanPostProcessor 的执行时机、初始化前后�
 
 ---
 
-## 4.1 为什么需要 BeanPostProcessor？
+## 1 为什么需要 BeanPostProcessor？
 
 ### 痛点分析
 
@@ -92,7 +92,7 @@ public class CheckBeanPostProcessor implements BeanPostProcessor {
 
 ---
 
-## 4.2 核心原理
+## 2 核心原理
 
 ### 4.2.1 BeanPostProcessor 执行时机
 
@@ -207,7 +207,7 @@ public void refresh() {
 
 ---
 
-## 4.3 Aware 接口回调机制
+## 3 Aware 接口回调机制
 
 ### 4.3.1 什么是 Aware 接口？
 
@@ -282,7 +282,7 @@ public class MyService implements BeanNameAware, ApplicationContextAware {
 
 ---
 
-## 4.4 Spring 内置 BeanPostProcessor
+## 4 Spring 内置 BeanPostProcessor
 
 Spring 内置了很多 BeanPostProcessor，实现各种核心功能：
 
@@ -390,7 +390,7 @@ public class AnnotationAwareAspectJAutoProxyCreator extends AbstractAutoProxyCre
 
 ---
 
-## 4.5 自定义 BeanPostProcessor
+## 5 自定义 BeanPostProcessor
 
 ### 4.5.1 基础用法
 
@@ -513,7 +513,7 @@ public class UserService {
 
 ---
 
-## 4.6 对比表格
+## 6 对比表格
 
 ### BeanPostProcessor vs BeanFactoryPostProcessor
 
@@ -536,7 +536,7 @@ public class UserService {
 
 ---
 
-## 4.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区 1："BeanPostProcessor 可以修改 BeanDefinition"
 
@@ -585,7 +585,7 @@ public Object postProcessAfterInitialization(Object bean, String beanName) {
 
 ---
 
-## 4.8 动手练习
+## 8 动手练习
 
 ### 练习 1：基础练习 - 实现简单的 BeanPostProcessor
 

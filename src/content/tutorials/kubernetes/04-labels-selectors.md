@@ -21,7 +21,7 @@ Label 和 Selector 是 Kubernetes 中"资源组织"的基础。打个比方：La
 
 ---
 
-## 4.1 为什么需要 Label？
+## 1 为什么需要 Label？
 
 ### 没有 Label 的世界
 
@@ -56,7 +56,7 @@ Label 是附加在 Kubernetes 资源上的**键值对**，用来组织和筛选�
 
 ---
 
-## 4.2 Label 的语法和规则
+## 2 Label 的语法和规则
 
 ### Label 的结构
 
@@ -117,7 +117,7 @@ kubectl get pods -l app=nginx -L version,env
 
 ---
 
-## 4.3 Selector 的类型
+## 3 Selector 的类型
 
 Selector 是用来根据 Label 筛选资源的"过滤器"。Kubernetes 支持两种 Selector：
 
@@ -204,7 +204,7 @@ spec:
 
 ---
 
-## 4.4 控制器中的 Label Selector
+## 4 控制器中的 Label Selector
 
 Label 和 Selector 是控制器（Deployment、ReplicaSet、Service 等）找到目标资源的"纽带"。
 
@@ -249,7 +249,7 @@ spec:
 
 ---
 
-## 4.5 Field Selector（字段选择器）
+## 5 Field Selector（字段选择器）
 
 除了 Label Selector，Kubernetes 还支持 **Field Selector**——根据资源的字段来筛选。
 
@@ -283,7 +283,7 @@ kubectl get pods --field-selector status.phase=Running,spec.nodeName=node-1
 
 ---
 
-## 4.6 Annotation 与 Label 的区别
+## 6 Annotation 与 Label 的区别
 
 Annotation（注解）和 Label 的格式一样，都是键值对，但用途完全不同。
 
@@ -312,7 +312,7 @@ metadata:
 
 ---
 
-## 4.7 推荐的标签规范
+## 7 推荐的标签规范
 
 Kubernetes 社区推荐使用标准化的标签前缀 `app.kubernetes.io/*`，让不同工具和团队对标签有一致的理解。
 
@@ -362,7 +362,7 @@ spec:
 
 ---
 
-## 4.8 核心知识点总结
+## 8 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -378,7 +378,7 @@ spec:
 
 ---
 
-## 4.9 新手常见误区
+## 9 新手常见误区
 
 ### 误区 1："Label 的值可以随便写，没有长度限制"
 
@@ -406,7 +406,7 @@ spec:
 
 ---
 
-## 4.10 动手练习
+## 10 动手练习
 
 ### 练习 1：给 Pod 添加和管理 Label
 

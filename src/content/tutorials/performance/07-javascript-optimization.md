@@ -18,7 +18,7 @@ description: "掌握 JavaScript 加载优化、执行优化、内存管理"
 
 ---
 
-## 7.1 为什么需要 JavaScript 性能优化？
+## 1 为什么需要 JavaScript 性能优化？
 
 ### 痛点分析
 
@@ -39,7 +39,7 @@ description: "掌握 JavaScript 加载优化、执行优化、内存管理"
 
 ---
 
-## 7.2 JavaScript 加载优化
+## 2 JavaScript 加载优化
 
 ### defer vs async
 
@@ -81,7 +81,7 @@ loadScript('https://cdn.example.com/lib.js');
 
 ---
 
-## 7.3 代码分割与懒加载
+## 3 代码分割与懒加载
 
 ### 动态 import
 
@@ -125,7 +125,7 @@ const HeavyChart = defineAsyncComponent(() =>
 
 ---
 
-## 7.4 防抖与节流
+## 4 防抖与节流
 
 ### 防抖（Debounce）
 
@@ -206,7 +206,7 @@ window.addEventListener('scroll', throttle(() => {
 
 ---
 
-## 7.5 避免长任务
+## 5 避免长任务
 
 ### 什么是长任务？
 
@@ -271,7 +271,7 @@ function scheduleWork(callback) {
 
 ---
 
-## 7.6 Web Workers
+## 6 Web Workers
 
 ### 基本用法
 
@@ -312,7 +312,7 @@ self.onmessage = (event) => {
 
 ---
 
-## 7.7 内存管理
+## 7 内存管理
 
 ### 常见内存泄漏
 
@@ -378,7 +378,7 @@ if (weakRef.deref()) {
 
 ---
 
-## 7.8 核心知识点总结
+## 8 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -393,7 +393,7 @@ if (weakRef.deref()) {
 
 ---
 
-## 7.9 新手常见误区
+## 9 新手常见误区
 
 ### 误区 1："async 和 defer 一样"
 
@@ -435,7 +435,7 @@ if (weakRef.deref()) {
 
 ---
 
-## 7.10 动手练习
+## 10 动手练习
 
 ### 练习 1：基础练习 - defer 和 async
 

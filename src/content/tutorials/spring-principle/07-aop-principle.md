@@ -18,7 +18,7 @@ description: "深入理解 Spring AOP 的 JDK 动态代理、CGLIB 代理、Prox
 
 ---
 
-## 7.1 为什么需要深入理解 AOP？
+## 1 为什么需要深入理解 AOP？
 
 ### 痛点分析
 
@@ -44,7 +44,7 @@ description: "深入理解 Spring AOP 的 JDK 动态代理、CGLIB 代理、Prox
 
 ---
 
-## 7.2 核心原理讲解
+## 2 核心原理讲解
 
 ### 7.2.1 AOP 的核心概念
 
@@ -392,7 +392,7 @@ public class Aspect2 {
 
 ---
 
-## 7.3 基础用法与逐行注释
+## 3 基础用法与逐行注释
 
 ### 7.3.1 使用 @Aspect 定义切面
 
@@ -589,7 +589,7 @@ public class ProxyConfig {
 
 ---
 
-## 7.4 代理对象生成过程详解
+## 4 代理对象生成过程详解
 
 ### 7.4.1 BeanPostProcessor 介入时机
 
@@ -683,7 +683,7 @@ private List<Object> getInterceptorsAndDynamicInterceptionAdvice(Method method) 
 
 ---
 
-## 7.5 对比表格
+## 5 对比表格
 
 ### 7.5.1 JDK 动态代理 vs CGLIB 代理
 
@@ -723,7 +723,7 @@ private List<Object> getInterceptorsAndDynamicInterceptionAdvice(Method method) 
 
 ---
 
-## 7.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1：同一个类中方法调用会触发 AOP
 
@@ -863,7 +863,7 @@ public void correctPointcut() {}
 
 ---
 
-## 7.7 动手练习
+## 7 动手练习
 
 ### 练习 1：实现方法执行耗时统计切面
 
@@ -1055,7 +1055,7 @@ public class Aspect3 {
 
 ---
 
-## 7.8 下一章预告
+## 8 下一章预告
 
 恭喜你学完了 AOP 的底层实现原理！现在你已经理解了 JDK 动态代理和 CGLIB 代理的区别，知道了 ProxyFactory 是如何创建代理对象的，也掌握了 Advisor 链的执行顺序。
 

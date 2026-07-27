@@ -19,7 +19,7 @@ description: "节点级应用部署、批处理任务、定时任务"
 
 ---
 
-## 12.1 为什么需要 DaemonSet？
+## 1 为什么需要 DaemonSet？
 
 ### 痛点分析
 
@@ -53,7 +53,7 @@ DaemonSet 专门解决这个问题：**确保每个节点都运行一个 Pod 副
 
 ---
 
-## 12.2 DaemonSet 基础用法
+## 2 DaemonSet 基础用法
 
 ### 基本结构
 
@@ -138,7 +138,7 @@ kubectl get pods -o custom-columns=NAME:.metadata.name,NODE:.spec.nodeName
 
 ---
 
-## 12.3 DaemonSet 更新策略
+## 3 DaemonSet 更新策略
 
 DaemonSet 支持两种更新策略：
 
@@ -195,7 +195,7 @@ kubectl get pods
 
 ---
 
-## 12.4 节点选择器
+## 4 节点选择器
 
 使用 nodeSelector 或 nodeAffinity 控制 DaemonSet 在特定节点运行：
 
@@ -226,7 +226,7 @@ spec:
 
 ---
 
-## 12.5 Job 基础用法
+## 5 Job 基础用法
 
 ### 什么是 Job？
 
@@ -292,7 +292,7 @@ kubectl describe job pi-job
 
 ---
 
-## 12.6 Job 的并行模式
+## 6 Job 的并行模式
 
 ### 串行执行（默认）
 
@@ -348,7 +348,7 @@ spec:
 
 ---
 
-## 12.7 Job 的重试和超时
+## 7 Job 的重试和超时
 
 ### backoffLimit
 
@@ -397,7 +397,7 @@ kubectl get job
 
 ---
 
-## 12.8 CronJob 定时任务
+## 8 CronJob 定时任务
 
 ### 什么是 CronJob？
 
@@ -504,7 +504,7 @@ kubectl get cronjob
 
 ---
 
-## 12.9 对比表格
+## 9 对比表格
 
 | 特性 | Deployment | DaemonSet | Job | CronJob |
 |------|------------|-----------|-----|---------|
@@ -517,7 +517,7 @@ kubectl get cronjob
 
 ---
 
-## 12.10 新手常见误区
+## 10 新手常见误区
 
 ### 误区 1："DaemonSet 的 Pod 可以随意删除"
 
@@ -553,7 +553,7 @@ spec:
 
 ---
 
-## 12.11 动手练习
+## 11 动手练习
 
 ### 练习 1：创建 DaemonSet 部署日志收集
 

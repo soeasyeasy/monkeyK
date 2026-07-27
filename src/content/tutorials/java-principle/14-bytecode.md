@@ -27,7 +27,7 @@ description: "深入理解字节码指令、javap 工具、字节码增强技术
 
 ---
 
-## 14.1 为什么需要字节码？
+## 1 为什么需要字节码？
 
 ### 生活化类比
 
@@ -76,7 +76,7 @@ Java 的字节码机制完美解决了以上问题：
 
 ---
 
-## 14.2 核心原理
+## 2 核心原理
 
 ### 14.2.1 .class 文件结构
 
@@ -576,7 +576,7 @@ public class UserService$$EnhancerBySpringCGLIB extends UserService {
 
 ---
 
-## 14.3 基础用法
+## 3 基础用法
 
 ### 使用 javap 分析简单类
 
@@ -705,7 +705,7 @@ Constant pool:
 
 ---
 
-## 14.4 进阶用法
+## 4 进阶用法
 
 ### 使用 ByteBuddy 实现简单的 AOP
 
@@ -894,7 +894,7 @@ public class ASMModifyDemo {
 
 ---
 
-## 14.5 核心知识点总结
+## 5 核心知识点总结
 
 ### 对比表格
 
@@ -919,7 +919,7 @@ public class ASMModifyDemo {
 
 ---
 
-## 14.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："字节码就是机器码"
 
@@ -1010,7 +1010,7 @@ public int add(int a, int b) {
 
 ---
 
-## 14.7 动手练习
+## 7 动手练习
 
 ### 练习 1：使用 javap 分析代码
 

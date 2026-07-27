@@ -20,7 +20,7 @@ description: "发送网络请求、处理响应、与服务器交互"
 
 ---
 
-## 11.1 为什么需要 Fetch API？
+## 1 为什么需要 Fetch API？
 
 ### 痛点分析
 
@@ -55,7 +55,7 @@ getUsers()
 
 ---
 
-## 11.2 核心原理
+## 2 核心原理
 
 ### HTTP 请求/响应模型
 
@@ -81,7 +81,7 @@ getUsers()
 
 ---
 
-## 11.3 发送 GET 请求
+## 3 发送 GET 请求
 
 ### 基本用法
 
@@ -127,7 +127,7 @@ searchUsers('张三')
 
 ---
 
-## 11.4 发送 POST 请求
+## 4 发送 POST 请求
 
 ### 基本用法
 
@@ -177,7 +177,7 @@ form.addEventListener('submit', async (e) => {
 
 ---
 
-## 11.5 请求配置选项
+## 5 请求配置选项
 
 ### 完整的请求配置
 
@@ -213,7 +213,7 @@ const response = await fetch('https://api.example.com/data', options)
 
 ---
 
-## 11.6 处理响应
+## 6 处理响应
 
 ### 解析响应体
 
@@ -261,7 +261,7 @@ console.log('Content-Type:', contentType)
 
 ---
 
-## 11.7 错误处理
+## 7 错误处理
 
 ### 网络错误
 
@@ -320,7 +320,7 @@ fetchWithTimeout('https://api.example.com/data', 5000)
 
 ---
 
-## 11.8 中断请求
+## 8 中断请求
 
 ### 使用 AbortController
 
@@ -374,7 +374,7 @@ useEffect(() => {
 
 ---
 
-## 11.9 设置请求头
+## 9 设置请求头
 
 ### 基本示例
 
@@ -404,7 +404,7 @@ async function fetchWithAuth(url) {
 
 ---
 
-## 11.10 发送其他类型的请求
+## 10 发送其他类型的请求
 
 ### PUT 请求（更新资源）
 
@@ -466,7 +466,7 @@ partialUpdateUser(1, { age: 26 }) // 只更新年龄
 
 ---
 
-## 11.11 实战：封装 API 调用
+## 11 实战：封装 API 调用
 
 ### 创建 API 服务
 
@@ -558,7 +558,7 @@ api.setToken('my-token')
 
 ---
 
-## 11.12 核心知识点总结
+## 12 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -576,7 +576,7 @@ api.setToken('my-token')
 
 ---
 
-## 11.13 新手常见误区
+## 13 新手常见误区
 
 ### 误区 1：fetch 返回 Promise 就意味着请求成功
 
@@ -655,7 +655,7 @@ console.log(data)
 
 ---
 
-## 11.14 动手练习
+## 14 动手练习
 
 ### 练习 1：基础练习
 

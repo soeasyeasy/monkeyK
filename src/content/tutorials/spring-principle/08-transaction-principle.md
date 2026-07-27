@@ -18,7 +18,7 @@ description: "深入理解 Spring 事务管理的底层原理、事务传播行�
 
 ---
 
-## 8.1 为什么需要深入理解事务管理？
+## 1 为什么需要深入理解事务管理？
 
 ### 痛点分析
 
@@ -48,7 +48,7 @@ Spring 的事务管理就像**银行的自动柜员机**：
 
 ---
 
-## 8.2 核心原理讲解
+## 2 核心原理讲解
 
 ### 8.2.1 PlatformTransactionManager 体系
 
@@ -348,7 +348,7 @@ public void rollback(TransactionStatus status) {
 
 ---
 
-## 8.3 基础用法与逐行注释
+## 3 基础用法与逐行注释
 
 ### 8.3.1 @Transactional 基础用法
 
@@ -530,7 +530,7 @@ public class ProgrammaticTransactionService {
 
 ---
 
-## 8.4 @Transactional 失效的 8 大场景
+## 4 @Transactional 失效的 8 大场景
 
 ### 场景 1：方法不是 public
 
@@ -753,7 +753,7 @@ public class InnerService {
 
 ---
 
-## 8.5 对比表格
+## 5 对比表格
 
 ### 8.5.1 七种事务传播行为对比
 
@@ -791,7 +791,7 @@ public class InnerService {
 
 ---
 
-## 8.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1：@Transactional 加在类上，所有方法都有事务
 
@@ -954,7 +954,7 @@ public class OuterService {
 
 ---
 
-## 8.7 动手练习
+## 7 动手练习
 
 ### 练习 1：验证事务回滚
 
@@ -1240,7 +1240,7 @@ public class AopConfig {
 
 ---
 
-## 8.8 下一章预告
+## 8 下一章预告
 
 恭喜你学完了 Spring 事务管理的底层原理！现在你已经理解了 @Transactional 的工作机制，知道了事务传播行为的区别，也掌握了 @Transactional 失效的 8 大场景。
 

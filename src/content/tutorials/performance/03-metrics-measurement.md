@@ -18,7 +18,7 @@ description: "掌握核心性能指标体系，学会使用工具测量性能"
 
 ---
 
-## 3.1 为什么需要性能指标？
+## 1 为什么需要性能指标？
 
 ### 痛点分析
 
@@ -45,7 +45,7 @@ description: "掌握核心性能指标体系，学会使用工具测量性能"
 
 ---
 
-## 3.2 Core Web Vitals（核心网页指标）
+## 2 Core Web Vitals（核心网页指标）
 
 Google 定义了三组核心指标，直接影响搜索排名。
 
@@ -137,7 +137,7 @@ new PerformanceObserver((entryList) => {
 
 ---
 
-## 3.3 其他重要指标
+## 3 其他重要指标
 
 | 指标 | 全称 | 衡量什么 | 良好标准 |
 | --- | --- | --- | --- |
@@ -170,7 +170,7 @@ TTFB 组成：
 
 ---
 
-## 3.4 测量工具
+## 4 测量工具
 
 ### Chrome DevTools - Performance 面板
 
@@ -274,7 +274,7 @@ resources.forEach((resource) => {
 
 ---
 
-## 3.5 使用 web-vitals 库
+## 5 使用 web-vitals 库
 
 Google 提供的官方库，简化指标测量。
 
@@ -310,7 +310,7 @@ onTTFB((metric) => {
 
 ---
 
-## 3.6 建立性能监控
+## 6 建立性能监控
 
 ### 客户端埋点
 
@@ -367,7 +367,7 @@ function checkBudget() {
 
 ---
 
-## 3.7 核心知识点总结
+## 7 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -380,7 +380,7 @@ function checkBudget() {
 
 ---
 
-## 3.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1："Lighthouse 得分高就代表性能好"
 
@@ -424,7 +424,7 @@ function checkBudget() {
 
 ---
 
-## 3.9 动手练习
+## 9 动手练习
 
 ### 练习 1：基础练习 - Lighthouse 审计
 

@@ -19,7 +19,7 @@ description: "B-tree 索引、哈希索引、GiST、GIN 索引"
 
 ---
 
-## 9.1 为什么需要索引？
+## 1 为什么需要索引？
 
 ### 痛点分析
 
@@ -53,7 +53,7 @@ SELECT * FROM users WHERE email = 'test@example.com';
 
 ---
 
-## 9.2 核心原理
+## 2 核心原理
 
 ### 概念解释
 
@@ -95,7 +95,7 @@ B-tree（平衡树）是一种树形数据结构：
 
 ---
 
-## 9.3 基础用法
+## 3 基础用法
 
 ### 准备工作
 
@@ -221,7 +221,7 @@ SELECT * FROM users WHERE profile @> '{"interests": ["读书"]}';
 
 ---
 
-## 9.4 进阶用法
+## 4 进阶用法
 
 ### 部分索引
 
@@ -300,7 +300,7 @@ DROP INDEX IF EXISTS idx_users_email;
 
 ---
 
-## 9.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -314,7 +314,7 @@ DROP INDEX IF EXISTS idx_users_email;
 
 ---
 
-## 9.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："索引越多越好"
 
@@ -368,7 +368,7 @@ SELECT * FROM users WHERE UPPER(username) = 'ZHANGSAN';
 
 ---
 
-## 9.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础索引
 

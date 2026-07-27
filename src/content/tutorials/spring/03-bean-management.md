@@ -18,7 +18,7 @@ description: "深入理解 Spring Bean 的生命周期、作用域和条件装�
 
 ---
 
-## 3.1 为什么需要 Bean 管理？
+## 1 为什么需要 Bean 管理？
 
 ### 痛点分析
 
@@ -92,7 +92,7 @@ public class UserService {
 
 ---
 
-## 3.2 核心原理
+## 2 核心原理
 
 ### 3.2.1 Bean 生命周期
 
@@ -129,7 +129,7 @@ Spring 支持多种 Bean 作用域：
 
 ---
 
-## 3.3 基础用法
+## 3 基础用法
 
 ### 3.3.1 Bean 的创建方式
 
@@ -372,7 +372,7 @@ class DatabaseService {
 
 ---
 
-## 3.4 进阶用法
+## 4 进阶用法
 
 ### 3.4.1 Bean 的延迟初始化
 
@@ -448,7 +448,7 @@ public class OrderService {
 
 ---
 
-## 3.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -466,7 +466,7 @@ public class OrderService {
 
 ---
 
-## 3.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："单例 Bean 是线程安全的"
 
@@ -515,7 +515,7 @@ public class SingletonService {
 
 ---
 
-## 3.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础练习 - Bean 生命周期
 

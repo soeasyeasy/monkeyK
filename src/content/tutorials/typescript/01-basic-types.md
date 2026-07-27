@@ -18,7 +18,7 @@ description: "TypeScript 提供了丰富的基础类型系统，帮助我们在�
 
 ---
 
-## 1.1 为什么需要类型？
+## 1 为什么需要类型？
 
 ### 痛点分析
 
@@ -48,7 +48,7 @@ console.log(username.toUpperCase())  // ✅ 编译通过
 
 ---
 
-## 1.2 核心原理
+## 2 核心原理
 
 ### 静态类型 vs 动态类型
 
@@ -75,7 +75,7 @@ let isActive: boolean = true     // 布尔类型
 
 ---
 
-## 1.3 基础类型详解
+## 3 基础类型详解
 
 ### 1. string 字符串
 
@@ -184,7 +184,7 @@ function handleDirection(dir: Direction) {
 
 ---
 
-## 1.4 any vs unknown 对比
+## 4 any vs unknown 对比
 
 | 特性 | any | unknown |
 | --- | --- | --- |
@@ -196,7 +196,7 @@ function handleDirection(dir: Direction) {
 
 ---
 
-## 1.5 新手常见误区
+## 5 新手常见误区
 
 ### 误区 1："用 any 最方便，不用管类型"
 
@@ -257,7 +257,7 @@ function getColorName(color: Color): string {
 
 ---
 
-## 1.6 动手练习
+## 6 动手练习
 
 ### 练习 1：基础练习
 

@@ -18,7 +18,7 @@ description: "配置管理与敏感信息保护"
 
 ---
 
-## 9.1 为什么需要 ConfigMap 和 Secret？
+## 1 为什么需要 ConfigMap 和 Secret？
 
 ### 痛点分析
 
@@ -48,7 +48,7 @@ Kubernetes 提供了两种资源来解决这个问题：
 
 ---
 
-## 9.2 ConfigMap 基础用法
+## 2 ConfigMap 基础用法
 
 ### 什么是 ConfigMap？
 
@@ -215,7 +215,7 @@ kubectl delete pod configmap-demo
 
 ---
 
-## 9.3 Secret 基础用法
+## 3 Secret 基础用法
 
 ### 什么是 Secret？
 
@@ -385,7 +385,7 @@ kubectl exec secret-volume-demo -- cat /etc/secret/password
 
 ---
 
-## 9.4 TLS Secret 示例
+## 4 TLS Secret 示例
 
 TLS Secret 专门用于存储 HTTPS 证书。
 
@@ -434,7 +434,7 @@ spec:
 
 ---
 
-## 9.5 ConfigMap vs Secret 对比
+## 5 ConfigMap vs Secret 对比
 
 | 特性 | ConfigMap | Secret |
 |------|-----------|--------|
@@ -451,7 +451,7 @@ spec:
 
 ---
 
-## 9.6 安全最佳实践
+## 6 安全最佳实践
 
 ### 1. 限制 Secret 访问权限
 
@@ -531,7 +531,7 @@ kubectl delete secret db-secret-old
 
 ---
 
-## 9.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区 1："Secret 是加密的，很安全"
 
@@ -555,7 +555,7 @@ kubectl delete secret db-secret-old
 
 ---
 
-## 9.8 动手练习
+## 8 动手练习
 
 ### 练习 1：创建并使用 ConfigMap
 

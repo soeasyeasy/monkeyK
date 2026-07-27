@@ -18,7 +18,7 @@ description: "深入理解 Spring 事件机制，掌握 ApplicationEvent 体系�
 
 ---
 
-## 13.1 为什么需要事件机制？
+## 1 为什么需要事件机制？
 
 ### 痛点分析
 
@@ -75,7 +75,7 @@ public void register(User user) {
 
 ---
 
-## 13.2 核心原理讲解
+## 2 核心原理讲解
 
 ### 概念解释
 
@@ -169,7 +169,7 @@ public void multicastEvent(final ApplicationEvent event, ResolvableType eventTyp
 
 ---
 
-## 13.3 基础用法
+## 3 基础用法
 
 ### 示例 1：自定义事件
 
@@ -343,7 +343,7 @@ public class EventTest {
 
 ---
 
-## 13.4 进阶用法
+## 4 进阶用法
 
 ### 泛型事件监听
 
@@ -446,7 +446,7 @@ public class ThirdListener {
 
 ---
 
-## 13.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -461,7 +461,7 @@ public class ThirdListener {
 
 ---
 
-## 13.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："事件发布后所有监听器都会异步执行"
 
@@ -534,7 +534,7 @@ public void handleEvent(UserRegisteredEvent event) {
 
 ---
 
-## 13.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础练习 - 实现订单事件
 

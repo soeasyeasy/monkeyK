@@ -18,7 +18,7 @@ description: "使用 AOP 处理日志、事务、权限等跨切面关注点"
 
 ---
 
-## 5.1 为什么需要 AOP？
+## 1 为什么需要 AOP？
 
 ### 痛点分析
 
@@ -112,7 +112,7 @@ public class LogAspect {
 
 ---
 
-## 5.2 核心原理
+## 2 核心原理
 
 ### 5.2.1 AOP 核心概念
 
@@ -180,7 +180,7 @@ public class JdkProxyExample {
 
 ---
 
-## 5.3 基础用法
+## 3 基础用法
 
 ### 5.3.1 启用 AOP
 
@@ -360,7 +360,7 @@ public class LogAnnotationAspect {
 
 ---
 
-## 5.4 进阶用法
+## 4 进阶用法
 
 ### 5.4.1 获取方法参数
 
@@ -446,7 +446,7 @@ UserService userService = context.getBean(UserService.class);
 
 ---
 
-## 5.5 实战案例
+## 5 实战案例
 
 ### 5.5.1 日志切面
 
@@ -583,7 +583,7 @@ public class UserService {
 
 ---
 
-## 5.6 核心知识点总结
+## 6 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -600,7 +600,7 @@ public class UserService {
 
 ---
 
-## 5.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区 1："AOP 会严重影响性能"
 
@@ -648,7 +648,7 @@ public class UserService {
 
 ---
 
-## 5.8 动手练习
+## 8 动手练习
 
 ### 练习 1：基础练习 - 日志切面
 

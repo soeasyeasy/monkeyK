@@ -18,7 +18,7 @@ description: "URL 结构、URI 规范、资源寻址机制、URL 编码与 JavaS
 
 ---
 
-## 5.1 为什么需要 URL？
+## 1 为什么需要 URL？
 
 ### 没有 URL 的时候有多麻烦
 
@@ -48,7 +48,7 @@ URL（Uniform Resource Locator，统一资源定位符）就是互联网资源�
 
 ---
 
-## 5.2 核心原理
+## 2 核心原理
 
 ### 5.2.1 URL 的完整结构
 
@@ -155,7 +155,7 @@ URL 只能使用 ASCII 字符集里的安全字符。如果你要在 URL 里用�
 
 ---
 
-## 5.3 基础用法 + 逐行注释
+## 3 基础用法 + 逐行注释
 
 ### 5.3.1 用 JavaScript 解析 URL
 
@@ -307,7 +307,7 @@ console.log(url4.href)
 
 ---
 
-## 5.4 对比表格
+## 4 对比表格
 
 ### encodeURI vs encodeURIComponent
 
@@ -330,7 +330,7 @@ console.log(url4.href)
 
 ---
 
-## 5.5 新手常见误区
+## 5 新手常见误区
 
 ### 误区 1："URL 和 URI 是一回事"
 
@@ -372,7 +372,7 @@ console.log(url4.href)
 
 ---
 
-## 5.6 动手练习
+## 6 动手练习
 
 ### 练习 1（基础）：解析 URL
 

@@ -18,7 +18,7 @@ description: "使用 Spring Boot 快速创建可运行的 Web 应用"
 
 ---
 
-## 2.1 为什么需要 Spring Boot？
+## 1 为什么需要 Spring Boot？
 
 ### 痛点分析
 
@@ -84,7 +84,7 @@ public class HelloController {
 
 ---
 
-## 2.2 核心原理
+## 2 核心原理
 
 ### 2.2.1 自动配置原理
 
@@ -118,7 +118,7 @@ Spring Boot 提供了各种 starter 依赖：
 
 ---
 
-## 2.3 基础用法
+## 3 基础用法
 
 ### 2.3.1 创建 Spring Boot 项目
 
@@ -367,7 +367,7 @@ java -jar target/demo-0.0.1-SNAPSHOT.jar
 
 ---
 
-## 2.4 进阶用法
+## 4 进阶用法
 
 ### 2.4.1 多环境配置
 
@@ -473,7 +473,7 @@ public class ConfigController {
 
 ---
 
-## 2.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -487,7 +487,7 @@ public class ConfigController {
 
 ---
 
-## 2.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："Spring Boot 必须用 Java 17+"
 
@@ -532,7 +532,7 @@ Spring Boot 只是一个快速开发框架，不限制应用类型。
 
 ---
 
-## 2.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础练习 - 创建 Hello World 应用
 

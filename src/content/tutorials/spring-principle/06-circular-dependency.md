@@ -18,7 +18,7 @@ description: "深入理解 Spring 循环依赖检测机制与三级缓存解决�
 
 ---
 
-## 6.1 为什么需要处理循环依赖？
+## 1 为什么需要处理循环依赖？
 
 ### 痛点分析
 
@@ -76,7 +76,7 @@ public class ServiceB {
 
 ---
 
-## 6.2 核心原理讲解
+## 2 核心原理讲解
 
 ### 6.2.1 循环依赖的检测机制
 
@@ -283,7 +283,7 @@ singletonFactories.put(beanName, new ObjectFactory<Object>() {
 
 ---
 
-## 6.3 基础用法与逐行注释
+## 3 基础用法与逐行注释
 
 ### 6.3.1 循环依赖示例
 
@@ -475,7 +475,7 @@ public class ServiceB {
 
 ---
 
-## 6.4 源码深度解析
+## 4 源码深度解析
 
 ### 6.4.1 getSingleton 方法详解
 
@@ -597,7 +597,7 @@ protected Object getEarlyBeanReference(String beanName, RootBeanDefinition mbd, 
 
 ---
 
-## 6.5 对比表格
+## 5 对比表格
 
 ### 6.5.1 三级缓存对比
 
@@ -628,7 +628,7 @@ protected Object getEarlyBeanReference(String beanName, RootBeanDefinition mbd, 
 
 ---
 
-## 6.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1：Spring 可以解决所有循环依赖
 
@@ -740,7 +740,7 @@ public class ServiceB {
 
 ---
 
-## 6.7 动手练习
+## 7 动手练习
 
 ### 练习 1：验证循环依赖
 
@@ -993,7 +993,7 @@ public class PaymentService {
 
 ---
 
-## 6.8 下一章预告
+## 8 下一章预告
 
 恭喜你学完了循环依赖与三级缓存！现在你已经理解了 Spring 是如何通过三级缓存巧妙解决循环依赖问题，也知道了为什么构造器注入和 @Async 会导致循环依赖失败。
 

@@ -20,7 +20,7 @@ description: "高可用集群、CI/CD 集成、安全加固、性能优化"
 
 ---
 
-## 16.1 为什么需要生产环境实战？
+## 1 为什么需要生产环境实战？
 
 ### 痛点分析
 
@@ -58,7 +58,7 @@ description: "高可用集群、CI/CD 集成、安全加固、性能优化"
 
 ---
 
-## 16.2 高可用集群搭建
+## 2 高可用集群搭建
 
 ### 架构设计
 
@@ -204,7 +204,7 @@ backend kubernetes-apiserver
 
 ---
 
-## 16.3 CI/CD 集成
+## 3 CI/CD 集成
 
 ### Jenkins Pipeline
 
@@ -369,7 +369,7 @@ kubectl get application -n argocd
 
 ---
 
-## 16.4 安全加固
+## 4 安全加固
 
 ### Pod Security Standards
 
@@ -542,7 +542,7 @@ kubectl get secret my-secret -o jsonpath='{.data.password}' | base64 -d
 
 ---
 
-## 16.5 性能优化
+## 5 性能优化
 
 ### 资源限制
 
@@ -716,7 +716,7 @@ kubectl taint nodes node1 dedicated=special-user:NoSchedule-
 
 ---
 
-## 16.6 备份策略
+## 6 备份策略
 
 ### etcd 快照备份
 
@@ -855,7 +855,7 @@ velero schedule get
 
 ---
 
-## 16.7 常见问题排查
+## 7 常见问题排查
 
 ### CrashLoopBackOff
 
@@ -1037,7 +1037,7 @@ kubectl logs -n kube-system deployment/coredns
 
 ---
 
-## 16.8 对比表格
+## 8 对比表格
 
 | 部署方式 | 说明 | 优点 | 缺点 |
 |----------|------|------|------|
@@ -1061,7 +1061,7 @@ kubectl logs -n kube-system deployment/coredns
 
 ---
 
-## 16.9 新手常见误区
+## 9 新手常见误区
 
 ### 误区 1："生产环境只需要一个 master 节点"
 
@@ -1094,7 +1094,7 @@ kubectl logs -n kube-system deployment/coredns
 
 ---
 
-## 16.10 动手练习
+## 10 动手练习
 
 ### 练习 1：配置 HPA 自动扩缩容
 

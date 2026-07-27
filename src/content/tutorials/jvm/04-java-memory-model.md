@@ -18,7 +18,7 @@ description: 'JMM 规范、happens-before 原则、volatile、内存可见性'
 
 ---
 
-## 4.1 为什么需要 Java 内存模型？
+## 1 为什么需要 Java 内存模型？
 
 ### 痛点分析
 
@@ -46,7 +46,7 @@ Java 内存模型（Java Memory Model，简称 JMM）是 JVM 规范的一部分�
 
 ---
 
-## 4.2 JMM 的核心概念
+## 2 JMM 的核心概念
 
 ### 主内存与工作内存
 
@@ -102,7 +102,7 @@ public class VisibilityDemo {
 
 ---
 
-## 4.3 happens-before 原则
+## 3 happens-before 原则
 
 ### 什么是 happens-before
 
@@ -146,7 +146,7 @@ public class HappensBeforeDemo {
 
 ---
 
-## 4.4 volatile 关键字
+## 4 volatile 关键字
 
 ### volatile 的作用
 
@@ -238,7 +238,7 @@ public class AtomicityDemo {
 
 ---
 
-## 4.5 synchronized 与 JMM
+## 5 synchronized 与 JMM
 
 ### synchronized 的内存语义
 
@@ -280,7 +280,7 @@ public class SynchronizedDemo {
 
 ---
 
-## 4.6 内存屏障
+## 6 内存屏障
 
 ### 什么是内存屏障
 
@@ -311,7 +311,7 @@ LoadStore
 
 ---
 
-## 4.7 核心知识点总结
+## 7 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -324,7 +324,7 @@ LoadStore
 
 ---
 
-## 4.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1："volatile 能保证原子性"
 
@@ -346,7 +346,7 @@ LoadStore
 
 ---
 
-## 4.9 动手练习
+## 9 动手练习
 
 ### 练习 1：基础题
 

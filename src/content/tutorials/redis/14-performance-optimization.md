@@ -19,7 +19,7 @@ description: "Pipeline 批量操作、慢查询分析、性能监控工具"
 
 ---
 
-## 14.1 为什么需要性能优化？
+## 1 为什么需要性能优化？
 
 ### 痛点分析
 
@@ -41,7 +41,7 @@ description: "Pipeline 批量操作、慢查询分析、性能监控工具"
 
 ---
 
-## 14.2 Pipeline 批量操作
+## 2 Pipeline 批量操作
 
 ### 概念解释
 
@@ -142,7 +142,7 @@ redisTemplate.executePipelined((RedisCallback<Object>) connection -> {
 
 ---
 
-## 14.3 慢查询分析
+## 3 慢查询分析
 
 ### 配置慢查询日志
 
@@ -221,7 +221,7 @@ redisTemplate.unlink("large:hash");
 
 ---
 
-## 14.4 性能监控工具
+## 4 性能监控工具
 
 ### redis-cli --stat
 
@@ -294,7 +294,7 @@ public double getCacheHitRate() {
 
 ---
 
-## 14.5 内存优化
+## 5 内存优化
 
 ### 选择合适的数据结构
 
@@ -350,7 +350,7 @@ OK
 
 ---
 
-## 14.6 连接池优化
+## 6 连接池优化
 
 ### Lettuce 连接池配置
 
@@ -392,7 +392,7 @@ public class RedisPoolMonitor {
 
 ---
 
-## 14.7 核心知识点总结
+## 7 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -404,7 +404,7 @@ public class RedisPoolMonitor {
 
 ---
 
-## 14.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1："Pipeline 可以替代事务"
 
@@ -424,7 +424,7 @@ public class RedisPoolMonitor {
 
 ---
 
-## 14.9 动手练习
+## 9 动手练习
 
 ### 练习 1：Pipeline 批量操作
 

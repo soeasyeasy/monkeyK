@@ -18,7 +18,7 @@ description: "掌握 Tree Shaking、代码分割、压缩策略等构建时优�
 
 ---
 
-## 9.1 为什么需要构建工具优化？
+## 1 为什么需要构建工具优化？
 
 ### 痛点分析
 
@@ -49,7 +49,7 @@ description: "掌握 Tree Shaking、代码分割、压缩策略等构建时优�
 
 ---
 
-## 9.2 Tree Shaking
+## 2 Tree Shaking
 
 ### 核心原理
 
@@ -137,7 +137,7 @@ import { debounce } from 'lodash-es';
 
 ---
 
-## 9.3 代码分割
+## 3 代码分割
 
 ### 入口分割
 
@@ -227,7 +227,7 @@ module.exports = {
 
 ---
 
-## 9.4 代码压缩
+## 4 代码压缩
 
 ### JavaScript 压缩
 
@@ -301,7 +301,7 @@ export default defineConfig({
 
 ---
 
-## 9.5 资源优化
+## 5 资源优化
 
 ### 图片压缩
 
@@ -367,7 +367,7 @@ export default defineConfig({
 
 ---
 
-## 9.6 预渲染 / SSR
+## 6 预渲染 / SSR
 
 ### 预渲染静态页面
 
@@ -430,7 +430,7 @@ app.get('*', async (req, res) => {
 
 ---
 
-## 9.7 分析构建产物
+## 7 分析构建产物
 
 ### Vite 构建分析
 
@@ -479,7 +479,7 @@ module.exports = {
 
 ---
 
-## 9.8 Gzip / Brotli 压缩
+## 8 Gzip / Brotli 压缩
 
 ### 预压缩资源
 
@@ -529,7 +529,7 @@ gzip_static on;
 
 ---
 
-## 9.9 核心知识点总结
+## 9 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -541,7 +541,7 @@ gzip_static on;
 
 ---
 
-## 9.10 新手常见误区
+## 10 新手常见误区
 
 ### 误区 1："Tree Shaking 对所有库都有效"
 
@@ -586,7 +586,7 @@ gzip_static on;
 
 ---
 
-## 9.11 动手练习
+## 11 动手练习
 
 ### 练习 1：基础练习 - Tree Shaking
 

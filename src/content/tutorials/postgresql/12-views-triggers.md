@@ -19,7 +19,7 @@ description: "CREATE VIEW、CREATE TRIGGER、物化视图"
 
 ---
 
-## 12.1 为什么需要视图和触发器？
+## 1 为什么需要视图和触发器？
 
 ### 痛点分析
 
@@ -82,7 +82,7 @@ SELECT name, department_name FROM high_salary_employees ORDER BY salary DESC;
 
 ---
 
-## 12.2 核心原理
+## 2 核心原理
 
 ### 概念解释
 
@@ -114,7 +114,7 @@ SELECT name, department_name FROM high_salary_employees ORDER BY salary DESC;
 
 ---
 
-## 12.3 基础用法
+## 3 基础用法
 
 ### 准备工作
 
@@ -191,7 +191,7 @@ DROP VIEW IF EXISTS high_salary_employees;
 
 ---
 
-## 12.4 进阶用法
+## 4 进阶用法
 
 ### 触发器基础
 
@@ -311,7 +311,7 @@ DROP MATERIALIZED VIEW IF EXISTS department_stats;
 
 ---
 
-## 12.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -325,7 +325,7 @@ DROP MATERIALIZED VIEW IF EXISTS department_stats;
 
 ---
 
-## 12.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："视图和表一样存储数据"
 
@@ -378,7 +378,7 @@ REFRESH MATERIALIZED VIEW CONCURRENTLY department_stats;
 
 ---
 
-## 12.7 动手练习
+## 7 动手练习
 
 ### 练习 1：创建视图
 

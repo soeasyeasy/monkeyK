@@ -19,7 +19,7 @@ description: "INNER JOIN、LEFT JOIN、RIGHT JOIN、自连接"
 
 ---
 
-## 7.1 为什么需要连接查询？
+## 1 为什么需要连接查询？
 
 ### 痛点分析
 
@@ -49,7 +49,7 @@ description: "INNER JOIN、LEFT JOIN、RIGHT JOIN、自连接"
 
 ---
 
-## 7.2 准备示例数据
+## 2 准备示例数据
 
 为了更好地理解连接查询，我们先创建几个示例表。
 
@@ -99,7 +99,7 @@ INSERT INTO scores (id, student_id, course, score) VALUES
 
 ---
 
-## 7.3 INNER JOIN 内连接
+## 3 INNER JOIN 内连接
 
 内连接只返回两个表中匹配的行。
 
@@ -144,7 +144,7 @@ WHERE c.class_name = '计算机1班';
 
 ---
 
-## 7.4 LEFT JOIN 左连接
+## 4 LEFT JOIN 左连接
 
 左连接返回左表的所有行，即使右表中没有匹配。
 
@@ -192,7 +192,7 @@ LEFT JOIN scores sc ON s.id = sc.student_id;
 
 ---
 
-## 7.5 RIGHT JOIN 右连接
+## 5 RIGHT JOIN 右连接
 
 右连接返回右表的所有行，即使左表中没有匹配。
 
@@ -225,7 +225,7 @@ LEFT JOIN students s ON c.id = s.class_id;
 
 ---
 
-## 7.6 模拟 FULL JOIN 全连接
+## 6 模拟 FULL JOIN 全连接
 
 MySQL 不直接支持 FULL JOIN，但可以用 UNION 模拟。
 
@@ -262,7 +262,7 @@ WHERE s.class_id IS NULL;
 
 ---
 
-## 7.7 自连接
+## 7 自连接
 
 自连接是表和自己进行连接，常用于处理层级关系。
 
@@ -310,7 +310,7 @@ WHERE e.name = '员工A1';
 
 ---
 
-## 7.8 交叉连接
+## 8 交叉连接
 
 交叉连接返回两个表的笛卡尔积，即所有可能的组合。
 
@@ -339,7 +339,7 @@ CROSS JOIN dates d;
 
 ---
 
-## 7.9 多表连接
+## 9 多表连接
 
 可以连接三个或更多的表。
 
@@ -381,7 +381,7 @@ GROUP BY c.class_name, sc.course;
 
 ---
 
-## 7.10 核心知识点总结
+## 10 核心知识点总结
 
 | 连接类型 | 说明 | 返回结果 |
 |---------|------|---------|
@@ -404,7 +404,7 @@ GROUP BY c.class_name, sc.course;
 
 ---
 
-## 7.11 新手常见误区
+## 11 新手常见误区
 
 ### 误区 1："INNER JOIN 和 LEFT JOIN 结果一样"
 
@@ -466,7 +466,7 @@ ALTER TABLE scores ADD INDEX idx_student_id (student_id);
 
 ---
 
-## 7.12 动手练习
+## 12 动手练习
 
 ### 练习 1：基础连接
 

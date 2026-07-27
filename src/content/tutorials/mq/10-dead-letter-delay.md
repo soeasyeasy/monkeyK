@@ -18,7 +18,7 @@ description: "掌握死信队列、TTL、延迟队列的实现方式"
 
 ---
 
-## 10.1 为什么需要死信队列？
+## 1 为什么需要死信队列？
 
 ### 痛点分析
 
@@ -50,7 +50,7 @@ description: "掌握死信队列、TTL、延迟队列的实现方式"
 
 ---
 
-## 10.2 什么是死信？
+## 2 什么是死信？
 
 消息变成死信的三种情况：
 
@@ -62,7 +62,7 @@ description: "掌握死信队列、TTL、延迟队列的实现方式"
 
 ---
 
-## 10.3 配置死信队列
+## 3 配置死信队列
 
 ### 步骤1：声明死信交换机和死信队列
 
@@ -138,7 +138,7 @@ public class DeadLetterConsumer {
 
 ---
 
-## 10.4 实现延迟队列
+## 4 实现延迟队列
 
 ### 方案1：使用 TTL + 死信队列
 
@@ -254,7 +254,7 @@ public class DelayConsumer {
 
 ---
 
-## 10.5 TTL（消息过期时间）
+## 5 TTL（消息过期时间）
 
 ### 设置方式
 
@@ -284,7 +284,7 @@ rabbitTemplate.convertAndSend("exchange", "key", message, msg -> {
 
 ---
 
-## 10.6 死信队列的应用场景
+## 6 死信队列的应用场景
 
 | 场景 | 实现方式 |
 | --- | --- |
@@ -295,7 +295,7 @@ rabbitTemplate.convertAndSend("exchange", "key", message, msg -> {
 
 ---
 
-## 10.7 核心知识点总结
+## 7 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -308,7 +308,7 @@ rabbitTemplate.convertAndSend("exchange", "key", message, msg -> {
 
 ---
 
-## 10.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1："死信队列会自动创建"
 
@@ -324,7 +324,7 @@ rabbitTemplate.convertAndSend("exchange", "key", message, msg -> {
 
 ---
 
-## 10.9 动手练习
+## 9 动手练习
 
 ### 练习 1：基础练习
 

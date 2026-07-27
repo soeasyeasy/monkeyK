@@ -22,7 +22,7 @@ description: "使用 Git 钩子实现自动化检查和流程控制"
 
 ---
 
-## 14.1 为什么需要 Git Hooks？
+## 1 为什么需要 Git Hooks？
 
 ### 痛点分析
 
@@ -64,7 +64,7 @@ Git Hooks（Git 钩子）是 Git 在特定事件（比如提交、推送）时�
 
 ---
 
-## 14.2 核心原理
+## 2 核心原理
 
 ### Git Hooks 的工作机制
 
@@ -124,7 +124,7 @@ ls .git/hooks/
 
 ---
 
-## 14.3 使用本地钩子
+## 3 使用本地钩子
 
 ### 创建 pre-commit 钩子
 
@@ -202,7 +202,7 @@ fi
 
 ---
 
-## 14.4 使用 Husky（推荐方案）
+## 4 使用 Husky（推荐方案）
 
 ### 什么是 Husky
 
@@ -310,7 +310,7 @@ npx husky add .husky/commit-msg "npx --no-install commitlint --edit"
 
 ---
 
-## 14.5 使用 commitlint
+## 5 使用 commitlint
 
 ### 什么是 commitlint
 
@@ -358,7 +358,7 @@ git commit -m "update code"      # type 不在允许列表中
 
 ---
 
-## 14.6 其他钩子管理工具对比
+## 6 其他钩子管理工具对比
 
 除了 Husky，还有几个流行的替代方案：
 
@@ -423,7 +423,7 @@ npm install simple-git-hooks --save-dev
 
 ---
 
-## 14.7 禁用钩子
+## 7 禁用钩子
 
 有时候你需要紧急提交，来不及通过检查。Git 提供了跳过钩子的方式：
 
@@ -441,7 +441,7 @@ git commit -n -m "紧急修复线上 bug"
 
 ---
 
-## 14.8 核心知识点总结
+## 8 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -456,7 +456,7 @@ git commit -n -m "紧急修复线上 bug"
 
 ---
 
-## 14.9 新手常见误区
+## 9 新手常见误区
 
 ### 误区 1："钩子配置好了就不用管了"
 
@@ -486,7 +486,7 @@ git commit -n -m "紧急修复线上 bug"
 
 ---
 
-## 14.10 动手练习
+## 10 动手练习
 
 ### 练习 1：基础练习 - 配置 Husky
 

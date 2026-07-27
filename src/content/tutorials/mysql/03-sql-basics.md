@@ -18,7 +18,7 @@ description: "SELECT、INSERT、UPDATE、DELETE 基础操作"
 
 ---
 
-## 3.1 为什么需要 SQL？
+## 1 为什么需要 SQL？
 
 ### 痛点分析
 
@@ -50,7 +50,7 @@ description: "SELECT、INSERT、UPDATE、DELETE 基础操作"
 
 ---
 
-## 3.2 SQL 语言分类
+## 2 SQL 语言分类
 
 SQL 语句主要分为四大类：
 
@@ -65,7 +65,7 @@ SQL 语句主要分为四大类：
 
 ---
 
-## 3.3 SELECT 查询：从数据库取数据
+## 3 SELECT 查询：从数据库取数据
 
 ### 基本语法
 
@@ -111,7 +111,7 @@ SELECT COUNT(DISTINCT class) FROM students;
 
 ---
 
-## 3.4 INSERT 插入：添加新数据
+## 4 INSERT 插入：添加新数据
 
 ### 基本语法
 
@@ -149,7 +149,7 @@ VALUES (2, '孙七', 20, '数学1班');
 
 ---
 
-## 3.5 UPDATE 更新：修改已有数据
+## 5 UPDATE 更新：修改已有数据
 
 ### 基本语法
 
@@ -185,7 +185,7 @@ UPDATE students SET class = '全校统一班';
 
 ---
 
-## 3.6 DELETE 删除：移除数据
+## 6 DELETE 删除：移除数据
 
 ### 基本语法
 
@@ -221,7 +221,7 @@ DELETE FROM students;
 
 ---
 
-## 3.7 WHERE 条件：筛选数据
+## 7 WHERE 条件：筛选数据
 
 WHERE 子句用来指定筛选条件，只返回满足条件的数据。
 
@@ -261,7 +261,7 @@ WHERE class = '计算机1班' OR age > 20;
 
 ---
 
-## 3.8 核心知识点总结
+## 8 核心知识点总结
 
 | 操作 | 语句 | 作用 | 注意事项 |
 |-----|------|------|---------|
@@ -273,7 +273,7 @@ WHERE class = '计算机1班' OR age > 20;
 
 ---
 
-## 3.9 新手常见误区
+## 9 新手常见误区
 
 ### 误区 1："UPDATE 和 DELETE 不加 WHERE 也没关系"
 
@@ -326,7 +326,7 @@ SELECT * FROM students WHERE name = '张三';
 
 ---
 
-## 3.10 动手练习
+## 10 动手练习
 
 ### 练习 1：基础查询
 

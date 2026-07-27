@@ -18,7 +18,7 @@ description: 'Thread、Runnable、线程池、synchronized、Lock'
 
 ---
 
-## 13.1 为什么需要多线程？
+## 1 为什么需要多线程？
 
 ### 痛点分析
 
@@ -56,7 +56,7 @@ for (int i = 0; i < 100; i++) {
 
 ---
 
-## 13.2 核心原理
+## 2 核心原理
 
 ### 线程生命周期
 
@@ -108,7 +108,7 @@ System.out.println(counter.count);  // 可能不是 1000！
 
 ---
 
-## 13.3 基础用法
+## 3 基础用法
 
 ### 创建线程
 
@@ -325,7 +325,7 @@ public class ProducerConsumer {
 
 ---
 
-## 13.4 线程安全集合
+## 4 线程安全集合
 
 ### ConcurrentHashMap
 
@@ -411,7 +411,7 @@ public class VolatileExample {
 
 ---
 
-## 13.5 同步工具类
+## 5 同步工具类
 
 ### CountDownLatch（倒计时门闩）
 
@@ -506,7 +506,7 @@ public class ParkingLot {
 
 ---
 
-## 13.6 线程中断机制
+## 6 线程中断机制
 
 ### 中断的概念
 
@@ -589,7 +589,7 @@ public void run() {
 
 ---
 
-## 13.7 守护线程
+## 7 守护线程
 
 ### 什么是守护线程？
 
@@ -647,7 +647,7 @@ public class DaemonDemo {
 
 ---
 
-## 13.8 死锁问题
+## 8 死锁问题
 
 ### 什么是死锁？
 
@@ -755,7 +755,7 @@ jstack <pid>
 
 ---
 
-## 13.9 读写锁 ReentrantReadWriteLock
+## 9 读写锁 ReentrantReadWriteLock
 
 ### 读写锁的概念
 
@@ -822,7 +822,7 @@ public class CacheDemo {
 
 ---
 
-## 13.10 条件变量 Condition
+## 10 条件变量 Condition
 
 ### Condition 的作用
 
@@ -881,7 +881,7 @@ public class BoundedBuffer {
 
 ---
 
-## 13.11 定时任务 ScheduledExecutorService
+## 11 定时任务 ScheduledExecutorService
 
 ### 创建定时线程池
 
@@ -940,7 +940,7 @@ scheduler.scheduleAtFixedRate(() -> {
 
 ---
 
-## 13.12 阻塞队列 BlockingQueue
+## 12 阻塞队列 BlockingQueue
 
 ### 阻塞队列的概念
 
@@ -1029,7 +1029,7 @@ public class SimpleProducerConsumer {
 
 ---
 
-## 13.13 ThreadLocal 线程本地变量
+## 13 ThreadLocal 线程本地变量
 
 ### ThreadLocal 的作用
 
@@ -1127,7 +1127,7 @@ public void goodMethod() {
 
 ---
 
-## 13.14 CompletableFuture 异步编程
+## 14 CompletableFuture 异步编程
 
 ### CompletableFuture 的优势
 
@@ -1256,7 +1256,7 @@ public class UserDataService {
 
 ---
 
-## 13.15 Fork/Join 框架
+## 15 Fork/Join 框架
 
 ### 分治思想
 
@@ -1335,7 +1335,7 @@ Fork/Join 使用 work-stealing 算法：空闲线程会从忙碌线程的队列�
 
 ---
 
-## 13.16 新手常见误区
+## 16 新手常见误区
 
 ### 误区 1：调用 run() 而不是 start()
 
@@ -1452,7 +1452,7 @@ public void goodMethod() {
 
 ---
 
-## 13.17 动手练习
+## 17 动手练习
 
 ### 练习 1：基础练习 —— 多线程计数
 
@@ -1707,7 +1707,7 @@ public class AsyncDemo {
 
 ---
 
-## 13.18 核心知识点
+## 18 核心知识点
 
 | 知识点       | 说明                                                   |
 | ------------ | ------------------------------------------------------ |

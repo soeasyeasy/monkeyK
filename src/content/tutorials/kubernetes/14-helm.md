@@ -20,7 +20,7 @@ description: "Kubernetes 包管理器、Chart 结构、模板语法"
 
 ---
 
-## 14.1 为什么需要 Helm？
+## 1 为什么需要 Helm？
 
 ### 痛点分析
 
@@ -65,7 +65,7 @@ Helm 是 Kubernetes 的包管理器，就像：
 
 ---
 
-## 14.2 Helm 安装和基本使用
+## 2 Helm 安装和基本使用
 
 ### 安装 Helm
 
@@ -135,7 +135,7 @@ helm uninstall my-nginx
 
 ---
 
-## 14.3 Chart 结构
+## 3 Chart 结构
 
 ### Chart 目录结构
 
@@ -233,7 +233,7 @@ spec:
 
 ---
 
-## 14.4 创建自定义 Chart
+## 4 创建自定义 Chart
 
 ### 使用 helm create
 
@@ -348,7 +348,7 @@ helm install myapp .
 
 ---
 
-## 14.5 模板语法
+## 5 模板语法
 
 ### 基本语法
 
@@ -436,7 +436,7 @@ app: {{ .Release.Name }}
 
 ---
 
-## 14.6 Release 管理
+## 6 Release 管理
 
 ### 升级 Release
 
@@ -520,7 +520,7 @@ helm get notes myapp
 
 ---
 
-## 14.7 仓库管理
+## 7 仓库管理
 
 ### 添加仓库
 
@@ -575,7 +575,7 @@ helm search hub prometheus
 
 ---
 
-## 14.8 Hooks（钩子）
+## 8 Hooks（钩子）
 
 ### 什么是 Hooks？
 
@@ -646,7 +646,7 @@ helm test myapp
 
 ---
 
-## 14.9 依赖管理
+## 9 依赖管理
 
 ### 添加依赖
 
@@ -688,7 +688,7 @@ helm dependency update --untar
 
 ---
 
-## 14.10 对比表格
+## 10 对比表格
 
 | 特性 | 手动 YAML | Helm Chart |
 |------|-----------|------------|
@@ -715,7 +715,7 @@ helm dependency update --untar
 
 ---
 
-## 14.11 新手常见误区
+## 11 新手常见误区
 
 ### 误区 1："Helm 和 kubectl 是替代关系"
 
@@ -759,7 +759,7 @@ helm install myapp . --set replicaCount=5
 
 ---
 
-## 14.12 动手练习
+## 12 动手练习
 
 ### 练习 1：安装和配置 MySQL
 

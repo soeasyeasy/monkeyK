@@ -18,7 +18,7 @@ description: "Java High Level REST Client、CRUD 操作、批量处理"
 
 ---
 
-## 13.1 为什么需要 Java 客户端？
+## 1 为什么需要 Java 客户端？
 
 ### 痛点分析
 
@@ -43,7 +43,7 @@ Elasticsearch 提供了官方 Java 客户端：
 
 ---
 
-## 13.2 客户端选择
+## 2 客户端选择
 
 ### 版本对比
 
@@ -61,7 +61,7 @@ Elasticsearch 提供了官方 Java 客户端：
 
 ---
 
-## 13.3 Java API Client（8.x）
+## 3 Java API Client（8.x）
 
 ### 添加依赖
 
@@ -139,7 +139,7 @@ ElasticsearchClient client = new ElasticsearchClient(transport);
 
 ---
 
-## 13.4 索引操作
+## 4 索引操作
 
 ### 创建索引
 
@@ -179,7 +179,7 @@ boolean exists = client.indices().exists(e -> e
 
 ---
 
-## 13.5 文档 CRUD 操作
+## 5 文档 CRUD 操作
 
 ### 创建文档
 
@@ -269,7 +269,7 @@ client.delete(d -> d
 
 ---
 
-## 13.6 查询操作
+## 6 查询操作
 
 ### Match 查询
 
@@ -374,7 +374,7 @@ SearchResponse<Product> response = client.search(s -> s
 
 ---
 
-## 13.7 批量操作
+## 7 批量操作
 
 ### Bulk API
 
@@ -443,7 +443,7 @@ for (int i = 0; i < allProducts.size(); i += batchSize) {
 
 ---
 
-## 13.8 聚合操作
+## 8 聚合操作
 
 ### Metric 聚合
 
@@ -533,7 +533,7 @@ for (StringTermsBucket bucket : categoryAgg.buckets()) {
 
 ---
 
-## 13.9 资源管理
+## 9 资源管理
 
 ### 关闭客户端
 
@@ -571,7 +571,7 @@ RestClient restClient = RestClient.builder(
 
 ---
 
-## 13.10 核心知识点总结
+## 10 核心知识点总结
 
 | 知识点 | 说明 |
 |--------|------|
@@ -584,7 +584,7 @@ RestClient restClient = RestClient.builder(
 
 ---
 
-## 13.11 新手常见误区
+## 11 新手常见误区
 
 ### 误区 1："在 Spring Boot 中手动创建客户端"
 
@@ -600,7 +600,7 @@ RestClient restClient = RestClient.builder(
 
 ---
 
-## 13.12 动手练习
+## 12 动手练习
 
 ### 练习 1：基础 CRUD
 

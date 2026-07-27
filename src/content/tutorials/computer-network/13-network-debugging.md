@@ -18,7 +18,7 @@ description: "掌握 Wireshark 抓包、tcpdump 与网络协议分析"
 
 ---
 
-## 13.1 为什么需要网络调试？
+## 1 为什么需要网络调试？
 
 ### 痛点分析
 
@@ -45,7 +45,7 @@ description: "掌握 Wireshark 抓包、tcpdump 与网络协议分析"
 
 ---
 
-## 13.2 基础网络诊断命令
+## 2 基础网络诊断命令
 
 ### ping 命令
 
@@ -200,7 +200,7 @@ netstat -n | awk '/^tcp/ {++S[$NF]} END {for(a in S) print a, S[a]}'
 
 ---
 
-## 13.3 tcpdump 抓包
+## 3 tcpdump 抓包
 
 ### 什么是 tcpdump？
 
@@ -290,7 +290,7 @@ Flags [S], seq 1234567890, win 65535, options [mss 1460], length 0
 
 ---
 
-## 13.4 Wireshark 抓包分析
+## 4 Wireshark 抓包分析
 
 ### 什么是 Wireshark？
 
@@ -409,7 +409,7 @@ tcp port 80 and host 192.168.1.100
 
 ---
 
-## 13.5 常见网络问题分析
+## 5 常见网络问题分析
 
 ### 问题 1：网页打不开
 
@@ -488,7 +488,7 @@ sudo tcpdump -i any port 80 -vvv
 
 ---
 
-## 13.6 核心知识点总结
+## 6 核心知识点总结
 
 | 知识点 | 说明 |
 |--------|------|
@@ -502,7 +502,7 @@ sudo tcpdump -i any port 80 -vvv
 
 ---
 
-## 13.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区 1："能 ping 通就代表网络正常"
 
@@ -522,7 +522,7 @@ sudo tcpdump -i any port 80 -vvv
 
 ---
 
-## 13.8 动手练习
+## 8 动手练习
 
 ### 练习 1：基础诊断
 

@@ -18,7 +18,7 @@ description: "生产环境部署、安全配置、备份恢复、常见问题"
 
 ---
 
-## 16.1 生产环境部署
+## 1 生产环境部署
 
 ### 硬件配置建议
 
@@ -104,7 +104,7 @@ swapoff -a
 
 ---
 
-## 16.2 安全配置
+## 2 安全配置
 
 ### 启用 X-Pack 安全
 
@@ -188,7 +188,7 @@ curl -H "Authorization: ApiKey base64_encoded_key" \
 
 ---
 
-## 16.3 备份与恢复
+## 3 备份与恢复
 
 ### 快照仓库配置
 
@@ -298,7 +298,7 @@ POST /_snapshot/remote_cluster:snapshot_name/_restore
 
 ---
 
-## 16.4 常见问题排查
+## 4 常见问题排查
 
 ### 集群状态 Yellow
 
@@ -450,7 +450,7 @@ GET /products/_settings?filter_path=**.translog
 
 ---
 
-## 16.5 监控与告警
+## 5 监控与告警
 
 ### 关键监控指标
 
@@ -535,7 +535,7 @@ tail -f /var/log/elasticsearch/my-cluster_index_search_slowlog.log
 
 ---
 
-## 16.6 性能优化清单
+## 6 性能优化清单
 
 ### 查询优化
 
@@ -577,7 +577,7 @@ tail -f /var/log/elasticsearch/my-cluster_index_search_slowlog.log
 
 ---
 
-## 16.7 版本升级
+## 7 版本升级
 
 ### 升级前准备
 
@@ -669,7 +669,7 @@ POST /_aliases
 
 ---
 
-## 16.8 核心知识点总结
+## 8 核心知识点总结
 
 | 主题 | 关键点 |
 |------|--------|
@@ -683,7 +683,7 @@ POST /_aliases
 
 ---
 
-## 16.9 新手常见误区
+## 9 新手常见误区
 
 ### 误区 1："生产环境可以用默认配置"
 
@@ -703,7 +703,7 @@ POST /_aliases
 
 ---
 
-## 16.10 动手练习
+## 10 动手练习
 
 ### 练习 1：安全配置
 
@@ -848,7 +848,7 @@ GET /products/_search
 
 ---
 
-## 16.11 学习路径总结
+## 11 学习路径总结
 
 恭喜你完成了 Elasticsearch 从入门到精通的全部课程！让我们回顾一下学习路径：
 

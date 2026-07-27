@@ -18,7 +18,7 @@ description: "Query DSL 语法、match、term、bool 查询"
 
 ---
 
-## 4.1 为什么需要 Query DSL？
+## 1 为什么需要 Query DSL？
 
 ### 痛点分析
 
@@ -43,7 +43,7 @@ Query DSL（Domain Specific Language）是 Elasticsearch 的查询语言，它�
 
 ---
 
-## 4.2 Query DSL 基础语法
+## 2 Query DSL 基础语法
 
 ### 基本结构
 
@@ -85,7 +85,7 @@ GET /products/_search
 
 ---
 
-## 4.3 match 查询
+## 3 match 查询
 
 ### 概念解释
 
@@ -132,7 +132,7 @@ GET /products/_search
 
 ---
 
-## 4.4 term 查询
+## 4 term 查询
 
 ### 概念解释
 
@@ -197,7 +197,7 @@ GET /products/_search
 
 ---
 
-## 4.5 bool 查询
+## 5 bool 查询
 
 ### 概念解释
 
@@ -262,7 +262,7 @@ GET /products/_search
 
 ---
 
-## 4.6 控制返回结果
+## 6 控制返回结果
 
 ### 限制返回数量
 
@@ -321,7 +321,7 @@ GET /products/_search
 
 ---
 
-## 4.7 核心知识点总结
+## 7 核心知识点总结
 
 | 查询类型 | 说明 | 适用场景 |
 |---------|------|---------|
@@ -332,7 +332,7 @@ GET /products/_search
 
 ---
 
-## 4.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1："text 字段用 term 查询"
 
@@ -350,7 +350,7 @@ Elasticsearch 默认限制 `from + size <= 10000`。深度分页需要使用 `se
 
 ---
 
-## 4.9 动手练习
+## 9 动手练习
 
 ### 练习 1：基础查询
 

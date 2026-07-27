@@ -20,7 +20,7 @@ description: "Prometheus 监控、Grafana 可视化、EFK 日志系统"
 
 ---
 
-## 15.1 为什么需要监控和日志？
+## 1 为什么需要监控和日志？
 
 ### 痛点分析
 
@@ -54,7 +54,7 @@ description: "Prometheus 监控、Grafana 可视化、EFK 日志系统"
 
 ---
 
-## 15.2 Prometheus 架构
+## 2 Prometheus 架构
 
 ### 什么是 Prometheus？
 
@@ -109,7 +109,7 @@ Prometheus 是一个开源的监控和告警系统，专门用于云原生环境
 
 ---
 
-## 15.3 安装 Prometheus
+## 3 安装 Prometheus
 
 ### 使用 Helm 安装
 
@@ -173,7 +173,7 @@ kubectl port-forward -n monitoring svc/prometheus-grafana 3000:80
 
 ---
 
-## 15.4 Prometheus 查询语言（PromQL）
+## 4 Prometheus 查询语言（PromQL）
 
 ### 基本查询
 
@@ -221,7 +221,7 @@ sum(kube_pod_container_status_restarts_total{namespace="default"}) by(pod)
 
 ---
 
-## 15.5 Grafana 仪表板
+## 5 Grafana 仪表板
 
 ### 什么是 Grafana？
 
@@ -303,7 +303,7 @@ panel:
 
 ---
 
-## 15.6 告警规则
+## 6 告警规则
 
 ### 创建告警规则
 
@@ -420,7 +420,7 @@ stringData:
 
 ---
 
-## 15.7 EFK 日志系统
+## 7 EFK 日志系统
 
 ### 什么是 EFK？
 
@@ -627,7 +627,7 @@ kubectl port-forward -n logging svc/kibana 5601:5601
 
 ---
 
-## 15.8 常见监控指标
+## 8 常见监控指标
 
 ### 节点级别指标
 
@@ -660,7 +660,7 @@ kubectl port-forward -n logging svc/kibana 5601:5601
 
 ---
 
-## 15.9 对比表格
+## 9 对比表格
 
 | 特性 | Prometheus | ELK/EFK |
 |------|------------|---------|
@@ -680,7 +680,7 @@ kubectl port-forward -n logging svc/kibana 5601:5601
 
 ---
 
-## 15.10 新手常见误区
+## 10 新手常见误区
 
 ### 误区 1："Prometheus 会永久存储所有数据"
 
@@ -727,7 +727,7 @@ prometheus:
 
 ---
 
-## 15.11 动手练习
+## 11 动手练习
 
 ### 练习 1：安装 Prometheus 和 Grafana
 

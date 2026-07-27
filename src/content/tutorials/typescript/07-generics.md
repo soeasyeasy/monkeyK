@@ -18,7 +18,7 @@ description: '泛型是 TypeScript 最强大的特性之一，它允许我们编
 
 ---
 
-## 7.1 为什么需要泛型？
+## 1 为什么需要泛型？
 
 ### 痛点分析
 
@@ -55,7 +55,7 @@ identity('auto')           // 自动推导为 string
 
 ---
 
-## 7.2 核心原理
+## 2 核心原理
 
 ### 泛型的工作原理
 
@@ -83,7 +83,7 @@ function identity<T>(value: T): T {
 
 ---
 
-## 7.3 泛型详解
+## 3 泛型详解
 
 ### 1. 泛型函数
 
@@ -254,7 +254,7 @@ type TodoPreview = MyPick<Todo, 'title' | 'done'>
 
 ---
 
-## 7.4 泛型使用场景
+## 4 泛型使用场景
 
 | 场景 | 示例 |
 | --- | --- |
@@ -266,7 +266,7 @@ type TodoPreview = MyPick<Todo, 'title' | 'done'>
 
 ---
 
-## 7.5 新手常见误区
+## 5 新手常见误区
 
 ### 误区 1："泛型和 any 一样"
 
@@ -347,7 +347,7 @@ function updateStatus<T extends Status>(status: T): void {
 
 ---
 
-## 7.6 动手练习
+## 6 动手练习
 
 ### 练习 1：基础练习
 

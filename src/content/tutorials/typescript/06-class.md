@@ -18,7 +18,7 @@ description: "TypeScript 增强了 JavaScript 的 class，提供了访问修饰�
 
 ---
 
-## 6.1 为什么需要类？
+## 1 为什么需要类？
 
 ### 痛点分析
 
@@ -66,7 +66,7 @@ const person = new Person('张三', 25)
 
 ---
 
-## 6.2 核心原理
+## 2 核心原理
 
 ### 类的三大特性
 
@@ -91,7 +91,7 @@ const person = new Person('张三', 25)
 
 ---
 
-## 6.3 类详解
+## 3 类详解
 
 ### 1. 基本类
 
@@ -282,7 +282,7 @@ console.log(doc.serialize())  // '{"content":"TypeScript 教程"}'
 
 ---
 
-## 6.4 访问修饰符总结
+## 4 访问修饰符总结
 
 | 修饰符 | 本类 | 子类 | 外部 | 说明 |
 | --- | --- | --- | --- | --- |
@@ -293,7 +293,7 @@ console.log(doc.serialize())  // '{"content":"TypeScript 教程"}'
 
 ---
 
-## 6.5 新手常见误区
+## 5 新手常见误区
 
 ### 误区 1："类的所有属性都必须在构造函数中初始化"
 
@@ -374,7 +374,7 @@ class Bird implements Flyable {
 
 ---
 
-## 6.6 动手练习
+## 6 动手练习
 
 ### 练习 1：基础练习
 

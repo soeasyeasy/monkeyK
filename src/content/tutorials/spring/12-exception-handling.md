@@ -18,7 +18,7 @@ description: "使用 @ExceptionHandler 和 @ControllerAdvice 统一处理异常"
 
 ---
 
-## 12.1 为什么需要统一异常处理？
+## 1 为什么需要统一异常处理？
 
 ### 痛点分析
 
@@ -98,7 +98,7 @@ public class UserController {
 
 ---
 
-## 12.2 核心原理
+## 2 核心原理
 
 ### 12.2.1 异常处理机制
 
@@ -127,7 +127,7 @@ Spring MVC 的异常处理基于 AOP：
 
 ---
 
-## 12.3 基础用法
+## 3 基础用法
 
 ### 12.3.1 自定义异常类
 
@@ -281,7 +281,7 @@ public class UserService {
 
 ---
 
-## 12.4 进阶用法
+## 4 进阶用法
 
 ### 12.4.1 处理验证异常
 
@@ -374,7 +374,7 @@ public class GlobalExceptionHandler {
 
 ---
 
-## 12.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -387,7 +387,7 @@ public class GlobalExceptionHandler {
 
 ---
 
-## 12.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："@ExceptionHandler 可以处理所有异常"
 
@@ -407,7 +407,7 @@ public class GlobalExceptionHandler {
 
 ---
 
-## 12.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础练习 - 全局异常处理
 

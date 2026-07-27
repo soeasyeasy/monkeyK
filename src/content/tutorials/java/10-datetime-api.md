@@ -19,7 +19,7 @@ description: 'LocalDate、LocalTime、DateTimeFormatter、时区处理'
 
 ---
 
-## 19.1 为什么需要新的日期时间 API？
+## 1 为什么需要新的日期时间 API？
 
 ### 旧 API 的问题
 
@@ -55,7 +55,7 @@ Java 8 引入了全新的日期时间 API（`java.time` 包），解决了旧 AP
 
 ---
 
-## 19.2 LocalDate、LocalTime、LocalDateTime
+## 2 LocalDate、LocalTime、LocalDateTime
 
 ### LocalDate（日期）
 
@@ -184,7 +184,7 @@ System.out.println("时间部分：" + timePart);  // 10:30:45.123
 
 ---
 
-## 19.3 DateTimeFormatter（格式化）
+## 3 DateTimeFormatter（格式化）
 
 `DateTimeFormatter` 用于格式化和解析日期时间。
 
@@ -263,7 +263,7 @@ System.out.println(time);  // 14:30:45
 
 ---
 
-## 19.4 Duration 和 Period（时间间隔）
+## 4 Duration 和 Period（时间间隔）
 
 ### Duration（时间间隔）
 
@@ -343,7 +343,7 @@ System.out.println("年龄：" + age.getYears() + "岁");
 
 ---
 
-## 19.5 时区处理
+## 5 时区处理
 
 ### ZoneId 和 ZonedDateTime
 
@@ -405,7 +405,7 @@ System.out.println("UTC时间：" + utcTime);
 
 ---
 
-## 19.6 日期时间计算实战
+## 6 日期时间计算实战
 
 ### 计算工作日
 
@@ -482,7 +482,7 @@ public class LeapYearChecker {
 
 ---
 
-## 19.7 与旧 API 的转换
+## 7 与旧 API 的转换
 
 ### Date 与 LocalDateTime 互转
 
@@ -530,7 +530,7 @@ System.out.println("Calendar：" + convertedCalendar.getTime());
 
 ---
 
-## 19.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1：使用旧 API
 
@@ -603,7 +603,7 @@ ZonedDateTime zonedDateTime = ZonedDateTime.now();
 
 ---
 
-## 19.9 动手练习
+## 9 动手练习
 
 ### 练习 1：基础练习 —— 日期格式化
 
@@ -703,7 +703,7 @@ public class MeetingTimeConverter {
 
 ---
 
-## 19.10 核心知识点
+## 10 核心知识点
 
 | 知识点 | 说明 |
 |--------|------|

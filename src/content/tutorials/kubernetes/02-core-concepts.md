@@ -21,7 +21,7 @@ description: '深入理解 Pod、Node、Cluster、Namespace 等 Kubernetes 核�
 
 ---
 
-## 2.1 为什么需要这些概念？
+## 1 为什么需要这些概念？
 
 ### 一个类比：Kubernetes 就像一个大型集装箱港口
 
@@ -39,7 +39,7 @@ description: '深入理解 Pod、Node、Cluster、Namespace 等 Kubernetes 核�
 
 ---
 
-## 2.2 Pod：最小调度单元
+## 2 Pod：最小调度单元
 
 ### 什么是 Pod？
 
@@ -98,7 +98,7 @@ spec:                       # 规格定义
 
 ---
 
-## 2.3 Node：工作节点
+## 3 Node：工作节点
 
 ### 什么是 Node？
 
@@ -147,7 +147,7 @@ kubectl describe node <节点名称>
 
 ---
 
-## 2.4 Cluster：集群
+## 4 Cluster：集群
 
 ### 什么是 Cluster？
 
@@ -178,7 +178,7 @@ Cluster = Master 节点 + 所有 Worker 节点 + 所有组件的总和。
 
 ---
 
-## 2.5 Namespace：虚拟集群
+## 5 Namespace：虚拟集群
 
 ### 什么是 Namespace？
 
@@ -225,7 +225,7 @@ kubectl config set-context --current --namespace=my-app
 
 ---
 
-## 2.6 ReplicaSet：副本集
+## 6 ReplicaSet：副本集
 
 ### 什么是 ReplicaSet？
 
@@ -258,7 +258,7 @@ spec:
 
 ---
 
-## 2.7 Deployment：部署控制器
+## 7 Deployment：部署控制器
 
 ### 什么是 Deployment？
 
@@ -316,7 +316,7 @@ Deployment（店长）
 
 ---
 
-## 2.8 Service：服务发现
+## 8 Service：服务发现
 
 ### 为什么需要 Service？
 
@@ -351,7 +351,7 @@ spec:
 
 ---
 
-## 2.9 概念之间的关系
+## 9 概念之间的关系
 
 ```
 Cluster（集群）
@@ -384,7 +384,7 @@ Cluster（集群）
 
 ---
 
-## 2.10 核心知识点总结
+## 10 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -398,7 +398,7 @@ Cluster（集群）
 
 ---
 
-## 2.11 新手常见误区
+## 11 新手常见误区
 
 ### 误区 1："一个 Pod 就是一个容器"
 
@@ -426,7 +426,7 @@ Cluster（集群）
 
 ---
 
-## 2.12 动手练习
+## 12 动手练习
 
 ### 练习 1：创建 Namespace 并在其中部署应用
 

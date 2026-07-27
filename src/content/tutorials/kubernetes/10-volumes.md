@@ -19,7 +19,7 @@ description: "数据持久化、PV、PVC、StorageClass"
 
 ---
 
-## 10.1 为什么需要 Volume？
+## 1 为什么需要 Volume？
 
 ### 痛点分析
 
@@ -55,7 +55,7 @@ Kubernetes 提供了 **Volume（存储卷）** 机制，将数据存储从 Pod �
 
 ---
 
-## 10.2 Volume 类型概览
+## 2 Volume 类型概览
 
 Kubernetes 支持多种 Volume 类型，常用的有：
 
@@ -70,7 +70,7 @@ Kubernetes 支持多种 Volume 类型，常用的有：
 
 ---
 
-## 10.3 emptyDir
+## 3 emptyDir
 
 emptyDir 是最简单的 Volume 类型，它在 Pod 创建时自动创建，Pod 删除时自动删除。
 
@@ -139,7 +139,7 @@ volumes:
 
 ---
 
-## 10.4 hostPath
+## 4 hostPath
 
 hostPath 将宿主机上的文件或目录挂载到 Pod 中。
 
@@ -216,7 +216,7 @@ volumes:
 
 ---
 
-## 10.5 PersistentVolume 和 PersistentVolumeClaim
+## 5 PersistentVolume 和 PersistentVolumeClaim
 
 ### 核心概念
 
@@ -344,7 +344,7 @@ kubectl exec pvc-demo-pod -- cat /data/test.txt
 
 ---
 
-## 10.6 访问模式
+## 6 访问模式
 
 PV 和 PVC 都支持三种访问模式：
 
@@ -378,7 +378,7 @@ accessModes:
 
 ---
 
-## 10.7 回收策略
+## 7 回收策略
 
 当 PVC 被删除时，PV 的处理方式由回收策略决定：
 
@@ -428,7 +428,7 @@ kubectl delete pv pv-nfs-01
 
 ---
 
-## 10.8 StorageClass 与动态供给
+## 8 StorageClass 与动态供给
 
 ### 什么是 StorageClass？
 
@@ -514,7 +514,7 @@ kubectl get pv
 
 ---
 
-## 10.9 云环境中的存储
+## 9 云环境中的存储
 
 ### AWS EBS 示例
 
@@ -550,7 +550,7 @@ volumeBindingMode: WaitForFirstConsumer
 
 ---
 
-## 10.10 对比表格
+## 10 对比表格
 
 | 特性 | emptyDir | hostPath | PV/PVC | StorageClass |
 |------|----------|----------|--------|--------------|
@@ -563,7 +563,7 @@ volumeBindingMode: WaitForFirstConsumer
 
 ---
 
-## 10.11 新手常见误区
+## 11 新手常见误区
 
 ### 误区 1："emptyDir 可以持久化数据"
 
@@ -587,7 +587,7 @@ volumeBindingMode: WaitForFirstConsumer
 
 ---
 
-## 10.12 动手练习
+## 12 动手练习
 
 ### 练习 1：使用 emptyDir 共享数据
 

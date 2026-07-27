@@ -19,7 +19,7 @@ description: "深入理解 SpringApplication.run() 完整流程、ApplicationLis
 
 ---
 
-## 11.1 为什么需要理解启动流程？
+## 1 为什么需要理解启动流程？
 
 ### 痛点分析
 
@@ -62,7 +62,7 @@ public class MyApplication {
 
 ---
 
-## 11.2 核心原理
+## 2 核心原理
 
 ### 11.2.1 SpringApplication.run() 完整流程
 
@@ -690,7 +690,7 @@ public ApplicationStartup applicationStartup() {
 
 ---
 
-## 11.3 基础用法
+## 3 基础用法
 
 ### 11.3.1 自定义 SpringApplication
 
@@ -844,7 +844,7 @@ spring:
 
 ---
 
-## 11.4 对比表格
+## 4 对比表格
 
 ### 启动事件对比
 
@@ -883,7 +883,7 @@ spring:
 
 ---
 
-## 11.5 新手常见误区
+## 5 新手常见误区
 
 ### 误区 1：在 @PostConstruct 中注入所有 Bean
 
@@ -1053,7 +1053,7 @@ public class MyApplication {
 
 ---
 
-## 11.6 动手练习
+## 6 动手练习
 
 ### 练习 1：基础练习 - 监听启动事件
 

@@ -18,7 +18,7 @@ description: "什么是 Elasticsearch，核心优势，安装配置，第一个�
 
 ---
 
-## 1.1 为什么需要 Elasticsearch？
+## 1 为什么需要 Elasticsearch？
 
 ### 痛点分析
 
@@ -89,7 +89,7 @@ public List<Product> searchProducts(String keyword) {
 
 ---
 
-## 1.2 Elasticsearch 是什么？
+## 2 Elasticsearch 是什么？
 
 ### 概念解释
 
@@ -130,7 +130,7 @@ Elasticsearch 适用于这些场景：
 
 ---
 
-## 1.3 安装 Elasticsearch
+## 3 安装 Elasticsearch
 
 ### 环境要求
 
@@ -233,7 +233,7 @@ docker run -d \
 
 ---
 
-## 1.4 第一个 Elasticsearch 操作
+## 4 第一个 Elasticsearch 操作
 
 ### 使用 curl 测试
 
@@ -315,7 +315,7 @@ GET /products/_search
 
 ---
 
-## 1.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 |--------|------|
@@ -327,7 +327,7 @@ GET /products/_search
 
 ---
 
-## 1.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："Elasticsearch 可以完全替代 MySQL"
 
@@ -356,7 +356,7 @@ GET /products/_search
 
 ---
 
-## 1.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础安装
 

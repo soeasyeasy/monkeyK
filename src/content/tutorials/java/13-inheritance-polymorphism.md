@@ -18,7 +18,7 @@ description: 'extends、override、抽象类、interface'
 
 ---
 
-## 9.1 为什么需要继承？
+## 1 为什么需要继承？
 
 ### 痛点分析
 
@@ -89,7 +89,7 @@ class Bird extends Animal {
 
 ---
 
-## 9.2 核心原理
+## 2 核心原理
 
 ### 继承的本质
 
@@ -129,7 +129,7 @@ class Dog extends Animal { }
 
 ---
 
-## 9.3 继承的用法
+## 3 继承的用法
 
 ### extends 关键字
 
@@ -201,7 +201,7 @@ public class Dog extends Animal {
 
 ---
 
-## 9.4 方法重写（Override）
+## 4 方法重写（Override）
 
 子类可以重新定义父类的方法。
 
@@ -238,7 +238,7 @@ public class Dog extends Animal {
 
 ---
 
-## 9.5 多态
+## 5 多态
 
 ### 什么是多态？
 
@@ -279,7 +279,7 @@ if (animal instanceof Cat cat) {
 
 ---
 
-## 9.6 抽象类
+## 6 抽象类
 
 ### 什么是抽象类？
 
@@ -330,7 +330,7 @@ circle.display();
 
 ---
 
-## 9.7 接口
+## 7 接口
 
 ### 什么是接口？
 
@@ -385,7 +385,7 @@ public class Duck extends Animal implements Flyable, Swimmable {
 
 ---
 
-## 9.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1：子类可以访问父类的 private 成员
 
@@ -462,7 +462,7 @@ public abstract class BaseClass {
 
 ---
 
-## 9.9 动手练习
+## 9 动手练习
 
 ### 练习 1：基础练习 —— 图形面积计算
 
@@ -676,7 +676,7 @@ public class Main {
 
 ---
 
-## 9.10 核心知识点
+## 10 核心知识点
 
 | 知识点   | 说明                                                           |
 | -------- | -------------------------------------------------------------- |

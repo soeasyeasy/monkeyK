@@ -24,7 +24,7 @@ description: "深入理解 Bean 从创建到销毁的完整生命周期，掌握
 
 ---
 
-## 3.1 为什么需要生命周期管理？
+## 1 为什么需要生命周期管理？
 
 ### 痛点分析
 
@@ -124,7 +124,7 @@ public class GoodService {
 
 ---
 
-## 3.2 核心原理：Bean 生命周期完整流程
+## 2 核心原理：Bean 生命周期完整流程
 
 ### 生命周期总览
 
@@ -529,7 +529,7 @@ protected void destroySingletons() {
 
 ---
 
-## 3.3 生命周期扩展点详解
+## 3 生命周期扩展点详解
 
 ### 3.3.1 Aware 接口回调
 
@@ -737,7 +737,7 @@ public MyService myService() {
 
 ---
 
-## 3.4 初始化回调的执行顺序
+## 4 初始化回调的执行顺序
 
 ### 完整顺序
 
@@ -827,7 +827,7 @@ protected void invokeInitMethods(String beanName, Object bean, RootBeanDefinitio
 
 ---
 
-## 3.5 基础用法：生命周期实践
+## 5 基础用法：生命周期实践
 
 ### 完整的生命周期示例
 
@@ -1039,7 +1039,7 @@ public class BadDatabaseService {
 
 ---
 
-## 3.6 对比表格
+## 6 对比表格
 
 ### 初始化方式对比
 
@@ -1073,7 +1073,7 @@ public class BadDatabaseService {
 
 ---
 
-## 3.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区 1："构造器里可以使用注入的依赖"
 
@@ -1250,7 +1250,7 @@ public class MyService implements ApplicationContextAware {
 
 ---
 
-## 3.8 动手练习
+## 8 动手练习
 
 ### 练习 1：基础练习 - 实现生命周期回调
 

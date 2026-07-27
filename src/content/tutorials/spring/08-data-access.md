@@ -18,7 +18,7 @@ description: "使用 JdbcTemplate 和 Spring Data 操作数据库"
 
 ---
 
-## 8.1 为什么需要 Spring 数据访问？
+## 1 为什么需要 Spring 数据访问？
 
 ### 痛点分析
 
@@ -102,7 +102,7 @@ class UserRowMapper implements RowMapper<User> {
 
 ---
 
-## 8.2 核心原理
+## 2 核心原理
 
 ### 8.2.1 Spring 数据访问体系
 
@@ -143,7 +143,7 @@ spring:
 
 ---
 
-## 8.3 基础用法
+## 3 基础用法
 
 ### 8.3.1 JdbcTemplate CRUD
 
@@ -277,7 +277,7 @@ public class UserService {
 
 ---
 
-## 8.4 进阶用法
+## 4 进阶用法
 
 ### 8.4.1 回调接口
 
@@ -357,7 +357,7 @@ public class UserDao {
 
 ---
 
-## 8.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -370,7 +370,7 @@ public class UserDao {
 
 ---
 
-## 8.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："JdbcTemplate 需要手动管理连接"
 
@@ -388,7 +388,7 @@ public class UserDao {
 
 ---
 
-## 8.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础练习 - JdbcTemplate CRUD
 

@@ -18,7 +18,7 @@ description: "Spring Data Elasticsearch、Repository、自动配置"
 
 ---
 
-## 14.1 为什么需要 Spring Boot 集成？
+## 1 为什么需要 Spring Boot 集成？
 
 ### 痛点分析
 
@@ -44,7 +44,7 @@ Spring Data Elasticsearch 提供了：
 
 ---
 
-## 14.2 添加依赖
+## 2 添加依赖
 
 ### Maven 依赖
 
@@ -77,7 +77,7 @@ dependencies {
 
 ---
 
-## 14.3 配置文件
+## 3 配置文件
 
 ### application.yml
 
@@ -105,7 +105,7 @@ spring.elasticsearch.socket-timeout=30s
 
 ---
 
-## 14.4 实体类定义
+## 4 实体类定义
 
 ### 使用注解映射
 
@@ -177,7 +177,7 @@ public class Product {
 
 ---
 
-## 14.5 Repository 接口
+## 5 Repository 接口
 
 ### 基础 Repository
 
@@ -229,7 +229,7 @@ public class ProductService {
 
 ---
 
-## 14.6 声明式查询
+## 6 声明式查询
 
 ### 方法名查询
 
@@ -298,7 +298,7 @@ public class ProductService {
 
 ---
 
-## 14.7 自定义查询
+## 7 自定义查询
 
 ### 使用 @Query 注解
 
@@ -363,7 +363,7 @@ public class ProductSearchService {
 
 ---
 
-## 14.8 聚合操作
+## 8 聚合操作
 
 ### 使用 ElasticsearchOperations
 
@@ -413,7 +413,7 @@ public class ProductAggregationService {
 
 ---
 
-## 14.9 批量操作
+## 9 批量操作
 
 ### 批量保存
 
@@ -453,7 +453,7 @@ public void deleteByCategory(String category) {
 
 ---
 
-## 14.10 高级配置
+## 10 高级配置
 
 ### 自定义配置类
 
@@ -495,7 +495,7 @@ public class IndexNameProvider {
 
 ---
 
-## 14.11 事务管理
+## 11 事务管理
 
 ### 使用 @Transactional
 
@@ -521,7 +521,7 @@ public class ProductService {
 
 ---
 
-## 14.12 核心知识点总结
+## 12 核心知识点总结
 
 | 知识点 | 说明 |
 |--------|------|
@@ -535,7 +535,7 @@ public class ProductService {
 
 ---
 
-## 14.13 新手常见误区
+## 13 新手常见误区
 
 ### 误区 1："Repository 方法名可以随意写"
 
@@ -551,7 +551,7 @@ public class ProductService {
 
 ---
 
-## 14.14 动手练习
+## 14 动手练习
 
 ### 练习 1：基础 Repository
 

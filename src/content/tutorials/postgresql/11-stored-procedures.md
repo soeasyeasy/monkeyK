@@ -19,7 +19,7 @@ description: "CREATE FUNCTION、CREATE PROCEDURE、PL/pgSQL"
 
 ---
 
-## 11.1 为什么需要存储过程和函数？
+## 1 为什么需要存储过程和函数？
 
 ### 痛点分析
 
@@ -67,7 +67,7 @@ SELECT name, calculate_bonus(salary, department) AS bonus FROM employees;
 
 ---
 
-## 11.2 核心原理
+## 2 核心原理
 
 ### 概念解释
 
@@ -92,7 +92,7 @@ PL/pgSQL 是 PostgreSQL 的过程语言，支持变量、条件、循环等。
 
 ---
 
-## 11.3 基础用法
+## 3 基础用法
 
 ### 准备工作
 
@@ -191,7 +191,7 @@ CALL update_salary(1, 16000);
 
 ---
 
-## 11.4 进阶用法
+## 4 进阶用法
 
 ### 返回表结果
 
@@ -291,7 +291,7 @@ SELECT get_column_value('employees', 'name', 'id = 1');
 
 ---
 
-## 11.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -308,7 +308,7 @@ SELECT get_column_value('employees', 'name', 'id = 1');
 
 ---
 
-## 11.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："函数和存储过程可以互换"
 
@@ -393,7 +393,7 @@ CALL get_employee_info(1, NULL, NULL);
 
 ---
 
-## 11.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础函数
 

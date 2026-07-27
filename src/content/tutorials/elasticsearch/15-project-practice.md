@@ -18,7 +18,7 @@ description: "电商搜索系统、日志分析平台、全文检索应用"
 
 ---
 
-## 15.1 项目一：电商搜索系统
+## 1 项目一：电商搜索系统
 
 ### 项目背景
 
@@ -235,7 +235,7 @@ public List<String> getSuggestions(String prefix) {
 
 ---
 
-## 15.2 项目二：日志分析平台
+## 2 项目二：日志分析平台
 
 ### 项目背景
 
@@ -435,7 +435,7 @@ public class LogSearchService {
 
 ---
 
-## 15.3 项目三：全文检索应用
+## 3 项目三：全文检索应用
 
 ### 项目背景
 
@@ -606,7 +606,7 @@ public List<Document> getRelatedDocuments(String documentId, int size) {
 
 ---
 
-## 15.4 项目部署与优化
+## 4 项目部署与优化
 
 ### 索引优化
 
@@ -674,7 +674,7 @@ public class ElasticsearchMonitor {
 
 ---
 
-## 15.5 核心知识点总结
+## 5 核心知识点总结
 
 | 项目 | 关键技术 | 应用场景 |
 |------|---------|---------|
@@ -684,7 +684,7 @@ public class ElasticsearchMonitor {
 
 ---
 
-## 15.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："一个索引可以解决所有问题"
 
@@ -700,7 +700,7 @@ public class ElasticsearchMonitor {
 
 ---
 
-## 15.7 动手练习
+## 7 动手练习
 
 ### 练习 1：电商搜索
 

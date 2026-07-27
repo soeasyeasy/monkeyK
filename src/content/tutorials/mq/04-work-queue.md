@@ -18,7 +18,7 @@ description: "任务分发、轮询消费、公平调度、多消费者场景与
 
 ---
 
-## 4.1 为什么需要工作队列模式？
+## 1 为什么需要工作队列模式？
 
 ### 痛点分析
 
@@ -48,7 +48,7 @@ description: "任务分发、轮询消费、公平调度、多消费者场景与
 
 ---
 
-## 4.2 核心原理讲解
+## 2 核心原理讲解
 
 ### 轮询消费（Round-Robin）
 
@@ -97,7 +97,7 @@ channel.basicQos(1);
 
 ---
 
-## 4.3 基础用法：生产者代码
+## 3 基础用法：生产者代码
 
 ### 完整代码（Java）
 
@@ -158,7 +158,7 @@ public class WorkProducer {
 
 ---
 
-## 4.4 基础用法：消费者代码（轮询模式）
+## 4 基础用法：消费者代码（轮询模式）
 
 ### 完整代码（Java）
 
@@ -240,7 +240,7 @@ public class WorkConsumer {
 
 ---
 
-## 4.5 进阶用法：公平调度
+## 5 进阶用法：公平调度
 
 ### 问题：轮询不公平
 
@@ -316,7 +316,7 @@ public class FairWorkConsumer {
 
 ---
 
-## 4.6 消息确认机制详解
+## 6 消息确认机制详解
 
 ### 什么是消息确认？
 
@@ -371,7 +371,7 @@ DeliverCallback deliverCallback = (consumerTag, delivery) -> {
 
 ---
 
-## 4.7 对比表格
+## 7 对比表格
 
 ### 轮询分发 vs 公平调度对比
 
@@ -395,7 +395,7 @@ DeliverCallback deliverCallback = (consumerTag, delivery) -> {
 
 ---
 
-## 4.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1："轮询分发最公平"
 
@@ -419,7 +419,7 @@ DeliverCallback deliverCallback = (consumerTag, delivery) -> {
 
 ---
 
-## 4.9 动手练习
+## 9 动手练习
 
 ### 练习 1：基础练习
 

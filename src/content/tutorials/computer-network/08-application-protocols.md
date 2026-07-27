@@ -18,7 +18,7 @@ description: "掌握 HTTP/HTTPS、DNS、FTP、SMTP 等应用层协议"
 
 ---
 
-## 8.1 为什么需要应用层协议？
+## 1 为什么需要应用层协议？
 
 ### 痛点分析
 
@@ -52,7 +52,7 @@ description: "掌握 HTTP/HTTPS、DNS、FTP、SMTP 等应用层协议"
 
 ---
 
-## 8.2 HTTP 协议
+## 2 HTTP 协议
 
 ### 什么是 HTTP？
 
@@ -132,7 +132,7 @@ Connection: keep-alive
 
 ---
 
-## 8.3 HTTPS 协议
+## 3 HTTPS 协议
 
 ### 为什么需要 HTTPS？
 
@@ -200,7 +200,7 @@ Connection: keep-alive
 
 ---
 
-## 8.4 DNS 协议
+## 4 DNS 协议
 
 ### 什么是 DNS？
 
@@ -245,7 +245,7 @@ Connection: keep-alive
 
 ---
 
-## 8.5 FTP 协议
+## 5 FTP 协议
 
 ### 什么是 FTP？
 
@@ -300,7 +300,7 @@ Connection: keep-alive
 
 ---
 
-## 8.6 SMTP 协议
+## 6 SMTP 协议
 
 ### 什么是 SMTP？
 
@@ -340,7 +340,7 @@ Connection: keep-alive
 
 ---
 
-## 8.7 核心知识点总结
+## 7 核心知识点总结
 
 | 知识点 | 说明 |
 |--------|------|
@@ -353,7 +353,7 @@ Connection: keep-alive
 
 ---
 
-## 8.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1："HTTP 和 HTTPS 只是端口不同"
 
@@ -373,7 +373,7 @@ HTTP 本身无状态，但可以通过 Cookie、Session、Token 等机制实现�
 
 ---
 
-## 8.9 动手练习
+## 9 动手练习
 
 ### 练习 1：HTTP 请求分析
 

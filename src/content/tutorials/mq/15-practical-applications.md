@@ -18,7 +18,7 @@ description: "掌握异步解耦、削峰填谷、数据同步等常见应用场
 
 ---
 
-## 15.1 异步解耦
+## 1 异步解耦
 
 ### 场景描述
 
@@ -82,7 +82,7 @@ public void sendSms(User user) {
 
 ---
 
-## 15.2 削峰填谷
+## 2 削峰填谷
 
 ### 场景描述
 
@@ -152,7 +152,7 @@ public void processSeckill(SeckillRequest request) {
 
 ---
 
-## 15.3 数据同步
+## 3 数据同步
 
 ### 场景描述
 
@@ -203,7 +203,7 @@ MySQL binlog --> Kafka Connect --> Kafka Topic --> 下游消费者
 
 ---
 
-## 15.4 消息驱动架构
+## 4 消息驱动架构
 
 ### 事件驱动架构（EDA）
 
@@ -258,7 +258,7 @@ public void onOrderCreated(OrderCreatedEvent event) {
 
 ---
 
-## 15.5 可靠消息最终一致性
+## 5 可靠消息最终一致性
 
 ### 场景描述
 
@@ -324,7 +324,7 @@ public class OrderService {
 
 ---
 
-## 15.6 核心知识点总结
+## 6 核心知识点总结
 
 | 应用场景 | 说明 | 关键实现 |
 | --- | --- | --- |
@@ -336,7 +336,7 @@ public class OrderService {
 
 ---
 
-## 15.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区 1："用了消息队列系统就一定快"
 
@@ -356,7 +356,7 @@ public class OrderService {
 
 ---
 
-## 15.8 动手练习
+## 8 动手练习
 
 ### 练习 1：基础练习
 

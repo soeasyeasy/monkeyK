@@ -22,7 +22,7 @@ description: "类型擦除、泛型推断、通配符机制、桥接方法"
 
 ---
 
-## 3.1 为什么需要泛型？
+## 1 为什么需要泛型？
 
 ### 3.1.1 没有泛型的日子
 
@@ -141,7 +141,7 @@ Stack<Integer> intStack = new Stack<>();
 
 ---
 
-## 3.2 核心原理
+## 2 核心原理
 
 ### 3.2.1 类型擦除（Type Erasure）
 
@@ -479,7 +479,7 @@ public static double sum(List<? extends Number> list) {
 
 ---
 
-## 3.3 基础用法
+## 3 基础用法
 
 ### 3.3.1 泛型类
 
@@ -615,7 +615,7 @@ public class Student implements Comparable<Student> {
 
 ---
 
-## 3.4 进阶用法
+## 4 进阶用法
 
 ### 3.4.1 泛型的限制及其原因
 
@@ -808,7 +808,7 @@ public class Child extends Parent {
 
 ---
 
-## 3.5 核心知识点总结
+## 5 核心知识点总结
 
 ### 3.5.1 本章核心概念
 
@@ -854,7 +854,7 @@ public class Child extends Parent {
 
 ---
 
-## 3.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1：认为运行时可以获取泛类型
 
@@ -992,7 +992,7 @@ String max = Utility.max("a", "b");
 
 ---
 
-## 3.7 动手练习
+## 7 动手练习
 
 ### 练习 1：验证类型擦除
 

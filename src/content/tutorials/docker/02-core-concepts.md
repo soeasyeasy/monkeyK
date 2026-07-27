@@ -18,7 +18,7 @@ description: "镜像、容器、仓库三大核心概念"
 
 ---
 
-## 2.1 为什么需要理解这些概念？
+## 1 为什么需要理解这些概念？
 
 ### 痛点分析
 
@@ -42,7 +42,7 @@ description: "镜像、容器、仓库三大核心概念"
 
 ---
 
-## 2.2 镜像（Image）
+## 2 镜像（Image）
 
 ### 概念解释
 
@@ -102,7 +102,7 @@ docker history nginx
 
 ---
 
-## 2.3 容器（Container）
+## 3 容器（Container）
 
 ### 概念解释
 
@@ -172,7 +172,7 @@ docker logs my-container
 
 ---
 
-## 2.4 仓库（Registry）
+## 4 仓库（Registry）
 
 ### 概念解释
 
@@ -249,7 +249,7 @@ docker tag nginx:latest myuser/nginx:v1.0
 
 ---
 
-## 2.5 三者关系图解
+## 5 三者关系图解
 
 ```
                     ┌─────────────────┐
@@ -281,7 +281,7 @@ docker tag nginx:latest myuser/nginx:v1.0
 
 ---
 
-## 2.6 核心知识点总结
+## 6 核心知识点总结
 
 | 概念 | 说明 | 类比 |
 | --- | --- | --- |
@@ -293,7 +293,7 @@ docker tag nginx:latest myuser/nginx:v1.0
 
 ---
 
-## 2.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区 1："删除容器，镜像也会删除"
 
@@ -330,7 +330,7 @@ docker images
 
 ---
 
-## 2.8 动手练习
+## 8 动手练习
 
 ### 练习 1：镜像操作
 

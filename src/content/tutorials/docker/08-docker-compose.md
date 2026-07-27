@@ -18,7 +18,7 @@ description: "Compose 文件、服务定义、多容器管理"
 
 ---
 
-## 8.1 为什么需要 Docker Compose？
+## 1 为什么需要 Docker Compose？
 
 ### 痛点分析
 
@@ -70,7 +70,7 @@ Docker Compose 让你用一个 YAML 文件定义所有服务，一条命令启�
 
 ---
 
-## 8.2 安装 Docker Compose
+## 2 安装 Docker Compose
 
 ### Docker Desktop（推荐）
 
@@ -110,7 +110,7 @@ docker-compose version
 
 ---
 
-## 8.3 docker-compose.yml 基础
+## 3 docker-compose.yml 基础
 
 ### 基本结构
 
@@ -152,7 +152,7 @@ networks:  # 网络定义
 
 ---
 
-## 8.4 服务配置详解
+## 4 服务配置详解
 
 ### image 和 build
 
@@ -294,7 +294,7 @@ services:
 
 ---
 
-## 8.5 Compose 命令
+## 5 Compose 命令
 
 ### 基础命令
 
@@ -361,7 +361,7 @@ docker compose top
 
 ---
 
-## 8.6 完整示例：Web 应用栈
+## 6 完整示例：Web 应用栈
 
 ### 项目结构
 
@@ -466,7 +466,7 @@ docker compose down
 
 ---
 
-## 8.7 环境变量与配置
+## 7 环境变量与配置
 
 ### 使用 .env 文件
 
@@ -506,7 +506,7 @@ services:
 
 ---
 
-## 8.8 多环境配置
+## 8 多环境配置
 
 ### 使用多个 Compose 文件
 
@@ -546,7 +546,7 @@ services:
 
 ---
 
-## 8.9 核心知识点总结
+## 9 核心知识点总结
 
 | 配置项 | 说明 | 示例 |
 | --- | --- | --- |
@@ -562,7 +562,7 @@ services:
 
 ---
 
-## 8.10 新手常见误区
+## 10 新手常见误区
 
 ### 误区 1："depends_on 会等待服务完全启动"
 
@@ -584,7 +584,7 @@ services:
 
 ---
 
-## 8.11 动手练习
+## 11 动手练习
 
 ### 练习 1：简单的 Web 应用
 

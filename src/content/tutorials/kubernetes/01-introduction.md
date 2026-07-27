@@ -17,7 +17,7 @@ description: '从零开始认识 Kubernetes，理解它解决了什么问题，�
 
 ---
 
-## 1.1 为什么需要 Kubernetes？
+## 1 为什么需要 Kubernetes？
 
 ### 从容器到容器编排
 
@@ -52,7 +52,7 @@ Docker 解决了"应用打包和运行"的问题，但当容器数量增长到�
 
 ---
 
-## 1.2 Kubernetes 的前世今生
+## 2 Kubernetes 的前世今生
 
 ### 从 Google Borg 到 Kubernetes
 
@@ -87,7 +87,7 @@ Kubernetes 并不是凭空出现的，它脱胎于 Google 内部运行了十多�
 
 ---
 
-## 1.3 Kubernetes 架构总览
+## 3 Kubernetes 架构总览
 
 Kubernetes 集群由两类节点组成：**Master 节点**（控制面）和 **Worker 节点**（工作节点）。
 
@@ -136,7 +136,7 @@ Kubernetes 集群由两类节点组成：**Master 节点**（控制面）和 **W
 
 ---
 
-## 1.4 安装 Kubernetes
+## 4 安装 Kubernetes
 
 学习 Kubernetes 有几种常见方式：
 
@@ -212,7 +212,7 @@ kubectl get nodes
 
 ---
 
-## 1.5 kubectl 基础命令
+## 5 kubectl 基础命令
 
 kubectl 是你和 Kubernetes 集群交流的"对讲机"。所有操作都通过它发出指令。
 
@@ -304,7 +304,7 @@ my-nginx-7d4f6bfc7b-x2k9s  1/1     Running   0          30s
 
 ---
 
-## 1.6 核心知识点总结
+## 6 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -317,7 +317,7 @@ my-nginx-7d4f6bfc7b-x2k9s  1/1     Running   0          30s
 
 ---
 
-## 1.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区 1："Kubernetes 就是 Docker 的升级版"
 
@@ -345,7 +345,7 @@ my-nginx-7d4f6bfc7b-x2k9s  1/1     Running   0          30s
 
 ---
 
-## 1.8 动手练习
+## 8 动手练习
 
 ### 练习 1：查看集群信息
 

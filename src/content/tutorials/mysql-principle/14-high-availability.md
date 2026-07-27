@@ -18,7 +18,7 @@ description: "深入理解 MySQL 高可用架构，掌握 MGR 组复制、Keepal
 
 ---
 
-## 14.1 为什么需要高可用架构？
+## 1 为什么需要高可用架构？
 
 ### 痛点分析
 
@@ -59,7 +59,7 @@ description: "深入理解 MySQL 高可用架构，掌握 MGR 组复制、Keepal
 
 ---
 
-## 14.2 核心原理讲解
+## 2 核心原理讲解
 
 ### 概念解释
 
@@ -134,7 +134,7 @@ ProxySQL 智能路由：
 
 ---
 
-## 14.3 基础用法
+## 3 基础用法
 
 ### 示例 1：MGR 组复制配置
 
@@ -350,7 +350,7 @@ SELECT * FROM performance_schema.replication_group_members;
 
 ---
 
-## 14.4 对比表格
+## 4 对比表格
 
 ### MGR vs 传统主从复制
 
@@ -386,7 +386,7 @@ SELECT * FROM performance_schema.replication_group_members;
 
 ---
 
-## 14.5 新手常见误区
+## 5 新手常见误区
 
 ### 误区 1："MGR 节点越多越好"
 
@@ -420,7 +420,7 @@ SELECT * FROM performance_schema.replication_group_members;
 
 ---
 
-## 14.6 动手练习
+## 6 动手练习
 
 ### 练习 1（基础）：配置 MGR 组复制
 

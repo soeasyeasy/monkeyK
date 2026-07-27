@@ -18,7 +18,7 @@ description: "XSS、CSRF、点击劫持、CSP、安全最佳实践"
 
 ---
 
-## 14.1 为什么需要懂浏览器安全？
+## 1 为什么需要懂浏览器安全？
 
 ### 痛点分析：不懂安全的后果
 
@@ -43,7 +43,7 @@ description: "XSS、CSRF、点击劫持、CSP、安全最佳实践"
 
 ---
 
-## 14.2 核心原理
+## 2 核心原理
 
 ### 14.2.1 XSS 攻击（跨站脚本攻击）
 
@@ -333,7 +333,7 @@ Content-Security-Policy: script-src 'self' 'nonce-abc123'
 
 ---
 
-## 14.3 安全最佳实践
+## 3 安全最佳实践
 
 ### 14.3.1 Cookie 安全
 
@@ -400,7 +400,7 @@ Permissions-Policy: camera=(), microphone=()
 
 ---
 
-## 14.4 核心知识点总结
+## 4 核心知识点总结
 
 | 攻击类型 | 攻击原理 | 防御方法 |
 | --- | --- | --- |
@@ -411,7 +411,7 @@ Permissions-Policy: camera=(), microphone=()
 
 ---
 
-## 14.5 新手常见误区
+## 5 新手常见误区
 
 ### 误区 1："我用了 Vue/React，自动转义了，不用担心 XSS"
 
@@ -451,7 +451,7 @@ Permissions-Policy: camera=(), microphone=()
 
 ---
 
-## 14.6 动手练习
+## 6 动手练习
 
 ### 练习 1（基础）：编写一个 HTML 转义函数
 

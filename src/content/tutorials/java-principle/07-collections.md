@@ -25,7 +25,7 @@ description: "Collection 体系、ArrayList/LinkedList 实现、HashMap 红黑�
 
 ---
 
-## 7.1 为什么需要集合框架？
+## 1 为什么需要集合框架？
 
 ### 痛点分析
 
@@ -100,7 +100,7 @@ User user = userMap.get("张三");  // O(1) 时间复杂度
 
 ---
 
-## 7.2 核心原理：集合框架体系结构
+## 2 核心原理：集合框架体系结构
 
 ### 整体架构
 
@@ -141,7 +141,7 @@ Map（接口，键值对）
 
 ---
 
-## 7.3 ArrayList 底层原理
+## 3 ArrayList 底层原理
 
 ### 数据结构
 
@@ -313,7 +313,7 @@ public static native void arraycopy(
 
 ---
 
-## 7.4 LinkedList 底层原理
+## 4 LinkedList 底层原理
 
 ### 数据结构
 
@@ -458,7 +458,7 @@ private E unlink(Node<E> x) {
 
 ---
 
-## 7.5 HashMap 底层原理
+## 5 HashMap 底层原理
 
 ### 数据结构（JDK 1.8）
 
@@ -761,7 +761,7 @@ final Node<K,V>[] resize() {
 
 ---
 
-## 7.6 ConcurrentHashMap 原理
+## 6 ConcurrentHashMap 原理
 
 ### JDK 1.7：分段锁
 
@@ -888,7 +888,7 @@ public class ConcurrentHashMap<K,V> {
 
 ---
 
-## 7.7 HashSet 与 HashMap 的关系
+## 7 HashSet 与 HashMap 的关系
 
 ### HashSet 的底层实现
 
@@ -927,7 +927,7 @@ public class HashSet<E> implements Set<E> {
 
 ---
 
-## 7.8 核心知识点总结
+## 8 核心知识点总结
 
 ### 集合类对比
 
@@ -950,7 +950,7 @@ public class HashSet<E> implements Set<E> {
 
 ---
 
-## 7.9 新手常见误区
+## 9 新手常见误区
 
 ### 误区 1："ArrayList 比 LinkedList 慢"
 
@@ -1042,7 +1042,7 @@ public class HashSet<E> {
 
 ---
 
-## 7.10 动手练习
+## 10 动手练习
 
 ### 练习 1：基础题
 

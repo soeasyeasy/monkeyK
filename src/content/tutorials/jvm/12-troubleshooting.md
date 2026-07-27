@@ -18,7 +18,7 @@ description: 'OOM 分析、CPU 飙高、死锁检测、内存泄漏'
 
 ---
 
-## 12.1 为什么需要故障诊断能力？
+## 1 为什么需要故障诊断能力？
 
 ### 痛点分析
 
@@ -43,7 +43,7 @@ description: 'OOM 分析、CPU 飙高、死锁检测、内存泄漏'
 
 ---
 
-## 12.2 OOM 分析
+## 2 OOM 分析
 
 ### 什么是 OOM
 
@@ -127,7 +127,7 @@ public class MemoryLeakDemo {
 
 ---
 
-## 12.3 CPU 飙高分析
+## 3 CPU 飙高分析
 
 ### 什么是 CPU 飙高
 
@@ -219,7 +219,7 @@ public class CPUSpikeDemo {
 
 ---
 
-## 12.4 死锁检测
+## 4 死锁检测
 
 ### 什么是死锁
 
@@ -339,7 +339,7 @@ public class DeadlockFixedDemo {
 
 ---
 
-## 12.5 内存泄漏排查
+## 5 内存泄漏排查
 
 ### 什么是内存泄漏
 
@@ -489,7 +489,7 @@ public class ThreadLocalFixed {
 
 ---
 
-## 12.6 故障诊断工具对比
+## 6 故障诊断工具对比
 
 | 工具 | 用途 | 优点 | 缺点 |
 | --- | --- | --- | --- |
@@ -502,7 +502,7 @@ public class ThreadLocalFixed {
 
 ---
 
-## 12.7 核心知识点总结
+## 7 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -513,7 +513,7 @@ public class ThreadLocalFixed {
 
 ---
 
-## 12.8 新手常见误区
+## 8 新手常见误区
 
 ### 误区 1："OOM 就是内存不够"
 
@@ -535,7 +535,7 @@ public class ThreadLocalFixed {
 
 ---
 
-## 12.9 动手练习
+## 9 动手练习
 
 ### 练习 1：基础题
 

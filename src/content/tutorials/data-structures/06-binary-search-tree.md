@@ -18,7 +18,7 @@ description: '二叉搜索树的特性、查找、插入、删除操作及效率
 
 ---
 
-## 6.1 为什么需要二叉搜索树？
+## 1 为什么需要二叉搜索树？
 
 ### 痛点分析
 
@@ -57,7 +57,7 @@ description: '二叉搜索树的特性、查找、插入、删除操作及效率
 
 ---
 
-## 6.2 核心原理
+## 2 核心原理
 
 ### 定义
 
@@ -111,7 +111,7 @@ private boolean validate(TreeNode node, long min, long max) {
 
 ---
 
-## 6.3 基础用法：BST 的核心操作
+## 3 基础用法：BST 的核心操作
 
 ### 节点定义
 
@@ -331,7 +331,7 @@ public void inOrder(TreeNode root) {
 
 ---
 
-## 6.4 进阶用法
+## 4 进阶用法
 
 ### 查找前驱和后继
 
@@ -423,7 +423,7 @@ private void rangeSearchHelper(TreeNode node, int low, int high, List<Integer> r
 
 ---
 
-## 6.5 效率分析与退化问题
+## 5 效率分析与退化问题
 
 ### BST 的效率
 
@@ -458,7 +458,7 @@ private void rangeSearchHelper(TreeNode node, int low, int high, List<Integer> r
 
 ---
 
-## 6.6 核心知识点总结
+## 6 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -473,7 +473,7 @@ private void rangeSearchHelper(TreeNode node, int low, int high, List<Integer> r
 
 ---
 
-## 6.7 新手常见误区
+## 7 新手常见误区
 
 ### 误区 1："BST 的左子树只比根小一点就行"
 
@@ -530,7 +530,7 @@ root.right = delete(root.right, successor.val);
 
 ---
 
-## 6.8 动手练习
+## 8 动手练习
 
 ### 练习 1：基础练习 - BST 的插入与中序遍历
 

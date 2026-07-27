@@ -18,7 +18,7 @@ description: "掌握参数绑定、数据校验、文件上传和国际化"
 
 ---
 
-## 7.1 参数绑定
+## 1 参数绑定
 
 ### 7.1.1 简单类型绑定
 
@@ -157,7 +157,7 @@ public String getUser(@RequestParam User user) {
 
 ---
 
-## 7.2 数据校验
+## 2 数据校验
 
 ### 7.2.1 使用 JSR-303 验证
 
@@ -289,7 +289,7 @@ public String updateUser(@Validated(UpdateGroup.class) User user, BindingResult 
 
 ---
 
-## 7.3 文件上传
+## 3 文件上传
 
 ### 7.3.1 单文件上传
 
@@ -392,7 +392,7 @@ public ResponseEntity<Resource> download(@PathVariable String filename) throws I
 
 ---
 
-## 7.4 国际化
+## 4 国际化
 
 ### 7.4.1 配置国际化
 
@@ -482,7 +482,7 @@ public class I18nController {
 
 ---
 
-## 7.5 核心知识点总结
+## 5 核心知识点总结
 
 | 知识点 | 说明 |
 | --- | --- |
@@ -497,7 +497,7 @@ public class I18nController {
 
 ---
 
-## 7.6 新手常见误区
+## 6 新手常见误区
 
 ### 误区 1："@Valid 和 @Validated 是一样的"
 
@@ -523,7 +523,7 @@ public class I18nController {
 
 ---
 
-## 7.7 动手练习
+## 7 动手练习
 
 ### 练习 1：基础练习 - 参数绑定
 
