@@ -117,6 +117,7 @@ vue3-study/
 | 机器学习核心教程 | 16  | 从零开始掌握机器学习，系统学习经典算法原理、模型评估与实战应用 | [src/content/tutorials/machine-learning](src/content/tutorials/machine-learning) |
 | 特征工程与模型评估 | 16  | 深入掌握特征工程技术与模型评估方法，打造高质量机器学习模型 | [src/content/tutorials/feature-engineering-evaluation](src/content/tutorials/feature-engineering-evaluation) |
 | Scikit-learn 实战教程 | 16  | 系统掌握 Scikit-learn 机器学习库，从数据预处理到模型部署，手把手带你完成实战项目 | [src/content/tutorials/scikit-learn](src/content/tutorials/scikit-learn) |
+| 深度学习完全指南 | 16  | 从零开始掌握深度学习，系统学习神经网络、CNN、RNN、GAN 等核心技术与实战应用 | [src/content/tutorials/deep-learning](src/content/tutorials/deep-learning) |
 | AI 数学基础：从小学到大学 | 19  | 系统补充 AI 学习所需的数学基础，从小学算术到大学微积分，零基础友好 | [src/content/tutorials/ai-math-basics](src/content/tutorials/ai-math-basics) |
 
 启动开发服务器后，可以通过以下路由访问：
