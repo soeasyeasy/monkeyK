@@ -506,7 +506,836 @@ public class ParkingLot {
 
 ---
 
-## 13.6 新手常见误区
+## 13.6 线程中断机制
+
+### 中断的概念
+
+线程中断是一种协作机制，一个线程可以通过中断来通知另一个线程应该停止执行。
+
+打个比方：
+
+> 中断就像**拍肩膀**——你拍拍同事的肩膀说"别干了"，但同事可以选择继续干或者停下来。中断不是强制停止，而是"建议"停止。
+
+### 中断相关方法
+
+```java
+public class InterruptDemo {
+    public static void main(String[] args) throws InterruptedException {
+        Thread thread = new Thread(() -> {
+            // 方式 1：检查中断状态
+            while (!Thread.currentThread().isInterrupted()) {
+                System.out.println("线程运行中...");
+                try {
+                    Thread.sleep(1000);  // 睡眠时会响应中断
+                } catch (InterruptedException e) {
+                    System.out.println("收到中断信号，线程退出");
+                    return;  // 退出线程
+                }
+            }
+        });
+
+        thread.start();
+        Thread.sleep(2000);  // 主线程等待 2 秒
+        thread.interrupt();  // 发送中断信号
+    }
+}
+```
+
+### 三个中断方法的区别
+
+```java
+// 1. interrupt() - 发送中断信号
+thread.interrupt();  // 设置中断标志为 true
+
+// 2. isInterrupted() - 检查中断状态（不改变标志）
+boolean interrupted = thread.isInterrupted();  // 返回中断标志
+
+// 3. interrupted() - 检查并清除中断状态（静态方法）
+boolean wasInterrupted = Thread.interrupted();  // 返回中断标志，并重置为 false
+```
+
+### 正确响应中断
+
+```java
+// ✅ 正确方式 1：在循环中检查中断状态
+public void run() {
+    while (!Thread.currentThread().isInterrupted()) {
+        // 执行任务
+    }
+}
+
+// ✅ 正确方式 2：捕获 InterruptedException
+public void run() {
+    try {
+        while (!Thread.currentThread().isInterrupted()) {
+            Thread.sleep(1000);
+        }
+    } catch (InterruptedException e) {
+        // 恢复中断状态
+        Thread.currentThread().interrupt();
+        // 清理资源并退出
+    }
+}
+
+// ❌ 错误方式：吞掉中断异常
+public void run() {
+    try {
+        Thread.sleep(1000);
+    } catch (InterruptedException e) {
+        // 什么都不做，中断信号被吞掉
+    }
+}
+```
+
+---
+
+## 13.7 守护线程
+
+### 什么是守护线程？
+
+守护线程（Daemon Thread）是为其他线程服务的线程。当所有非守护线程结束时，守护线程会自动退出。
+
+打个比方：
+
+> 守护线程就像**餐厅的服务员**——顾客（非守护线程）吃完饭走了，服务员就可以下班了。服务员的存在是为了服务顾客，顾客走了，服务员自然也不需要了。
+
+### 使用守护线程
+
+```java
+public class DaemonDemo {
+    public static void main(String[] args) {
+        Thread daemon = new Thread(() -> {
+            while (true) {
+                System.out.println("守护线程运行中...");
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    break;
+                }
+            }
+        });
+
+        // 必须在启动前设置为守护线程
+        daemon.setDaemon(true);
+        daemon.start();
+
+        // 主线程（非守护线程）
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        System.out.println("主线程结束");
+        // 主线程结束后，守护线程自动退出，JVM 退出
+    }
+}
+```
+
+::: warning 注意事项
+
+1. `setDaemon(true)` 必须在 `start()` 之前调用
+2. 守护线程中不要进行资源清理操作（如关闭文件、数据库连接）
+3. 守护线程创建的子线程也是守护线程
+
+:::
+
+### 应用场景
+
+- **垃圾回收器**：JVM 的 GC 线程就是守护线程
+- **心跳检测**：定期检测服务是否可用
+- **缓存清理**：定期清理过期缓存
+
+---
+
+## 13.8 死锁问题
+
+### 什么是死锁？
+
+死锁是指两个或多个线程互相持有对方需要的锁，导致所有线程都无法继续执行。
+
+打个比方：
+
+> 死锁就像**两个人过独木桥**——两个人在桥中间相遇，谁也不让谁，结果谁都过不了。
+
+### 死锁示例
+
+```java
+public class DeadLockDemo {
+    private static final Object lock1 = new Object();
+    private static final Object lock2 = new Object();
+
+    public static void main(String[] args) {
+        Thread t1 = new Thread(() -> {
+            synchronized (lock1) {
+                System.out.println("线程 1 持有 lock1");
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {}
+                synchronized (lock2) {
+                    System.out.println("线程 1 持有 lock2");
+                }
+            }
+        });
+
+        Thread t2 = new Thread(() -> {
+            synchronized (lock2) {
+                System.out.println("线程 2 持有 lock2");
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {}
+                synchronized (lock1) {
+                    System.out.println("线程 2 持有 lock1");
+                }
+            }
+        });
+
+        t1.start();
+        t2.start();
+        // 两个线程互相等待对方释放锁，形成死锁
+    }
+}
+```
+
+### 死锁的四个必要条件
+
+1. **互斥条件**：资源一次只能被一个线程使用
+2. **持有并等待**：线程持有资源的同时请求其他资源
+3. **不可抢占**：资源只能由持有者主动释放
+4. **循环等待**：多个线程形成环形等待链
+
+### 避免死锁的方法
+
+```java
+// 方法 1：锁排序（按固定顺序获取锁）
+public void safeMethod() {
+    synchronized (lock1) {  // 总是先获取 lock1
+        synchronized (lock2) {  // 再获取 lock2
+            // 业务逻辑
+        }
+    }
+}
+
+// 方法 2：超时放弃（使用 tryLock）
+ReentrantLock lockA = new ReentrantLock();
+ReentrantLock lockB = new ReentrantLock();
+
+public void tryLockMethod() {
+    while (true) {
+        if (lockA.tryLock()) {
+            try {
+                if (lockB.tryLock()) {
+                    try {
+                        // 业务逻辑
+                        break;
+                    } finally {
+                        lockB.unlock();
+                    }
+                }
+            } finally {
+                lockA.unlock();
+            }
+        }
+        // 获取失败，等待随机时间后重试
+        Thread.sleep((long)(Math.random() * 100));
+    }
+}
+```
+
+### 检测死锁
+
+使用 `jstack` 命令查看线程堆栈：
+
+```bash
+# 查看 Java 进程
+jps
+
+# 查看线程堆栈，如果有死锁会提示
+jstack <pid>
+```
+
+---
+
+## 13.9 读写锁 ReentrantReadWriteLock
+
+### 读写锁的概念
+
+读写锁将锁分为两种：
+- **读锁（共享锁）**：多个线程可以同时持有
+- **写锁（独占锁）**：同一时刻只能有一个线程持有
+
+打个比方：
+
+> 读写锁就像**图书馆**——多人可以同时看书（读锁共享），但一次只能有一个人修改书的内容（写锁独占）。
+
+### 适用场景
+
+读多写少的场景，如缓存、配置读取等。
+
+### 代码示例
+
+```java
+import java.util.concurrent.locks.ReentrantReadWriteLock;
+
+public class CacheDemo {
+    private final Map<String, Object> cache = new HashMap<>();
+    private final ReentrantReadWriteLock lock = new ReentrantReadWriteLock();
+    private final ReentrantReadWriteLock.ReadLock readLock = lock.readLock();
+    private final ReentrantReadWriteLock.WriteLock writeLock = lock.writeLock();
+
+    // 读操作：多个线程可以同时读取
+    public Object get(String key) {
+        readLock.lock();
+        try {
+            return cache.get(key);
+        } finally {
+            readLock.unlock();
+        }
+    }
+
+    // 写操作：独占访问
+    public void put(String key, Object value) {
+        writeLock.lock();
+        try {
+            cache.put(key, value);
+        } finally {
+            writeLock.unlock();
+        }
+    }
+
+    // 批量写入
+    public void putAll(Map<String, Object> data) {
+        writeLock.lock();
+        try {
+            cache.putAll(data);
+        } finally {
+            writeLock.unlock();
+        }
+    }
+}
+```
+
+::: tip 性能优势
+
+在 read 多 write 少的场景下，读写锁比 synchronized 性能更好，因为多个读线程可以并发执行，不需要互相等待。
+
+:::
+
+---
+
+## 13.10 条件变量 Condition
+
+### Condition 的作用
+
+Condition 是 Lock 配合使用的条件变量，可以替代 `wait/notify/notifyAll`，提供更精确的线程控制。
+
+### 基本用法
+
+```java
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.ReentrantLock;
+
+public class BoundedBuffer {
+    private final List<Integer> list = new ArrayList<>();
+    private final int MAX_SIZE = 10;
+    private final ReentrantLock lock = new ReentrantLock();
+    private final Condition notFull = lock.newCondition();  // 未满条件
+    private final Condition notEmpty = lock.newCondition(); // 非空条件
+
+    public void put(int value) throws InterruptedException {
+        lock.lock();
+        try {
+            while (list.size() == MAX_SIZE) {
+                notFull.await();  // 队列满，等待
+            }
+            list.add(value);
+            notEmpty.signal();  // 唤醒消费者
+        } finally {
+            lock.unlock();
+        }
+    }
+
+    public int take() throws InterruptedException {
+        lock.lock();
+        try {
+            while (list.isEmpty()) {
+                notEmpty.await();  // 队列空，等待
+            }
+            int value = list.remove(0);
+            notFull.signal();  // 唤醒生产者
+            return value;
+        } finally {
+            lock.unlock();
+        }
+    }
+}
+```
+
+### 与 wait/notify 的对比
+
+| 特性 | wait/notify | Condition |
+|------|-------------|-----------|
+| 配合使用 | synchronized | Lock |
+| 条件数量 | 一个（所有线程等待同一个条件） | 多个（可以创建多个 Condition） |
+| 灵活性 | 低 | 高 |
+| 推荐程度 | 旧代码 | 新代码推荐 |
+
+---
+
+## 13.11 定时任务 ScheduledExecutorService
+
+### 创建定时线程池
+
+```java
+import java.util.concurrent.*;
+
+public class ScheduledDemo {
+    public static void main(String[] args) {
+        // 创建定时线程池
+        ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
+
+        // 1. 延迟执行：3 秒后执行一次
+        scheduler.schedule(() -> {
+            System.out.println("延迟任务执行");
+        }, 3, TimeUnit.SECONDS);
+
+        // 2. 固定频率执行：初始延迟 1 秒，之后每 2 秒执行一次
+        scheduler.scheduleAtFixedRate(() -> {
+            System.out.println("固定频率任务: " + System.currentTimeMillis());
+        }, 1, 2, TimeUnit.SECONDS);
+
+        // 3. 固定延迟执行：上次执行结束后延迟 2 秒再执行
+        scheduler.scheduleWithFixedDelay(() -> {
+            System.out.println("固定延迟任务: " + System.currentTimeMillis());
+            try {
+                Thread.sleep(1000);  // 模拟耗时
+            } catch (InterruptedException e) {}
+        }, 1, 2, TimeUnit.SECONDS);
+
+        // 关闭调度器
+        // scheduler.shutdown();
+    }
+}
+```
+
+### 两种执行方式的区别
+
+- **scheduleAtFixedRate**：以固定频率执行，不管任务执行多长时间
+- **scheduleWithFixedDelay**：上次执行结束后，延迟固定时间再执行
+
+### 异常处理
+
+```java
+scheduler.scheduleAtFixedRate(() -> {
+    try {
+        // 业务逻辑
+        System.out.println("执行任务");
+        // 可能抛出异常
+        int result = 1 / 0;
+    } catch (Exception e) {
+        // 必须捕获异常，否则任务会停止执行
+        System.err.println("任务异常: " + e.getMessage());
+    }
+}, 0, 1, TimeUnit.SECONDS);
+```
+
+---
+
+## 13.12 阻塞队列 BlockingQueue
+
+### 阻塞队列的概念
+
+阻塞队列是一种线程安全的数据结构，当队列为空时，获取元素的操作会阻塞；当队列满时，添加元素的操作会阻塞。
+
+打个比方：
+
+> 阻塞队列就像**自动售货机**——如果没货了，你会等待补货；如果满了，补货员会等待空间。
+
+### 常用实现
+
+```java
+// 1. ArrayBlockingQueue：有界队列，必须指定容量
+BlockingQueue<Integer> arrayQueue = new ArrayBlockingQueue<>(10);
+
+// 2. LinkedBlockingQueue：可选有界队列
+BlockingQueue<Integer> linkedQueue = new LinkedBlockingQueue<>();  // 无界
+BlockingQueue<Integer> boundedQueue = new LinkedBlockingQueue<>(100);  // 有界
+
+// 3. PriorityBlockingQueue：优先级队列
+BlockingQueue<Integer> priorityQueue = new PriorityBlockingQueue<>();
+```
+
+### 核心方法
+
+```java
+BlockingQueue<String> queue = new ArrayBlockingQueue<>(3);
+
+// 添加元素
+queue.put("A");      // 队列满时阻塞
+queue.offer("B");    // 队列满时返回 false
+queue.offer("C", 1, TimeUnit.SECONDS);  // 超时返回 false
+
+// 获取元素
+String s1 = queue.take();  // 队列空时阻塞
+String s2 = queue.poll();  // 队列空时返回 null
+String s3 = queue.poll(1, TimeUnit.SECONDS);  // 超时返回 null
+
+// 查看元素
+String head = queue.peek();  // 查看队首元素，不删除
+```
+
+### 使用阻塞队列简化生产者消费者
+
+```java
+import java.util.concurrent.*;
+
+public class SimpleProducerConsumer {
+    public static void main(String[] args) {
+        BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(10);
+
+        // 生产者
+        new Thread(() -> {
+            try {
+                for (int i = 1; i <= 20; i++) {
+                    queue.put(i);  // 队列满时自动阻塞
+                    System.out.println("生产: " + i);
+                    Thread.sleep(100);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+        // 消费者
+        new Thread(() -> {
+            try {
+                for (int i = 1; i <= 20; i++) {
+                    int value = queue.take();  // 队列空时自动阻塞
+                    System.out.println("消费: " + value);
+                    Thread.sleep(150);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+}
+```
+
+::: tip 优势
+
+使用阻塞队列后，不需要手动编写 `wait/notify` 逻辑，队列会自动处理阻塞和唤醒。
+
+:::
+
+---
+
+## 13.13 ThreadLocal 线程本地变量
+
+### ThreadLocal 的作用
+
+ThreadLocal 为每个线程提供独立的变量副本，线程之间互不影响。
+
+打个比方：
+
+> ThreadLocal 就像**每个人的水杯**——每个人都有自己的水杯，别人不能喝你杯子里的水。
+
+### 基本用法
+
+```java
+public class ThreadLocalDemo {
+    // 创建 ThreadLocal 变量
+    private static ThreadLocal<String> threadLocal = new ThreadLocal<>();
+
+    public static void main(String[] args) {
+        // 线程 1
+        new Thread(() -> {
+            threadLocal.set("线程 1 的数据");
+            System.out.println("线程 1: " + threadLocal.get());
+            threadLocal.remove();  // 使用完毕后清理
+        }).start();
+
+        // 线程 2
+        new Thread(() -> {
+            threadLocal.set("线程 2 的数据");
+            System.out.println("线程 2: " + threadLocal.get());
+            threadLocal.remove();
+        }).start();
+    }
+}
+```
+
+### 应用场景
+
+```java
+// 场景 1：数据库连接（每个线程有自己的连接）
+public class DBUtil {
+    private static ThreadLocal<Connection> connectionHolder = new ThreadLocal<>();
+
+    public static Connection getConnection() {
+        Connection conn = connectionHolder.get();
+        if (conn == null) {
+            conn = createConnection();
+            connectionHolder.set(conn);
+        }
+        return conn;
+    }
+}
+
+// 场景 2：用户 Session（Web 应用中保存当前用户信息）
+public class UserContext {
+    private static ThreadLocal<User> userHolder = new ThreadLocal<>();
+
+    public static void setCurrentUser(User user) {
+        userHolder.set(user);
+    }
+
+    public static User getCurrentUser() {
+        return userHolder.get();
+    }
+
+    public static void removeCurrentUser() {
+        userHolder.remove();
+    }
+}
+```
+
+### 内存泄漏问题
+
+```java
+// ❌ 错误：使用完毕后不清理
+public void badMethod() {
+    threadLocal.set("data");
+    // 线程结束后，数据仍然占用内存
+}
+
+// ✅ 正确：使用 try-finally 清理
+public void goodMethod() {
+    try {
+        threadLocal.set("data");
+        // 业务逻辑
+    } finally {
+        threadLocal.remove();  // 必须清理
+    }
+}
+```
+
+::: warning 内存泄漏
+
+在使用线程池时，线程会被复用。如果不清理 ThreadLocal，数据会一直存在，导致内存泄漏。务必在 `finally` 中调用 `remove()`。
+
+:::
+
+---
+
+## 13.14 CompletableFuture 异步编程
+
+### CompletableFuture 的优势
+
+CompletableFuture 是 Java 8 引入的异步编程工具，可以方便地组合多个异步操作。
+
+打个比方：
+
+> CompletableFuture 就像**流水线**——每个步骤可以并行执行，前一步完成后自动触发下一步。
+
+### 创建异步任务
+
+```java
+import java.util.concurrent.CompletableFuture;
+
+public class AsyncDemo {
+    public static void main(String[] args) {
+        // 1. supplyAsync：有返回值
+        CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {}
+            return "Hello";
+        });
+
+        // 2. runAsync：无返回值
+        CompletableFuture<Void> future2 = CompletableFuture.runAsync(() -> {
+            System.out.println("异步任务");
+        });
+
+        // 获取结果
+        try {
+            String result = future1.get();  // 阻塞等待
+            System.out.println(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### 链式调用
+
+```java
+CompletableFuture.supplyAsync(() -> "Hello")
+    .thenApply(s -> s + " World")  // 转换结果
+    .thenApply(String::toUpperCase)  // 继续转换
+    .thenAccept(System.out::println)  // 消费结果
+    .thenRun(() -> System.out.println("完成"));  // 执行后续操作
+```
+
+### 组合多个异步操作
+
+```java
+// 1. thenCompose：串行组合（类似 flatMap）
+CompletableFuture<String> future1 = CompletableFuture.supplyAsync(() -> "Hello");
+CompletableFuture<String> future2 = future1.thenCompose(s ->
+    CompletableFuture.supplyAsync(() -> s + " World")
+);
+
+// 2. thenCombine：并行组合（两个任务都完成后合并结果）
+CompletableFuture<Integer> futureA = CompletableFuture.supplyAsync(() -> 10);
+CompletableFuture<Integer> futureB = CompletableFuture.supplyAsync(() -> 20);
+CompletableFuture<Integer> combined = futureA.thenCombine(futureB, (a, b) -> a + b);
+
+// 3. allOf：等待所有任务完成
+CompletableFuture<Void> all = CompletableFuture.allOf(future1, future2, futureA);
+
+// 4. anyOf：任一任务完成
+CompletableFuture<Object> any = CompletableFuture.anyOf(future1, future2, futureA);
+```
+
+### 异常处理
+
+```java
+CompletableFuture.supplyAsync(() -> {
+    if (Math.random() > 0.5) {
+        throw new RuntimeException("出错了");
+    }
+    return "成功";
+})
+.exceptionally(e -> "默认值")  // 异常时返回默认值
+.handle((result, ex) -> {
+    if (ex != null) {
+        return "处理异常: " + ex.getMessage();
+    }
+    return result;
+})
+.whenComplete((result, ex) -> {
+    // 无论成功失败都执行
+    System.out.println("任务完成");
+});
+```
+
+### 实际示例：异步数据获取
+
+```java
+public class UserDataService {
+    public CompletableFuture<User> getUserInfo(long userId) {
+        return CompletableFuture.supplyAsync(() -> {
+            // 模拟网络请求
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {}
+            return new User(userId, "张三");
+        });
+    }
+
+    public CompletableFuture<List<Order>> getOrders(long userId) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {}
+            return Arrays.asList(new Order(1, 100.0), new Order(2, 200.0));
+        });
+    }
+
+    // 组合使用：获取用户信息和订单
+    public CompletableFuture<UserDetail> getUserDetail(long userId) {
+        return getUserInfo(userId)
+            .thenCombine(getOrders(userId), (user, orders) -> {
+                return new UserDetail(user, orders);
+            });
+    }
+}
+```
+
+---
+
+## 13.15 Fork/Join 框架
+
+### 分治思想
+
+Fork/Join 框架用于并行执行分治任务。将大任务拆分成小任务，并行执行后合并结果。
+
+打个比方：
+
+> Fork/Join 就像**公司分任务**——老板把大项目拆成小任务，分配给多个员工并行执行，最后汇总结果。
+
+### 基本用法
+
+```java
+import java.util.concurrent.RecursiveTask;
+import java.util.concurrent.ForkJoinPool;
+
+// 定义任务：计算 1 到 n 的和
+class SumTask extends RecursiveTask<Long> {
+    private final int[] array;
+    private final int start;
+    private final int end;
+    private static final int THRESHOLD = 1000;  // 阈值
+
+    SumTask(int[] array, int start, int end) {
+        this.array = array;
+        this.start = start;
+        this.end = end;
+    }
+
+    @Override
+    protected Long compute() {
+        if (end - start <= THRESHOLD) {
+            // 小任务：直接计算
+            long sum = 0;
+            for (int i = start; i < end; i++) {
+                sum += array[i];
+            }
+            return sum;
+        } else {
+            // 大任务：拆分
+            int mid = (start + end) / 2;
+            SumTask left = new SumTask(array, start, mid);
+            SumTask right = new SumTask(array, mid, end);
+            left.fork();  // 异步执行左任务
+            long rightResult = right.compute();  // 当前线程执行右任务
+            long leftResult = left.join();  // 等待左任务完成
+            return leftResult + rightResult;
+        }
+    }
+}
+
+// 使用
+public class ForkJoinDemo {
+    public static void main(String[] args) {
+        int[] array = new int[10000];
+        for (int i = 0; i < array.length; i++) {
+            array[i] = i + 1;
+        }
+
+        ForkJoinPool pool = new ForkJoinPool();
+        SumTask task = new SumTask(array, 0, array.length);
+        Long result = pool.invoke(task);
+        System.out.println("总和: " + result);
+    }
+}
+```
+
+### work-stealing 算法
+
+Fork/Join 使用 work-stealing 算法：空闲线程会从忙碌线程的队列中"偷"任务执行，提高 CPU 利用率。
+
+### 适用场景
+
+- 大规模数据处理（如矩阵运算、图像处理）
+- 递归问题（如归并排序、快速排序）
+- 可以拆分成独立子任务的场景
+
+---
+
+## 13.16 新手常见误区
 
 ### 误区 1：调用 run() 而不是 start()
 
@@ -599,9 +1428,31 @@ public void increment() {
 }
 ```
 
+### 误区 6：ThreadLocal 不需要清理
+
+**错！** 使用线程池时，ThreadLocal 不清理会导致内存泄漏。
+
+```java
+// ❌ 错误：使用完毕后不清理
+public void badMethod() {
+    threadLocal.set("data");
+    // 线程结束后，数据仍然占用内存
+}
+
+// ✅ 正确：使用 try-finally 清理
+public void goodMethod() {
+    try {
+        threadLocal.set("data");
+        // 业务逻辑
+    } finally {
+        threadLocal.remove();  // 必须清理
+    }
+}
+```
+
 ---
 
-## 13.7 动手练习
+## 13.17 动手练习
 
 ### 练习 1：基础练习 —— 多线程计数
 
@@ -712,7 +1563,52 @@ public class ProducerConsumer {
 
 </details>
 
-### 练习 3（挑战）：综合练习 —— 线程池任务调度
+### 练习 3：进阶练习 —— 使用阻塞队列简化生产者消费者
+
+使用 ArrayBlockingQueue 实现生产者消费者模型，对比与 wait/notify 的区别。
+
+<details>
+<summary>点击查看答案</summary>
+
+```java
+import java.util.concurrent.*;
+
+public class SimpleProducerConsumer {
+    public static void main(String[] args) {
+        BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(10);
+
+        // 生产者
+        new Thread(() -> {
+            try {
+                for (int i = 1; i <= 20; i++) {
+                    queue.put(i);  // 队列满时自动阻塞
+                    System.out.println("生产: " + i);
+                    Thread.sleep(100);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+
+        // 消费者
+        new Thread(() -> {
+            try {
+                for (int i = 1; i <= 20; i++) {
+                    int value = queue.take();  // 队列空时自动阻塞
+                    System.out.println("消费: " + value);
+                    Thread.sleep(150);
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+}
+```
+
+</details>
+
+### 练习 4（挑战）：综合练习 —— 线程池任务调度
 
 使用线程池执行 10 个任务，每个任务模拟耗时操作，统计总耗时。
 
@@ -760,9 +1656,58 @@ public class ThreadPoolDemo {
 
 </details>
 
+### 练习 5（挑战）：综合练习 —— CompletableFuture 异步编程
+
+使用 CompletableFuture 实现异步数据获取：先获取用户信息，再获取用户订单，最后合并结果。
+
+<details>
+<summary>点击查看答案</summary>
+
+```java
+import java.util.concurrent.*;
+
+public class AsyncDemo {
+    // 模拟获取用户信息
+    public static CompletableFuture<String> getUserInfo(long userId) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {}
+            return "用户" + userId;
+        });
+    }
+
+    // 模拟获取订单列表
+    public static CompletableFuture<String> getOrders(String userName) {
+        return CompletableFuture.supplyAsync(() -> {
+            try {
+                Thread.sleep(300);
+            } catch (InterruptedException e) {}
+            return userName + " 的订单：订单1, 订单2";
+        });
+    }
+
+    public static void main(String[] args) throws Exception {
+        long startTime = System.currentTimeMillis();
+
+        // 链式调用：先获取用户信息，再获取订单
+        String result = getUserInfo(1001)
+            .thenCompose(userName -> getOrders(userName))
+            .get();  // 阻塞等待结果
+
+        long endTime = System.currentTimeMillis();
+        System.out.println("结果: " + result);
+        System.out.println("总耗时: " + (endTime - startTime) + "ms");
+        // 异步执行，总耗时约 800ms（而不是 800ms + 500ms）
+    }
+}
+```
+
+</details>
+
 ---
 
-## 13.8 核心知识点
+## 13.18 核心知识点
 
 | 知识点       | 说明                                                   |
 | ------------ | ------------------------------------------------------ |
@@ -770,8 +1715,16 @@ public class ThreadPoolDemo {
 | 线程安全     | synchronized、Lock、原子类、volatile                   |
 | 线程池       | FixedThreadPool、CachedThreadPool、ScheduledThreadPool |
 | 同步工具     | CountDownLatch、CyclicBarrier、Semaphore               |
-| 线程通信     | wait/notify/notifyAll                                  |
-| 线程安全集合 | ConcurrentHashMap、CopyOnWriteArrayList                |
+| 线程通信     | wait/notify/notifyAll、Condition                       |
+| 线程安全集合 | ConcurrentHashMap、CopyOnWriteArrayList、BlockingQueue |
+| 线程中断     | interrupt、isInterrupted、InterruptedException         |
+| 守护线程     | setDaemon、自动退出                                    |
+| 死锁         | 锁排序、tryLock、jstack 检测                           |
+| 读写锁       | ReentrantReadWriteLock、读共享写独占                   |
+| 定时任务     | ScheduledExecutorService、scheduleAtFixedRate          |
+| ThreadLocal  | 线程隔离、内存泄漏                                     |
+| 异步编程     | CompletableFuture、链式调用、组合操作                  |
+| Fork/Join    | 分治思想、RecursiveTask、work-stealing                 |
 
 ---
 
