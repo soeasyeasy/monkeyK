@@ -19,8 +19,10 @@ function isActive(slug: string): boolean {
   return chapterSlug.value === slug
 }
 
-function isChapterAccessible(chapter: { locked?: boolean }): boolean {
-  if (!chapter.locked) return true
+function isChapterAccessible(chapter: { number: string }): boolean {
+  // 前6节免费，第7节起需要解锁
+  const chapterNum = parseInt(chapter.number, 10)
+  if (chapterNum <= 6) return true
   return unlocked.value
 }
 
@@ -50,13 +52,13 @@ function navigate(slug: string) {
             class="nav-item"
             :class="{ 
               active: isActive(chapter.slug),
-              locked: chapter.locked && !isChapterAccessible(chapter)
+              locked: !isChapterAccessible(chapter)
             }"
             @click="navigate(chapter.slug)"
           >
             <span class="nav-num">{{ chapter.number }}</span>
             <span class="nav-title">{{ chapter.title }}</span>
-            <span v-if="chapter.locked && !isChapterAccessible(chapter)" class="lock-badge"></span>
+            <span v-if="!isChapterAccessible(chapter)" class="lock-badge"></span>
           </div>
         </div>
       </nav>

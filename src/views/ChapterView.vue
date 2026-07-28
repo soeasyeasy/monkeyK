@@ -36,7 +36,10 @@ const adjacent = computed(() => {
 })
 
 const canAccess = computed(() => {
-  if (!chapter.value?.locked) return true
+  if (!chapter.value) return false
+  // 前6节免费，第7节起需要解锁
+  const chapterNum = parseInt(chapter.value.number, 10)
+  if (chapterNum <= 6) return true
   return unlocked.value
 })
 

@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { getSeriesById, getSeriesSections } from '../data/tutorial-series'
+import { unlocked } from '../utils/unlock'
 
 const route = useRoute()
 const seriesId = computed(() => route.params.seriesId as string)
@@ -10,6 +11,13 @@ const sections = computed(() => {
   if (!series.value) return []
   return getSeriesSections(series.value)
 })
+
+function isChapterAccessible(chapter: { number: string }): boolean {
+  // 前6节免费，第7节起需要解锁
+  const chapterNum = parseInt(chapter.number, 10)
+  if (chapterNum <= 6) return true
+  return unlocked.value
+}
 </script>
 
 <template>
@@ -31,12 +39,14 @@ const sections = computed(() => {
           :key="chapter.number"
           :to="`/tutorials/${series.id}/${chapter.slug}`"
           class="chapter-link"
+          :class="{ locked: !isChapterAccessible(chapter) }"
         >
           <div class="chapter-num">{{ chapter.number }}</div>
           <div class="chapter-info">
             <h3>{{ chapter.title }}</h3>
             <p>{{ chapter.description }}</p>
           </div>
+          <div v-if="!isChapterAccessible(chapter)" class="lock-badge"></div>
           <div class="chapter-arrow">→</div>
         </RouterLink>
       </div>
@@ -187,6 +197,25 @@ const sections = computed(() => {
 .chapter-link:hover .chapter-arrow {
   transform: translateX(4px);
   color: var(--text-link);
+}
+
+.chapter-link.locked {
+  opacity: 0.6;
+}
+
+.chapter-link.locked:hover {
+  opacity: 0.8;
+}
+
+.lock-badge {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.5rem;
+  background: var(--text-muted);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Crect x='3' y='11' width='18' height='11' rx='2' ry='2'/%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'/%3E%3C/svg%3E") center/contain no-repeat;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3E%3Crect x='3' y='11' width='18' height='11' rx='2' ry='2'/%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'/%3E%3C/svg%3E") center/contain no-repeat;
+  opacity: 0.5;
+  flex-shrink: 0;
 }
 
 .not-found {
