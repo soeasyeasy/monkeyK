@@ -134,6 +134,7 @@ vue3-study/
 | 语音识别与合成入门 | 8  | 从零学习语音识别（ASR）和语音合成（TTS）技术，掌握原理、API 调用与实战应用 | [src/content/tutorials/speech-recognition-synthesis](src/content/tutorials/speech-recognition-synthesis) |
 | Transformer 与大语言模型 | 16  | 从 Transformer 架构到大语言模型，系统掌握注意力机制、预训练技术、Prompt Engineering、模型微调与部署优化 | [src/content/tutorials/transformer-llm](src/content/tutorials/transformer-llm) |
 | Prompt 工程与 AI 应用开发 | 16  | 系统掌握 Prompt Engineering 核心技术与 AI 应用开发实战，从提示词设计到 Agent 开发全流程 | [src/content/tutorials/prompt-engineering-ai-apps](src/content/tutorials/prompt-engineering-ai-apps) |
+| LangChain 与 RAG 实战 | 16  | 系统掌握 LangChain 框架与 RAG 技术，从基础概念到构建智能问答系统，打造企业级 AI 应用 | [src/content/tutorials/langchain-rag](src/content/tutorials/langchain-rag) |
 
 启动开发服务器后，可以通过以下路由访问：
 
