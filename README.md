@@ -123,6 +123,7 @@ vue3-study/
 | AI 数学基础：从小学到大学 | 19  | 系统补充 AI 学习所需的数学基础，从小学算术到大学微积分，零基础友好 | [src/content/tutorials/ai-math-basics](src/content/tutorials/ai-math-basics) |
 | 计算机视觉实战 | 16  | 系统学习计算机视觉，从 OpenCV 基础到深度学习实战，掌握图像处理、目标检测、人脸识别等核心技术 | [src/content/tutorials/computer-vision](src/content/tutorials/computer-vision) |
 | 自然语言处理 NLP 完全指南 | 16  | 从语言学基础到深度学习 NLP，系统掌握文本处理、词向量、Transformer、BERT、GPT 等核心技术 | [src/content/tutorials/nlp](src/content/tutorials/nlp) |
+| 语音识别与合成入门 | 8  | 从零学习语音识别（ASR）和语音合成（TTS）技术，掌握原理、API 调用与实战应用 | [src/content/tutorials/speech-recognition-synthesis](src/content/tutorials/speech-recognition-synthesis) |
 
 启动开发服务器后，可以通过以下路由访问：
 

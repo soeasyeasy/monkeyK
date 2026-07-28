@@ -4835,6 +4835,70 @@ export const tutorialSeries: TutorialSeries[] = [
     ],
     featured: true,
   },
+  {
+    id: 'speech-recognition-synthesis',
+    title: '语音识别与合成入门',
+    description: '从零学习语音识别（ASR）和语音合成（TTS）技术，掌握原理、API 调用与实战应用',
+    category: 'ai',
+    chapters: [
+      {
+        number: '01',
+        title: '语音技术概述',
+        description: '语音识别与合成定义、发展历程、应用场景、技术栈概览',
+        section: '基础篇',
+        slug: 'introduction',
+      },
+      {
+        number: '02',
+        title: '语音基础知识',
+        description: '声音原理、采样率、量化、编码、音频格式、特征提取',
+        section: '基础篇',
+        slug: 'speech-fundamentals',
+      },
+      {
+        number: '03',
+        title: '语音识别原理',
+        description: 'ASR 系统架构、声学模型、语言模型、解码器、端到端模型',
+        section: '基础篇',
+        slug: 'asr-principles',
+      },
+      {
+        number: '04',
+        title: '语音合成原理',
+        description: 'TTS 系统架构、文本分析、声学模型、声码器、波形生成',
+        section: '基础篇',
+        slug: 'tts-principles',
+      },
+      {
+        number: '05',
+        title: '开发环境搭建',
+        description: 'API 服务商对比、SDK 安装、认证配置、开发工具准备',
+        section: '实战篇',
+        slug: 'environment-setup',
+      },
+      {
+        number: '06',
+        title: '语音识别实战',
+        description: 'API 调用、实时识别、文件识别、参数优化、结果处理',
+        section: '实战篇',
+        slug: 'asr-practice',
+      },
+      {
+        number: '07',
+        title: '语音合成实战',
+        description: '文本转语音、音色选择、语速调节、情感控制、音频保存',
+        section: '实战篇',
+        slug: 'tts-practice',
+      },
+      {
+        number: '08',
+        title: '进阶应用与优化',
+        description: '语音交互系统、对话系统集成、降噪处理、性能优化、部署方案',
+        section: '进阶篇',
+        slug: 'advanced-applications',
+      },
+    ],
+  },
 ]
 
 export function getSeriesById(id: string): TutorialSeries | undefined {
