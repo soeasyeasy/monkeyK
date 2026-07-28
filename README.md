@@ -121,6 +121,7 @@ vue3-study/
 | PyTorch 从零到精通 | 16  | 系统学习 PyTorch 深度学习框架，从张量基础到实战项目，掌握神经网络开发核心技术 | [src/content/tutorials/pytorch](src/content/tutorials/pytorch) |
 | TensorFlow 与 Keras 经典教程 | 16  | 系统学习 TensorFlow 与 Keras 深度学习框架，从基础概念到实战项目，掌握神经网络开发核心技术 | [src/content/tutorials/tensorflow-keras](src/content/tutorials/tensorflow-keras) |
 | AI 数学基础：从小学到大学 | 19  | 系统补充 AI 学习所需的数学基础，从小学算术到大学微积分，零基础友好 | [src/content/tutorials/ai-math-basics](src/content/tutorials/ai-math-basics) |
+| 计算机视觉实战 | 16  | 系统学习计算机视觉，从 OpenCV 基础到深度学习实战，掌握图像处理、目标检测、人脸识别等核心技术 | [src/content/tutorials/computer-vision](src/content/tutorials/computer-vision) |
 
 启动开发服务器后，可以通过以下路由访问：
 
