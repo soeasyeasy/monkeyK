@@ -135,6 +135,7 @@ vue3-study/
 | Transformer 与大语言模型 | 16  | 从 Transformer 架构到大语言模型，系统掌握注意力机制、预训练技术、Prompt Engineering、模型微调与部署优化 | [src/content/tutorials/transformer-llm](src/content/tutorials/transformer-llm) |
 | Prompt 工程与 AI 应用开发 | 16  | 系统掌握 Prompt Engineering 核心技术与 AI 应用开发实战，从提示词设计到 Agent 开发全流程 | [src/content/tutorials/prompt-engineering-ai-apps](src/content/tutorials/prompt-engineering-ai-apps) |
 | LangChain 与 RAG 实战 | 16  | 系统掌握 LangChain 框架与 RAG 技术，从基础概念到构建智能问答系统，打造企业级 AI 应用 | [src/content/tutorials/langchain-rag](src/content/tutorials/langchain-rag) |
+| AI 模型部署与 MLOps | 16  | 系统掌握 AI 模型从训练到生产部署的全流程，学习 MLOps 核心概念、模型服务化、容器化部署、监控运维与自动化流水线 | [src/content/tutorials/model-deployment-mlops](src/content/tutorials/model-deployment-mlops) |
 
 启动开发服务器后，可以通过以下路由访问：
 
