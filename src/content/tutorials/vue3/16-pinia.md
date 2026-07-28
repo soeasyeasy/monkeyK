@@ -1,9 +1,9 @@
 ---
-title: '第十四章：Pinia 状态管理'
+title: '第十六章：Pinia 状态管理'
 description: '使用 Pinia 管理 Vue 3 应用的全局状态'
 ---
 
-# 第十四章：Pinia 状态管理
+# 第十六章：Pinia 状态管理
 
 ## 本章导读
 

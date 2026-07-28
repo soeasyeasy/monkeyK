@@ -1,9 +1,9 @@
 ---
-title: '第十三章：Vue Router'
+title: '第十五章：Vue Router'
 description: '掌握 Vue Router 4 的路由配置、导航守卫和动态路由'
 ---
 
-# 第十三章：Vue Router
+# 第十五章：Vue Router
 
 ## 本章导读
 

@@ -650,6 +650,22 @@ export const tutorialSeries: TutorialSeries[] = [
       },
       {
         number: '13',
+        title: '自定义指令',
+        description: '创建自定义指令、指令钩子、实战应用',
+        section: '进阶篇',
+        slug: 'custom-directives',
+        locked: true,
+      },
+      {
+        number: '14',
+        title: '过渡与动画',
+        description: 'transition、transition-group、CSS/JS 动画',
+        section: '进阶篇',
+        slug: 'transitions-animations',
+        locked: true,
+      },
+      {
+        number: '15',
         title: 'Vue Router',
         description: '路由配置、导航守卫、动态路由',
         section: '实战篇',
@@ -657,7 +673,7 @@ export const tutorialSeries: TutorialSeries[] = [
         locked: true,
       },
       {
-        number: '14',
+        number: '16',
         title: 'Pinia 状态管理',
         description: 'Store 定义、状态派生、插件机制',
         section: '实战篇',
@@ -665,7 +681,7 @@ export const tutorialSeries: TutorialSeries[] = [
         locked: true,
       },
       {
-        number: '15',
+        number: '17',
         title: 'Teleport 与 Suspense',
         description: '传送门、异步组件处理',
         section: '实战篇',
@@ -673,7 +689,7 @@ export const tutorialSeries: TutorialSeries[] = [
         locked: true,
       },
       {
-        number: '16',
+        number: '18',
         title: '性能优化与最佳实践',
         description: '懒加载、虚拟列表、响应式优化',
         section: '实战篇',
