@@ -843,34 +843,6 @@ main()
 
 ---
 
-## 教程总结
+## 下一章预告
 
-恭喜你！你已经完成了整个 JavaScript 教程的学习。让我们回顾一下学到的内容：
-
-### 基础篇
-1. **变量与数据类型**：let、const、var，基本类型和引用类型
-2. **运算符**：算术、比较、逻辑、空值合并、可选链
-3. **条件语句**：if-else、switch、三元运算符
-4. **循环**：for、while、for...of、数组方法
-
-### 进阶篇
-5. **函数**：声明、表达式、箭头函数、闭包、this
-6. **数组**：map、filter、reduce、解构、展开运算符
-7. **对象**：this、解构、getter/setter、深拷贝
-
-### 实战篇
-8. **DOM 操作**：选择元素、修改内容、创建节点
-9. **事件处理**：addEventListener、事件冒泡、事件委托
-10. **异步编程**：回调、Promise、async/await
-11. **Fetch API**：GET/POST 请求、错误处理、中断请求
-12. **模块化开发**：export/import、模块加载、项目组织
-
-### 下一步学习建议
-
-1. **学习框架**：Vue、React、Angular 等现代前端框架
-2. **学习构建工具**：Webpack、Vite、Rollup
-3. **学习 TypeScript**：JavaScript 的超集，提供类型安全
-4. **学习 Node.js**：在服务端运行 JavaScript
-5. **参与开源项目**：实践中提升技能
-
-继续加油！编程之路，永无止境。🎉
+下一章我们会学习 **本地存储与数据持久化**——让数据在浏览器中保存下来。你会学到 localStorage、sessionStorage 的使用场景和区别，以及更强大的 IndexedDB 数据库。掌握这些技术，你的应用就能像原生 App 一样记住用户的数据了！
