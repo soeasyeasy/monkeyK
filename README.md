@@ -124,6 +124,7 @@ vue3-study/
 | 计算机视觉实战 | 16  | 系统学习计算机视觉，从 OpenCV 基础到深度学习实战，掌握图像处理、目标检测、人脸识别等核心技术 | [src/content/tutorials/computer-vision](src/content/tutorials/computer-vision) |
 | 自然语言处理 NLP 完全指南 | 16  | 从语言学基础到深度学习 NLP，系统掌握文本处理、词向量、Transformer、BERT、GPT 等核心技术 | [src/content/tutorials/nlp](src/content/tutorials/nlp) |
 | 语音识别与合成入门 | 8  | 从零学习语音识别（ASR）和语音合成（TTS）技术，掌握原理、API 调用与实战应用 | [src/content/tutorials/speech-recognition-synthesis](src/content/tutorials/speech-recognition-synthesis) |
+| Transformer 与大语言模型 | 16  | 从 Transformer 架构到大语言模型，系统掌握注意力机制、预训练技术、Prompt Engineering、模型微调与部署优化 | [src/content/tutorials/transformer-llm](src/content/tutorials/transformer-llm) |
 
 启动开发服务器后，可以通过以下路由访问：
 
