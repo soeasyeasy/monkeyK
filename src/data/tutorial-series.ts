@@ -6,6 +6,7 @@ export interface ChapterMeta {
   description: string
   section: string
   slug: string
+  locked?: boolean
 }
 
 export interface TutorialSeries {
@@ -629,6 +630,7 @@ export const tutorialSeries: TutorialSeries[] = [
         description: 'watch、watchEffect 与深度侦听',
         section: '进阶篇',
         slug: 'watchers',
+        locked: true,
       },
       {
         number: '11',
@@ -636,6 +638,7 @@ export const tutorialSeries: TutorialSeries[] = [
         description: '默认插槽、具名插槽、作用域插槽、keep-alive',
         section: '进阶篇',
         slug: 'slots-dynamic-components',
+        locked: true,
       },
       {
         number: '12',
@@ -643,6 +646,7 @@ export const tutorialSeries: TutorialSeries[] = [
         description: '封装可复用的组合式函数',
         section: '进阶篇',
         slug: 'custom-composables',
+        locked: true,
       },
       {
         number: '13',
@@ -650,6 +654,7 @@ export const tutorialSeries: TutorialSeries[] = [
         description: '路由配置、导航守卫、动态路由',
         section: '实战篇',
         slug: 'vue-router',
+        locked: true,
       },
       {
         number: '14',
@@ -657,6 +662,7 @@ export const tutorialSeries: TutorialSeries[] = [
         description: 'Store 定义、状态派生、插件机制',
         section: '实战篇',
         slug: 'pinia',
+        locked: true,
       },
       {
         number: '15',
@@ -664,6 +670,7 @@ export const tutorialSeries: TutorialSeries[] = [
         description: '传送门、异步组件处理',
         section: '实战篇',
         slug: 'teleport-suspense',
+        locked: true,
       },
       {
         number: '16',
@@ -671,6 +678,7 @@ export const tutorialSeries: TutorialSeries[] = [
         description: '懒加载、虚拟列表、响应式优化',
         section: '实战篇',
         slug: 'performance',
+        locked: true,
       },
     ],
      featured: true,

@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getSeriesById, getSeriesSections } from '../data/tutorial-series'
+import { isUnlocked, unlocked } from '../utils/unlock'
 
 const route = useRoute()
 const router = useRouter()
@@ -16,6 +17,11 @@ const sections = computed(() => {
 
 function isActive(slug: string): boolean {
   return chapterSlug.value === slug
+}
+
+function isChapterAccessible(chapter: { locked?: boolean }): boolean {
+  if (!chapter.locked) return true
+  return unlocked.value
 }
 
 function navigate(slug: string) {
@@ -42,11 +48,15 @@ function navigate(slug: string) {
             v-for="chapter in series.chapters.filter((c) => c.section === section)"
             :key="chapter.number"
             class="nav-item"
-            :class="{ active: isActive(chapter.slug) }"
+            :class="{ 
+              active: isActive(chapter.slug),
+              locked: chapter.locked && !isChapterAccessible(chapter)
+            }"
             @click="navigate(chapter.slug)"
           >
             <span class="nav-num">{{ chapter.number }}</span>
             <span class="nav-title">{{ chapter.title }}</span>
+            <span v-if="chapter.locked && !isChapterAccessible(chapter)" class="lock-badge"></span>
           </div>
         </div>
       </nav>
@@ -181,6 +191,24 @@ function navigate(slug: string) {
 .nav-title {
   font-size: 0.88rem;
   line-height: 1.4;
+}
+
+.nav-item.locked {
+  opacity: 0.55;
+}
+
+.nav-item.locked:hover {
+  opacity: 0.75;
+}
+
+.lock-badge {
+  margin-left: auto;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  background: var(--text-muted);
+  opacity: 0.5;
+  flex-shrink: 0;
 }
 
 @media (max-width: 959px) {

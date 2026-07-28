@@ -3,7 +3,10 @@ import { ref, computed, watch, onMounted, inject } from 'vue'
 import { useRoute } from 'vue-router'
 import { getSeriesById, getAdjacentChapters } from '../data/tutorial-series'
 import { parseMarkdown } from '../utils/markdown'
+import { setUnlocked, unlocked } from '../utils/unlock'
 import MarkdownRenderer from '../components/MarkdownRenderer.vue'
+import LockOverlay from '../components/LockOverlay.vue'
+import WechatModal from '../components/WechatModal.vue'
 
 interface TocItem {
   id: string
@@ -31,6 +34,13 @@ const adjacent = computed(() => {
   if (!series.value || !chapter.value) return {}
   return getAdjacentChapters(series.value, chapter.value.slug)
 })
+
+const canAccess = computed(() => {
+  if (!chapter.value?.locked) return true
+  return unlocked.value
+})
+
+const showModal = ref(false)
 
 const markdownContent = ref('')
 const rawMarkdown = ref('')
@@ -116,10 +126,22 @@ async function copyMarkdown() {
     }
   }
 }
+
+function openUnlock() {
+  showModal.value = true
+}
+
+function confirmUnlock() {
+  setUnlocked()
+  showModal.value = false
+  loadMarkdown()
+}
 </script>
 
 <template>
   <div class="chapter-view">
+    <LockOverlay v-if="!canAccess" @unlock="openUnlock" />
+
     <div v-if="loading" class="loading">
       <div class="spinner"></div>
       <p>加载中...</p>
@@ -171,6 +193,12 @@ async function copyMarkdown() {
         <div v-else class="footer-spacer"></div>
       </div>
     </div>
+
+    <WechatModal
+      v-if="showModal"
+      @confirm="confirmUnlock"
+      @cancel="showModal = false"
+    />
   </div>
 </template>
 
