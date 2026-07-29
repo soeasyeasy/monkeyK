@@ -66,7 +66,7 @@ vue3-study/
 | jQuery 经典教程      | 16  | 从零开始掌握 jQuery，系统学习 DOM 操作、事件处理、动画效果与 Ajax 交互 | [src/content/tutorials/jquery](src/content/tutorials/jquery)           |
 | Vite 完全指南        | 16  | 下一代前端构建工具           | [src/content/tutorials/vite](src/content/tutorials/vite)               |
 | npm 完全指南         | 16  | Node.js 包管理与项目工作流   | [src/content/tutorials/npm](src/content/tutorials/npm)                 |
-| 前端性能优化实战         | 16  | 系统掌握性能优化技术          | [src/content/tutorials/performance](src/content/tutorials/performance) |
+| 前端性能优化实战       | 16  | 系统掌握性能优化技术          | [src/content/tutorials/performance](src/content/tutorials/performance)       |
 
 ### 后端开发
 
@@ -117,9 +117,11 @@ vue3-study/
 ### 云原生
 
 | 教程名称       | 章节数 | 简介            | 查看链接                                                   |
-| ---------- | --- | ------------- | ------------------------------------------------------ |
+| ---------- | --- | ------------- | ------------------------------------------------------| 云原生 |
+| --- |
 | Docker 从入门到精通 | 16  | 系统学习容器技术，从基础概念到生产环境实战 | [src/content/tutorials/docker](src/content/tutorials/docker) |
 | Kubernetes 从入门到精通 | 16  | 系统学习 K8s 容器编排，从基础概念到生产环境实战 | [src/content/tutorials/kubernetes](src/content/tutorials/kubernetes) |
+| 容器与编排命令实战 | 16  | 系统掌握 Docker、Docker Compose、Kubernetes 核心命令，从日常操作到生产环境最佳实践 | [src/content/tutorials/container-orchestration-commands](src/content/tutorials/container-orchestration-commands) |
 
 ### 人工智能
 
@@ -127,6 +129,7 @@ vue3-study/
 | ---------- | --- | ------------- | ------------------------------------------------------ |
 | Python 人工智能基础 | 16  | 从零开始学习 Python 人工智能，掌握机器学习与深度学习核心技术 | [src/content/tutorials/python-ai](src/content/tutorials/python-ai) |
 | 机器学习核心教程 | 16  | 从零开始掌握机器学习，系统学习经典算法原理、模型评估与实战应用 | [src/content/tutorials/machine-learning](src/content/tutorials/machine-learning) |
+| NumPy 与 Pandas 数据处理 | 16  | 系统学习 Python 数据处理核心库，从 NumPy 数组运算到 Pandas 数据分析实战 | [src/content/tutorials/numpy-pandas](src/content/tutorials/numpy-pandas) |
 | 特征工程与模型评估 | 16  | 深入掌握特征工程技术与模型评估方法，打造高质量机器学习模型 | [src/content/tutorials/feature-engineering-evaluation](src/content/tutorials/feature-engineering-evaluation) |
 | Scikit-learn 实战教程 | 16  | 系统掌握 Scikit-learn 机器学习库，从数据预处理到模型部署，手把手带你完成实战项目 | [src/content/tutorials/scikit-learn](src/content/tutorials/scikit-learn) |
 | 深度学习完全指南 | 16  | 从零开始掌握深度学习，系统学习神经网络、CNN、RNN、GAN 等核心技术与实战应用 | [src/content/tutorials/deep-learning](src/content/tutorials/deep-learning) |
@@ -139,6 +142,7 @@ vue3-study/
 | Transformer 与大语言模型 | 16  | 从 Transformer 架构到大语言模型，系统掌握注意力机制、预训练技术、Prompt Engineering、模型微调与部署优化 | [src/content/tutorials/transformer-llm](src/content/tutorials/transformer-llm) |
 | Prompt 工程与 AI 应用开发 | 16  | 系统掌握 Prompt Engineering 核心技术与 AI 应用开发实战，从提示词设计到 Agent 开发全流程 | [src/content/tutorials/prompt-engineering-ai-apps](src/content/tutorials/prompt-engineering-ai-apps) |
 | LangChain 与 RAG 实战 | 16  | 系统掌握 LangChain 框架与 RAG 技术，从基础概念到构建智能问答系统，打造企业级 AI 应用 | [src/content/tutorials/langchain-rag](src/content/tutorials/langchain-rag) |
+| 大模型微调 Fine-tuning 实战 | 16  | 系统掌握大模型微调技术，从全参数微调到 LoRA/QLoRA，从 RLHF 到 DPO，手把手带你完成企业级微调项目 | [src/content/tutorials/llm-finetuning](src/content/tutorials/llm-finetuning) |
 | AI 模型部署与 MLOps | 16  | 系统掌握 AI 模型从训练到生产部署的全流程，学习 MLOps 核心概念、模型服务化、容器化部署、监控运维与自动化流水线 | [src/content/tutorials/model-deployment-mlops](src/content/tutorials/model-deployment-mlops) |
 | Java AI Agent 开发实战 | 16  | 使用 Java 开发 AI 智能体，掌握 LLM 集成、工具调用、记忆管理、多 Agent 协作等核心技术 | [src/content/tutorials/java-ai-agent](src/content/tutorials/java-ai-agent) |
 
