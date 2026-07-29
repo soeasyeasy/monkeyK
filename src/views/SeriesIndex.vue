@@ -1,12 +1,18 @@
 <script setup lang="ts">
+/**
+ * 教程系列索引页
+ * 显示某个教程系列的所有章节，按分组展示
+ */
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { getSeriesById, getSeriesSections } from '../data/tutorial-series'
 import { unlocked } from '../utils/unlock'
 
 const route = useRoute()
+// 从路由参数获取系列 ID
 const seriesId = computed(() => route.params.seriesId as string)
 const series = computed(() => getSeriesById(seriesId.value))
+// 获取章节分组
 const sections = computed(() => {
   if (!series.value) return []
   return getSeriesSections(series.value)

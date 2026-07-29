@@ -1,9 +1,16 @@
 <script setup lang="ts">
+/**
+ * 待办事项页面
+ * 支持添加、编辑、删除、筛选待办事项
+ * 数据通过 localStorage 持久化存储
+ */
 import { ref, computed } from 'vue'
 import MarkdownIt from 'markdown-it'
 
+// Markdown 解析器，用于渲染待办内容
 const md = new MarkdownIt({ breaks: true, linkify: true })
 
+// 待办事项类型定义
 interface Todo {
   id: number
   text: string
@@ -14,9 +21,11 @@ interface Todo {
   tags: string[]
 }
 
+// 筛选类型
 type Filter = 'all' | 'active' | 'done'
 type PriorityFilter = 'all' | 'high' | 'medium' | 'low'
 
+// localStorage 存储键名
 const STORAGE_KEY = 'todos-data'
 
 function loadTodos(): Todo[] {

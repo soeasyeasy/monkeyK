@@ -1,7 +1,11 @@
+/**
+ * Markdown 解析和渲染工具
+ * 基于 markdown-it 和 highlight.js，支持 frontmatter、代码高亮、自定义容器
+ */
 import MarkdownIt from 'markdown-it'
 import hljs from 'highlight.js'
 
-// 创建 markdown-it 实例
+// 创建 markdown-it 实例，启用 HTML、链接自动识别、排版优化
 const md = new MarkdownIt({
   html: true,
   linkify: true,

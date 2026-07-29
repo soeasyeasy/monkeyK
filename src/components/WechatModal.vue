@@ -1,12 +1,18 @@
 <script setup lang="ts">
+/**
+ * 微信公众号解锁弹窗组件
+ * 用户扫描二维码关注公众号后输入验证码解锁教程
+ */
 import { ref } from 'vue'
 import { verifyPassword } from '../utils/password'
 
+// 定义事件
 const emit = defineEmits<{
   confirm: []
   cancel: []
 }>()
 
+// 表单状态
 const password = ref('')
 const showPassword = ref(false)
 const error = ref('')

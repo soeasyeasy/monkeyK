@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * 教程章节视图
+ * 加载并显示 Markdown 格式的教程内容，支持解锁验证和上下章导航
+ */
 import { ref, computed, watch, onMounted, inject } from 'vue'
 import { useRoute } from 'vue-router'
 import { getSeriesById, getAdjacentChapters } from '../data/tutorial-series'
@@ -8,12 +12,14 @@ import MarkdownRenderer from '../components/MarkdownRenderer.vue'
 import LockOverlay from '../components/LockOverlay.vue'
 import WechatModal from '../components/WechatModal.vue'
 
+// 目录项类型
 interface TocItem {
   id: string
   text: string
   level: number
 }
 
+// 注入目录数据供 TableOfContents 使用
 const tocItems = inject<ReturnType<typeof ref<TocItem[]>>>('tocItems', ref<TocItem[]>([]))
 
 function handleHeadings(headings: TocItem[]) {

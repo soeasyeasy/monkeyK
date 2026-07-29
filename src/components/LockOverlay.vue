@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * 锁定遮罩层组件
+ * 显示在需要解锁的教程章节上，提示用户关注公众号获取验证码
+ */
 const emit = defineEmits<{
   unlock: []
 }>()

@@ -1,5 +1,8 @@
 <script setup lang="ts">
-// 个人生活记录页 - 占位实现
+/**
+ * 个人生活记录页
+ * 占位页面，功能开发中
+ */
 </script>
 
 <template>

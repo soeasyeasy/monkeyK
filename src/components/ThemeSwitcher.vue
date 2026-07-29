@@ -1,9 +1,16 @@
 <script setup lang="ts">
+/**
+ * 主题切换器组件
+ * 提供浅色/深色模式切换和强调色选择功能
+ */
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useTheme } from '../composables/useTheme'
 
+// 从 useTheme 获取主题相关状态和方法
 const { currentMode, currentAccent, modes, accentColors, setMode, setAccent } = useTheme()
+// 下拉菜单展开状态
 const isOpen = ref(false)
+// 下拉菜单 DOM 引用，用于检测外部点击
 const dropdownRef = ref<HTMLElement | null>(null)
 
 function toggleDropdown() {

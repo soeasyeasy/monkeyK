@@ -1,10 +1,20 @@
+/**
+ * 一言（Hitokoto）Composable
+ * 从 hitokoto.cn API 获取随机一言句子，支持定时自动刷新
+ * 提供进度条数据用于显示下次刷新的倒计时
+ */
 import { ref, onMounted, onUnmounted } from 'vue'
 
+// 一言数据结构
 interface HitokotoData {
   hitokoto: string
   from: string
 }
 
+/**
+ * 一言 Composable
+ * @param interval 自动刷新间隔（秒），默认 30 秒
+ */
 export function useHitokoto(interval = 30) {
   const hitokoto = ref<HitokotoData | null>(null)
   const loading = ref(true)

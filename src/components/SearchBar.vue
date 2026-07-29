@@ -1,13 +1,23 @@
 <script setup lang="ts">
+/**
+ * 搜索栏组件
+ * 支持全局搜索教程内容，快捷键 Ctrl+K 唤起
+ * 搜索结果实时显示，支持键盘导航
+ */
 import { ref, computed, watch, onMounted, onUnmounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { tutorialSeries } from '../data/tutorial-series'
 
 const router = useRouter()
+// 搜索关键词
 const query = ref('')
+// 下拉菜单展开状态
 const isOpen = ref(false)
+// 输入框 DOM 引用
 const inputRef = ref<HTMLInputElement | null>(null)
+// 下拉菜单 DOM 引用
 const dropdownRef = ref<HTMLElement | null>(null)
+// 当前选中的搜索结果索引（键盘导航用）
 const selectedIndex = ref(0)
 
 interface SearchResult {

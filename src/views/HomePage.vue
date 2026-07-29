@@ -1,11 +1,16 @@
 <script setup lang="ts">
+/**
+ * 首页组件
+ * 展示 Hero 区域、教程分类 3D 轮播、推荐教程和其他功能模块
+ */
 import { ref, onMounted, onUnmounted } from 'vue'
 import { tutorialCategories, tutorialSeries } from '../data/tutorial-series'
 import { useHitokoto } from '../composables/useHitokoto'
 
+// 使用一言 composable
 const { hitokoto, loading: hitokotoLoading, progress: hitokotoProgress, refresh: refreshHitokoto } = useHitokoto()
 
-// 分类图标
+// 分类图标 SVG
 const categoryIcons: Record<string, string> = {
   frontend: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M7 8h4"/><path d="M7 12h3"/></svg>`,
   backend: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><circle cx="6" cy="6" r="1" fill="currentColor"/><circle cx="6" cy="18" r="1" fill="currentColor"/></svg>`,

@@ -1,12 +1,19 @@
 <script setup lang="ts">
+/**
+ * 目录导航组件（Table of Contents）
+ * 显示当前页面的标题列表，支持点击跳转和高亮当前章节
+ * 通过 inject 接收来自 MarkdownRenderer 的标题数据
+ */
 import { ref, onMounted, onUnmounted, watch, inject } from 'vue'
 
+// 目录项类型定义
 interface TocItem {
   id: string
   text: string
   level: number
 }
 
+// 从父组件注入标题列表数据
 const injectedTocItems = inject<ReturnType<typeof ref<TocItem[]>>>('tocItems', ref<TocItem[]>([]))
 const tocItems = ref<TocItem[]>([])
 if (injectedTocItems) {
@@ -14,6 +21,7 @@ if (injectedTocItems) {
     tocItems.value = newVal || []
   }, { immediate: true })
 }
+// 当前激活的标题 ID（滚动高亮用）
 const activeId = ref('')
 
 function updateActiveHeading() {

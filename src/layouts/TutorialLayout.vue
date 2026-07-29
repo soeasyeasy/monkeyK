@@ -1,16 +1,22 @@
 <script setup lang="ts">
+/**
+ * 教程布局组件
+ * 提供教程页面的三栏布局：左侧边栏、主内容区、右侧目录
+ */
 import { ref, provide, computed } from 'vue'
 import TutorialSidebar from '../components/TutorialSidebar.vue'
 import TableOfContents from '../components/TableOfContents.vue'
 import ThemeSwitcher from '../components/ThemeSwitcher.vue'
 import SearchBar from '../components/SearchBar.vue'
 
+// 侧边栏状态
 const sidebarOpen = ref(false)
 const isMobile = ref(window.innerWidth < 960)
 window.addEventListener('resize', () => {
   isMobile.value = window.innerWidth < 960
 })
 
+// 目录数据，通过 provide 提供给子组件
 interface TocItem {
   id: string
   text: string
@@ -20,6 +26,7 @@ interface TocItem {
 const tocItems = ref<TocItem[]>([])
 provide('tocItems', tocItems)
 
+// 是否有目录内容
 const hasToc = computed(() => tocItems.value.length > 0)
 
 function toggleSidebar() {

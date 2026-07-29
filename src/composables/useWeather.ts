@@ -1,5 +1,11 @@
+/**
+ * 天气数据 Composable
+ * 通过 Open-Meteo API 获取当前天气和 7 天预报
+ * 使用 IP 定位获取城市信息，失败时回退到北京
+ */
 import { ref, onMounted } from 'vue'
 
+// 天气数据接口定义
 interface WeatherData {
   temperature: number
   apparentTemperature: number

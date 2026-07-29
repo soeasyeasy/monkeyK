@@ -1,4 +1,8 @@
 <script setup lang="ts">
+/**
+ * 应用顶部导航栏组件
+ * 包含 Logo、导航链接、搜索栏、天气组件和主题切换器
+ */
 import ThemeSwitcher from './ThemeSwitcher.vue'
 import SearchBar from './SearchBar.vue'
 import WeatherWidget from './WeatherWidget.vue'

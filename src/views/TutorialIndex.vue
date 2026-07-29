@@ -1,9 +1,14 @@
 <script setup lang="ts">
+/**
+ * 教程中心页面
+ * 显示所有教程系列，支持按分类和子分类筛选
+ */
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
 import { tutorialCategories, tutorialSubcategories, tutorialSeries, getSeriesByCategory, getSeriesBySubcategory } from '../data/tutorial-series'
 
 const route = useRoute()
+// 当前激活的分类和子分类（从 URL query 参数读取）
 const activeCategory = computed(() => (route.query.category as string) || '')
 const activeSubcategory = computed(() => (route.query.subcategory as string) || '')
 

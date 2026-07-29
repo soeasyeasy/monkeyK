@@ -1,8 +1,16 @@
+/**
+ * 主题管理 Composable
+ * 支持浅色/深色模式切换和多种强调色选择
+ * 主题偏好通过 localStorage 持久化
+ */
 import { ref, watch } from 'vue'
 
+// 主题模式类型
 export type ThemeMode = 'light' | 'dark'
+// 强调色类型
 export type AccentColor = 'default' | 'ocean' | 'forest' | 'violet' | 'sunset' | 'rose'
 
+// localStorage 存储键名
 const MODE_KEY = 'ts-tutorial-mode'
 const ACCENT_KEY = 'ts-tutorial-accent'
 

@@ -1,10 +1,15 @@
 <script setup lang="ts">
+/**
+ * 应用根组件
+ * 根据路由判断使用教程布局还是普通布局
+ */
 import { computed } from 'vue'
 import { useRoute, RouterView } from 'vue-router'
 import TutorialLayout from './layouts/TutorialLayout.vue'
 import AppHeader from './components/AppHeader.vue'
 
 const route = useRoute()
+// 判断当前是否为教程相关路由，用于切换布局
 const isTutorialRoute = computed(() => route.path.startsWith('/tutorials'))
 </script>
 

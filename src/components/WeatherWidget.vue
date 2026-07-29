@@ -1,9 +1,16 @@
 <script setup lang="ts">
+/**
+ * 天气小组件
+ * 显示当前天气概况，点击展开查看详细天气和 7 天预报
+ */
 import { ref, onMounted, onUnmounted } from 'vue'
 import { useWeather } from '../composables/useWeather'
 
+// 从 useWeather 获取天气数据
 const { weather, loading, error } = useWeather()
+// 详情面板展开状态
 const showDetail = ref(false)
+// 组件 DOM 引用
 const widgetRef = ref<HTMLElement | null>(null)
 
 function toggleDetail() {

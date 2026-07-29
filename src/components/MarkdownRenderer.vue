@@ -1,12 +1,19 @@
 <script setup lang="ts">
+/**
+ * Markdown 渲染器组件
+ * 将 Markdown 内容渲染为 HTML，并提取标题用于目录导航
+ */
 import { computed, watch, ref, onMounted, onUnmounted, nextTick } from 'vue'
 import { renderMarkdown } from '../utils/markdown'
 
+// 接收 Markdown 内容作为 prop
 const props = defineProps<{
   content: string
 }>()
 
+// 渲染后的 HTML 内容
 const html = computed(() => renderMarkdown(props.content))
+// 渲染后的 DOM 元素引用
 const renderedEl = ref<HTMLElement | null>(null)
 
 // 提取标题用于目录

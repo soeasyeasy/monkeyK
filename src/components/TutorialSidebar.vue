@@ -1,4 +1,9 @@
 <script setup lang="ts">
+/**
+ * 教程侧边栏组件
+ * 显示当前教程系列的章节列表，支持分组导航
+ * 未解锁章节显示锁定标识
+ */
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getSeriesById, getSeriesSections } from '../data/tutorial-series'
@@ -7,9 +12,11 @@ import { isUnlocked, unlocked } from '../utils/unlock'
 const route = useRoute()
 const router = useRouter()
 
+// 从路由参数获取当前系列和章节
 const seriesId = computed(() => route.params.seriesId as string)
 const chapterSlug = computed(() => route.params.chapterSlug as string)
 const series = computed(() => getSeriesById(seriesId.value))
+// 获取章节分组信息
 const sections = computed(() => {
   if (!series.value) return []
   return getSeriesSections(series.value)

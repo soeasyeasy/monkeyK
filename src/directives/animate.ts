@@ -1,16 +1,21 @@
+/**
+ * 自定义指令：滚动触发动画（v-animate）
+ * 基于 IntersectionObserver 实现元素进入视口时的动画效果
+ * 支持多种动画类型和延迟配置
+ */
 import type { Directive, DirectiveBinding } from 'vue'
 
 /**
  * 滚动触发动画指令
  * 用法：
- *   v-animate          - 默认淡入上移
- *   v-animate.fade     - 淡入
- *   v-animate.slide-up - 上移
- *   v-animate.slide-left - 左滑
- *   v-animate.slide-right - 右滑
- *   v-animate.scale    - 缩放
- *   v-animate.delay-100 - 延迟 100ms
- *   v-animate.delay-200 - 延迟 200ms
+ *   v-animate              - 默认淡入
+ *   v-animate.fade         - 淡入
+ *   v-animate.slide-up     - 上移
+ *   v-animate.slide-left   - 左滑入
+ *   v-animate.slide-right  - 右滑入
+ *   v-animate.scale        - 缩放
+ *   v-animate.delay-100    - 延迟 100ms
+ *   v-animate.delay-200    - 延迟 200ms
  */
 
 interface AnimateElement extends HTMLElement {
