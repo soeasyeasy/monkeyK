@@ -76,6 +76,7 @@ vue3-study/
 | Spring 完全指南 | 16  | 从 Spring 核心到 Spring Boot 实战 | [src/content/tutorials/spring](src/content/tutorials/spring) |
 | Spring 原理深度解析 | 16  | 深入 Spring 底层，掌握 IoC、AOP、自动配置等核心原理 | [src/content/tutorials/spring-principle](src/content/tutorials/spring-principle) |
 | JVM 核心原理与实战 | 16  | 深入理解 Java 虚拟机，掌握内存管理、垃圾回收、性能调优核心技术 | [src/content/tutorials/jvm](src/content/tutorials/jvm) |
+| MyBatis 原理深度解析 | 16  | 深入 MyBatis 底层，掌握架构设计、核心组件、SQL执行流程、缓存机制、插件原理等核心技术 | [src/content/tutorials/mybatis-principle](src/content/tutorials/mybatis-principle) |
 | MQ 消息队列从入门到精通 | 16  | 系统学习消息队列，从 RabbitMQ 基础到 Kafka 原理与实战应用 | [src/content/tutorials/mq](src/content/tutorials/mq) |
 
 ### 计算机基础
