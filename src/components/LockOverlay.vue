@@ -24,13 +24,10 @@ const emit = defineEmits<{
 <style scoped>
 .lock-overlay {
   position: fixed;
-  top: 60px;
-  left: 260px;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: rgba(0, 0, 0, 0.4);
-  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -113,9 +110,4 @@ const emit = defineEmits<{
   color: var(--text-muted);
 }
 
-@media (max-width: 959px) {
-  .lock-overlay {
-    left: 0;
-  }
-}
 </style>
