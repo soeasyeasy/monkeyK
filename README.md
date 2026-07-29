@@ -63,6 +63,7 @@ vue3-study/
 | TypeScript 从零到精通 | 12  | TypeScript 基础到实战    | [src/content/tutorials/typescript](src/content/tutorials/typescript)   |
 | Vue 2 经典教程       | 16  | Vue 2 选项式 API 与生态   | [src/content/tutorials/vue2](src/content/tutorials/vue2)               |
 | Vue 3 完全指南       | 18  | Vue 3 组合式 API 与核心特性 | [src/content/tutorials/vue3](src/content/tutorials/vue3)               |
+| jQuery 经典教程      | 16  | 从零开始掌握 jQuery，系统学习 DOM 操作、事件处理、动画效果与 Ajax 交互 | [src/content/tutorials/jquery](src/content/tutorials/jquery)           |
 | Vite 完全指南        | 16  | 下一代前端构建工具           | [src/content/tutorials/vite](src/content/tutorials/vite)               |
 | npm 完全指南         | 16  | Node.js 包管理与项目工作流   | [src/content/tutorials/npm](src/content/tutorials/npm)                 |
 | 前端性能优化实战         | 16  | 系统掌握性能优化技术          | [src/content/tutorials/performance](src/content/tutorials/performance) |
