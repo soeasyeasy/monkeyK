@@ -140,6 +140,7 @@ vue3-study/
 | Prompt 工程与 AI 应用开发 | 16  | 系统掌握 Prompt Engineering 核心技术与 AI 应用开发实战，从提示词设计到 Agent 开发全流程 | [src/content/tutorials/prompt-engineering-ai-apps](src/content/tutorials/prompt-engineering-ai-apps) |
 | LangChain 与 RAG 实战 | 16  | 系统掌握 LangChain 框架与 RAG 技术，从基础概念到构建智能问答系统，打造企业级 AI 应用 | [src/content/tutorials/langchain-rag](src/content/tutorials/langchain-rag) |
 | AI 模型部署与 MLOps | 16  | 系统掌握 AI 模型从训练到生产部署的全流程，学习 MLOps 核心概念、模型服务化、容器化部署、监控运维与自动化流水线 | [src/content/tutorials/model-deployment-mlops](src/content/tutorials/model-deployment-mlops) |
+| Java AI Agent 开发实战 | 16  | 使用 Java 开发 AI 智能体，掌握 LLM 集成、工具调用、记忆管理、多 Agent 协作等核心技术 | [src/content/tutorials/java-ai-agent](src/content/tutorials/java-ai-agent) |
 
 启动开发服务器后，可以通过以下路由访问：
 
