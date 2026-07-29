@@ -6,6 +6,7 @@ export const pythonBasicsSeries: TutorialSeries[] = [
     title: 'Python 人工智能基础',
     description: '从零开始学习 Python 人工智能，掌握机器学习与深度学习核心技术',
     category: 'ai',
+    subcategory: 'python-basics',
     chapters: [
       {
         number: '01',
@@ -13,6 +14,7 @@ export const pythonBasicsSeries: TutorialSeries[] = [
         description: '什么是人工智能，Python 在 AI 领域的优势，开发环境搭建',
         section: '基础篇',
         slug: 'introduction',
+        locked: true,
       },
       {
         number: '02',
@@ -20,6 +22,7 @@ export const pythonBasicsSeries: TutorialSeries[] = [
         description: 'NumPy 数组、矩阵运算、广播机制、线性代数',
         section: '基础篇',
         slug: 'numpy',
+        locked: true,
       },
       {
         number: '03',
@@ -27,6 +30,7 @@ export const pythonBasicsSeries: TutorialSeries[] = [
         description: 'DataFrame、数据清洗、数据合并、分组聚合',
         section: '基础篇',
         slug: 'pandas',
+        locked: true,
       },
       {
         number: '04',
@@ -34,6 +38,7 @@ export const pythonBasicsSeries: TutorialSeries[] = [
         description: '图表绑定、图形定制、统计图表、可视化实战',
         section: '基础篇',
         slug: 'matplotlib',
+        locked: true,
       },
       {
         number: '05',
@@ -41,6 +46,7 @@ export const pythonBasicsSeries: TutorialSeries[] = [
         description: '机器学习分类、监督学习、无监督学习、模型评估',
         section: '进阶篇',
         slug: 'ml-basics',
+        locked: true,
       },
       {
         number: '06',
@@ -127,6 +133,7 @@ export const pythonBasicsSeries: TutorialSeries[] = [
     title: 'AI 数学基础：从小学到大学',
     description: '系统补充 AI 学习所需的数学基础，从小学算术到大学微积分，零基础友好',
     category: 'ai',
+    subcategory: 'python-basics',
     chapters: [
       {
         number: '01',
@@ -134,6 +141,7 @@ export const pythonBasicsSeries: TutorialSeries[] = [
         description: '整数运算、小数与分数、四则运算、运算律与简便运算',
         section: '小学篇',
         slug: 'arithmetic-basics',
+        locked: true,
       },
       {
         number: '02',
@@ -141,6 +149,7 @@ export const pythonBasicsSeries: TutorialSeries[] = [
         description: '平面几何、面积体积、对称与变换、坐标系基础',
         section: '小学篇',
         slug: 'geometry-basics',
+        locked: true,
       },
       {
         number: '03',
@@ -148,6 +157,7 @@ export const pythonBasicsSeries: TutorialSeries[] = [
         description: '比的意义、正反比例、百分数应用、学习率的直觉理解',
         section: '小学篇',
         slug: 'ratio-proportion',
+        locked: true,
       },
       {
         number: '04',
@@ -155,6 +165,7 @@ export const pythonBasicsSeries: TutorialSeries[] = [
         description: '数据收集与整理、平均数与中位数、简单概率、统计图表',
         section: '小学篇',
         slug: 'statistics-probability-basics',
+        locked: true,
       },
       {
         number: '05',
@@ -162,6 +173,7 @@ export const pythonBasicsSeries: TutorialSeries[] = [
         description: '用字母表示数、代数式、整式加减、因式分解基础',
         section: '初中篇',
         slug: 'algebra-basics',
+        locked: true,
       },
       {
         number: '06',
@@ -269,6 +281,7 @@ export const pythonBasicsSeries: TutorialSeries[] = [
     title: 'NumPy 与 Pandas 数据处理',
     description: '系统学习 Python 数据处理核心库，从 NumPy 数组运算到 Pandas 数据分析实战',
     category: 'ai',
+    subcategory: 'python-basics',
     chapters: [
       {
         number: '01',
@@ -276,6 +289,7 @@ export const pythonBasicsSeries: TutorialSeries[] = [
         description: '什么是 NumPy，安装配置，第一个 NumPy 程序',
         section: '基础篇',
         slug: 'introduction',
+        locked: true,
       },
       {
         number: '02',
@@ -283,6 +297,7 @@ export const pythonBasicsSeries: TutorialSeries[] = [
         description: 'ndarray 对象、数组创建、数组属性、形状操作',
         section: '基础篇',
         slug: 'array-basics',
+        locked: true,
       },
       {
         number: '03',
@@ -290,6 +305,7 @@ export const pythonBasicsSeries: TutorialSeries[] = [
         description: '数据类型、算术运算、统计函数、矩阵运算',
         section: '基础篇',
         slug: 'data-types-operations',
+        locked: true,
       },
       {
         number: '04',
@@ -297,6 +313,7 @@ export const pythonBasicsSeries: TutorialSeries[] = [
         description: '基础索引、高级索引、布尔索引、花式索引',
         section: '基础篇',
         slug: 'indexing-slicing',
+        locked: true,
       },
       {
         number: '05',
@@ -304,6 +321,7 @@ export const pythonBasicsSeries: TutorialSeries[] = [
         description: '广播规则、数组形状匹配、广播运算原理',
         section: '进阶篇',
         slug: 'broadcasting',
+        locked: true,
       },
       {
         number: '06',

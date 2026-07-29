@@ -6,6 +6,7 @@ export const databaseSeries: TutorialSeries[] = [
     title: 'MySQL 从入门到精通',
     description: '系统学习 MySQL 数据库，从基础 SQL 到性能优化与实战应用',
     category: 'database',
+    subcategory: 'mysql',
     chapters: [
       {
         number: '01',
@@ -127,6 +128,7 @@ export const databaseSeries: TutorialSeries[] = [
     title: 'MySQL 原理深度解析',
     description: '深入 MySQL 底层，掌握架构原理、存储引擎、索引机制、事务锁、日志系统等核心技术',
     category: 'database',
+    subcategory: 'mysql',
     chapters: [
       {
         number: '01',
@@ -248,6 +250,7 @@ export const databaseSeries: TutorialSeries[] = [
     title: 'Redis 从入门到精通',
     description: '系统学习 Redis 内存数据库，从基础操作到高性能缓存架构实战',
     category: 'database',
+    subcategory: 'redis',
     chapters: [
       {
         number: '01',
@@ -369,6 +372,7 @@ export const databaseSeries: TutorialSeries[] = [
     title: 'Redis 原理深度解析',
     description: '深入 Redis 底层，掌握单线程模型、数据结构、持久化、主从集群、内存管理等核心原理',
     category: 'database',
+    subcategory: 'redis',
     chapters: [
       {
         number: '01',
@@ -490,6 +494,7 @@ export const databaseSeries: TutorialSeries[] = [
     title: 'MongoDB 从入门到精通',
     description: '系统学习 MongoDB 文档数据库，从基础操作到分布式集群实战',
     category: 'database',
+    subcategory: 'nosql',
     chapters: [
       {
         number: '01',
@@ -611,6 +616,7 @@ export const databaseSeries: TutorialSeries[] = [
     title: 'Elasticsearch 从入门到精通',
     description: '系统学习 Elasticsearch 搜索引擎，从基础操作到分布式集群与实战应用',
     category: 'database',
+    subcategory: 'search-engine',
     chapters: [
       {
         number: '01',
@@ -732,6 +738,7 @@ export const databaseSeries: TutorialSeries[] = [
     title: 'PostgreSQL 从入门到精通',
     description: '系统学习 PostgreSQL 数据库，从基础 SQL 到高级特性与性能优化实战',
     category: 'database',
+    subcategory: 'postgresql',
     chapters: [
       {
         number: '01',

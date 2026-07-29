@@ -6,6 +6,7 @@ export const backendSeries: TutorialSeries[] = [
     title: 'Java 从入门到精通',
     description: '系统学习 Java 语言，从基础语法到面向对象与实战应用',
     category: 'backend',
+    subcategory: 'java-basics',
     chapters: [
       {
         number: '01',
@@ -162,6 +163,7 @@ export const backendSeries: TutorialSeries[] = [
     title: 'Spring 完全指南',
     description: '从 Spring 核心到 Spring Boot 实战，系统掌握 Java 企业级开发',
     category: 'backend',
+    subcategory: 'spring',
     chapters: [
       {
         number: '01',
@@ -282,6 +284,7 @@ export const backendSeries: TutorialSeries[] = [
     title: 'Spring 原理深度解析',
     description: '深入 Spring 底层，掌握 IoC、AOP、自动配置等核心原理',
     category: 'backend',
+    subcategory: 'spring',
     chapters: [
       {
         number: '01',
@@ -403,6 +406,7 @@ export const backendSeries: TutorialSeries[] = [
     title: 'JVM 核心原理与实战',
     description: '深入理解 Java 虚拟机，掌握内存管理、垃圾回收、性能调优核心技术',
     category: 'backend',
+    subcategory: 'jvm',
     chapters: [
       {
         number: '01',
@@ -523,6 +527,7 @@ export const backendSeries: TutorialSeries[] = [
     title: 'MQ 消息队列从入门到精通',
     description: '系统学习消息队列，从 RabbitMQ 基础到 Kafka 原理与实战应用',
     category: 'backend',
+    subcategory: 'messaging',
     chapters: [
       {
         number: '01',
@@ -644,6 +649,7 @@ export const backendSeries: TutorialSeries[] = [
     title: 'Kafka 原理深度解析',
     description: '深入 Kafka 底层架构，掌握存储机制、高可用原理、事务机制、性能优化与生产实战',
     category: 'backend',
+    subcategory: 'messaging',
     chapters: [
       {
         number: '01',
@@ -765,6 +771,7 @@ export const backendSeries: TutorialSeries[] = [
     title: 'Java 原理深度解析',
     description: '深入 Java 语言核心，掌握面向对象、泛型、反射、集合、并发、IO 等底层原理',
     category: 'backend',
+    subcategory: 'java-basics',
     chapters: [
       {
         number: '01',
@@ -886,6 +893,7 @@ export const backendSeries: TutorialSeries[] = [
     title: 'MyBatis原理深度解析',
     description: '深入 MyBatis 底层，掌握架构设计、核心组件、SQL执行流程、缓存机制、插件原理等核心技术',
     category: 'backend',
+    subcategory: 'orm',
     chapters: [
       {
         number: '01',

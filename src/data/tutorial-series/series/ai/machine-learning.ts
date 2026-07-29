@@ -6,6 +6,7 @@ export const machineLearningSeries: TutorialSeries[] = [
     title: '机器学习核心教程',
     description: '从零开始掌握机器学习，系统学习经典算法原理、模型评估与实战应用',
     category: 'ai',
+    subcategory: 'machine-learning',
     chapters: [
       {
         number: '01',
@@ -13,6 +14,7 @@ export const machineLearningSeries: TutorialSeries[] = [
         description: '什么是机器学习，机器学习分类，学习路线与工具选择',
         section: '基础篇',
         slug: 'introduction',
+        locked: true,
       },
       {
         number: '02',
@@ -20,6 +22,7 @@ export const machineLearningSeries: TutorialSeries[] = [
         description: '数据清洗、缺失值处理、特征编码、标准化与归一化',
         section: '基础篇',
         slug: 'data-preprocessing',
+        locked: true,
       },
       {
         number: '03',
@@ -27,6 +30,7 @@ export const machineLearningSeries: TutorialSeries[] = [
         description: '一元线性回归、多元线性回归、损失函数、梯度下降',
         section: '基础篇',
         slug: 'linear-regression',
+        locked: true,
       },
       {
         number: '04',
@@ -34,6 +38,7 @@ export const machineLearningSeries: TutorialSeries[] = [
         description: 'Sigmoid 函数、决策边界、交叉熵损失、二分类实战',
         section: '基础篇',
         slug: 'logistic-regression',
+        locked: true,
       },
       {
         number: '05',
@@ -41,6 +46,7 @@ export const machineLearningSeries: TutorialSeries[] = [
         description: '信息增益、基尼系数、剪枝策略、CART 算法',
         section: '基础篇',
         slug: 'decision-tree',
+        locked: true,
       },
       {
         number: '06',
@@ -127,6 +133,7 @@ export const machineLearningSeries: TutorialSeries[] = [
     title: '特征工程与模型评估',
     description: '深入掌握特征工程技术与模型评估方法，打造高质量机器学习模型',
     category: 'ai',
+    subcategory: 'machine-learning',
     chapters: [
       {
         number: '01',
@@ -134,6 +141,7 @@ export const machineLearningSeries: TutorialSeries[] = [
         description: '什么是特征工程，特征工程的重要性，特征工程流程',
         section: '基础篇',
         slug: 'introduction',
+        locked: true,
       },
       {
         number: '02',
@@ -141,6 +149,7 @@ export const machineLearningSeries: TutorialSeries[] = [
         description: '描述性统计、数据分布分析、相关性分析、可视化技巧',
         section: '基础篇',
         slug: 'data-exploration',
+        locked: true,
       },
       {
         number: '03',
@@ -148,6 +157,7 @@ export const machineLearningSeries: TutorialSeries[] = [
         description: '缺失值处理、异常值检测、数据类型转换、特征编码',
         section: '基础篇',
         slug: 'feature-preprocessing',
+        locked: true,
       },
       {
         number: '04',
@@ -155,6 +165,7 @@ export const machineLearningSeries: TutorialSeries[] = [
         description: '特征组合、特征变换、多项式特征、时间特征提取',
         section: '基础篇',
         slug: 'feature-construction',
+        locked: true,
       },
       {
         number: '05',
@@ -162,6 +173,7 @@ export const machineLearningSeries: TutorialSeries[] = [
         description: '标准化、归一化、MaxAbsScaler、RobustScaler 对比',
         section: '进阶篇',
         slug: 'feature-scaling',
+        locked: true,
       },
       {
         number: '06',
@@ -248,6 +260,7 @@ export const machineLearningSeries: TutorialSeries[] = [
     title: 'Scikit-learn 实战教程',
     description: '系统掌握 Scikit-learn 机器学习库，从数据预处理到模型部署，手把手带你完成实战项目',
     category: 'ai',
+    subcategory: 'machine-learning',
     chapters: [
       {
         number: '01',
@@ -255,6 +268,7 @@ export const machineLearningSeries: TutorialSeries[] = [
         description: '什么是 Scikit-learn，核心优势，安装配置，第一个机器学习模型',
         section: '基础篇',
         slug: 'introduction',
+        locked: true,
       },
       {
         number: '02',
@@ -262,6 +276,7 @@ export const machineLearningSeries: TutorialSeries[] = [
         description: '内置数据集、数据加载方式、数据探索与可视化分析',
         section: '基础篇',
         slug: 'data-loading',
+        locked: true,
       },
       {
         number: '03',
@@ -269,6 +284,7 @@ export const machineLearningSeries: TutorialSeries[] = [
         description: '标准化、归一化、编码分类特征、缺失值处理、特征缩放对比',
         section: '基础篇',
         slug: 'data-preprocessing',
+        locked: true,
       },
       {
         number: '04',
@@ -276,6 +292,7 @@ export const machineLearningSeries: TutorialSeries[] = [
         description: '特征提取、特征构造、特征变换、Pipeline 管道机制',
         section: '基础篇',
         slug: 'feature-engineering',
+        locked: true,
       },
       {
         number: '05',
@@ -283,6 +300,7 @@ export const machineLearningSeries: TutorialSeries[] = [
         description: '线性回归、岭回归、Lasso 回归、弹性网络、多项式回归',
         section: '进阶篇',
         slug: 'regression',
+        locked: true,
       },
       {
         number: '06',

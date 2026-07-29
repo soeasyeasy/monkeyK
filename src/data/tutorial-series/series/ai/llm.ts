@@ -6,6 +6,7 @@ export const llmSeries: TutorialSeries[] = [
     title: 'Transformer 与大语言模型',
     description: '从 Transformer 架构到大语言模型，系统掌握注意力机制、预训练技术、Prompt Engineering、模型微调与部署优化',
     category: 'ai',
+    subcategory: 'llm',
     chapters: [
       {
         number: '01',
@@ -13,6 +14,7 @@ export const llmSeries: TutorialSeries[] = [
         description: '大语言模型发展历程、Transformer 革命、GPT/BERT/LLaMA 等主流模型、应用场景与学习路线',
         section: '基础篇',
         slug: 'introduction',
+        locked: true,
       },
       {
         number: '02',
@@ -20,6 +22,7 @@ export const llmSeries: TutorialSeries[] = [
         description: '自注意力机制原理、Query/Key/Value、缩放点积注意力、多头注意力、交叉注意力',
         section: '基础篇',
         slug: 'attention-mechanism',
+        locked: true,
       },
       {
         number: '03',
@@ -27,6 +30,7 @@ export const llmSeries: TutorialSeries[] = [
         description: '编码器-解码器结构、前馈网络、残差连接、Layer Normalization、位置编码',
         section: '基础篇',
         slug: 'transformer-architecture',
+        locked: true,
       },
       {
         number: '04',
@@ -34,6 +38,7 @@ export const llmSeries: TutorialSeries[] = [
         description: '正弦位置编码、可学习位置编码、旋转位置编码（RoPE）、词嵌入技术、Tokenization',
         section: '基础篇',
         slug: 'positional-embedding',
+        locked: true,
       },
       {
         number: '05',
@@ -41,6 +46,7 @@ export const llmSeries: TutorialSeries[] = [
         description: '预训练任务设计、自监督学习、迁移学习、微调策略、参数高效微调',
         section: '基础篇',
         slug: 'pretraining-finetuning',
+        locked: true,
       },
       {
         number: '06',
@@ -127,6 +133,7 @@ export const llmSeries: TutorialSeries[] = [
     title: 'Prompt 工程与 AI 应用开发',
     description: '系统掌握 Prompt Engineering 核心技术与 AI 应用开发实战，从提示词设计到 Agent 开发全流程',
     category: 'ai',
+    subcategory: 'llm',
     chapters: [
       {
         number: '01',
@@ -248,6 +255,7 @@ export const llmSeries: TutorialSeries[] = [
     title: 'LangChain 与 RAG 实战',
     description: '系统掌握 LangChain 框架与 RAG 技术，从基础概念到构建智能问答系统，打造企业级 AI 应用',
     category: 'ai',
+    subcategory: 'llm',
     chapters: [
       {
         number: '01',
@@ -369,6 +377,7 @@ export const llmSeries: TutorialSeries[] = [
     title: '大模型微调 Fine-tuning 实战',
     description: '系统掌握大模型微调技术，从全参数微调到 LoRA/QLoRA，从 RLHF 到 DPO，手把手带你完成企业级微调项目',
     category: 'ai',
+    subcategory: 'llm',
     chapters: [
       {
         number: '01',

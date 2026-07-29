@@ -6,6 +6,7 @@ export const devopsSeries: TutorialSeries[] = [
     title: 'Git 版本控制教程',
     description: '从零开始掌握 Git，高效管理代码版本与团队协作',
     category: 'devops',
+    subcategory: 'version-control',
     chapters: [
       {
         number: '01',
@@ -126,6 +127,7 @@ export const devopsSeries: TutorialSeries[] = [
     title: 'Linux 从入门到精通',
     description: '系统学习 Linux 操作系统，从基础命令到服务器管理与实战应用',
     category: 'devops',
+    subcategory: 'system-ops',
     chapters: [
       {
         number: '01',

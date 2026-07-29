@@ -6,6 +6,7 @@ export const deepLearningSeries: TutorialSeries[] = [
     title: '深度学习完全指南',
     description: '从零开始掌握深度学习，系统学习神经网络、CNN、RNN、GAN 等核心技术与实战应用',
     category: 'ai',
+    subcategory: 'deep-learning',
     chapters: [
       {
         number: '01',
@@ -13,6 +14,7 @@ export const deepLearningSeries: TutorialSeries[] = [
         description: '什么是深度学习，深度学习发展史，PyTorch 环境搭建',
         section: '基础篇',
         slug: 'introduction',
+        locked: true,
       },
       {
         number: '02',
@@ -20,6 +22,7 @@ export const deepLearningSeries: TutorialSeries[] = [
         description: '感知机、多层神经网络、前向传播、网络结构',
         section: '基础篇',
         slug: 'neural-network-basics',
+        locked: true,
       },
       {
         number: '03',
@@ -27,6 +30,7 @@ export const deepLearningSeries: TutorialSeries[] = [
         description: 'ReLU、Sigmoid、Tanh、交叉熵损失、MSE 损失',
         section: '基础篇',
         slug: 'activation-loss-functions',
+        locked: true,
       },
       {
         number: '04',
@@ -34,6 +38,7 @@ export const deepLearningSeries: TutorialSeries[] = [
         description: '反向传播算法、梯度下降、SGD、Adam 优化器',
         section: '基础篇',
         slug: 'backpropagation-optimization',
+        locked: true,
       },
       {
         number: '05',
@@ -41,6 +46,7 @@ export const deepLearningSeries: TutorialSeries[] = [
         description: '张量操作、自动求导、模型构建、数据加载器',
         section: '进阶篇',
         slug: 'pytorch-basics',
+        locked: true,
       },
       {
         number: '06',
@@ -127,6 +133,7 @@ export const deepLearningSeries: TutorialSeries[] = [
     title: 'PyTorch 从零到精通',
     description: '系统学习 PyTorch 深度学习框架，从张量基础到实战项目，掌握神经网络开发核心技术',
     category: 'ai',
+    subcategory: 'deep-learning',
     chapters: [
       {
         number: '01',
@@ -134,6 +141,7 @@ export const deepLearningSeries: TutorialSeries[] = [
         description: 'PyTorch 发展历程、安装配置、第一个程序',
         section: '基础篇',
         slug: 'introduction',
+        locked: true,
       },
       {
         number: '02',
@@ -141,6 +149,7 @@ export const deepLearningSeries: TutorialSeries[] = [
         description: 'Tensor 创建、索引切片、维度变换、数学运算',
         section: '基础篇',
         slug: 'tensor-basics',
+        locked: true,
       },
       {
         number: '03',
@@ -148,6 +157,7 @@ export const deepLearningSeries: TutorialSeries[] = [
         description: 'Autograd 原理、计算图、梯度计算、反向传播',
         section: '基础篇',
         slug: 'autograd',
+        locked: true,
       },
       {
         number: '04',
@@ -155,6 +165,7 @@ export const deepLearningSeries: TutorialSeries[] = [
         description: 'Dataset、DataLoader、数据增强、自定义数据集',
         section: '基础篇',
         slug: 'data-loading',
+        locked: true,
       },
       {
         number: '05',
@@ -162,6 +173,7 @@ export const deepLearningSeries: TutorialSeries[] = [
         description: 'nn.Module、层结构、前向传播、模型构建流程',
         section: '基础篇',
         slug: 'neural-network-basics',
+        locked: true,
       },
       {
         number: '06',
@@ -248,6 +260,7 @@ export const deepLearningSeries: TutorialSeries[] = [
     title: 'TensorFlow 与 Keras 经典教程',
     description: '系统学习 TensorFlow 与 Keras 深度学习框架，从基础概念到实战项目，掌握神经网络开发核心技术',
     category: 'ai',
+    subcategory: 'deep-learning',
     chapters: [
       {
         number: '01',
@@ -255,6 +268,7 @@ export const deepLearningSeries: TutorialSeries[] = [
         description: 'TensorFlow 发展历程、Keras 简介、安装配置、第一个程序',
         section: '基础篇',
         slug: 'introduction',
+        locked: true,
       },
       {
         number: '02',
@@ -262,6 +276,7 @@ export const deepLearningSeries: TutorialSeries[] = [
         description: 'Tensor 创建、索引切片、维度变换、数学运算',
         section: '基础篇',
         slug: 'tensorflow-basics',
+        locked: true,
       },
       {
         number: '03',
@@ -269,6 +284,7 @@ export const deepLearningSeries: TutorialSeries[] = [
         description: 'tf.GradientTape、计算图、梯度计算、反向传播',
         section: '基础篇',
         slug: 'autograd',
+        locked: true,
       },
       {
         number: '04',
@@ -276,6 +292,7 @@ export const deepLearningSeries: TutorialSeries[] = [
         description: 'tf.data.Dataset、数据预处理、数据增强、自定义数据集',
         section: '基础篇',
         slug: 'data-loading',
+        locked: true,
       },
       {
         number: '05',
@@ -283,6 +300,7 @@ export const deepLearningSeries: TutorialSeries[] = [
         description: 'Sequential API、Functional API、Model 子类化、模型结构',
         section: '基础篇',
         slug: 'keras-model-building',
+        locked: true,
       },
       {
         number: '06',

@@ -6,6 +6,7 @@ export const cloudNativeSeries: TutorialSeries[] = [
     title: 'Docker 从入门到精通',
     description: '系统学习容器技术，从基础概念到生产环境实战',
     category: 'cloud-native',
+    subcategory: 'container',
     chapters: [
       {
         number: '01',
@@ -126,6 +127,7 @@ export const cloudNativeSeries: TutorialSeries[] = [
     title: 'Kubernetes 从入门到精通',
     description: '系统学习 K8s 容器编排，从基础概念到生产环境实战',
     category: 'cloud-native',
+    subcategory: 'orchestration',
     chapters: [
       {
         number: '01',
@@ -247,6 +249,7 @@ export const cloudNativeSeries: TutorialSeries[] = [
     title: '容器与编排命令实战',
     description: '系统掌握 Docker、Docker Compose、Kubernetes 核心命令，从日常操作到生产环境最佳实践',
     category: 'cloud-native',
+    subcategory: 'commands',
     chapters: [
       {
         number: '01',

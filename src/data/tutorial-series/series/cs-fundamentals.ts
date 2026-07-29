@@ -6,6 +6,7 @@ export const csFundamentalsSeries: TutorialSeries[] = [
     title: '浏览器与网络基础教程',
     description: '深入理解浏览器工作原理与网络协议基础',
     category: 'cs-fundamentals',
+    subcategory: 'web-fundamentals',
     chapters: [
       {
         number: '01',
@@ -126,6 +127,7 @@ export const csFundamentalsSeries: TutorialSeries[] = [
     title: '操作系统核心教程',
     description: '深入理解操作系统原理，掌握进程、内存、文件系统核心概念',
     category: 'cs-fundamentals',
+    subcategory: 'operating-system',
     chapters: [
       {
         number: '01',
@@ -246,6 +248,7 @@ export const csFundamentalsSeries: TutorialSeries[] = [
     title: '数据结构完全教程',
     description: '系统学习数据结构，掌握数组、链表、树、图等核心概念与实战应用',
     category: 'cs-fundamentals',
+    subcategory: 'algorithms',
     chapters: [
       {
         number: '01',
@@ -367,6 +370,7 @@ export const csFundamentalsSeries: TutorialSeries[] = [
     title: '计算机网络完全指南',
     description: '系统学习计算机网络原理，从基础协议到网络编程与实战应用',
     category: 'cs-fundamentals',
+    subcategory: 'computer-network',
     chapters: [
       {
         number: '01',

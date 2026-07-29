@@ -6,6 +6,7 @@ export const frontendSeries: TutorialSeries[] = [
     title: 'HTML 基础到精通',
     description: '从零开始学习 HTML，构建语义化的网页结构',
     category: 'frontend',
+    subcategory: 'web-basics',
     chapters: [
       {
         number: '01',
@@ -98,6 +99,7 @@ export const frontendSeries: TutorialSeries[] = [
     title: 'CSS 完全指南',
     description: '从基础样式到现代布局，掌握 CSS 核心技术',
     category: 'frontend',
+    subcategory: 'web-basics',
     chapters: [
       {
         number: '01',
@@ -189,8 +191,9 @@ export const frontendSeries: TutorialSeries[] = [
   {
     id: 'javascript',
     title: 'JavaScript 核心教程',
-    description: '掌握 JavaScript 核心概念，从入门到实战',
+    description: '掌握 JavaScript 核心概念与编程技巧',
     category: 'frontend',
+    subcategory: 'web-basics',
     chapters: [
       {
         number: '01',
@@ -311,6 +314,7 @@ export const frontendSeries: TutorialSeries[] = [
     title: 'TypeScript 从零到精通',
     description: '一套完整的 TypeScript 教程，从基础到实战',
     category: 'frontend',
+    subcategory: 'frontend-advanced',
     chapters: [
       {
         number: '01',
@@ -404,6 +408,7 @@ export const frontendSeries: TutorialSeries[] = [
     title: 'Vue 2 经典教程',
     description: '系统学习 Vue 2 选项式 API 与生态，理解 Vue 演进历程',
     category: 'frontend',
+    subcategory: 'vue',
     chapters: [
       {
         number: '01',
@@ -522,8 +527,9 @@ export const frontendSeries: TutorialSeries[] = [
   {
     id: 'vue3',
     title: 'Vue 3 完全指南',
-    description: '深入掌握 Vue 3 组合式 API 与核心特性，构建现代前端应用',
+    description: '全面掌握 Vue 3 组合式 API 与核心特性',
     category: 'frontend',
+    subcategory: 'vue',
     chapters: [
       {
         number: '01',
@@ -668,6 +674,7 @@ export const frontendSeries: TutorialSeries[] = [
     title: 'jQuery 经典教程',
     description: '从零开始掌握 jQuery，系统学习 DOM 操作、事件处理、动画效果与 Ajax 交互',
     category: 'frontend',
+    subcategory: 'web-basics',
     chapters: [
       {
         number: '01',
@@ -787,8 +794,9 @@ export const frontendSeries: TutorialSeries[] = [
   {
     id: 'npm',
     title: 'npm 完全指南',
-    description: '从入门到精通，掌握 Node.js 包管理与项目工作流',
+    description: 'Node.js 包管理与项目工作流',
     category: 'frontend',
+    subcategory: 'frontend-tooling',
     chapters: [
       {
         number: '01',
@@ -907,8 +915,9 @@ export const frontendSeries: TutorialSeries[] = [
   {
     id: 'vite',
     title: 'Vite 完全指南',
-    description: '掌握下一代前端构建工具，从入门到精通',
+    description: '下一代前端构建工具',
     category: 'frontend',
+    subcategory: 'frontend-tooling',
     chapters: [
       {
         number: '01',
@@ -1029,6 +1038,7 @@ export const frontendSeries: TutorialSeries[] = [
     title: '前端性能优化实战',
     description: '系统掌握前端性能优化技术，打造极速 Web 应用',
     category: 'frontend',
+    subcategory: 'frontend-advanced',
     chapters: [
       {
         number: '01',

@@ -6,6 +6,7 @@ export const nlpSpeechSeries: TutorialSeries[] = [
     title: '自然语言处理 NLP 完全指南',
     description: '从语言学基础到深度学习 NLP，系统掌握文本处理、词向量、Transformer、BERT、GPT 等核心技术',
     category: 'ai',
+    subcategory: 'nlp-speech',
     chapters: [
       {
         number: '01',
@@ -13,6 +14,7 @@ export const nlpSpeechSeries: TutorialSeries[] = [
         description: '自然语言处理定义、发展历程、应用领域、技术栈概览',
         section: '基础篇',
         slug: 'introduction',
+        locked: true,
       },
       {
         number: '02',
@@ -20,6 +22,7 @@ export const nlpSpeechSeries: TutorialSeries[] = [
         description: '分词、词性标注、停用词、词干提取、词形还原',
         section: '基础篇',
         slug: 'linguistics-preprocessing',
+        locked: true,
       },
       {
         number: '03',
@@ -27,6 +30,7 @@ export const nlpSpeechSeries: TutorialSeries[] = [
         description: '词袋模型、TF-IDF、N-gram、文本向量化',
         section: '基础篇',
         slug: 'text-representation',
+        locked: true,
       },
       {
         number: '04',
@@ -34,6 +38,7 @@ export const nlpSpeechSeries: TutorialSeries[] = [
         description: 'Word2Vec、GloVe、FastText、词向量训练与可视化',
         section: '基础篇',
         slug: 'word-embedding',
+        locked: true,
       },
       {
         number: '05',
@@ -41,6 +46,7 @@ export const nlpSpeechSeries: TutorialSeries[] = [
         description: 'N-gram 语言模型、困惑度、平滑技术、概率语言建模',
         section: '基础篇',
         slug: 'language-model-basics',
+        locked: true,
       },
       {
         number: '06',
@@ -127,6 +133,7 @@ export const nlpSpeechSeries: TutorialSeries[] = [
     title: '语音识别与合成入门',
     description: '从零学习语音识别（ASR）和语音合成（TTS）技术，掌握原理、API 调用与实战应用',
     category: 'ai',
+    subcategory: 'nlp-speech',
     chapters: [
       {
         number: '01',
@@ -134,6 +141,7 @@ export const nlpSpeechSeries: TutorialSeries[] = [
         description: '语音识别与合成定义、发展历程、应用场景、技术栈概览',
         section: '基础篇',
         slug: 'introduction',
+        locked: true,
       },
       {
         number: '02',
@@ -141,6 +149,7 @@ export const nlpSpeechSeries: TutorialSeries[] = [
         description: '声音原理、采样率、量化、编码、音频格式、特征提取',
         section: '基础篇',
         slug: 'speech-fundamentals',
+        locked: true,
       },
       {
         number: '03',
@@ -148,6 +157,7 @@ export const nlpSpeechSeries: TutorialSeries[] = [
         description: 'ASR 系统架构、声学模型、语言模型、解码器、端到端模型',
         section: '基础篇',
         slug: 'asr-principles',
+        locked: true,
       },
       {
         number: '04',
@@ -155,6 +165,7 @@ export const nlpSpeechSeries: TutorialSeries[] = [
         description: 'TTS 系统架构、文本分析、声学模型、声码器、波形生成',
         section: '基础篇',
         slug: 'tts-principles',
+        locked: true,
       },
       {
         number: '05',
@@ -162,6 +173,7 @@ export const nlpSpeechSeries: TutorialSeries[] = [
         description: 'API 服务商对比、SDK 安装、认证配置、开发工具准备',
         section: '实战篇',
         slug: 'environment-setup',
+        locked: true,
       },
       {
         number: '06',

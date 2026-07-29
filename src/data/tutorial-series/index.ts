@@ -1,8 +1,9 @@
-export type { TutorialCategory, ChapterMeta, TutorialSeries, TutorialCategoryInfo } from './types'
+export type { TutorialCategory, TutorialSubcategory, ChapterMeta, TutorialSeries, TutorialCategoryInfo, TutorialSubcategoryInfo } from './types'
 export { tutorialCategories } from './categories'
+export { tutorialSubcategories } from './subcategories'
 export { getChapter, getAdjacentChapters, getSeriesSections } from './utils'
 
-import type { TutorialSeries, TutorialCategory } from './types'
+import type { TutorialSeries, TutorialCategory, TutorialSubcategory } from './types'
 import { frontendSeries } from './series/frontend'
 import { backendSeries } from './series/backend'
 import { databaseSeries } from './series/database'
@@ -29,4 +30,8 @@ export function getSeriesById(id: string): TutorialSeries | undefined {
 
 export function getSeriesByCategory(category: TutorialCategory): TutorialSeries[] {
   return tutorialSeries.filter((s) => s.category === category)
+}
+
+export function getSeriesBySubcategory(subcategory: TutorialSubcategory): TutorialSeries[] {
+  return tutorialSeries.filter((s) => s.subcategory === subcategory)
 }

@@ -6,6 +6,7 @@ export const aiEngineeringSeries: TutorialSeries[] = [
     title: '计算机视觉实战',
     description: '系统学习计算机视觉，从 OpenCV 基础到深度学习实战，掌握图像处理、目标检测、人脸识别等核心技术',
     category: 'ai',
+    subcategory: 'ai-engineering',
     chapters: [
       {
         number: '01',
@@ -126,6 +127,7 @@ export const aiEngineeringSeries: TutorialSeries[] = [
     title: 'AI 模型部署与 MLOps',
     description: '系统掌握 AI 模型从训练到生产部署的全流程,学习 MLOps 核心概念、模型服务化、容器化部署、监控运维与自动化流水线,打造企业级 AI 应用',
     category: 'ai',
+    subcategory: 'ai-engineering',
     chapters: [
       {
         number: '01',
@@ -247,6 +249,7 @@ export const aiEngineeringSeries: TutorialSeries[] = [
     title: 'Java AI Agent 开发实战',
     description: '使用 Java 开发 AI 智能体，掌握 LLM 集成、工具调用、记忆管理、多 Agent 协作等核心技术',
     category: 'ai',
+    subcategory: 'ai-engineering',
     chapters: [
       {
         number: '01',
