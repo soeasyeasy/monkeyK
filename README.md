@@ -55,96 +55,214 @@ vue3-study/
 
 ### 前端开发
 
+#### Web 基础
+
 | 教程名称             | 章节数 | 简介                  | 查看链接                                                                   |
 | ---------------- | --- | ------------------- | ---------------------------------------------------------------------- |
 | HTML 基础到精通       | 12  | 从零开始学习 HTML，构建语义化网页 | [src/content/tutorials/html](src/content/tutorials/html)               |
 | CSS 完全指南         | 12  | 从基础样式到现代布局          | [src/content/tutorials/css](src/content/tutorials/css)                 |
-| JavaScript 核心教程  | 12  | 掌握 JavaScript 核心概念  | [src/content/tutorials/javascript](src/content/tutorials/javascript)   |
-| TypeScript 从零到精通 | 12  | TypeScript 基础到实战    | [src/content/tutorials/typescript](src/content/tutorials/typescript)   |
+| JavaScript 核心教程  | 16  | 掌握 JavaScript 核心概念  | [src/content/tutorials/javascript](src/content/tutorials/javascript)   |
+| jQuery 经典教程      | 16  | 从零开始掌握 jQuery，系统学习 DOM 操作、事件处理、动画效果与 Ajax 交互 | [src/content/tutorials/jquery](src/content/tutorials/jquery)           |
+
+#### Vue 框架
+
+| 教程名称             | 章节数 | 简介                  | 查看链接                                                                   |
+| ---------------- | --- | ------------------- | ---------------------------------------------------------------------- |
 | Vue 2 经典教程       | 16  | Vue 2 选项式 API 与生态   | [src/content/tutorials/vue2](src/content/tutorials/vue2)               |
 | Vue 3 完全指南       | 18  | Vue 3 组合式 API 与核心特性 | [src/content/tutorials/vue3](src/content/tutorials/vue3)               |
-| jQuery 经典教程      | 16  | 从零开始掌握 jQuery，系统学习 DOM 操作、事件处理、动画效果与 Ajax 交互 | [src/content/tutorials/jquery](src/content/tutorials/jquery)           |
-| Vite 完全指南        | 16  | 下一代前端构建工具           | [src/content/tutorials/vite](src/content/tutorials/vite)               |
+
+#### 前端工具
+
+| 教程名称             | 章节数 | 简介                  | 查看链接                                                                   |
+| ---------------- | --- | ------------------- | ---------------------------------------------------------------------- |
 | npm 完全指南         | 16  | Node.js 包管理与项目工作流   | [src/content/tutorials/npm](src/content/tutorials/npm)                 |
-| 前端性能优化实战       | 16  | 系统掌握性能优化技术          | [src/content/tutorials/performance](src/content/tutorials/performance)       |
+| Vite 完全指南        | 16  | 下一代前端构建工具           | [src/content/tutorials/vite](src/content/tutorials/vite)               |
+
+#### 前端进阶
+
+| 教程名称             | 章节数 | 简介                  | 查看链接                                                                   |
+| ---------------- | --- | ------------------- | ---------------------------------------------------------------------- |
+| TypeScript 从零到精通 | 12  | TypeScript 基础到实战    | [src/content/tutorials/typescript](src/content/tutorials/typescript)   |
+| 前端性能优化实战       | 16  | 系统掌握性能优化技术          | [src/content/tutorials/performance](src/content/tutorials/performance) |
 
 ### 后端开发
 
+#### Java 基础
+
 | 教程名称        | 章节数 | 简介             | 查看链接                                                     |
 | ----------- | --- | -------------- | -------------------------------------------------------- |
-| Java 从入门到精通 | 16  | Java 基础语法到面向对象 | [src/content/tutorials/java](src/content/tutorials/java) |
+| Java 从入门到精通 | 21  | Java 基础语法到面向对象 | [src/content/tutorials/java](src/content/tutorials/java) |
 | Java 原理深度解析 | 16  | 深入 Java 语言核心，掌握面向对象、泛型、反射、集合、并发、IO 等底层原理 | [src/content/tutorials/java-principle](src/content/tutorials/java-principle) |
+
+#### Spring
+
+| 教程名称        | 章节数 | 简介             | 查看链接                                                     |
+| ----------- | --- | -------------- | -------------------------------------------------------- |
 | Spring 完全指南 | 16  | 从 Spring 核心到 Spring Boot 实战 | [src/content/tutorials/spring](src/content/tutorials/spring) |
 | Spring 原理深度解析 | 16  | 深入 Spring 底层，掌握 IoC、AOP、自动配置等核心原理 | [src/content/tutorials/spring-principle](src/content/tutorials/spring-principle) |
+
+#### JVM
+
+| 教程名称        | 章节数 | 简介             | 查看链接                                                     |
+| ----------- | --- | -------------- | -------------------------------------------------------- |
 | JVM 核心原理与实战 | 16  | 深入理解 Java 虚拟机，掌握内存管理、垃圾回收、性能调优核心技术 | [src/content/tutorials/jvm](src/content/tutorials/jvm) |
-| MyBatis 原理深度解析 | 16  | 深入 MyBatis 底层，掌握架构设计、核心组件、SQL执行流程、缓存机制、插件原理等核心技术 | [src/content/tutorials/mybatis-principle](src/content/tutorials/mybatis-principle) |
+
+#### 消息队列
+
+| 教程名称        | 章节数 | 简介             | 查看链接                                                     |
+| ----------- | --- | -------------- | -------------------------------------------------------- |
 | MQ 消息队列从入门到精通 | 16  | 系统学习消息队列，从 RabbitMQ 基础到 Kafka 原理与实战应用 | [src/content/tutorials/mq](src/content/tutorials/mq) |
 | Kafka 原理深度解析 | 16  | 深入 Kafka 底层架构，掌握存储机制、高可用原理、事务机制、性能优化与生产实战 | [src/content/tutorials/kafka-principle](src/content/tutorials/kafka-principle) |
 
+#### ORM
+
+| 教程名称        | 章节数 | 简介             | 查看链接                                                     |
+| ----------- | --- | -------------- | -------------------------------------------------------- |
+| MyBatis 原理深度解析 | 16  | 深入 MyBatis 底层，掌握架构设计、核心组件、SQL执行流程、缓存机制、插件原理等核心技术 | [src/content/tutorials/mybatis-principle](src/content/tutorials/mybatis-principle) |
+
 ### 计算机基础
+
+#### Web 基础
+
+| 教程名称       | 章节数 | 简介             | 查看链接                                                                           |
+| ---------- | --- | -------------- | ------------------------------------------------------------------------------ |
+| 浏览器与网络基础教程 | 16  | 浏览器原理与网络协议 | [src/content/tutorials/browser-network](src/content/tutorials/browser-network) |
+
+#### 操作系统
 
 | 教程名称       | 章节数 | 简介             | 查看链接                                                                           |
 | ---------- | --- | -------------- | ------------------------------------------------------------------------------ |
 | 操作系统核心教程   | 16  | 进程、内存、文件系统核心概念 | [src/content/tutorials/os](src/content/tutorials/os)                             |
+
+#### 算法
+
+| 教程名称       | 章节数 | 简介             | 查看链接                                                                           |
+| ---------- | --- | -------------- | ------------------------------------------------------------------------------ |
 | 数据结构完全教程   | 16  | 数组、链表、树、图等核心概念 | [src/content/tutorials/data-structures](src/content/tutorials/data-structures) |
 
+#### 计算机网络
+
+| 教程名称       | 章节数 | 简介             | 查看链接                                                                           |
+| ---------- | --- | -------------- | ------------------------------------------------------------------------------ |
+| 计算机网络完全指南 | 16  | 系统学习计算机网络原理，从基础协议到网络编程与实战应用 | [src/content/tutorials/computer-network](src/content/tutorials/computer-network) |
+
 ### 数据库
+
+#### MySQL
 
 | 教程名称          | 章节数 | 简介                            | 查看链接                                               |
 | ------------- | --- | ----------------------------- | -------------------------------------------------- |
 | MySQL 从入门到精通 | 16  | 从基础 SQL 到性能优化与高可用集群实战 | [src/content/tutorials/mysql](src/content/tutorials/mysql) |
 | MySQL 原理深度解析 | 16  | 深入 MySQL 底层，掌握架构原理、存储引擎、索引机制、事务锁、日志系统等核心技术 | [src/content/tutorials/mysql-principle](src/content/tutorials/mysql-principle) |
-| PostgreSQL 从入门到精通 | 16  | 系统学习 PostgreSQL 数据库，从基础 SQL 到高级特性与性能优化实战 | [src/content/tutorials/postgresql](src/content/tutorials/postgresql) |
+
+#### Redis
+
+| 教程名称          | 章节数 | 简介                            | 查看链接                                               |
+| ------------- | --- | ----------------------------- | -------------------------------------------------- |
 | Redis 从入门到精通 | 16  | 系统学习 Redis 内存数据库，从基础操作到高性能缓存架构实战 | [src/content/tutorials/redis](src/content/tutorials/redis) |
 | Redis 原理深度解析 | 16  | 深入 Redis 底层，掌握单线程模型、数据结构、持久化、主从集群、内存管理等核心原理 | [src/content/tutorials/redis-principle](src/content/tutorials/redis-principle) |
+
+#### NoSQL
+
+| 教程名称          | 章节数 | 简介                            | 查看链接                                               |
+| ------------- | --- | ----------------------------- | -------------------------------------------------- |
 | MongoDB 从入门到精通 | 16  | 系统学习 MongoDB 文档数据库，从基础操作到分布式集群实战 | [src/content/tutorials/mongodb](src/content/tutorials/mongodb) |
+
+#### 搜索引擎
+
+| 教程名称          | 章节数 | 简介                            | 查看链接                                               |
+| ------------- | --- | ----------------------------- | -------------------------------------------------- |
 | Elasticsearch 从入门到精通 | 16  | 系统学习 Elasticsearch 搜索引擎，从基础操作到分布式集群与实战应用 | [src/content/tutorials/elasticsearch](src/content/tutorials/elasticsearch) |
 
-### 网络
+#### PostgreSQL
 
-| 教程名称       | 章节数 | 简介         | 查看链接                                                                           |
-| ---------- | --- | ---------- | ------------------------------------------------------------------------------ |
-| 浏览器与网络基础教程 | 16  | 浏览器原理与网络协议 | [src/content/tutorials/browser-network](src/content/tutorials/browser-network) |
-| 计算机网络完全指南 | 16  | 系统学习计算机网络原理，从基础协议到网络编程与实战应用 | [src/content/tutorials/computer-network](src/content/tutorials/computer-network) |
-
-### DevOps
-
-| 教程名称       | 章节数 | 简介            | 查看链接                                                   |
-| ---------- | --- | ------------- | ------------------------------------------------------ |
-| Git 版本控制教程 | 16  | 高效管理代码版本与团队协作 | [src/content/tutorials/git](src/content/tutorials/git) |
-| Linux 从入门到精通 | 16  | 系统学习 Linux 操作系统，从基础命令到服务器管理与实战应用 | [src/content/tutorials/linux](src/content/tutorials/linux) |
-
-### 云原生
-
-| 教程名称       | 章节数 | 简介            | 查看链接                                                   |
-| ---------- | --- | ------------- | ------------------------------------------------------| 云原生 |
-| --- |
-| Docker 从入门到精通 | 16  | 系统学习容器技术，从基础概念到生产环境实战 | [src/content/tutorials/docker](src/content/tutorials/docker) |
-| Kubernetes 从入门到精通 | 16  | 系统学习 K8s 容器编排，从基础概念到生产环境实战 | [src/content/tutorials/kubernetes](src/content/tutorials/kubernetes) |
-| 容器与编排命令实战 | 16  | 系统掌握 Docker、Docker Compose、Kubernetes 核心命令，从日常操作到生产环境最佳实践 | [src/content/tutorials/container-orchestration-commands](src/content/tutorials/container-orchestration-commands) |
+| 教程名称          | 章节数 | 简介                            | 查看链接                                               |
+| ------------- | --- | ----------------------------- | -------------------------------------------------- |
+| PostgreSQL 从入门到精通 | 16  | 系统学习 PostgreSQL 数据库，从基础 SQL 到高级特性与性能优化实战 | [src/content/tutorials/postgresql](src/content/tutorials/postgresql) |
 
 ### 人工智能
+
+#### Python 基础
 
 | 教程名称       | 章节数 | 简介            | 查看链接                                                   |
 | ---------- | --- | ------------- | ------------------------------------------------------ |
 | Python 人工智能基础 | 16  | 从零开始学习 Python 人工智能，掌握机器学习与深度学习核心技术 | [src/content/tutorials/python-ai](src/content/tutorials/python-ai) |
-| 机器学习核心教程 | 16  | 从零开始掌握机器学习，系统学习经典算法原理、模型评估与实战应用 | [src/content/tutorials/machine-learning](src/content/tutorials/machine-learning) |
+| AI 数学基础：从小学到大学 | 19  | 系统补充 AI 学习所需的数学基础，从小学算术到大学微积分，零基础友好 | [src/content/tutorials/ai-math-basics](src/content/tutorials/ai-math-basics) |
 | NumPy 与 Pandas 数据处理 | 16  | 系统学习 Python 数据处理核心库，从 NumPy 数组运算到 Pandas 数据分析实战 | [src/content/tutorials/numpy-pandas](src/content/tutorials/numpy-pandas) |
+
+#### 机器学习
+
+| 教程名称       | 章节数 | 简介            | 查看链接                                                   |
+| ---------- | --- | ------------- | ------------------------------------------------------ |
+| 机器学习核心教程 | 16  | 从零开始掌握机器学习，系统学习经典算法原理、模型评估与实战应用 | [src/content/tutorials/machine-learning](src/content/tutorials/machine-learning) |
 | 特征工程与模型评估 | 16  | 深入掌握特征工程技术与模型评估方法，打造高质量机器学习模型 | [src/content/tutorials/feature-engineering-evaluation](src/content/tutorials/feature-engineering-evaluation) |
 | Scikit-learn 实战教程 | 16  | 系统掌握 Scikit-learn 机器学习库，从数据预处理到模型部署，手把手带你完成实战项目 | [src/content/tutorials/scikit-learn](src/content/tutorials/scikit-learn) |
+
+#### 深度学习
+
+| 教程名称       | 章节数 | 简介            | 查看链接                                                   |
+| ---------- | --- | ------------- | ------------------------------------------------------ |
 | 深度学习完全指南 | 16  | 从零开始掌握深度学习，系统学习神经网络、CNN、RNN、GAN 等核心技术与实战应用 | [src/content/tutorials/deep-learning](src/content/tutorials/deep-learning) |
 | PyTorch 从零到精通 | 16  | 系统学习 PyTorch 深度学习框架，从张量基础到实战项目，掌握神经网络开发核心技术 | [src/content/tutorials/pytorch](src/content/tutorials/pytorch) |
 | TensorFlow 与 Keras 经典教程 | 16  | 系统学习 TensorFlow 与 Keras 深度学习框架，从基础概念到实战项目，掌握神经网络开发核心技术 | [src/content/tutorials/tensorflow-keras](src/content/tutorials/tensorflow-keras) |
-| AI 数学基础：从小学到大学 | 19  | 系统补充 AI 学习所需的数学基础，从小学算术到大学微积分，零基础友好 | [src/content/tutorials/ai-math-basics](src/content/tutorials/ai-math-basics) |
 | 计算机视觉实战 | 16  | 系统学习计算机视觉，从 OpenCV 基础到深度学习实战，掌握图像处理、目标检测、人脸识别等核心技术 | [src/content/tutorials/computer-vision](src/content/tutorials/computer-vision) |
+
+#### NLP 与语音
+
+| 教程名称       | 章节数 | 简介            | 查看链接                                                   |
+| ---------- | --- | ------------- | ------------------------------------------------------ |
 | 自然语言处理 NLP 完全指南 | 16  | 从语言学基础到深度学习 NLP，系统掌握文本处理、词向量、Transformer、BERT、GPT 等核心技术 | [src/content/tutorials/nlp](src/content/tutorials/nlp) |
 | 语音识别与合成入门 | 8  | 从零学习语音识别（ASR）和语音合成（TTS）技术，掌握原理、API 调用与实战应用 | [src/content/tutorials/speech-recognition-synthesis](src/content/tutorials/speech-recognition-synthesis) |
+
+#### 大语言模型
+
+| 教程名称       | 章节数 | 简介            | 查看链接                                                   |
+| ---------- | --- | ------------- | ------------------------------------------------------ |
 | Transformer 与大语言模型 | 16  | 从 Transformer 架构到大语言模型，系统掌握注意力机制、预训练技术、Prompt Engineering、模型微调与部署优化 | [src/content/tutorials/transformer-llm](src/content/tutorials/transformer-llm) |
 | Prompt 工程与 AI 应用开发 | 16  | 系统掌握 Prompt Engineering 核心技术与 AI 应用开发实战，从提示词设计到 Agent 开发全流程 | [src/content/tutorials/prompt-engineering-ai-apps](src/content/tutorials/prompt-engineering-ai-apps) |
 | LangChain 与 RAG 实战 | 16  | 系统掌握 LangChain 框架与 RAG 技术，从基础概念到构建智能问答系统，打造企业级 AI 应用 | [src/content/tutorials/langchain-rag](src/content/tutorials/langchain-rag) |
 | 大模型微调 Fine-tuning 实战 | 16  | 系统掌握大模型微调技术，从全参数微调到 LoRA/QLoRA，从 RLHF 到 DPO，手把手带你完成企业级微调项目 | [src/content/tutorials/llm-finetuning](src/content/tutorials/llm-finetuning) |
+
+#### AI 工程
+
+| 教程名称       | 章节数 | 简介            | 查看链接                                                   |
+| ---------- | --- | ------------- | ------------------------------------------------------ |
 | AI 模型部署与 MLOps | 16  | 系统掌握 AI 模型从训练到生产部署的全流程，学习 MLOps 核心概念、模型服务化、容器化部署、监控运维与自动化流水线 | [src/content/tutorials/model-deployment-mlops](src/content/tutorials/model-deployment-mlops) |
 | Java AI Agent 开发实战 | 16  | 使用 Java 开发 AI 智能体，掌握 LLM 集成、工具调用、记忆管理、多 Agent 协作等核心技术 | [src/content/tutorials/java-ai-agent](src/content/tutorials/java-ai-agent) |
+
+### 云原生
+
+#### 容器
+
+| 教程名称       | 章节数 | 简介            | 查看链接                                                   |
+| ---------- | --- | ------------- | ------------------------------------------------------ |
+| Docker 从入门到精通 | 16  | 系统学习容器技术，从基础概念到生产环境实战 | [src/content/tutorials/docker](src/content/tutorials/docker) |
+
+#### 编排
+
+| 教程名称       | 章节数 | 简介            | 查看链接                                                   |
+| ---------- | --- | ------------- | ------------------------------------------------------ |
+| Kubernetes 从入门到精通 | 16  | 系统学习 K8s 容器编排，从基础概念到生产环境实战 | [src/content/tutorials/kubernetes](src/content/tutorials/kubernetes) |
+
+#### 命令
+
+| 教程名称       | 章节数 | 简介            | 查看链接                                                   |
+| ---------- | --- | ------------- | ------------------------------------------------------ |
+| 容器与编排命令实战 | 16  | 系统掌握 Docker、Docker Compose、Kubernetes 核心命令，从日常操作到生产环境最佳实践 | [src/content/tutorials/container-orchestration-commands](src/content/tutorials/container-orchestration-commands) |
+
+### 运维
+
+#### 版本控制
+
+| 教程名称       | 章节数 | 简介            | 查看链接                                                   |
+| ---------- | --- | ------------- | ------------------------------------------------------ |
+| Git 版本控制教程 | 16  | 高效管理代码版本与团队协作 | [src/content/tutorials/git](src/content/tutorials/git) |
+
+#### 系统运维
+
+| 教程名称       | 章节数 | 简介            | 查看链接                                                   |
+| ---------- | --- | ------------- | ------------------------------------------------------ |
+| Linux 从入门到精通 | 16  | 系统学习 Linux 操作系统，从基础命令到服务器管理与实战应用 | [src/content/tutorials/linux](src/content/tutorials/linux) |
 
 启动开发服务器后，可以通过以下路由访问：
 
@@ -219,7 +337,17 @@ mkdir src/content/tutorials/react
 
 #### 步骤二：注册教程系列
 
-在 `src/data/tutorial-series.ts` 文件中注册新的教程系列。
+教程数据已按类别拆分到 `src/data/tutorial-series/series/` 目录下的多个文件中。根据教程类别选择对应文件：
+
+- `frontend.ts`：前端开发教程
+- `backend.ts`：后端开发教程
+- `database.ts`：数据库教程
+- `cs-fundamentals.ts`：计算机基础教程
+- `ai/` 目录：人工智能相关教程（按子类别拆分为多个文件）
+- `cloud-native.ts`：云原生教程
+- `devops.ts`：运维教程
+
+在对应文件中注册新的教程系列。
 
 示例代码：
 
@@ -229,6 +357,7 @@ mkdir src/content/tutorials/react
   title: 'React 完全指南',
   description: '深入学习 React 核心概念与现代开发模式',
   category: 'frontend',
+  subcategory: 'frontend-advanced',
   chapters: [
     {
       number: '01',
@@ -253,7 +382,8 @@ mkdir src/content/tutorials/react
 - `id`：系列唯一标识，小写英文，与目录名一致
 - `title`：系列显示名称
 - `description`：系列简介
-- `category`：分类，可选值：`frontend`、`backend`、`system`、`network`、`devops`
+- `category`：一级分类，可选值：`frontend`、`backend`、`database`、`cs-fundamentals`、`ai`、`cloud-native`、`devops`
+- `subcategory`：二级分类，需要在 `src/data/tutorial-series/subcategories.ts` 中定义
 - `chapters`：章节列表
   - `number`：章节编号，两位数字（01-99）
   - `title`：章节标题
@@ -293,14 +423,14 @@ mkdir src/content/tutorials/react
 - `/tutorials/:seriesId`：系列索引页，展示该系列所有章节
 - `/tutorials/:seriesId/:chapterSlug`：章节内容页
 
-无需手动配置路由，系统会根据 `tutorial-series.ts` 自动生成。
+无需手动配置路由，系统会根据 `src/data/tutorial-series/` 目录下的数据文件自动生成。
 
 ### 开发流程建议
 
 可使用 skill 进行自动生成
 
 1. 先规划教程系列的整体大纲和章节结构
-2. 在 `tutorial-series.ts` 中注册所有章节的元数据
+2. 在对应的分类文件中注册教程系列的元数据（包含 `subcategory` 字段）
 3. 按顺序编写每个章节的内容，确保章节之间的连贯性
 4. 每完成一个章节后运行 `pnpm dev` 预览效果
 5. 完成后运行 `pnpm build` 确保项目能正常构建
