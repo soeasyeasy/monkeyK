@@ -107,14 +107,8 @@ const handleWheel = (e: WheelEvent) => {
 
 const otherModules = [
   {
-    title: '个人生活记录',
-    description: '记录生活点滴，分享成长故事',
-    path: '/life',
-    color: '#FF9800',
-  },
-  {
-    title: '待办事项',
-    description: '管理日常任务，提高效率',
+    title: '工作台',
+    description: '管理日常任务与生活记录，提高效率',
     path: '/todo',
     color: '#4CAF50',
   },
@@ -130,12 +124,12 @@ const recentSeries = tutorialSeries.filter(s => s.featured).slice(0, 6)
       <div class="hero-content">
         <h1 class="hero-title hero-animate">全栈学习<br />知识中心</h1>
         <p class="hero-subtitle hero-animate delay-1">
-          前端、后端、操作系统、网络、运维全栈教程<br />
-          配合个人生活记录与待办管理，构建你的专属学习空间。
+          前端、后端、操作系统、网络、运维全栈知识库<br />
+          配合工作台管理任务与生活记录，构建你的专属学习空间。
         </p>
         <div class="hero-actions hero-animate delay-2">
           <RouterLink to="/tutorials" class="btn-primary">
-            浏览教程
+            浏览知识库
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <path
                 d="M6 12L10 8L6 4"
@@ -146,7 +140,7 @@ const recentSeries = tutorialSeries.filter(s => s.featured).slice(0, 6)
               />
             </svg>
           </RouterLink>
-          <RouterLink to="/todo" class="btn-secondary"> 待办管理 </RouterLink>
+          <RouterLink to="/todo" class="btn-secondary"> 工作台 </RouterLink>
         </div>
         <!-- 一言 -->
         <div class="hero-widgets hero-animate delay-3">
@@ -265,11 +259,11 @@ const recentSeries = tutorialSeries.filter(s => s.featured).slice(0, 6)
       </div>
     </section>
 
-    <!-- 其他功能 -->
+    <!-- 工作台 -->
     <section class="section other-section">
       <div class="section-header">
-        <h2 class="section-title">更多功能</h2>
-        <p class="section-subtitle">不止教程，还有生活与效率工具</p>
+        <h2 class="section-title">工作台</h2>
+        <p class="section-subtitle">不止知识库，还有效率工具</p>
       </div>
       <div class="other-grid">
         <RouterLink

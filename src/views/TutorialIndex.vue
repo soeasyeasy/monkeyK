@@ -51,8 +51,8 @@ const seriesByCategory = computed(() => {
 <template>
   <div class="tutorial-index">
     <div class="index-header" v-animate.slide-up>
-      <h1>教程中心</h1>
-      <p class="subtitle">全栈技术教程，持续更新中</p>
+      <h1>知识库</h1>
+      <p class="subtitle">全栈技术知识，持续更新中</p>
       <div class="category-tabs">
         <RouterLink to="/tutorials" class="tab" :class="{ active: !activeCategory }">
           全部

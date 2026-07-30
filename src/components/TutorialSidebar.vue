@@ -43,7 +43,7 @@ function navigate(slug: string) {
     <div class="sidebar-content">
       <div class="sidebar-header">
         <RouterLink to="/tutorials" class="sidebar-logo">
-          <span class="logo-text">教程中心</span>
+          <span class="logo-text">知识库</span>
         </RouterLink>
       </div>
 
@@ -74,7 +74,7 @@ function navigate(slug: string) {
         <div class="nav-group">
           <div class="nav-group-title">浏览</div>
           <RouterLink to="/tutorials" class="nav-item">
-            <span class="nav-title">所有教程</span>
+            <span class="nav-title">全部知识</span>
           </RouterLink>
         </div>
       </nav>

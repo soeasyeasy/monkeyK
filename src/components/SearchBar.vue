@@ -138,7 +138,7 @@ onUnmounted(() => {
         v-model="query"
         type="text"
         class="search-input"
-        placeholder="搜索教程..."
+        placeholder="搜索知识..."
         @focus="open"
         @keydown="onKeyDown"
       />

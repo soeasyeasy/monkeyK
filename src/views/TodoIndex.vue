@@ -199,8 +199,8 @@ const showAddForm = ref(false)
     <div class="todo-container">
       <!-- 头部 -->
       <header class="page-header">
-        <h1>待办事项</h1>
-        <p class="subtitle">管理日常任务，提高效率</p>
+        <h1>工作台</h1>
+        <p class="subtitle">管理日常任务与生活记录，提高效率</p>
       </header>
 
       <!-- 统计卡片 -->
