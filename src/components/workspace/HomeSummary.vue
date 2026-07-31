@@ -1,190 +1,178 @@
 <script setup lang="ts">
 /**
- * 首页只读摘要组件
- * 展示各模块的进度统计，不可操作，点击可跳转详情页
+ * 首页可操作内容面板
+ * 展示具体事项列表，支持快捷操作
  */
 import { computed } from 'vue'
 import { useTodos } from '../../composables/useTodos'
 import { useHabits } from '../../composables/useHabits'
 import { useAccounting } from '../../composables/useAccounting'
 import { useGoals } from '../../composables/useGoals'
-import { expenseCategories } from '../../data/workspace-defaults'
 import WsIcon from './WsIcon.vue'
 
 const emit = defineEmits<{
   navigate: [module: 'todo' | 'habit' | 'accounting' | 'goal']
 }>()
 
-const { todos, getStats: getTodoStats, getTodayStats, getOverdueTodos } = useTodos()
-const { habits, isCompletedToday, getStreak, getTotalCheckIns } = useHabits()
-const { getCurrentMonthTotal, getBudgetProgress, getCurrentMonthByCategory } = useAccounting()
-const { goals, getStats: getGoalStats, getOverdueGoals } = useGoals()
+const { todos, toggleTodo } = useTodos()
+const { habits, checkIn, isCompletedToday, getStreak } = useHabits()
+const { getRecentExpenses } = useAccounting()
+const { goals, updateGoalProgress } = useGoals()
 
-// 待办摘要
-const todoStats = computed(() => getTodoStats())
-const todayStats = computed(() => getTodayStats())
-const recentTodos = computed(() =>
+// 待办列表 - 显示最近未完成的待办
+const pendingTodos = computed(() =>
   todos.value
     .filter(t => !t.done)
     .sort((a, b) => b.createdAt - a.createdAt)
-    .slice(0, 3)
+    .slice(0, 5)
 )
 
-// 习惯摘要
-const activeHabits = computed(() => habits.value.filter(h => h.active))
-const todayHabitCompleted = computed(() =>
-  activeHabits.value.filter(h => isCompletedToday(h.id)).length
-)
-const topStreaks = computed(() =>
-  [...activeHabits.value]
-    .map(h => ({ name: h.name, icon: h.icon, streak: getStreak(h.id) }))
-    .sort((a, b) => b.streak - a.streak)
-    .slice(0, 3)
-)
-const totalCheckIns = computed(() =>
-  habits.value.reduce((sum, h) => sum + getTotalCheckIns(h.id), 0)
+// 习惯列表 - 显示今日活跃习惯
+const todayHabits = computed(() =>
+  habits.value
+    .filter(h => h.active)
+    .map(h => {
+      // 检查今天是否有打卡记录（无论是否完成目标）
+      const today = new Date().toISOString().split('T')[0] ?? ''
+      const todayRecord = h.records.find(r => r.date === today)
+      return {
+        id: h.id,
+        name: h.name,
+        icon: h.icon,
+        completed: isCompletedToday(h.id),
+        hasCheckedIn: !!todayRecord,
+        todayCount: todayRecord?.count || 0,
+        targetCount: h.targetCount,
+        streak: getStreak(h.id)
+      }
+    })
+    .slice(0, 5)
 )
 
-// 记账摘要
-const monthTotal = computed(() => getCurrentMonthTotal())
-const budgetProgress = computed(() => getBudgetProgress())
-const topCategories = computed(() => {
-  const byCategory = getCurrentMonthByCategory()
-  return Object.entries(byCategory)
-    .map(([id, amount]) => ({
-      name: expenseCategories.find(c => c.id === id)?.name || id,
-      color: expenseCategories.find(c => c.id === id)?.color || '#6b7280',
-      amount: amount as number
-    }))
-    .sort((a, b) => b.amount - a.amount)
-    .slice(0, 3)
-})
+// 最近支出记录
+const recentExpenses = computed(() =>
+  getRecentExpenses(7).slice(0, 5)
+)
 
-// 目标摘要
-const goalStats = computed(() => getGoalStats())
-const recentGoals = computed(() =>
-  [...goals.value]
+// 进行中的目标
+const activeGoals = computed(() =>
+  goals.value
     .filter(g => g.progress < 100)
     .sort((a, b) => b.updatedAt - a.updatedAt)
-    .slice(0, 3)
+    .slice(0, 4)
 )
-const overdueGoalCount = computed(() => getOverdueGoals().length)
+
+// 快捷操作函数
+function handleToggleTodo(id: number, event: Event) {
+  event.stopPropagation()
+  toggleTodo(id)
+}
+
+function handleCheckIn(habitId: number, event: Event) {
+  event.stopPropagation()
+  checkIn(habitId)
+}
+
+function handleUpdateProgress(goalId: number, newProgress: number, event: Event) {
+  event.stopPropagation()
+  updateGoalProgress(goalId, newProgress)
+}
 </script>
 
 <template>
   <div class="home-summary">
-    <!-- 待办摘要 -->
+    <!-- 待办事项面板 -->
     <div class="summary-panel todo" @click="emit('navigate', 'todo')">
       <div class="panel-header">
         <WsIcon name="checklist" :size="18" class="panel-icon" />
         <span class="panel-title">待办事项</span>
         <span class="panel-arrow">→</span>
       </div>
-      <div class="panel-stats">
-        <div class="stat-big">
-          <span class="stat-num">{{ todayStats.completed }}/{{ todayStats.total }}</span>
-          <span class="stat-label">今日完成</span>
-        </div>
-        <div class="stat-big">
-          <span class="stat-num accent">{{ todayStats.rate }}%</span>
-          <span class="stat-label">完成率</span>
-        </div>
-        <div class="stat-big" v-if="todoStats.overdue > 0">
-          <span class="stat-num danger">{{ todoStats.overdue }}</span>
-          <span class="stat-label">已过期</span>
+      <div v-if="pendingTodos.length > 0" class="action-list">
+        <div v-for="t in pendingTodos" :key="t.id" class="action-item">
+          <button class="checkbox-btn" @click.stop="handleToggleTodo(t.id, $event)" title="标记完成">
+            <WsIcon name="check" :size="14" />
+          </button>
+          <span class="item-text">{{ t.text }}</span>
+          <span v-if="t.dueDate" class="item-date">{{ t.dueDate }}</span>
         </div>
       </div>
-      <div v-if="recentTodos.length > 0" class="preview-list">
-        <div v-for="t in recentTodos" :key="t.id" class="preview-item">
-          <span class="preview-dot"></span>
-          <span class="preview-text">{{ t.text }}</span>
-        </div>
+      <div v-else class="empty-state">
+        <span>暂无待办事项</span>
       </div>
     </div>
 
-    <!-- 习惯摘要 -->
+    <!-- 习惯打卡面板 -->
     <div class="summary-panel habit" @click="emit('navigate', 'habit')">
       <div class="panel-header">
         <WsIcon name="flame" :size="18" class="panel-icon" />
         <span class="panel-title">习惯打卡</span>
         <span class="panel-arrow">→</span>
       </div>
-      <div class="panel-stats">
-        <div class="stat-big">
-          <span class="stat-num">{{ todayHabitCompleted }}/{{ activeHabits.length }}</span>
-          <span class="stat-label">今日打卡</span>
-        </div>
-        <div class="stat-big">
-          <span class="stat-num accent">{{ totalCheckIns }}</span>
-          <span class="stat-label">累计打卡</span>
+      <div v-if="todayHabits.length > 0" class="action-list" @click.stop>
+        <div v-for="h in todayHabits" :key="h.id" class="action-item">
+          <button
+            class="checkin-btn"
+            :class="{
+              completed: h.completed,
+              'partial': h.hasCheckedIn && !h.completed
+            }"
+            @click="handleCheckIn(h.id, $event)"
+            :title="h.completed ? '已完成' : h.hasCheckedIn ? `已打卡 ${h.todayCount}/${h.targetCount}` : '点击打卡'"
+          >
+            <WsIcon :name="h.completed ? 'check' : 'plus'" :size="14" />
+          </button>
+          <span class="item-text">{{ h.name }}</span>
+          <span v-if="h.hasCheckedIn && !h.completed" class="count-badge">
+            {{ h.todayCount }}/{{ h.targetCount }}
+          </span>
+          <span v-else-if="h.streak > 0" class="streak-badge">🔥 {{ h.streak }}天</span>
         </div>
       </div>
-      <div v-if="topStreaks.length > 0" class="preview-list">
-        <div v-for="s in topStreaks" :key="s.name" class="preview-item">
-          <span class="preview-dot habit-dot"></span>
-          <span class="preview-text">{{ s.name }}</span>
-          <span class="streak-badge" v-if="s.streak > 0">{{ s.streak }}天</span>
-        </div>
+      <div v-else class="empty-state">
+        <span>暂无活跃习惯</span>
       </div>
     </div>
 
-    <!-- 记账摘要 -->
+    <!-- 记账面板 -->
     <div class="summary-panel accounting" @click="emit('navigate', 'accounting')">
       <div class="panel-header">
         <WsIcon name="wallet" :size="18" class="panel-icon" />
         <span class="panel-title">记账管理</span>
         <span class="panel-arrow">→</span>
       </div>
-      <div class="panel-stats">
-        <div class="stat-big">
-          <span class="stat-num">¥{{ monthTotal.toLocaleString() }}</span>
-          <span class="stat-label">本月支出</span>
-        </div>
-        <div class="stat-big">
-          <span class="stat-num" :class="{ danger: budgetProgress.percentage >= 80 }">
-            {{ budgetProgress.percentage.toFixed(0) }}%
-          </span>
-          <span class="stat-label">预算使用</span>
+      <div v-if="recentExpenses.length > 0" class="action-list">
+        <div v-for="(e, idx) in recentExpenses" :key="idx" class="action-item">
+          <span class="item-text">{{ e.description }}</span>
+          <span class="amount-badge">¥{{ e.amount.toFixed(2) }}</span>
+          <span class="item-date">{{ e.date.slice(5) }}</span>
         </div>
       </div>
-      <div v-if="topCategories.length > 0" class="preview-list">
-        <div v-for="cat in topCategories" :key="cat.name" class="preview-item">
-          <span class="preview-dot" :style="{ background: cat.color }"></span>
-          <span class="preview-text">{{ cat.name }}</span>
-          <span class="amount-badge">¥{{ cat.amount.toLocaleString() }}</span>
-        </div>
+      <div v-else class="empty-state">
+        <span>暂无支出记录</span>
       </div>
     </div>
 
-    <!-- 目标摘要 -->
+    <!-- 目标面板 -->
     <div class="summary-panel goal" @click="emit('navigate', 'goal')">
       <div class="panel-header">
         <WsIcon name="target" :size="18" class="panel-icon" />
         <span class="panel-title">目标追踪</span>
         <span class="panel-arrow">→</span>
       </div>
-      <div class="panel-stats">
-        <div class="stat-big">
-          <span class="stat-num accent">{{ goalStats.active }}</span>
-          <span class="stat-label">进行中</span>
-        </div>
-        <div class="stat-big">
-          <span class="stat-num">{{ goalStats.completed }}</span>
-          <span class="stat-label">已完成</span>
-        </div>
-        <div class="stat-big" v-if="overdueGoalCount > 0">
-          <span class="stat-num danger">{{ overdueGoalCount }}</span>
-          <span class="stat-label">已逾期</span>
+      <div v-if="activeGoals.length > 0" class="action-list">
+        <div v-for="g in activeGoals" :key="g.id" class="action-item goal-item">
+          <span class="item-text">{{ g.title }}</span>
+          <div class="progress-row">
+            <div class="progress-bar">
+              <div class="progress-fill" :style="{ width: g.progress + '%' }"></div>
+            </div>
+            <span class="progress-label">{{ g.progress }}%</span>
+          </div>
         </div>
       </div>
-      <div v-if="recentGoals.length > 0" class="preview-list">
-        <div v-for="g in recentGoals" :key="g.id" class="preview-item goal-preview">
-          <span class="preview-text">{{ g.title }}</span>
-          <div class="mini-progress">
-            <div class="mini-progress-fill" :style="{ width: g.progress + '%' }"></div>
-          </div>
-          <span class="progress-label">{{ g.progress }}%</span>
-        </div>
+      <div v-else class="empty-state">
+        <span>暂无进行中的目标</span>
       </div>
     </div>
   </div>
@@ -194,25 +182,27 @@ const overdueGoalCount = computed(() => getOverdueGoals().length)
 .home-summary {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.85rem;
+  gap: 1rem;
 }
 
 .summary-panel {
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
-  padding: 0.9rem 1rem;
+  gap: 0.75rem;
+  padding: 1rem 1.1rem;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all 0.2s;
+  min-height: 180px;
 }
 
 .summary-panel:hover {
   border-color: var(--border-hover);
   background: var(--bg-card-hover);
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .summary-panel.todo { border-left: 3px solid #3b82f6; }
@@ -223,7 +213,7 @@ const overdueGoalCount = computed(() => getOverdueGoals().length)
 .panel-header {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
+  gap: 0.5rem;
 }
 
 .panel-icon {
@@ -236,7 +226,7 @@ const overdueGoalCount = computed(() => getOverdueGoals().length)
 .summary-panel.goal .panel-icon { color: #8b5cf6; }
 
 .panel-title {
-  font-size: 0.825rem;
+  font-size: 0.875rem;
   font-weight: 600;
   color: var(--text-primary);
   flex: 1;
@@ -253,86 +243,135 @@ const overdueGoalCount = computed(() => getOverdueGoals().length)
   opacity: 1;
 }
 
-.panel-stats {
-  display: flex;
-  gap: 1rem;
-}
-
-.stat-big {
+/* 可操作列表样式 */
+.action-list {
   display: flex;
   flex-direction: column;
-  gap: 0.1rem;
+  gap: 0.5rem;
+  flex: 1;
 }
 
-.stat-num {
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: var(--text-primary);
-  line-height: 1;
-}
-
-.stat-num.accent { color: var(--accent); }
-.stat-num.danger { color: #ef4444; }
-
-.stat-label {
-  font-size: 0.65rem;
-  color: var(--text-secondary);
-}
-
-.preview-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-  padding-top: 0.35rem;
-  border-top: 1px solid var(--border-color);
-}
-
-.preview-item {
+.action-item {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  font-size: 0.75rem;
-  color: var(--text-secondary);
+  gap: 0.6rem;
+  padding: 0.5rem 0.6rem;
+  background: var(--bg-input);
+  border-radius: var(--radius-sm);
+  transition: all 0.15s;
 }
 
-.preview-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--text-secondary);
+.action-item:hover {
+  background: var(--bg-glass);
+}
+
+/* 待办勾选按钮 */
+.checkbox-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
   flex-shrink: 0;
 }
 
-.preview-dot.habit-dot { background: #f59e0b; }
+.checkbox-btn:hover {
+  border-color: #3b82f6;
+  background: #3b82f620;
+  color: #3b82f6;
+}
 
-.preview-text {
+/* 习惯打卡按钮 */
+.checkin-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid var(--border-color);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s;
+  flex-shrink: 0;
+}
+
+.checkin-btn:hover {
+  border-color: #f59e0b;
+  background: #f59e0b20;
+  color: #f59e0b;
+}
+
+.checkin-btn.completed {
+  border-color: #f59e0b;
+  background: #f59e0b;
+  color: white;
+}
+
+/* 项目文本 */
+.item-text {
   flex: 1;
+  font-size: 0.8rem;
+  color: var(--text-primary);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  color: var(--text-primary);
 }
 
-.streak-badge,
-.amount-badge {
-  font-size: 0.65rem;
-  color: var(--text-secondary);
+/* 日期标签 */
+.item-date {
+  font-size: 0.7rem;
+  color: var(--text-muted);
   flex-shrink: 0;
 }
 
-.goal-preview {
+/* 连续打卡徽章 */
+.streak-badge {
+  font-size: 0.7rem;
+  color: #f59e0b;
+  background: #f59e0b15;
+  padding: 0.2rem 0.5rem;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+/* 金额徽章 */
+.amount-badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+/* 目标进度条 */
+.goal-item {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.4rem;
+}
+
+.progress-row {
+  display: flex;
+  align-items: center;
   gap: 0.5rem;
 }
 
-.mini-progress {
+.progress-bar {
   flex: 1;
-  height: 3px;
+  height: 4px;
   background: var(--bg-input);
   border-radius: 2px;
   overflow: hidden;
 }
 
-.mini-progress-fill {
+.progress-fill {
   height: 100%;
   background: #8b5cf6;
   border-radius: 2px;
@@ -340,11 +379,21 @@ const overdueGoalCount = computed(() => getOverdueGoals().length)
 }
 
 .progress-label {
-  font-size: 0.65rem;
+  font-size: 0.7rem;
   color: var(--text-secondary);
-  flex-shrink: 0;
-  min-width: 28px;
+  min-width: 32px;
   text-align: right;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 100px;
+  color: var(--text-muted);
+  font-size: 0.85rem;
 }
 
 @media (max-width: 900px) {

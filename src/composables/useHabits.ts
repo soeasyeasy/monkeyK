@@ -112,22 +112,33 @@ export function useHabits() {
 
   // 打卡
   function checkIn(habitId: number, count: number = 1) {
-    const habit = habits.value.find(h => h.id === habitId)
-    if (!habit) return
-    
     const today = getToday()
-    const existingRecord = habit.records.find(r => r.date === today)
     
-    if (existingRecord) {
-      existingRecord.count += count
-      existingRecord.completed = existingRecord.count >= habit.targetCount
-    } else {
-      habit.records.push({
-        date: today,
-        count,
-        completed: count >= habit.targetCount
-      })
-    }
+    // 创建新的 habits 数组以触发响应式更新
+    habits.value = habits.value.map(h => {
+      if (h.id !== habitId) return h
+      
+      const existingRecord = h.records.find(r => r.date === today)
+      let newRecords: HabitRecord[]
+      
+      if (existingRecord) {
+        // 更新现有记录
+        newRecords = h.records.map(r => {
+          if (r.date !== today) return r
+          const newCount = r.count + count
+          return { ...r, count: newCount, completed: newCount >= h.targetCount }
+        })
+      } else {
+        // 添加新记录
+        newRecords = [...h.records, {
+          date: today,
+          count,
+          completed: count >= h.targetCount
+        }]
+      }
+      
+      return { ...h, records: newRecords }
+    })
     
     saveHabits(habits.value)
   }

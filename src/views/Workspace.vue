@@ -226,43 +226,7 @@ const goToSettings = () => router.push('/settings')
 
           <SmallCalendar @select-date="goToCalendar" />
 
-          <div class="info-card summary-card" @click="activeNav = 'todo'">
-            <span class="info-label">今日待办</span>
-            <span class="info-big">{{ todayTodoStats.completed }} / {{ todayTodoStats.total }}</span>
-            <div class="progress-bar">
-              <div
-                class="progress-fill"
-                :style="{ width: todayTodoStats.total > 0 ? `${(todayTodoStats.completed / todayTodoStats.total) * 100}%` : '0%' }"
-              />
-            </div>
-            <span class="info-sub">完成率 {{ todayTodoStats.rate }}%</span>
-          </div>
-
-          <div class="info-card summary-card" @click="activeNav = 'habit'">
-            <span class="info-label">今日习惯</span>
-            <span class="info-big">{{ todayHabitStats.completed }} / {{ todayHabitStats.total }}</span>
-            <div class="progress-bar">
-              <div
-                class="progress-fill"
-                :style="{ width: todayHabitStats.total > 0 ? `${(todayHabitStats.completed / todayHabitStats.total) * 100}%` : '0%' }"
-              />
-            </div>
-            <span class="info-sub">已打卡 {{ todayHabitStats.completed }} 个习惯</span>
-          </div>
-
-          <div class="info-card summary-card" @click="activeNav = 'accounting'">
-            <span class="info-label">本月支出</span>
-            <span class="info-big">¥{{ budgetStats.spent.toLocaleString() }}</span>
-            <div class="progress-bar">
-              <div
-                class="progress-fill"
-                :style="{ width: `${budgetStats.percentage}%` }"
-                :class="{ danger: budgetStats.percentage >= 100 }"
-              />
-            </div>
-            <span class="info-sub">预算 ¥{{ budgetStats.budget.toLocaleString() }}</span>
-          </div>
-
+          <!-- 快捷操作区 -->
           <div class="info-card quick-add-card">
             <span class="info-label">快速添加待办</span>
             <div class="quick-add-row">
@@ -276,6 +240,21 @@ const goToSettings = () => router.push('/settings')
               <button class="quick-add-btn" @click="quickAddTodo">
                 <WsIcon name="send" :size="14" />
               </button>
+            </div>
+          </div>
+
+          <!-- 今日概览 -->
+          <div class="info-card overview-card" v-if="activeNav === 'home'">
+            <span class="info-label">今日概览</span>
+            <div class="overview-stats">
+              <div class="overview-item">
+                <span class="overview-value">{{ todayTodoStats.completed }}/{{ todayTodoStats.total }}</span>
+                <span class="overview-label">待办完成</span>
+              </div>
+              <div class="overview-item">
+                <span class="overview-value">{{ todayHabitStats.completed }}/{{ todayHabitStats.total }}</span>
+                <span class="overview-label">习惯打卡</span>
+              </div>
             </div>
           </div>
 
@@ -678,6 +657,37 @@ const goToSettings = () => router.push('/settings')
 
 .quick-add-btn:hover {
   opacity: 0.9;
+}
+
+/* 今日概览卡片 */
+.overview-card {
+  gap: 0.6rem;
+}
+
+.overview-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.overview-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  padding: 0.5rem;
+  background: var(--bg-input);
+  border-radius: var(--radius-sm);
+}
+
+.overview-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.overview-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
 }
 
 .ai-card {
