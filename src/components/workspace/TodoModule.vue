@@ -1,0 +1,1137 @@
+<script setup lang="ts">
+/**
+ * 待办事项模块组件
+ * 支持清单、标签、子任务、筛选、分组、排序、批量操作
+ */
+import { ref, computed, watch } from 'vue'
+import { useTodos } from '../../composables/useTodos'
+import { priorityOptions, projectOptions, tagSuggestions } from '../../data/workspace-defaults'
+import WsIcon from './WsIcon.vue'
+import Modal from './Modal.vue'
+import MarkdownEditor from './MarkdownEditor.vue'
+import MarkdownRenderer from '../MarkdownRenderer.vue'
+import Pagination from './Pagination.vue'
+import type { Todo } from '../../types/workspace'
+
+const {
+  todos,
+  addTodo,
+  deleteTodo,
+  toggleTodo,
+  updateTodo,
+  addSubTodo,
+  toggleSubTodo,
+  deleteSubTodo,
+  filterByStatus,
+  filterByProject,
+  filterByTag,
+  searchTodos,
+  groupByDueDate,
+  sortTodos,
+  completeAll,
+  clearCompleted,
+  getStats,
+  getProjects,
+  getTags
+} = useTodos()
+
+// 添加表单
+const newTodoText = ref('')
+const newTodoPriority = ref<'high' | 'medium' | 'low'>('medium')
+const newTodoDueDate = ref('')
+const newTodoProject = ref('')
+const newTodoTags = ref<string[]>([])
+const newTodoNotes = ref('')
+const showAddModal = ref(false)
+
+const canAddTodo = computed(() => newTodoText.value.trim().length > 0)
+
+function openAddModal() {
+  showAddModal.value = true
+}
+
+function handleAddTodo() {
+  if (!canAddTodo.value) return
+  addTodo(
+    newTodoText.value.trim(),
+    newTodoPriority.value,
+    newTodoDueDate.value,
+    newTodoTags.value,
+    newTodoProject.value,
+    newTodoNotes.value
+  )
+  resetForm()
+  showAddModal.value = false
+}
+
+function resetForm() {
+  newTodoText.value = ''
+  newTodoPriority.value = 'medium'
+  newTodoDueDate.value = ''
+  newTodoProject.value = ''
+  newTodoTags.value = []
+  newTodoNotes.value = ''
+}
+
+function toggleNewTag(tag: string) {
+  if (newTodoTags.value.includes(tag)) {
+    newTodoTags.value = newTodoTags.value.filter(t => t !== tag)
+  } else {
+    newTodoTags.value.push(tag)
+  }
+}
+
+// 筛选与排序
+const statusFilter = ref<'all' | 'active' | 'completed' | 'overdue'>('all')
+const projectFilter = ref('')
+const tagFilter = ref('')
+const searchKeyword = ref('')
+const sortBy = ref<'priority' | 'dueDate' | 'createdAt'>('priority')
+
+const allProjects = computed(() => {
+  const custom = getProjects().map(p => ({ value: p, label: p }))
+  const base = projectOptions.filter(p => p.value)
+  const map = new Map<string, string>()
+  base.forEach(p => map.set(p.value, p.label))
+  custom.forEach(p => map.set(p.value, p.label))
+  return Array.from(map.entries()).map(([value, label]) => ({ value, label }))
+})
+
+const allTags = computed(() => {
+  const existing = getTags()
+  return Array.from(new Set([...tagSuggestions, ...existing]))
+})
+
+const filteredTodos = computed(() => {
+  let result = filterByStatus(statusFilter.value)
+  if (projectFilter.value) result = result.filter(t => t.project === projectFilter.value)
+  if (tagFilter.value) result = result.filter(t => t.tags.includes(tagFilter.value))
+  if (searchKeyword.value.trim()) result = searchTodos(searchKeyword.value).filter(t => result.includes(t))
+  return sortTodos(result, sortBy.value)
+})
+
+const groupedTodos = computed(() => groupByDueDate(filteredTodos.value))
+
+// 分页
+const PAGE_SIZE = 10
+const currentPage = ref(1)
+
+interface FlatItem {
+  isGroupHeader: boolean
+  groupKey?: string
+  groupLabel?: string
+  groupCount?: number
+  todo?: Todo
+}
+
+const flatGroupedItems = computed<FlatItem[]>(() => {
+  const items: FlatItem[] = []
+  const grouped = groupedTodos.value
+  for (const key of groupOrder) {
+    const group = grouped[key as keyof typeof grouped]
+    if (group && group.length > 0) {
+      items.push({ isGroupHeader: true, groupKey: key, groupLabel: groupLabels[key], groupCount: group.length })
+      for (const todo of group) {
+        items.push({ isGroupHeader: false, todo })
+      }
+    }
+  }
+  return items
+})
+
+const totalPages = computed(() => Math.ceil(flatGroupedItems.value.length / PAGE_SIZE))
+
+const pagedItems = computed(() => {
+  const start = (currentPage.value - 1) * PAGE_SIZE
+  return flatGroupedItems.value.slice(start, start + PAGE_SIZE)
+})
+
+watch([statusFilter, projectFilter, tagFilter, searchKeyword, sortBy], () => {
+  currentPage.value = 1
+})
+
+// 批量操作
+function handleCompleteAll() {
+  const ids = filteredTodos.value.filter(t => !t.done).map(t => t.id)
+  if (ids.length) completeAll(ids)
+}
+
+// 展开编辑
+const expandedTodoId = ref<number | null>(null)
+const editingTodo = ref<Todo | null>(null)
+
+function toggleExpand(todo: Todo) {
+  if (expandedTodoId.value === todo.id) {
+    expandedTodoId.value = null
+    editingTodo.value = null
+  } else {
+    expandedTodoId.value = todo.id
+    editingTodo.value = JSON.parse(JSON.stringify(todo))
+  }
+}
+
+function saveEdit() {
+  if (!editingTodo.value) return
+  updateTodo(editingTodo.value.id, {
+    text: editingTodo.value.text,
+    priority: editingTodo.value.priority,
+    dueDate: editingTodo.value.dueDate,
+    project: editingTodo.value.project,
+    tags: editingTodo.value.tags,
+    notes: editingTodo.value.notes
+  })
+}
+
+const newSubTodoText = ref('')
+function handleAddSubTodo(todoId: number) {
+  if (!newSubTodoText.value.trim()) return
+  addSubTodo(todoId, newSubTodoText.value.trim())
+  newSubTodoText.value = ''
+}
+
+function toggleTag(tag: string) {
+  if (!editingTodo.value) return
+  const tags = editingTodo.value.tags
+  if (tags.includes(tag)) {
+    editingTodo.value.tags = tags.filter(t => t !== tag)
+  } else {
+    editingTodo.value.tags = [...tags, tag]
+  }
+}
+
+function getPriorityColor(priority: string): string {
+  return priorityOptions.find(p => p.value === priority)?.color || '#6b7280'
+}
+
+function getProjectLabel(value: string): string {
+  return projectOptions.find(p => p.value === value)?.label || value || '无清单'
+}
+
+function formatDate(dateStr: string): string {
+  if (!dateStr) return ''
+  const date = new Date(dateStr)
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  const diffTime = date.getTime() - today.getTime()
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24))
+  if (diffDays === 0) return '今天'
+  if (diffDays === 1) return '明天'
+  if (diffDays === -1) return '昨天'
+  if (diffDays < 0) return `已过期 ${Math.abs(diffDays)} 天`
+  if (diffDays <= 7) return `${diffDays} 天后`
+  return date.toLocaleDateString('zh-CN', { month: 'short', day: 'numeric' })
+}
+
+const stats = computed(() => getStats())
+const completionRate = computed(() => {
+  if (stats.value.total === 0) return 0
+  return Math.round((stats.value.completed / stats.value.total) * 100)
+})
+
+function circleDash(percent: number): string {
+  const r = 28
+  const c = 2 * Math.PI * r
+  const offset = c - (percent / 100) * c
+  return `${c} ${offset}`
+}
+
+const groupLabels: Record<string, string> = {
+  overdue: '已过期',
+  today: '今天',
+  tomorrow: '明天',
+  upcoming: '未来',
+  noDate: '无截止日期'
+}
+
+const groupOrder = ['overdue', 'today', 'tomorrow', 'upcoming', 'noDate']
+</script>
+
+<template>
+  <div class="todo-module">
+    <!-- 顶部统计 -->
+    <div class="todo-stats">
+      <div class="stats-ring">
+        <svg class="ring-svg" viewBox="0 0 70 70">
+          <circle cx="35" cy="35" r="28" class="ring-bg" />
+          <circle cx="35" cy="35" r="28" class="ring-fill" :stroke-dasharray="circleDash(completionRate)" />
+        </svg>
+        <div class="ring-center">
+          <span class="ring-pct">{{ completionRate }}%</span>
+          <span class="ring-label">完成率</span>
+        </div>
+      </div>
+      <div class="stats-numbers">
+        <div class="stat-item">
+          <span class="stat-value">{{ stats.active }}</span>
+          <span class="stat-label">待完成</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-value completed">{{ stats.completed }}</span>
+          <span class="stat-label">已完成</span>
+        </div>
+        <div class="stat-item" v-if="stats.overdue > 0">
+          <span class="stat-value overdue">{{ stats.overdue }}</span>
+          <span class="stat-label">已过期</span>
+        </div>
+      </div>
+      <div class="stats-actions">
+        <button class="action-btn" @click="handleCompleteAll">
+          <WsIcon name="check" :size="14" />
+          全部完成
+        </button>
+        <button class="action-btn danger" @click="clearCompleted">
+          <WsIcon name="x" :size="14" />
+          清空已完成
+        </button>
+      </div>
+    </div>
+
+    <!-- 添加表单 -->
+    <div class="add-todo-section">
+      <button class="add-toggle-btn" @click="openAddModal">
+        <WsIcon name="plus" :size="16" />
+        添加新待办
+      </button>
+      <Modal
+        title="添加新待办"
+        :visible="showAddModal"
+        :confirm-disabled="!canAddTodo"
+        @close="showAddModal = false; resetForm()"
+        @confirm="handleAddTodo"
+      >
+        <div class="modal-form">
+          <div class="form-group">
+            <label>任务内容</label>
+            <MarkdownEditor v-model="newTodoText" placeholder="例如：完成项目周报..." :rows="2" />
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>优先级</label>
+              <div class="priority-picker">
+                <button
+                  v-for="p in priorityOptions"
+                  :key="p.value"
+                  class="priority-option"
+                  :class="{ active: newTodoPriority === p.value }"
+                  :style="{ '--priority-color': p.color }"
+                  @click="newTodoPriority = p.value"
+                >
+                  <span class="priority-dot"></span>
+                  {{ p.label }}
+                </button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>截止日期</label>
+              <input v-model="newTodoDueDate" type="date" class="detail-input" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>所属清单</label>
+              <select v-model="newTodoProject" class="detail-input">
+                <option value="">无清单</option>
+                <option v-for="p in allProjects" :key="p.value" :value="p.value">{{ p.label }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>标签</label>
+            <div class="tag-picker">
+              <button
+                v-for="tag in allTags"
+                :key="tag"
+                class="tag-option"
+                :class="{ active: newTodoTags.includes(tag) }"
+                @click="toggleNewTag(tag)"
+              >{{ tag }}</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>备注</label>
+            <MarkdownEditor v-model="newTodoNotes" placeholder="添加备注，支持 Markdown..." :rows="3" />
+          </div>
+        </div>
+      </Modal>
+    </div>
+
+    <!-- 筛选与排序 -->
+    <div class="filter-bar">
+      <div class="filter-group">
+        <select v-model="statusFilter" class="filter-select">
+          <option value="all">全部</option>
+          <option value="active">进行中</option>
+          <option value="completed">已完成</option>
+          <option value="overdue">已过期</option>
+        </select>
+        <select v-model="projectFilter" class="filter-select">
+          <option value="">所有清单</option>
+          <option v-for="p in allProjects" :key="p.value" :value="p.value">{{ p.label }}</option>
+        </select>
+        <select v-model="tagFilter" class="filter-select">
+          <option value="">所有标签</option>
+          <option v-for="tag in allTags" :key="tag" :value="tag">{{ tag }}</option>
+        </select>
+        <select v-model="sortBy" class="filter-select">
+          <option value="priority">按优先级</option>
+          <option value="dueDate">按截止日期</option>
+          <option value="createdAt">按创建时间</option>
+        </select>
+      </div>
+      <div class="search-box">
+        <WsIcon name="search" :size="14" />
+        <input v-model="searchKeyword" type="text" placeholder="搜索待办..." class="search-input" />
+      </div>
+    </div>
+
+    <!-- 待办列表 -->
+    <div class="todo-list">
+      <template v-if="filteredTodos.length === 0">
+        <div class="empty-state">
+          <WsIcon name="checklist" :size="48" />
+          <span>暂无符合条件的待办事项</span>
+        </div>
+      </template>
+
+      <template v-for="(item, idx) in pagedItems" :key="item.isGroupHeader ? 'g-' + item.groupKey : item.todo!.id">
+        <div v-if="item.isGroupHeader" class="todo-group">
+          <div class="group-header">
+            <span class="group-title">{{ item.groupLabel }}</span>
+            <span class="group-count">{{ item.groupCount }}</span>
+          </div>
+        </div>
+        <div
+          v-else
+          class="todo-item"
+          :class="{ completed: item.todo!.done, overdue: item.todo!.dueDate && new Date(item.todo!.dueDate) < new Date(new Date().toDateString()) }"
+          :style="{ '--priority-color': getPriorityColor(item.todo!.priority) }"
+        >
+          <label class="todo-check">
+            <input type="checkbox" :checked="item.todo!.done" @change="toggleTodo(item.todo!.id)" />
+            <span class="checkmark"></span>
+          </label>
+          <div class="todo-content" @click="toggleExpand(item.todo!)">
+            <div class="todo-text">
+              <MarkdownRenderer :content="item.todo!.text" />
+            </div>
+            <div class="todo-meta">
+              <span class="priority-dot"></span>
+              <span class="priority-name">{{ priorityOptions.find(p => p.value === item.todo!.priority)?.label }}</span>
+              <span v-if="item.todo!.dueDate" class="due-date">{{ formatDate(item.todo!.dueDate) }}</span>
+              <span v-if="item.todo!.project" class="project-badge">{{ getProjectLabel(item.todo!.project) }}</span>
+              <span v-for="tag in item.todo!.tags" :key="tag" class="tag-badge">{{ tag }}</span>
+              <span v-if="item.todo!.subtasks.length > 0" class="subtask-count">
+                {{ item.todo!.subtasks.filter(s => s.done).length }}/{{ item.todo!.subtasks.length }}
+              </span>
+            </div>
+          </div>
+          <button @click.stop="deleteTodo(item.todo!.id)" class="delete-btn" title="删除">
+            <WsIcon name="x" :size="14" />
+          </button>
+
+          <!-- 展开详情 -->
+          <div v-if="expandedTodoId === item.todo!.id && editingTodo" class="todo-detail" @click.stop>
+            <div class="detail-row">
+              <label>任务</label>
+              <MarkdownEditor v-model="editingTodo.text" :rows="2" @change="saveEdit" />
+            </div>
+            <div class="detail-row">
+              <label>优先级</label>
+              <select v-model="editingTodo.priority" class="detail-input" @change="saveEdit">
+                <option value="high">高</option>
+                <option value="medium">中</option>
+                <option value="low">低</option>
+              </select>
+            </div>
+            <div class="detail-row">
+              <label>截止日期</label>
+              <input v-model="editingTodo.dueDate" type="date" class="detail-input" @change="saveEdit" />
+            </div>
+            <div class="detail-row">
+              <label>清单</label>
+              <select v-model="editingTodo.project" class="detail-input" @change="saveEdit">
+                <option value="">无清单</option>
+                <option v-for="p in allProjects" :key="p.value" :value="p.value">{{ p.label }}</option>
+              </select>
+            </div>
+            <div class="detail-row">
+              <label>标签</label>
+              <div class="tag-picker">
+                <button
+                  v-for="tag in allTags"
+                  :key="tag"
+                  class="tag-option"
+                  :class="{ active: editingTodo.tags.includes(tag) }"
+                  @click="toggleTag(tag)"
+                >{{ tag }}</button>
+              </div>
+            </div>
+            <div class="detail-row">
+              <label>备注</label>
+              <textarea v-model="editingTodo.notes" class="detail-textarea" rows="2" @change="saveEdit"></textarea>
+            </div>
+
+            <!-- 子任务 -->
+            <div class="subtask-section">
+              <label>子任务</label>
+              <div v-for="sub in item.todo!.subtasks" :key="sub.id" class="subtask-item">
+                <label class="subtask-check">
+                  <input type="checkbox" :checked="sub.done" @change="toggleSubTodo(item.todo!.id, sub.id)" />
+                  <span class="checkmark small"></span>
+                </label>
+                <span class="subtask-text" :class="{ done: sub.done }">{{ sub.text }}</span>
+                <button class="subtask-delete" @click="deleteSubTodo(item.todo!.id, sub.id)">
+                  <WsIcon name="x" :size="12" />
+                </button>
+              </div>
+              <div class="subtask-add">
+                <input
+                  v-model="newSubTodoText"
+                  type="text"
+                  placeholder="添加子任务..."
+                  class="detail-input"
+                  @keyup.enter="handleAddSubTodo(item.todo!.id)"
+                />
+                <button class="add-btn small" @click="handleAddSubTodo(item.todo!.id)">添加</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <Pagination
+        v-model:current-page="currentPage"
+        :total-pages="totalPages"
+        :total="flatGroupedItems.length"
+      />
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.todo-module {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.todo-stats {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  flex-wrap: wrap;
+}
+
+.stats-ring {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+}
+
+.ring-svg {
+  transform: rotate(-90deg);
+  width: 100%;
+  height: 100%;
+}
+
+.ring-bg {
+  fill: none;
+  stroke: var(--border-color);
+  stroke-width: 5;
+}
+
+.ring-fill {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 5;
+  stroke-linecap: round;
+  transition: stroke-dasharray 0.5s ease;
+}
+
+.ring-center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring-pct {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.ring-label {
+  font-size: 0.55rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.stats-numbers {
+  flex: 1;
+  display: flex;
+  gap: 1rem;
+}
+
+.stat-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.stat-value.completed { color: #22c55e; }
+.stat-value.overdue { color: #ef4444; }
+
+.stat-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
+.stats-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.action-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+}
+
+.action-btn.danger:hover {
+  border-color: #ef4444;
+  color: #ef4444;
+}
+
+.add-todo-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.add-toggle-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.65rem;
+  border: 1px dashed var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.add-toggle-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.form-group label {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+}
+
+.priority-picker {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.priority-option {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-input);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.priority-option:hover {
+  background: var(--bg-card-hover);
+}
+
+.priority-option.active {
+  border-color: var(--priority-color);
+  color: var(--priority-color);
+  background: rgba(from var(--priority-color) r g b / 0.1);
+}
+
+.todo-input,
+.priority-select,
+.date-input,
+.project-select,
+.filter-select,
+.search-input,
+.detail-input,
+.detail-textarea {
+  padding: 0.4rem 0.65rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-input);
+  color: var(--text-primary);
+  font-size: 0.825rem;
+  outline: none;
+}
+
+.todo-input:focus,
+.priority-select:focus,
+.date-input:focus,
+.project-select:focus,
+.filter-select:focus,
+.search-input:focus,
+.detail-input:focus,
+.detail-textarea:focus {
+  border-color: var(--accent);
+}
+
+.todo-input {
+  min-width: 180px;
+}
+
+.tag-picker {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag-option {
+  padding: 0.25rem 0.55rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  background: var(--bg-input);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.tag-option.active {
+  background: var(--accent-light);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.form-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+
+.add-btn,
+.cancel-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.add-btn {
+  background: var(--accent);
+  color: white;
+}
+
+.add-btn:hover {
+  opacity: 0.9;
+}
+
+.add-btn.small {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+.cancel-btn {
+  background: var(--bg-input);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.cancel-btn:hover {
+  background: var(--bg-card-hover);
+}
+
+.filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.filter-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.4rem 0.7rem;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  background: var(--bg-input);
+  color: var(--text-secondary);
+}
+
+.search-input {
+  border: none;
+  background: transparent;
+  padding: 0;
+  width: 140px;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.todo-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.group-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.2rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.group-title {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.group-count {
+  padding: 0.1rem 0.4rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-sm);
+  font-size: 0.7rem;
+}
+
+.todo-item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.65rem 0.75rem;
+  background: var(--bg-card);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--priority-color, var(--border-color));
+  transition: all 0.2s;
+}
+
+.todo-item:hover {
+  background: var(--bg-card-hover);
+}
+
+.todo-item.completed {
+  opacity: 0.55;
+}
+
+.todo-item.completed .todo-text {
+  text-decoration: line-through;
+}
+
+.todo-item.overdue {
+  border-left-color: #ef4444;
+}
+
+.todo-check {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-top: 0.15rem;
+}
+
+.todo-check input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkmark {
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--border-color);
+  border-radius: 4px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkmark.small {
+  width: 14px;
+  height: 14px;
+}
+
+.todo-check input:checked + .checkmark {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.todo-check input:checked + .checkmark::after {
+  content: '';
+  width: 5px;
+  height: 9px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  margin-top: -2px;
+}
+
+.todo-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+  cursor: pointer;
+}
+
+.todo-text :deep(.markdown-body) {
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.todo-text :deep(.markdown-body p) {
+  margin: 0;
+}
+
+.todo-text :deep(.markdown-body p + p) {
+  margin-top: 0.25rem;
+}
+
+.todo-text {
+  font-size: 0.875rem;
+  color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.todo-meta {
+  display: flex;
+  gap: 0.4rem;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: 0.7rem;
+}
+
+.priority-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--priority-color, var(--text-secondary));
+  flex-shrink: 0;
+}
+
+.priority-name {
+  color: var(--text-secondary);
+}
+
+.due-date {
+  color: var(--text-secondary);
+}
+
+.project-badge,
+.tag-badge {
+  padding: 0.1rem 0.35rem;
+  border-radius: var(--radius-sm);
+  background: var(--bg-input);
+  color: var(--text-secondary);
+  font-size: 0.65rem;
+}
+
+.subtask-count {
+  color: var(--accent);
+  font-size: 0.65rem;
+}
+
+.delete-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.3rem;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  opacity: 0;
+  flex-shrink: 0;
+}
+
+.todo-item:hover .delete-btn {
+  opacity: 1;
+}
+
+.delete-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+}
+
+.todo-detail {
+  width: 100%;
+  margin-top: 0.5rem;
+  padding: 0.75rem;
+  background: var(--bg-input);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.detail-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.detail-row label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+.detail-textarea {
+  resize: vertical;
+  font-family: inherit;
+}
+
+.subtask-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.subtask-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0;
+}
+
+.subtask-text {
+  flex: 1;
+  font-size: 0.8rem;
+  color: var(--text-primary);
+}
+
+.subtask-text.done {
+  text-decoration: line-through;
+  opacity: 0.55;
+}
+
+.subtask-delete {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.2rem;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.subtask-delete:hover {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.subtask-add {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0.6;
+}
+
+@media (max-width: 768px) {
+  .add-todo-form {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

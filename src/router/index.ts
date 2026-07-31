@@ -33,16 +33,26 @@ const router = createRouter({
       name: 'chapter',
       component: () => import('../views/ChapterView.vue'),
     },
-    // 工作台（待办 + 生活合并）
+    // AI 工作台
     {
-      path: '/todo',
+      path: '/workspace',
       name: 'workspace',
-      component: () => import('../views/TodoIndex.vue'),
+      component: () => import('../views/Workspace.vue'),
+    },
+    // 设置页面
+    {
+      path: '/settings',
+      name: 'settings',
+      component: () => import('../views/Settings.vue'),
     },
     // 旧路由兼容重定向
     {
+      path: '/todo',
+      redirect: '/workspace',
+    },
+    {
       path: '/life',
-      redirect: '/todo',
+      redirect: '/workspace',
     },
   ],
 })

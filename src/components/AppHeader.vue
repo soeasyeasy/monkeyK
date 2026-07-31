@@ -18,7 +18,7 @@ import WeatherWidget from './WeatherWidget.vue'
       <nav class="header-nav">
         <SearchBar />
         <RouterLink to="/tutorials" class="nav-link">知识库</RouterLink>
-        <RouterLink to="/todo" class="nav-link">工作台</RouterLink>
+        <RouterLink to="/workspace" class="nav-link">工作台</RouterLink>
         <a href="https://github.com/soeasyeasy/monkeyK" target="_blank" rel="noopener" class="nav-link github-link">GitHub</a>
         <WeatherWidget />
         <ThemeSwitcher />
