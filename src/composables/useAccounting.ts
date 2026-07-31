@@ -241,6 +241,37 @@ export function useAccounting() {
     return result.sort((a, b) => b.percentage - a.percentage)
   }
 
+  // 获取指定月份每天的支出总额（用于月视图柱状图）
+  function getMonthDailyTotal(year: number, month: number): { date: string; amount: number }[] {
+    const result: { date: string; amount: number }[] = []
+    const daysInMonth = new Date(year, month, 0).getDate()
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`
+      const amount = expenses.value
+        .filter(e => e.date === dateStr)
+        .reduce((sum, e) => sum + e.amount, 0)
+      result.push({ date: dateStr, amount })
+    }
+
+    return result
+  }
+
+  // 获取指定年份每月的支出总额（用于年视图柱状图）
+  function getYearlyMonthlyTotal(year: number): { month: number; label: string; amount: number }[] {
+    const result: { month: number; label: string; amount: number }[] = []
+
+    for (let m = 1; m <= 12; m++) {
+      const monthStr = `${year}-${String(m).padStart(2, '0')}`
+      const amount = expenses.value
+        .filter(e => e.date.startsWith(monthStr))
+        .reduce((sum, e) => sum + e.amount, 0)
+      result.push({ month: m, label: `${m}月`, amount })
+    }
+
+    return result
+  }
+
   // 获取所有分类（去重）
   function getAllCategories(): string[] {
     const categories = new Set(expenses.value.map(e => e.category))
@@ -266,6 +297,8 @@ export function useAccounting() {
     getMonthComparison,
     searchExpenses,
     getOverBudgetCategories,
-    getAllCategories
+    getAllCategories,
+    getMonthDailyTotal,
+    getYearlyMonthlyTotal
   }
 }

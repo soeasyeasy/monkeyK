@@ -76,10 +76,19 @@ export interface KeyResult {
   progress: number // 0-100
 }
 
+// 收藏夹
+export interface Favorite {
+  id: number
+  title: string
+  url: string
+  category: string
+  createdAt: number
+}
+
 // 工作台模块
 export interface WorkspaceModule {
   id: string
-  type: 'todo' | 'habit' | 'accounting' | 'goal'
+  type: 'todo' | 'habit' | 'accounting' | 'goal' | 'favorite'
   title: string
   visible: boolean
   order: number

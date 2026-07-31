@@ -24,7 +24,9 @@ const {
   getMonthComparison,
   getOverBudgetCategories,
   searchExpenses,
-  getCategoryBudgetProgress
+  getCategoryBudgetProgress,
+  getMonthDailyTotal,
+  getYearlyMonthlyTotal
 } = useAccounting()
 
 const showAddModal = ref(false)
@@ -91,6 +93,41 @@ const recentDaily = computed(() => getRecentDailyTotal(7))
 const monthComparison = computed(() => getMonthComparison())
 const overBudgetCategories = computed(() => getOverBudgetCategories())
 
+// 统计周期选择
+type ChartPeriod = 'week' | 'month' | 'year'
+const chartPeriod = ref<ChartPeriod>('week')
+
+const now = new Date()
+const chartYear = ref(now.getFullYear())
+const chartMonth = ref(now.getMonth() + 1)
+
+const chartData = computed(() => {
+  if (chartPeriod.value === 'week') {
+    return recentDaily.value.map(d => ({
+      label: formatDay(d.date),
+      amount: d.amount
+    }))
+  } else if (chartPeriod.value === 'month') {
+    const data = getMonthDailyTotal(chartYear.value, chartMonth.value)
+    return data.map(d => ({
+      label: new Date(d.date).getDate().toString(),
+      amount: d.amount
+    }))
+  } else {
+    const data = getYearlyMonthlyTotal(chartYear.value)
+    return data.map(d => ({
+      label: d.label,
+      amount: d.amount
+    }))
+  }
+})
+
+const chartTitle = computed(() => {
+  if (chartPeriod.value === 'week') return '最近 7 天支出'
+  if (chartPeriod.value === 'month') return `${chartYear.value}年${chartMonth.value}月 每日支出`
+  return `${chartYear.value}年 月度支出`
+})
+
 const filteredExpenses = computed(() => searchExpenses(searchKeyword.value, categoryFilter.value))
 
 // 分页
@@ -104,7 +141,7 @@ const pagedExpenses = computed(() => {
 watch([searchKeyword, categoryFilter], () => { currentPage.value = 1 })
 
 const chartMax = computed(() => {
-  const max = Math.max(...recentDaily.value.map(d => d.amount), 1)
+  const max = Math.max(...chartData.value.map(d => d.amount), 1)
   return max
 })
 
@@ -173,19 +210,30 @@ function formatDay(dateStr: string): string {
       </div>
     </div>
 
-    <!-- 7 天支出柱状图 -->
+    <!-- 支出柱状图 -->
     <div class="chart-card">
-      <div class="chart-title">最近 7 天支出</div>
-      <div class="mini-chart">
-        <div v-for="day in recentDaily" :key="day.date" class="chart-col">
+      <div class="chart-header">
+        <div class="chart-title">{{ chartTitle }}</div>
+        <div class="period-tabs">
+          <button
+            v-for="p in (['week', 'month', 'year'] as ChartPeriod[])"
+            :key="p"
+            class="period-tab"
+            :class="{ active: chartPeriod === p }"
+            @click="chartPeriod = p"
+          >{{ p === 'week' ? '周' : p === 'month' ? '月' : '年' }}</button>
+        </div>
+      </div>
+      <div class="mini-chart" :class="{ 'month-chart': chartPeriod === 'month' }">
+        <div v-for="(item, idx) in chartData" :key="idx" class="chart-col">
           <div class="chart-bar-wrap">
             <div
               class="chart-bar"
-              :style="{ height: `${(day.amount / chartMax) * 100}%` }"
+              :style="{ height: `${(item.amount / chartMax) * 100}%` }"
             ></div>
           </div>
-          <span class="chart-day">{{ formatDay(day.date) }}</span>
-          <span class="chart-amount">¥{{ day.amount }}</span>
+          <span class="chart-day" :class="{ 'hide-odd': chartPeriod === 'month' }">{{ item.label }}</span>
+          <span class="chart-amount" v-if="item.amount > 0">¥{{ item.amount }}</span>
         </div>
       </div>
     </div>
@@ -473,11 +521,46 @@ function formatDay(dateStr: string): string {
   border-radius: var(--radius-md);
 }
 
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
 .chart-title {
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: 0.75rem;
+}
+
+.period-tabs {
+  display: flex;
+  gap: 0.25rem;
+  background: var(--bg-input);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+}
+
+.period-tab {
+  padding: 0.2rem 0.6rem;
+  font-size: 0.72rem;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s;
+  font-weight: 500;
+}
+
+.period-tab:hover {
+  color: var(--text-primary);
+}
+
+.period-tab.active {
+  background: var(--accent);
+  color: white;
 }
 
 .mini-chart {
@@ -521,6 +604,34 @@ function formatDay(dateStr: string): string {
   font-size: 0.65rem;
   color: var(--text-primary);
   font-weight: 600;
+}
+
+.mini-chart.month-chart {
+  gap: 0.15rem;
+}
+
+.mini-chart.month-chart .chart-col {
+  min-width: 0;
+}
+
+.mini-chart.month-chart .chart-bar {
+  width: 8px;
+}
+
+.mini-chart.month-chart .chart-day {
+  font-size: 0.55rem;
+}
+
+.mini-chart.month-chart .chart-amount {
+  display: none;
+}
+
+.hide-odd {
+  visibility: hidden;
+}
+
+.hide-odd:nth-child(5n) {
+  visibility: visible;
 }
 
 .over-budget-alert {

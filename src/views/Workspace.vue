@@ -16,6 +16,7 @@ import AccountingModule from '../components/workspace/AccountingModule.vue'
 import GoalModule from '../components/workspace/GoalModule.vue'
 import CalendarView from '../components/workspace/CalendarView.vue'
 import SmallCalendar from '../components/workspace/SmallCalendar.vue'
+import FavoriteModule from '../components/workspace/FavoriteModule.vue'
 import ModuleCard from '../components/workspace/ModuleCard.vue'
 import WsIcon from '../components/workspace/WsIcon.vue'
 
@@ -49,18 +50,21 @@ const currentDate = computed(() => {
   return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日 星期${weekdays[date.getDay()]}`
 })
 
-type NavId = 'home' | 'todo' | 'habit' | 'accounting' | 'goal' | 'calendar'
+type NavId = 'home' | 'todo' | 'habit' | 'accounting' | 'goal' | 'calendar' | 'favorite'
 
 const activeNav = ref<NavId>('home')
 
-const navItems = computed(() => [
-  { id: 'home' as NavId, icon: 'home', label: '首页控制台' },
-  { id: 'todo' as NavId, icon: 'checklist', label: '待办事项' },
-  { id: 'habit' as NavId, icon: 'flame', label: '习惯打卡' },
-  { id: 'accounting' as NavId, icon: 'wallet', label: '记账管理' },
-  { id: 'goal' as NavId, icon: 'target', label: '目标追踪' },
-  { id: 'calendar' as NavId, icon: 'calendar', label: '日程' }
-].map(item => ({ ...item, active: item.id === activeNav.value })))
+const navItems = computed(() =>
+  [
+    { id: 'home' as NavId, icon: 'home', label: '首页控制台' },
+    { id: 'todo' as NavId, icon: 'checklist', label: '待办事项' },
+    { id: 'habit' as NavId, icon: 'flame', label: '习惯打卡' },
+    { id: 'accounting' as NavId, icon: 'wallet', label: '记账管理' },
+    { id: 'goal' as NavId, icon: 'target', label: '目标追踪' },
+    { id: 'calendar' as NavId, icon: 'calendar', label: '我的日程' },
+    { id: 'favorite' as NavId, icon: 'bookmark', label: '我的收藏' },
+  ].map((item) => ({ ...item, active: item.id === activeNav.value })),
+)
 
 const pageTitle = computed(() => {
   const titles: Record<NavId, string> = {
@@ -69,7 +73,8 @@ const pageTitle = computed(() => {
     habit: '习惯打卡',
     accounting: '记账管理',
     goal: '目标追踪',
-    calendar: '日程'
+    calendar: '我的日程',
+    favorite: '我的收藏',
   }
   return titles[activeNav.value]
 })
@@ -81,10 +86,10 @@ function goToCalendar() {
 const todayTodoStats = computed(() => getTodayStats())
 
 const todayHabitStats = computed(() => {
-  const activeHabits = habits.value.filter(h => h.active)
-  const completed = activeHabits.filter(h => {
+  const activeHabits = habits.value.filter((h) => h.active)
+  const completed = activeHabits.filter((h) => {
     const today = new Date().toISOString().split('T')[0] ?? ''
-    return h.records.some(r => r.date === today && r.completed)
+    return h.records.some((r) => r.date === today && r.completed)
   }).length
   return { total: activeHabits.length, completed }
 })
@@ -139,8 +144,12 @@ const goToSettings = () => router.push('/settings')
           :title="sidebarCollapsed ? '展开侧栏' : '收起侧栏'"
         >
           <svg
-            width="16" height="16" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
             :style="{ transform: sidebarCollapsed ? 'rotate(180deg)' : '' }"
           >
             <polyline points="15 18 9 12 15 6" />
@@ -208,8 +217,14 @@ const goToSettings = () => router.push('/settings')
           </template>
 
           <template v-if="activeNav === 'calendar'">
-            <ModuleCard title="日程" icon="calendar" :color="'#ec4899'">
+            <ModuleCard title="我的日程" icon="calendar" :color="'#ec4899'">
               <CalendarView />
+            </ModuleCard>
+          </template>
+
+          <template v-if="activeNav === 'favorite'">
+            <ModuleCard title="我的收藏" icon="bookmark" :color="'#ec4899'">
+              <FavoriteModule />
             </ModuleCard>
           </template>
         </div>
@@ -248,11 +263,15 @@ const goToSettings = () => router.push('/settings')
             <span class="info-label">今日概览</span>
             <div class="overview-stats">
               <div class="overview-item">
-                <span class="overview-value">{{ todayTodoStats.completed }}/{{ todayTodoStats.total }}</span>
+                <span class="overview-value"
+                  >{{ todayTodoStats.completed }}/{{ todayTodoStats.total }}</span
+                >
                 <span class="overview-label">待办完成</span>
               </div>
               <div class="overview-item">
-                <span class="overview-value">{{ todayHabitStats.completed }}/{{ todayHabitStats.total }}</span>
+                <span class="overview-value"
+                  >{{ todayHabitStats.completed }}/{{ todayHabitStats.total }}</span
+                >
                 <span class="overview-label">习惯打卡</span>
               </div>
             </div>
@@ -276,7 +295,14 @@ const goToSettings = () => router.push('/settings')
             <h2>AI 助手</h2>
           </div>
           <button @click="showAiAssistant = false" class="ai-close-btn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
               <line x1="18" y1="6" x2="6" y2="18" />
               <line x1="6" y1="6" x2="18" y2="18" />
             </svg>
@@ -293,7 +319,14 @@ const goToSettings = () => router.push('/settings')
           <div class="modal-header">
             <h2>管理模块</h2>
             <button @click="showModuleManager = false" class="ai-close-btn">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
                 <line x1="18" y1="6" x2="6" y2="18" />
                 <line x1="6" y1="6" x2="18" y2="18" />
               </svg>

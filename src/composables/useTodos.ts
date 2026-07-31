@@ -336,6 +336,90 @@ export function useTodos() {
     return { total, completed, rate: total > 0 ? Math.round((completed / total) * 100) : 0 }
   }
 
+  // 获取最近 7 天每天的完成数量（用于周视图柱状图）
+  function getWeekDailyStats(): { date: string; label: string; completed: number; total: number }[] {
+    const days = ['日', '一', '二', '三', '四', '五', '六']
+    const result: { date: string; label: string; completed: number; total: number }[] = []
+    const today = new Date()
+
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date(today)
+      d.setDate(d.getDate() - i)
+      const dateStr = d.toISOString().split('T')[0] ?? ''
+      const dayTodos = todos.value.filter(t => t.dueDate === dateStr)
+      const completed = dayTodos.filter(t => t.done).length
+      result.push({
+        date: dateStr,
+        label: days[d.getDay()]!,
+        completed,
+        total: dayTodos.length
+      })
+    }
+
+    return result
+  }
+
+  // 获取指定月份每天的完成数量（用于月视图柱状图）
+  function getMonthDailyStats(year: number, month: number): { date: string; label: string; completed: number; total: number }[] {
+    const result: { date: string; label: string; completed: number; total: number }[] = []
+    const daysInMonth = new Date(year, month, 0).getDate()
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`
+      const dayTodos = todos.value.filter(t => t.dueDate === dateStr)
+      const completed = dayTodos.filter(t => t.done).length
+      result.push({
+        date: dateStr,
+        label: String(d),
+        completed,
+        total: dayTodos.length
+      })
+    }
+
+    return result
+  }
+
+  // 获取指定年份每月的完成数量（用于年视图柱状图）
+  function getYearMonthlyStats(year: number): { month: number; label: string; completed: number; total: number }[] {
+    const result: { month: number; label: string; completed: number; total: number }[] = []
+
+    for (let m = 1; m <= 12; m++) {
+      const monthStr = `${year}-${String(m).padStart(2, '0')}`
+      const monthTodos = todos.value.filter(t => t.dueDate.startsWith(monthStr))
+      const completed = monthTodos.filter(t => t.done).length
+      result.push({ month: m, label: `${m}月`, completed, total: monthTodos.length })
+    }
+
+    return result
+  }
+
+  // 获取指定周期的统计概览
+  function getPeriodStats(type: 'week' | 'month' | 'year', year?: number, month?: number) {
+    let periodTodos: Todo[]
+
+    if (type === 'week') {
+      const cutoff = new Date()
+      cutoff.setDate(cutoff.getDate() - 6)
+      const cutoffStr = cutoff.toISOString().split('T')[0] ?? ''
+      const todayStr = getToday()
+      periodTodos = todos.value.filter(t => t.dueDate >= cutoffStr && t.dueDate <= todayStr)
+    } else if (type === 'month') {
+      const monthStr = `${year}-${String(month).padStart(2, '0')}`
+      periodTodos = todos.value.filter(t => t.dueDate.startsWith(monthStr))
+    } else {
+      const yearStr = String(year)
+      periodTodos = todos.value.filter(t => t.dueDate.startsWith(yearStr))
+    }
+
+    const total = periodTodos.length
+    const completed = periodTodos.filter(t => t.done).length
+    const active = periodTodos.filter(t => !t.done).length
+    const overdue = periodTodos.filter(t => isOverdue(t)).length
+    const rate = total > 0 ? Math.round((completed / total) * 100) : 0
+
+    return { total, completed, active, overdue, rate }
+  }
+
   return {
     todos,
     addTodo,
@@ -361,6 +445,10 @@ export function useTodos() {
     getProjects,
     getTags,
     getStats,
-    getTodayStats
+    getTodayStats,
+    getWeekDailyStats,
+    getMonthDailyStats,
+    getYearMonthlyStats,
+    getPeriodStats
   }
 }

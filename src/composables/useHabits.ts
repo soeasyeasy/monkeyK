@@ -241,6 +241,73 @@ export function useHabits() {
     }
   }
 
+  // 获取指定月份的所有日期
+  function getMonthDays(year: number, month: number): { label: string; date: string }[] {
+    const days = ['日', '一', '二', '三', '四', '五', '六']
+    const daysInMonth = new Date(year, month, 0).getDate()
+    const result: { label: string; date: string }[] = []
+
+    for (let d = 1; d <= daysInMonth; d++) {
+      const date = new Date(year, month - 1, d)
+      const dateStr = `${year}-${String(month).padStart(2, '0')}-${String(d).padStart(2, '0')}`
+      result.push({
+        label: days[date.getDay()]!,
+        date: dateStr
+      })
+    }
+
+    return result
+  }
+
+  // 获取指定月份每天的全局打卡统计（用于月热力图）
+  function getMonthlyHeatmap(year: number, month: number): { date: string; label: string; completed: number; total: number }[] {
+    const days = getMonthDays(year, month)
+    const activeHabits = habits.value.filter(h => h.active)
+    const total = activeHabits.length
+
+    return days.map(day => {
+      const completed = activeHabits.filter(h => {
+        const record = h.records.find(r => r.date === day.date)
+        return record?.completed || false
+      }).length
+      return { date: day.date, label: day.label, completed, total }
+    })
+  }
+
+  // 获取指定年份每月的打卡统计（用于年视图）
+  function getYearlyStats(year: number): { month: number; label: string; completedDays: number; totalDays: number; rate: number }[] {
+    const result: { month: number; label: string; completedDays: number; totalDays: number; rate: number }[] = []
+    const now = new Date()
+    const currentMonth = now.getFullYear() === year ? now.getMonth() + 1 : 12
+
+    for (let m = 1; m <= currentMonth; m++) {
+      const daysInMonth = new Date(year, m, 0).getDate()
+      const today = new Date()
+      // 如果是当月，只算到今天为止的天数
+      const effectiveDays = (year === now.getFullYear() && m === now.getMonth() + 1)
+        ? now.getDate()
+        : daysInMonth
+
+      let completedDays = 0
+      for (let d = 1; d <= effectiveDays; d++) {
+        const dateStr = `${year}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`
+        const activeHabits = habits.value.filter(h => h.active)
+        if (activeHabits.length === 0) continue
+        const doneCount = activeHabits.filter(h => {
+          const record = h.records.find(r => r.date === dateStr)
+          return record?.completed || false
+        }).length
+        // 当天超过半数习惯完成算作一个完成日
+        if (doneCount >= Math.ceil(activeHabits.length / 2)) completedDays++
+      }
+
+      const rate = effectiveDays > 0 ? Math.round((completedDays / effectiveDays) * 100) : 0
+      result.push({ month: m, label: `${m}月`, completedDays, totalDays: effectiveDays, rate })
+    }
+
+    return result
+  }
+
   return {
     habits,
     addHabit,
@@ -254,6 +321,9 @@ export function useHabits() {
     getWeeklyRecords,
     getCompletionRate,
     getTotalCheckIns,
-    toggleActive
+    toggleActive,
+    getMonthDays,
+    getMonthlyHeatmap,
+    getYearlyStats
   }
 }

@@ -37,6 +37,14 @@ export const defaultModules: WorkspaceModule[] = [
     order: 3,
     collapsed: false,
   },
+  {
+    id: 'favorite',
+    type: 'favorite',
+    title: '我的收藏',
+    visible: true,
+    order: 4,
+    collapsed: false,
+  },
 ]
 
 // AI 厂家预设配置
@@ -52,7 +60,7 @@ export const aiProviders: AiProviderConfig[] = [
       { value: 'gpt-4o-mini', label: 'GPT-4o Mini' },
       { value: 'gpt-4-turbo-preview', label: 'GPT-4 Turbo' },
       { value: 'gpt-3.5-turbo', label: 'GPT-3.5 Turbo' },
-    ]
+    ],
   },
   {
     id: 'deepseek',
@@ -63,7 +71,7 @@ export const aiProviders: AiProviderConfig[] = [
     models: [
       { value: 'deepseek-chat', label: 'DeepSeek Chat' },
       { value: 'deepseek-reasoner', label: 'DeepSeek Reasoner' },
-    ]
+    ],
   },
   {
     id: 'qwen',
@@ -75,7 +83,7 @@ export const aiProviders: AiProviderConfig[] = [
       { value: 'qwen-turbo', label: 'Qwen Turbo' },
       { value: 'qwen-plus', label: 'Qwen Plus' },
       { value: 'qwen-max', label: 'Qwen Max' },
-    ]
+    ],
   },
   {
     id: 'moonshot',
@@ -87,7 +95,7 @@ export const aiProviders: AiProviderConfig[] = [
       { value: 'moonshot-v1-8k', label: 'Moonshot v1 8K' },
       { value: 'moonshot-v1-32k', label: 'Moonshot v1 32K' },
       { value: 'moonshot-v1-128k', label: 'Moonshot v1 128K' },
-    ]
+    ],
   },
   {
     id: 'zhipu',
@@ -99,7 +107,7 @@ export const aiProviders: AiProviderConfig[] = [
       { value: 'glm-4-flash', label: 'GLM-4 Flash' },
       { value: 'glm-4', label: 'GLM-4' },
       { value: 'glm-4-plus', label: 'GLM-4 Plus' },
-    ]
+    ],
   },
   {
     id: 'custom',
@@ -107,7 +115,7 @@ export const aiProviders: AiProviderConfig[] = [
     icon: '自',
     defaultApiUrl: '',
     color: '#6b7280',
-    models: []
+    models: [],
   },
 ]
 
@@ -140,8 +148,22 @@ export const expenseCategories = [
 
 // 习惯图标选项（使用 WsIcon 名称）
 export const habitIcons = [
-  'book', 'run', 'flame', 'target', 'pen', 'palette', 'music', 'moon',
-  'salad', 'droplet', 'sun', 'note', 'brain', 'monitor', 'smartphone', 'zap',
+  'book',
+  'run',
+  'flame',
+  'target',
+  'pen',
+  'palette',
+  'music',
+  'moon',
+  'salad',
+  'droplet',
+  'sun',
+  'note',
+  'brain',
+  'monitor',
+  'smartphone',
+  'zap',
 ]
 
 // 目标类型选项
@@ -171,3 +193,12 @@ export const projectOptions = [
 
 // 待办标签建议
 export const tagSuggestions = ['重要', '紧急', '长期', '日常', '会议', '阅读', '运动', '写作']
+
+// 收藏夹默认分类
+export const favoriteCategories = [
+  { id: 'study', name: '学习', color: '#3b82f6' },
+  { id: 'work', name: '工作', color: '#10b981' },
+  { id: 'tool', name: '工具', color: '#f59e0b' },
+  { id: 'entertainment', name: '娱乐', color: '#ec4899' },
+  { id: 'other', name: '其他', color: '#6b7280' },
+]

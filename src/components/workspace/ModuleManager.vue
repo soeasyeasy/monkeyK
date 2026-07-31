@@ -13,21 +13,24 @@ const moduleIcons: Record<string, string> = {
   todo: 'checklist',
   habit: 'flame',
   accounting: 'wallet',
-  goal: 'target'
+  goal: 'target',
+  favorite: 'bookmark',
 }
 
 const moduleNames: Record<string, string> = {
   todo: '待办事项',
   habit: '习惯打卡',
   accounting: '记账管理',
-  goal: '目标追踪'
+  goal: '目标追踪',
+  favorite: '我的收藏',
 }
 
 const moduleDescs: Record<string, string> = {
   todo: '管理日常待办，追踪任务进度',
   habit: '养成好习惯，每日打卡记录',
   accounting: '记录日常支出，管理财务预算',
-  goal: '设定目标，追踪实现进度'
+  goal: '设定目标，追踪实现进度',
+  favorite: '收藏常用网址，按分类快速跳转',
 }
 
 const localModules = ref(modules.value)
@@ -59,16 +62,10 @@ const handleClose = () => {
     </div>
 
     <div class="manager-content">
-      <p class="description">
-        选择要显示的模块。你可以在工作台上拖拽模块来调整顺序。
-      </p>
+      <p class="description">选择要显示的模块。你可以在工作台上拖拽模块来调整顺序。</p>
 
       <div class="module-list">
-        <div
-          v-for="module in localModules"
-          :key="module.id"
-          class="module-item"
-        >
+        <div v-for="module in localModules" :key="module.id" class="module-item">
           <div class="module-info">
             <div class="module-icon">
               <WsIcon :name="moduleIcons[module.type] || 'grid'" :size="24" />
@@ -241,7 +238,7 @@ const handleClose = () => {
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 18px;
   width: 18px;
   left: 2px;

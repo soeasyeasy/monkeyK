@@ -8,6 +8,7 @@ import TodoModule from './TodoModule.vue'
 import HabitModule from './HabitModule.vue'
 import AccountingModule from './AccountingModule.vue'
 import GoalModule from './GoalModule.vue'
+import FavoriteModule from './FavoriteModule.vue'
 
 const { modules, toggleModuleCollapsed } = useWorkspace()
 
@@ -15,23 +16,18 @@ const moduleMeta: Record<string, { icon: string; color: string }> = {
   todo: { icon: 'checklist', color: '#3b82f6' },
   habit: { icon: 'flame', color: '#f59e0b' },
   accounting: { icon: 'wallet', color: '#10b981' },
-  goal: { icon: 'target', color: '#8b5cf6' }
+  goal: { icon: 'target', color: '#8b5cf6' },
+  favorite: { icon: 'bookmark', color: '#ec4899' },
 }
 
-const dragList = ref(
-  [...modules.value]
-    .filter((m) => m.visible)
-    .sort((a, b) => a.order - b.order)
-)
+const dragList = ref([...modules.value].filter((m) => m.visible).sort((a, b) => a.order - b.order))
 
 watch(
   () => modules.value.map((m) => ({ id: m.id, visible: m.visible, order: m.order })),
   () => {
-    dragList.value = [...modules.value]
-      .filter((m) => m.visible)
-      .sort((a, b) => a.order - b.order)
+    dragList.value = [...modules.value].filter((m) => m.visible).sort((a, b) => a.order - b.order)
   },
-  { deep: true }
+  { deep: true },
 )
 
 function handleDragEnd() {
@@ -71,6 +67,7 @@ function handleDragEnd() {
             <HabitModule v-else-if="element.type === 'habit'" />
             <AccountingModule v-else-if="element.type === 'accounting'" />
             <GoalModule v-else-if="element.type === 'goal'" />
+            <FavoriteModule v-else-if="element.type === 'favorite'" />
           </ModuleCard>
         </div>
       </template>

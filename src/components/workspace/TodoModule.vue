@@ -32,7 +32,11 @@ const {
   clearCompleted,
   getStats,
   getProjects,
-  getTags
+  getTags,
+  getWeekDailyStats,
+  getMonthDailyStats,
+  getYearMonthlyStats,
+  getPeriodStats
 } = useTodos()
 
 // 添加表单
@@ -259,6 +263,48 @@ const completionRate = computed(() => {
   return Math.round((stats.value.completed / stats.value.total) * 100)
 })
 
+// 统计周期选择
+type StatsPeriod = 'week' | 'month' | 'year'
+const statsPeriod = ref<StatsPeriod>('week')
+
+const now = new Date()
+const statsYear = ref(now.getFullYear())
+const statsMonth = ref(now.getMonth() + 1)
+
+const periodStats = computed(() => getPeriodStats(statsPeriod.value, statsYear.value, statsMonth.value))
+
+const periodRate = computed(() => periodStats.value.rate)
+
+const chartData = computed(() => {
+  if (statsPeriod.value === 'week') {
+    return getWeekDailyStats().map(d => ({
+      label: d.label,
+      completed: d.completed,
+      total: d.total
+    }))
+  } else if (statsPeriod.value === 'month') {
+    return getMonthDailyStats(statsYear.value, statsMonth.value).map(d => ({
+      label: d.label,
+      completed: d.completed,
+      total: d.total
+    }))
+  } else {
+    return getYearMonthlyStats(statsYear.value).map(d => ({
+      label: d.label,
+      completed: d.completed,
+      total: d.total
+    }))
+  }
+})
+
+const chartMax = computed(() => Math.max(...chartData.value.map(d => d.total), 1))
+
+const periodTitle = computed(() => {
+  if (statsPeriod.value === 'week') return '最近 7 天'
+  if (statsPeriod.value === 'month') return `${statsYear.value}年${statsMonth.value}月`
+  return `${statsYear.value}年`
+})
+
 function circleDash(percent: number): string {
   const r = 28
   const c = 2 * Math.PI * r
@@ -281,28 +327,64 @@ const groupOrder = ['overdue', 'today', 'tomorrow', 'upcoming', 'noDate']
   <div class="todo-module">
     <!-- 顶部统计 -->
     <div class="todo-stats">
-      <div class="stats-ring">
-        <svg class="ring-svg" viewBox="0 0 70 70">
-          <circle cx="35" cy="35" r="28" class="ring-bg" />
-          <circle cx="35" cy="35" r="28" class="ring-fill" :stroke-dasharray="circleDash(completionRate)" />
-        </svg>
-        <div class="ring-center">
-          <span class="ring-pct">{{ completionRate }}%</span>
-          <span class="ring-label">完成率</span>
+      <div class="stats-header">
+        <span class="stats-period-title">{{ periodTitle }}</span>
+        <div class="period-tabs">
+          <button
+            v-for="p in (['week', 'month', 'year'] as StatsPeriod[])"
+            :key="p"
+            class="period-tab"
+            :class="{ active: statsPeriod === p }"
+            @click="statsPeriod = p"
+          >{{ p === 'week' ? '周' : p === 'month' ? '月' : '年' }}</button>
         </div>
       </div>
-      <div class="stats-numbers">
-        <div class="stat-item">
-          <span class="stat-value">{{ stats.active }}</span>
-          <span class="stat-label">待完成</span>
+      <div class="stats-body">
+        <div class="stats-ring">
+          <svg class="ring-svg" viewBox="0 0 70 70">
+            <circle cx="35" cy="35" r="28" class="ring-bg" />
+            <circle cx="35" cy="35" r="28" class="ring-fill" :stroke-dasharray="circleDash(periodRate)" />
+          </svg>
+          <div class="ring-center">
+            <span class="ring-pct">{{ periodRate }}%</span>
+            <span class="ring-label">完成率</span>
+          </div>
         </div>
-        <div class="stat-item">
-          <span class="stat-value completed">{{ stats.completed }}</span>
-          <span class="stat-label">已完成</span>
+        <div class="stats-numbers">
+          <div class="stat-item">
+            <span class="stat-value">{{ periodStats.total }}</span>
+            <span class="stat-label">总计</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value">{{ periodStats.active }}</span>
+            <span class="stat-label">待完成</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-value completed">{{ periodStats.completed }}</span>
+            <span class="stat-label">已完成</span>
+          </div>
+          <div class="stat-item" v-if="periodStats.overdue > 0">
+            <span class="stat-value overdue">{{ periodStats.overdue }}</span>
+            <span class="stat-label">已过期</span>
+          </div>
         </div>
-        <div class="stat-item" v-if="stats.overdue > 0">
-          <span class="stat-value overdue">{{ stats.overdue }}</span>
-          <span class="stat-label">已过期</span>
+      </div>
+      <!-- 完成趋势柱状图 -->
+      <div class="todo-chart" :class="{ 'month-chart': statsPeriod === 'month' }">
+        <div v-for="(item, idx) in chartData" :key="idx" class="chart-col">
+          <div class="chart-bar-wrap">
+            <div class="chart-bar-bg">
+              <div
+                class="chart-bar"
+                :style="{ height: `${(item.total / chartMax) * 100}%` }"
+              ></div>
+              <div
+                class="chart-bar-done"
+                :style="{ height: `${(item.completed / chartMax) * 100}%` }"
+              ></div>
+            </div>
+          </div>
+          <span class="chart-label" :class="{ 'hide-odd': statsPeriod === 'month' }">{{ item.label }}</span>
         </div>
       </div>
       <div class="stats-actions" v-if="todos.length > 0">
@@ -490,7 +572,7 @@ const groupOrder = ['overdue', 'today', 'tomorrow', 'upcoming', 'noDate']
         </div>
         <div class="detail-row">
           <label>优先级</label>
-          <span class="detail-preview-text">{{ priorityOptions.find(p => p.value === viewingTodo.priority)?.label }}</span>
+          <span class="detail-preview-text">{{ priorityOptions.find(p => p.value === viewingTodo!.priority)?.label }}</span>
         </div>
         <div class="detail-row">
           <label>截止日期</label>
@@ -615,11 +697,58 @@ const groupOrder = ['overdue', 'today', 'tomorrow', 'upcoming', 'noDate']
 
 .todo-stats {
   display: flex;
-  align-items: center;
-  gap: 1.25rem;
+  flex-direction: column;
+  gap: 0.75rem;
   padding: 1rem;
   background: var(--bg-card);
   border-radius: var(--radius-md);
+}
+
+.stats-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.stats-period-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.period-tabs {
+  display: flex;
+  gap: 0.25rem;
+  background: var(--bg-input);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+}
+
+.period-tab {
+  padding: 0.2rem 0.6rem;
+  font-size: 0.72rem;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s;
+  font-weight: 500;
+}
+
+.period-tab:hover {
+  color: var(--text-primary);
+}
+
+.period-tab.active {
+  background: var(--accent);
+  color: white;
+}
+
+.stats-body {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
   flex-wrap: wrap;
 }
 
@@ -727,6 +856,91 @@ const groupOrder = ['overdue', 'today', 'tomorrow', 'upcoming', 'noDate']
 .action-btn.danger:hover {
   border-color: #ef4444;
   color: #ef4444;
+}
+
+/* 完成趋势柱状图 */
+.todo-chart {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0.4rem;
+  height: 56px;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.todo-chart .chart-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.todo-chart .chart-bar-wrap {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 40px;
+}
+
+.chart-bar-bg {
+  position: relative;
+  width: 14px;
+  height: 100%;
+}
+
+.chart-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--bg-input);
+  border-radius: 3px 3px 0 0;
+  transition: height 0.3s ease;
+  min-height: 2px;
+}
+
+.chart-bar-done {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--accent);
+  border-radius: 3px 3px 0 0;
+  transition: height 0.3s ease;
+  min-height: 0;
+}
+
+.chart-label {
+  font-size: 0.6rem;
+  color: var(--text-secondary);
+}
+
+.todo-chart.month-chart {
+  gap: 0.1rem;
+}
+
+.todo-chart.month-chart .chart-col {
+  min-width: 0;
+}
+
+.todo-chart.month-chart .chart-bar-bg {
+  width: 6px;
+}
+
+.todo-chart.month-chart .chart-label {
+  font-size: 0.5rem;
+}
+
+.hide-odd {
+  visibility: hidden;
+}
+
+.hide-odd:nth-child(5n) {
+  visibility: visible;
 }
 
 .add-todo-section {

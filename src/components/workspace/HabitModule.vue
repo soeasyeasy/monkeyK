@@ -22,7 +22,9 @@ const {
   getWeeklyRecords,
   getCompletionRate,
   getTotalCheckIns,
-  toggleActive
+  toggleActive,
+  getMonthlyHeatmap,
+  getYearlyStats
 } = useHabits()
 
 const showAddModal = ref(false)
@@ -114,6 +116,36 @@ const weeklyHeatmap = computed(() => {
     return { ...day, completed, total }
   })
 })
+
+// 统计周期选择
+type HeatmapPeriod = 'week' | 'month' | 'year'
+const heatmapPeriod = ref<HeatmapPeriod>('week')
+
+const now = new Date()
+const heatYear = ref(now.getFullYear())
+const heatMonth = ref(now.getMonth() + 1)
+
+const heatmapData = computed(() => {
+  if (heatmapPeriod.value === 'week') {
+    return weeklyHeatmap.value
+  } else if (heatmapPeriod.value === 'month') {
+    return getMonthlyHeatmap(heatYear.value, heatMonth.value)
+  } else {
+    // 年视图：按月显示完成率
+    return getYearlyStats(heatYear.value).map(m => ({
+      date: `${heatYear.value}-${String(m.month).padStart(2, '0')}`,
+      label: m.label,
+      completed: m.completedDays,
+      total: m.totalDays
+    }))
+  }
+})
+
+const heatmapTitle = computed(() => {
+  if (heatmapPeriod.value === 'week') return '本周热力'
+  if (heatmapPeriod.value === 'month') return `${heatYear.value}年${heatMonth.value}月`
+  return `${heatYear.value}年 月度完成率`
+})
 </script>
 
 <template>
@@ -131,17 +163,31 @@ const weeklyHeatmap = computed(() => {
       </button>
     </div>
 
-    <!-- 本周热力条 -->
-    <div class="weekly-heatmap">
-      <div v-for="day in weeklyHeatmap" :key="day.date" class="heat-day">
-        <span class="heat-label">{{ day.label }}</span>
-        <div class="heat-bar">
-          <div
-            class="heat-fill"
-            :style="{ height: day.total > 0 ? `${(day.completed / day.total) * 100}%` : '0%' }"
-          />
+    <!-- 热力条 -->
+    <div class="heatmap-section">
+      <div class="heatmap-header">
+        <span class="heatmap-title">{{ heatmapTitle }}</span>
+        <div class="period-tabs">
+          <button
+            v-for="p in (['week', 'month', 'year'] as HeatmapPeriod[])"
+            :key="p"
+            class="period-tab"
+            :class="{ active: heatmapPeriod === p }"
+            @click="heatmapPeriod = p"
+          >{{ p === 'week' ? '周' : p === 'month' ? '月' : '年' }}</button>
         </div>
-        <span class="heat-count">{{ day.completed }}</span>
+      </div>
+      <div class="weekly-heatmap" :class="{ 'month-heatmap': heatmapPeriod === 'month', 'year-heatmap': heatmapPeriod === 'year' }">
+        <div v-for="day in heatmapData" :key="day.date" class="heat-day">
+          <span class="heat-label">{{ heatmapPeriod === 'year' ? day.label : day.label }}</span>
+          <div class="heat-bar">
+            <div
+              class="heat-fill"
+              :style="{ height: day.total > 0 ? `${(day.completed / day.total) * 100}%` : '0%' }"
+            />
+          </div>
+          <span class="heat-count">{{ heatmapPeriod === 'year' ? (day.total > 0 ? Math.round((day.completed / day.total) * 100) + '%' : '-') : day.completed }}</span>
+        </div>
       </div>
     </div>
 
@@ -354,6 +400,53 @@ const weeklyHeatmap = computed(() => {
   border-radius: var(--radius-md);
 }
 
+.heatmap-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.heatmap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.heatmap-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.period-tabs {
+  display: flex;
+  gap: 0.25rem;
+  background: var(--bg-input);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+}
+
+.period-tab {
+  padding: 0.2rem 0.6rem;
+  font-size: 0.72rem;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.15s;
+  font-weight: 500;
+}
+
+.period-tab:hover {
+  color: var(--text-primary);
+}
+
+.period-tab.active {
+  background: var(--accent);
+  color: white;
+}
+
 .heat-day {
   flex: 1;
   display: flex;
@@ -388,6 +481,44 @@ const weeklyHeatmap = computed(() => {
   font-size: 0.7rem;
   font-weight: 600;
   color: var(--text-primary);
+}
+
+/* 月视图热力图 */
+.month-heatmap {
+  gap: 0.2rem;
+  flex-wrap: wrap;
+}
+
+.month-heatmap .heat-day {
+  flex: 0 0 calc((100% - 1.4rem) / 8);
+  min-width: 0;
+}
+
+.month-heatmap .heat-bar {
+  width: 8px;
+  height: 32px;
+}
+
+.month-heatmap .heat-label {
+  font-size: 0.55rem;
+}
+
+.month-heatmap .heat-count {
+  font-size: 0.55rem;
+}
+
+/* 年视图热力图 */
+.year-heatmap {
+  gap: 0.35rem;
+}
+
+.year-heatmap .heat-bar {
+  width: 14px;
+  height: 48px;
+}
+
+.year-heatmap .heat-label {
+  font-size: 0.65rem;
 }
 
 .modal-form {
