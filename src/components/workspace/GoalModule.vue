@@ -112,7 +112,7 @@ function formatTime(timestamp: number): string {
 const filteredGoals = computed(() => filterByStatus(statusFilter.value))
 
 // 分页
-const PAGE_SIZE = 10
+const PAGE_SIZE = 5
 const currentPage = ref(1)
 const totalPages = computed(() => Math.ceil(filteredGoals.value.length / PAGE_SIZE))
 const pagedGoals = computed(() => {

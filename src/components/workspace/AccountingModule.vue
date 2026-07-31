@@ -94,7 +94,7 @@ const overBudgetCategories = computed(() => getOverBudgetCategories())
 const filteredExpenses = computed(() => searchExpenses(searchKeyword.value, categoryFilter.value))
 
 // 分页
-const PAGE_SIZE = 10
+const PAGE_SIZE = 5
 const currentPage = ref(1)
 const totalPages = computed(() => Math.ceil(filteredExpenses.value.length / PAGE_SIZE))
 const pagedExpenses = computed(() => {

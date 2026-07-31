@@ -63,7 +63,7 @@ const visibleHabits = computed(() => {
 })
 
 // 分页
-const PAGE_SIZE = 10
+const PAGE_SIZE = 5
 const currentPage = ref(1)
 const totalPages = computed(() => Math.ceil(visibleHabits.value.length / PAGE_SIZE))
 const pagedHabits = computed(() => {

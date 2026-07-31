@@ -112,10 +112,31 @@ const filteredTodos = computed(() => {
 
 const groupedTodos = computed(() => groupByDueDate(filteredTodos.value))
 
-// 分页
-const PAGE_SIZE = 10
+// 分页（仅按实际待办条数分页）
+const PAGE_SIZE = 5
 const currentPage = ref(1)
 
+// 扁平化待办列表（不含分组头）
+const flatTodos = computed(() => {
+  const todos: Todo[] = []
+  const grouped = groupedTodos.value
+  for (const key of groupOrder) {
+    const group = grouped[key as keyof typeof grouped]
+    if (group && group.length > 0) {
+      todos.push(...group)
+    }
+  }
+  return todos
+})
+
+const totalPages = computed(() => Math.ceil(flatTodos.value.length / PAGE_SIZE))
+
+const pagedTodos = computed(() => {
+  const start = (currentPage.value - 1) * PAGE_SIZE
+  return flatTodos.value.slice(start, start + PAGE_SIZE)
+})
+
+// 按分组重新组装（含分组头）
 interface FlatItem {
   isGroupHeader: boolean
   groupKey?: string
@@ -124,26 +145,23 @@ interface FlatItem {
   todo?: Todo
 }
 
-const flatGroupedItems = computed<FlatItem[]>(() => {
+const pagedItems = computed<FlatItem[]>(() => {
   const items: FlatItem[] = []
   const grouped = groupedTodos.value
+  const pagedIds = new Set(pagedTodos.value.map(t => t.id))
   for (const key of groupOrder) {
     const group = grouped[key as keyof typeof grouped]
     if (group && group.length > 0) {
-      items.push({ isGroupHeader: true, groupKey: key, groupLabel: groupLabels[key], groupCount: group.length })
-      for (const todo of group) {
-        items.push({ isGroupHeader: false, todo })
+      const visibleTodos = group.filter(t => pagedIds.has(t.id))
+      if (visibleTodos.length > 0) {
+        items.push({ isGroupHeader: true, groupKey: key, groupLabel: groupLabels[key], groupCount: visibleTodos.length })
+        for (const todo of visibleTodos) {
+          items.push({ isGroupHeader: false, todo })
+        }
       }
     }
   }
   return items
-})
-
-const totalPages = computed(() => Math.ceil(flatGroupedItems.value.length / PAGE_SIZE))
-
-const pagedItems = computed(() => {
-  const start = (currentPage.value - 1) * PAGE_SIZE
-  return flatGroupedItems.value.slice(start, start + PAGE_SIZE)
 })
 
 watch([statusFilter, projectFilter, tagFilter, searchKeyword, sortBy], () => {
@@ -156,21 +174,33 @@ function handleCompleteAll() {
   if (ids.length) completeAll(ids)
 }
 
-// 展开编辑
-const expandedTodoId = ref<number | null>(null)
+// 弹窗详情/编辑
+const showDetailModal = ref(false)
+const showEditModal = ref(false)
+const viewingTodo = ref<Todo | null>(null)
 const editingTodo = ref<Todo | null>(null)
 
-function toggleExpand(todo: Todo) {
-  if (expandedTodoId.value === todo.id) {
-    expandedTodoId.value = null
-    editingTodo.value = null
-  } else {
-    expandedTodoId.value = todo.id
-    editingTodo.value = JSON.parse(JSON.stringify(todo))
-  }
+function openDetail(todo: Todo) {
+  viewingTodo.value = JSON.parse(JSON.stringify(todo))
+  showDetailModal.value = true
 }
 
-function saveEdit() {
+function openEdit(todo: Todo) {
+  editingTodo.value = JSON.parse(JSON.stringify(todo))
+  showEditModal.value = true
+}
+
+function closeDetail() {
+  showDetailModal.value = false
+  viewingTodo.value = null
+}
+
+function closeEdit() {
+  showEditModal.value = false
+  editingTodo.value = null
+}
+
+function saveAndCloseEdit() {
   if (!editingTodo.value) return
   updateTodo(editingTodo.value.id, {
     text: editingTodo.value.text,
@@ -180,6 +210,7 @@ function saveEdit() {
     tags: editingTodo.value.tags,
     notes: editingTodo.value.notes
   })
+  closeEdit()
 }
 
 const newSubTodoText = ref('')
@@ -274,7 +305,7 @@ const groupOrder = ['overdue', 'today', 'tomorrow', 'upcoming', 'noDate']
           <span class="stat-label">已过期</span>
         </div>
       </div>
-      <div class="stats-actions">
+      <div class="stats-actions" v-if="todos.length > 0">
         <button class="action-btn" @click="handleCompleteAll">
           <WsIcon name="check" :size="14" />
           全部完成
@@ -356,7 +387,7 @@ const groupOrder = ['overdue', 'today', 'tomorrow', 'upcoming', 'noDate']
     </div>
 
     <!-- 筛选与排序 -->
-    <div class="filter-bar">
+    <div class="filter-bar" v-if="todos.length > 0">
       <div class="filter-group">
         <select v-model="statusFilter" class="filter-select">
           <option value="all">全部</option>
@@ -406,11 +437,11 @@ const groupOrder = ['overdue', 'today', 'tomorrow', 'upcoming', 'noDate']
           :class="{ completed: item.todo!.done, overdue: item.todo!.dueDate && new Date(item.todo!.dueDate) < new Date(new Date().toDateString()) }"
           :style="{ '--priority-color': getPriorityColor(item.todo!.priority) }"
         >
-          <label class="todo-check">
+          <label class="todo-check" @click.stop>
             <input type="checkbox" :checked="item.todo!.done" @change="toggleTodo(item.todo!.id)" />
             <span class="checkmark"></span>
           </label>
-          <div class="todo-content" @click="toggleExpand(item.todo!)">
+          <div class="todo-content" @click="openDetail(item.todo!)">
             <div class="todo-text">
               <MarkdownRenderer :content="item.todo!.text" />
             </div>
@@ -425,86 +456,153 @@ const groupOrder = ['overdue', 'today', 'tomorrow', 'upcoming', 'noDate']
               </span>
             </div>
           </div>
+          <button @click.stop="openEdit(item.todo!)" class="edit-btn" title="编辑">
+            <WsIcon name="edit" :size="14" />
+          </button>
           <button @click.stop="deleteTodo(item.todo!.id)" class="delete-btn" title="删除">
             <WsIcon name="x" :size="14" />
           </button>
-
-          <!-- 展开详情 -->
-          <div v-if="expandedTodoId === item.todo!.id && editingTodo" class="todo-detail" @click.stop>
-            <div class="detail-row">
-              <label>任务</label>
-              <MarkdownEditor v-model="editingTodo.text" :rows="2" @change="saveEdit" />
-            </div>
-            <div class="detail-row">
-              <label>优先级</label>
-              <select v-model="editingTodo.priority" class="detail-input" @change="saveEdit">
-                <option value="high">高</option>
-                <option value="medium">中</option>
-                <option value="low">低</option>
-              </select>
-            </div>
-            <div class="detail-row">
-              <label>截止日期</label>
-              <input v-model="editingTodo.dueDate" type="date" class="detail-input" @change="saveEdit" />
-            </div>
-            <div class="detail-row">
-              <label>清单</label>
-              <select v-model="editingTodo.project" class="detail-input" @change="saveEdit">
-                <option value="">无清单</option>
-                <option v-for="p in allProjects" :key="p.value" :value="p.value">{{ p.label }}</option>
-              </select>
-            </div>
-            <div class="detail-row">
-              <label>标签</label>
-              <div class="tag-picker">
-                <button
-                  v-for="tag in allTags"
-                  :key="tag"
-                  class="tag-option"
-                  :class="{ active: editingTodo.tags.includes(tag) }"
-                  @click="toggleTag(tag)"
-                >{{ tag }}</button>
-              </div>
-            </div>
-            <div class="detail-row">
-              <label>备注</label>
-              <textarea v-model="editingTodo.notes" class="detail-textarea" rows="2" @change="saveEdit"></textarea>
-            </div>
-
-            <!-- 子任务 -->
-            <div class="subtask-section">
-              <label>子任务</label>
-              <div v-for="sub in item.todo!.subtasks" :key="sub.id" class="subtask-item">
-                <label class="subtask-check">
-                  <input type="checkbox" :checked="sub.done" @change="toggleSubTodo(item.todo!.id, sub.id)" />
-                  <span class="checkmark small"></span>
-                </label>
-                <span class="subtask-text" :class="{ done: sub.done }">{{ sub.text }}</span>
-                <button class="subtask-delete" @click="deleteSubTodo(item.todo!.id, sub.id)">
-                  <WsIcon name="x" :size="12" />
-                </button>
-              </div>
-              <div class="subtask-add">
-                <input
-                  v-model="newSubTodoText"
-                  type="text"
-                  placeholder="添加子任务..."
-                  class="detail-input"
-                  @keyup.enter="handleAddSubTodo(item.todo!.id)"
-                />
-                <button class="add-btn small" @click="handleAddSubTodo(item.todo!.id)">添加</button>
-              </div>
-            </div>
-          </div>
         </div>
       </template>
 
       <Pagination
         v-model:current-page="currentPage"
         :total-pages="totalPages"
-        :total="flatGroupedItems.length"
+        :total="flatTodos.length"
       />
     </div>
+
+    <!-- 详情弹窗 -->
+    <Modal
+      title="待办详情"
+      :visible="showDetailModal"
+      confirm-text="编辑"
+      cancel-text="关闭"
+      @close="closeDetail"
+      @confirm="if (viewingTodo) { closeDetail(); openEdit(viewingTodo) }"
+    >
+      <div class="modal-detail" v-if="viewingTodo">
+        <div class="detail-row">
+          <label>任务</label>
+          <div class="detail-preview">
+            <MarkdownRenderer :content="viewingTodo.text" />
+          </div>
+        </div>
+        <div class="detail-row">
+          <label>优先级</label>
+          <span class="detail-preview-text">{{ priorityOptions.find(p => p.value === viewingTodo.priority)?.label }}</span>
+        </div>
+        <div class="detail-row">
+          <label>截止日期</label>
+          <span class="detail-preview-text">{{ viewingTodo.dueDate || '无' }}</span>
+        </div>
+        <div class="detail-row">
+          <label>清单</label>
+          <span class="detail-preview-text">{{ getProjectLabel(viewingTodo.project) }}</span>
+        </div>
+        <div class="detail-row">
+          <label>标签</label>
+          <div class="detail-preview-text">
+            <span v-if="viewingTodo.tags.length === 0" class="text-muted">无</span>
+            <span v-for="tag in viewingTodo.tags" :key="tag" class="tag-badge">{{ tag }}</span>
+          </div>
+        </div>
+        <div class="detail-row" v-if="viewingTodo.notes">
+          <label>备注</label>
+          <div class="detail-preview">
+            <MarkdownRenderer :content="viewingTodo.notes" />
+          </div>
+        </div>
+        <div class="detail-row" v-if="viewingTodo.subtasks.length > 0">
+          <label>子任务</label>
+          <div v-for="sub in viewingTodo.subtasks" :key="sub.id" class="subtask-item">
+            <label class="subtask-check">
+              <input type="checkbox" :checked="sub.done" @change="toggleSubTodo(viewingTodo!.id, sub.id)" />
+              <span class="checkmark small"></span>
+            </label>
+            <span class="subtask-text" :class="{ done: sub.done }">{{ sub.text }}</span>
+          </div>
+        </div>
+      </div>
+    </Modal>
+
+    <!-- 编辑弹窗 -->
+    <Modal
+      title="编辑待办"
+      :visible="showEditModal"
+      confirm-text="保存"
+      cancel-text="取消"
+      :confirm-disabled="!editingTodo?.text.trim()"
+      @close="closeEdit"
+      @confirm="saveAndCloseEdit"
+    >
+      <div class="modal-form" v-if="editingTodo">
+        <div class="form-group">
+          <label>任务内容</label>
+          <MarkdownEditor v-model="editingTodo.text" :rows="2" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>优先级</label>
+            <select v-model="editingTodo.priority" class="detail-input">
+              <option value="high">高</option>
+              <option value="medium">中</option>
+              <option value="low">低</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>截止日期</label>
+            <input v-model="editingTodo.dueDate" type="date" class="detail-input" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>所属清单</label>
+          <select v-model="editingTodo.project" class="detail-input">
+            <option value="">无清单</option>
+            <option v-for="p in allProjects" :key="p.value" :value="p.value">{{ p.label }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>标签</label>
+          <div class="tag-picker">
+            <button
+              v-for="tag in allTags"
+              :key="tag"
+              class="tag-option"
+              :class="{ active: editingTodo.tags.includes(tag) }"
+              @click="toggleTag(tag)"
+            >{{ tag }}</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>备注</label>
+          <textarea v-model="editingTodo.notes" class="detail-textarea" rows="2"></textarea>
+        </div>
+        <div class="form-group" v-if="editingTodo.subtasks.length > 0">
+          <label>子任务</label>
+          <div v-for="sub in editingTodo.subtasks" :key="sub.id" class="subtask-item">
+            <label class="subtask-check">
+              <input type="checkbox" :checked="sub.done" @change="toggleSubTodo(editingTodo!.id, sub.id)" />
+              <span class="checkmark small"></span>
+            </label>
+            <span class="subtask-text" :class="{ done: sub.done }">{{ sub.text }}</span>
+            <button class="subtask-delete" @click="deleteSubTodo(editingTodo!.id, sub.id)">
+              <WsIcon name="x" :size="12" />
+            </button>
+          </div>
+          <div class="subtask-add">
+            <input
+              v-model="newSubTodoText"
+              type="text"
+              placeholder="添加子任务..."
+              class="detail-input"
+              @keyup.enter="handleAddSubTodo(editingTodo!.id)"
+            />
+            <button class="add-btn small" @click="handleAddSubTodo(editingTodo!.id)">添加</button>
+          </div>
+        </div>
+      </div>
+    </Modal>
   </div>
 </template>
 
@@ -847,6 +945,18 @@ const groupOrder = ['overdue', 'today', 'tomorrow', 'upcoming', 'noDate']
   gap: 0.75rem;
 }
 
+.empty-state {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  opacity: 0.6;
+}
+
 .todo-group {
   display: flex;
   flex-direction: column;
@@ -1019,6 +1129,7 @@ const groupOrder = ['overdue', 'today', 'tomorrow', 'upcoming', 'noDate']
   font-size: 0.65rem;
 }
 
+.edit-btn,
 .delete-btn {
   background: transparent;
   border: none;
@@ -1030,8 +1141,24 @@ const groupOrder = ['overdue', 'today', 'tomorrow', 'upcoming', 'noDate']
   align-items: center;
   justify-content: center;
   transition: all 0.2s;
-  opacity: 0;
   flex-shrink: 0;
+}
+
+.edit-btn {
+  opacity: 0;
+}
+
+.todo-item:hover .edit-btn {
+  opacity: 1;
+}
+
+.edit-btn:hover {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+.delete-btn {
+  opacity: 0;
 }
 
 .todo-item:hover .delete-btn {
@@ -1043,90 +1170,9 @@ const groupOrder = ['overdue', 'today', 'tomorrow', 'upcoming', 'noDate']
   color: #ef4444;
 }
 
-.todo-detail {
-  width: 100%;
-  margin-top: 0.5rem;
-  padding: 0.75rem;
-  background: var(--bg-input);
-  border-radius: var(--radius-md);
-  display: flex;
-  flex-direction: column;
-  gap: 0.6rem;
-}
-
-.detail-row {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.detail-row label {
-  font-size: 0.7rem;
-  color: var(--text-secondary);
-  font-weight: 600;
-}
-
 .detail-textarea {
   resize: vertical;
   font-family: inherit;
-}
-
-.subtask-section {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.subtask-item {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.3rem 0;
-}
-
-.subtask-text {
-  flex: 1;
-  font-size: 0.8rem;
-  color: var(--text-primary);
-}
-
-.subtask-text.done {
-  text-decoration: line-through;
-  opacity: 0.55;
-}
-
-.subtask-delete {
-  background: transparent;
-  border: none;
-  color: var(--text-secondary);
-  cursor: pointer;
-  padding: 0.2rem;
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.subtask-delete:hover {
-  color: #ef4444;
-  background: rgba(239, 68, 68, 0.1);
-}
-
-.subtask-add {
-  display: flex;
-  gap: 0.4rem;
-}
-
-.empty-state {
-  text-align: center;
-  padding: 2rem;
-  color: var(--text-secondary);
-  font-size: 0.875rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  opacity: 0.6;
 }
 
 @media (max-width: 768px) {

@@ -244,7 +244,6 @@ export function useTodos() {
     }
 
     items.forEach(t => {
-      if (t.done) return
       if (isOverdue(t)) {
         result.overdue.push(t)
       } else if (!t.dueDate) {
